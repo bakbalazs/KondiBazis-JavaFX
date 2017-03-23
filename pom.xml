@@ -33,6 +33,9 @@
 
 	<modules>
 		<module>kondibazis-db</module>
+		<module>kondibazis-szolg</module>
+		<module>kondibazis-szolg-api</module>
+		<module>kondibazis-ui</module>
 	</modules>
 
 	<dependencyManagement>
