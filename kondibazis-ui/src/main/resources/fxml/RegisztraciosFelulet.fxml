@@ -6,7 +6,6 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane prefHeight="310.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Text fill="#b80000" layoutX="107.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="KondiBázis" AnchorPane.topAnchor="15.0">
@@ -19,7 +18,7 @@
             <Font size="18.0" />
          </font>
       </Text>
-      <Button fx:id="visszaGomb" layoutX="123.0" layoutY="120.0" mnemonicParsing="false" onAction="#visszaGomb" prefHeight="25.0" prefWidth="23.0" AnchorPane.bottomAnchor="270.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="277.0" AnchorPane.topAnchor="15.0" />
+      <Button fx:id="visszaGomb" layoutX="123.0" layoutY="120.0" mnemonicParsing="false" onAction="#vissza" prefHeight="25.0" prefWidth="23.0" AnchorPane.bottomAnchor="270.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="277.0" AnchorPane.topAnchor="15.0" />
       <Text layoutX="53.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="2.0" text="A felhasználónév minimum 4 karakter. A jelszó minimum 8 karakter. " textAlignment="CENTER" wrappingWidth="204.392578125" />
       <TextField fx:id="konditeremnevBevitel" layoutX="87.0" layoutY="130.0" promptText="konditerem neve" />
       <TextField fx:id="felhasznalonevBevitel" layoutX="87.0" layoutY="172.0" promptText="felhasználónév" />
@@ -28,6 +27,6 @@
       <Text layoutX="13.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Felhasználónév:" />
       <Text layoutX="15.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Konditerem Neve:" />
       <Text fx:id="regisztraciosUzenet" layoutX="13.0" layoutY="258.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="271.13671875" />
-      <Button layoutX="110.0" layoutY="271.0" mnemonicParsing="false" onAction="#regisztralasGomb" text="Regisztrálás" />
+      <Button layoutX="110.0" layoutY="271.0" mnemonicParsing="false" onAction="#regisztralas" text="Regisztrálás" />
    </children>
 </AnchorPane>

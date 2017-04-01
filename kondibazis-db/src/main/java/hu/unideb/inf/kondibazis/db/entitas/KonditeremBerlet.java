@@ -8,18 +8,21 @@ public class KonditeremBerlet extends FoEntitas {
 
 	public KonditeremBerlet() {
 	}
-	
+
 	@Column(name = "berlet_neve")
 	private String berletNeve;
-	
+
 	@Column(name = "menniOra")
 	private int mennyiOra;
-	
+
 	@Column(name = "mennyiNap")
 	private int mennyiNap;
-	
+
 	@Column(name = "mennyiHonap")
 	private int mennyiHonap;
+
+	@Column(name = "berletAra")
+	private int berletAra;
 
 	public String getBerletNeve() {
 		return berletNeve;
@@ -52,7 +55,13 @@ public class KonditeremBerlet extends FoEntitas {
 	public void setMennyiHonap(int mennyiHonap) {
 		this.mennyiHonap = mennyiHonap;
 	}
-	
-	
+
+	public int getBerletAra() {
+		return berletAra;
+	}
+
+	public void setBerletAra(int berletAra) {
+		this.berletAra = berletAra;
+	}
 
 }

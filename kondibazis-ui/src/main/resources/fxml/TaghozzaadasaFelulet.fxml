@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="495.0" prefWidth="430.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Text fill="#b80000" layoutX="172.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="KondiBázis" AnchorPane.topAnchor="15.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fill="#b80000" layoutX="154.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tag Hozzáadása">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Text>
+      <Text layoutX="29.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vezetéknév:" AnchorPane.leftAnchor="29.0" />
+      <Text layoutX="29.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Keresztnév:" AnchorPane.leftAnchor="29.0" />
+      <Text layoutX="29.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nem:" AnchorPane.leftAnchor="29.0" />
+      <Text layoutX="31.0" layoutY="238.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Születési dátum:" AnchorPane.leftAnchor="29.0" />
+      <Text layoutX="29.0" layoutY="285.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lakhely(város csak):" AnchorPane.leftAnchor="29.0" />
+      <Text layoutX="29.0" layoutY="328.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Megye:" AnchorPane.leftAnchor="29.0" />
+      <Text layoutX="29.0" layoutY="372.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Beiratkozás ideje:" AnchorPane.leftAnchor="29.0" />
+      <SplitMenuButton layoutX="61.0" layoutY="411.0" mnemonicParsing="false" text="Bérletek">
+        <items>
+          <MenuItem mnemonicParsing="false" text="Action 1" />
+          <MenuItem mnemonicParsing="false" text="Action 2" />
+        </items>
+      </SplitMenuButton>
+      <ImageView fx:id="kepMegjelenes" fitHeight="175.0" fitWidth="175.0" layoutX="220.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="186.0" AnchorPane.leftAnchor="220.0" AnchorPane.rightAnchor="29.0" AnchorPane.topAnchor="89.0" />
+      <Button layoutX="244.0" layoutY="112.0" mnemonicParsing="false" onAction="#tallozas" opacity="0.0" prefHeight="175.0" prefWidth="175.0" text="Button" AnchorPane.bottomAnchor="219.0" AnchorPane.leftAnchor="220.0" AnchorPane.rightAnchor="35.0" AnchorPane.topAnchor="89.0" />
+      <Text fx:id="belepettKonditerem" fill="#b80000" layoutX="98.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="233.44873046875">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Text>
+      <TextField fx:id="vezeteknevBevitel" layoutX="28.0" layoutY="106.0" AnchorPane.leftAnchor="29.0" />
+      <TextField fx:id="keresztnevBevitel" layoutX="28.0" layoutY="154.0" AnchorPane.leftAnchor="28.0" />
+      <RadioButton layoutX="28.0" layoutY="200.0" mnemonicParsing="false" text="Nő" />
+      <RadioButton layoutX="74.0" layoutY="200.0" mnemonicParsing="false" text="Férfi" />
+      <DatePicker fx:id="szuldatumBevitel" layoutX="29.0" layoutY="242.0" onAction="#szuldatumKivalaszt" AnchorPane.leftAnchor="29.0" />
+      <TextField fx:id="varosneveBevitel" layoutX="29.0" layoutY="289.0" AnchorPane.leftAnchor="29.0" />
+      <TextField fx:id="megyeBevitel" layoutX="29.0" layoutY="331.0" AnchorPane.leftAnchor="29.0" />
+      <DatePicker fx:id="beiratkozasBevitel" layoutX="29.0" layoutY="375.0" onAction="#beiratkozasKivalaszt" AnchorPane.leftAnchor="29.0" />
+      <Button fx:id="hozzaadasGomb" layoutX="164.0" layoutY="436.0" mnemonicParsing="false" onAction="#hozzaadas" text="Tag Hozzáadása" />
+      <Text fx:id="hozzaadasUzenet" layoutX="97.0" layoutY="481.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="245.44873046875" />
+   </children>
+</AnchorPane>
