@@ -42,8 +42,11 @@
       </Text>
       <TextField fx:id="vezeteknevBevitel" layoutX="28.0" layoutY="106.0" AnchorPane.leftAnchor="29.0" />
       <TextField fx:id="keresztnevBevitel" layoutX="28.0" layoutY="154.0" AnchorPane.leftAnchor="28.0" />
-      <RadioButton layoutX="28.0" layoutY="200.0" mnemonicParsing="false" text="Nő" />
-      <RadioButton layoutX="74.0" layoutY="200.0" mnemonicParsing="false" text="Férfi" />
+      <RadioButton fx:id="noValasztasGomb" layoutX="28.0" layoutY="200.0" mnemonicParsing="false" onAction="#noValasztas" text="Nő">
+         <toggleGroup>
+            <ToggleGroup fx:id="nemek" />
+         </toggleGroup></RadioButton>
+      <RadioButton fx:id="ferfiValasztasGomb" layoutX="74.0" layoutY="200.0" mnemonicParsing="false" onAction="#ferfiValasztas" text="Férfi" toggleGroup="$nemek" />
       <DatePicker fx:id="szuldatumBevitel" layoutX="29.0" layoutY="242.0" onAction="#szuldatumKivalaszt" AnchorPane.leftAnchor="29.0" />
       <TextField fx:id="varosneveBevitel" layoutX="29.0" layoutY="289.0" AnchorPane.leftAnchor="29.0" />
       <TextField fx:id="megyeBevitel" layoutX="29.0" layoutY="331.0" AnchorPane.leftAnchor="29.0" />
