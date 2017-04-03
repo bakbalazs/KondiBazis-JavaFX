@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="310.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="310.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.kondibazis.ui.kezelo.BejelentkezoKezelo">
    <children>
       <Text fill="#b80000" layoutX="106.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="KondiBázis" textAlignment="CENTER" AnchorPane.topAnchor="15.0">
          <font>

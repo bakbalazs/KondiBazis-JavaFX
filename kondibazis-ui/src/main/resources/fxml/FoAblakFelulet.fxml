@@ -29,9 +29,9 @@
                 </Menu>
               </menus>
             </MenuBar>
-            <SplitPane dividerPositions="0.30864197530864196" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
+            <SplitPane dividerPositions="0.3333333333333333" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
                <items>
-                  <SplitPane dividerPositions="0.5" prefHeight="216.0" prefWidth="1198.0">
+                  <SplitPane dividerPositions="0.5" prefHeight="250.0" prefWidth="1198.0">
                     <items>
                         <GridPane>
                           <columnConstraints>
@@ -97,24 +97,12 @@
                         </GridPane>
                     </items>
                   </SplitPane>
-                  <GridPane alignment="CENTER">
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints maxHeight="206.0" minHeight="10.0" prefHeight="26.0" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="397.0" minHeight="10.0" prefHeight="363.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                     <children>
-                        <TableView prefHeight="343.0" prefWidth="1198.0" GridPane.rowIndex="1">
-                          <columns>
-                            <TableColumn prefWidth="75.0" text="C1" />
-                            <TableColumn prefWidth="75.0" text="C2" />
-                          </columns>
-                        </TableView>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tagok" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                     </children>
-                  </GridPane>
+                  <TableView prefHeight="317.0" prefWidth="1198.0">
+                    <columns>
+                      <TableColumn prefWidth="75.0" text="C1" />
+                      <TableColumn prefWidth="75.0" text="C2" />
+                    </columns>
+                  </TableView>
                </items>
             </SplitPane>
         </items>
