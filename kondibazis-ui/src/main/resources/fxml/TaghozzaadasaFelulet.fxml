@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="495.0" prefWidth="430.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="495.0" prefWidth="430.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.kondibazis.ui.kezelo.TagHozzaadasaKezelo">
    <children>
       <Text fill="#b80000" layoutX="172.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="KondiBázis" AnchorPane.topAnchor="15.0">
          <font>
@@ -27,7 +27,7 @@
       <Text layoutX="29.0" layoutY="285.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lakhely(város csak):" AnchorPane.leftAnchor="29.0" />
       <Text layoutX="29.0" layoutY="328.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Megye:" AnchorPane.leftAnchor="29.0" />
       <Text layoutX="29.0" layoutY="372.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Beiratkozás ideje:" AnchorPane.leftAnchor="29.0" />
-      <SplitMenuButton layoutX="61.0" layoutY="411.0" mnemonicParsing="false" text="Bérletek">
+      <SplitMenuButton layoutX="247.0" layoutY="331.0" mnemonicParsing="false" text="Bérletek">
         <items>
           <MenuItem mnemonicParsing="false" text="Action 1" />
           <MenuItem mnemonicParsing="false" text="Action 2" />
@@ -53,5 +53,7 @@
       <DatePicker fx:id="beiratkozasBevitel" layoutX="29.0" layoutY="375.0" onAction="#beiratkozasKivalaszt" AnchorPane.leftAnchor="29.0" />
       <Button fx:id="hozzaadasGomb" layoutX="164.0" layoutY="436.0" mnemonicParsing="false" onAction="#hozzaadas" text="Tag Hozzáadása" />
       <Text fx:id="hozzaadasUzenet" layoutX="97.0" layoutY="481.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="245.44873046875" />
+      <Text layoutX="244.0" layoutY="372.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Választott Bérlet:" />
+      <Text layoutX="237.0" layoutY="392.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="102.0" />
    </children>
 </AnchorPane>

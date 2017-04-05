@@ -9,30 +9,32 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 
-public class RegisztralasKezelo implements Initializable {
+public class BerletTipusHozzaadasaKezelo implements Initializable {
 
 	FeluletBetoltese feluletBetoltese = new FeluletBetoltese();
+	
+	@FXML
+	private Button letrehozasGomb;
+	
+	@FXML
+	private Button kihagyasGomb;
 
 	@FXML
-	public void regisztralas(ActionEvent event) throws IOException {
-		
-		//sikeres reg esetén
-		feluletBetoltese.BerletHozzaadasaFelulet();
-		((Node) (event.getSource())).getScene().getWindow().hide();
+	public void letrehozas(ActionEvent event) {
 
 	}
 
 	@FXML
-	public void vissza(ActionEvent event) throws IOException {
-		feluletBetoltese.InditasiFelulet();
+	public void kihagyas(ActionEvent event) throws IOException {
+		feluletBetoltese.BelepesiFelulet();
 		((Node) (event.getSource())).getScene().getWindow().hide();
 	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
-
+		letrehozasGomb.setVisible(false);
 	}
 
 }

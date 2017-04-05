@@ -4,78 +4,113 @@ import java.io.IOException;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class FeluletBetoltese {
-	
+
 	private FXMLLoader loader = new FXMLLoader();
 	private Stage stage = new Stage();
+	private Pane parent = new Pane();
 	private String alkalmazásNeve = "KondiBázis";
-	
-	public void InditasiFelulet() throws IOException{
-		Pane parent = loader.load(getClass().getResource("/fxml/InditasiKepernyoFelulet.fxml").openStream());
+
+	public void iconBeallitasa() {
+		stage.getIcons().add(new Image("/kepek/icon.png"));
+	}
+
+	public void visszaGombBeallitasa() {
+		parent.getStylesheets().add(getClass().getResource("/css/visszaGomb.css").toString());
+	}
+
+	public void InditasiFelulet() throws IOException {
+		parent = loader.load(getClass().getResource("/fxml/InditasiKepernyoFelulet.fxml").openStream());
+		iconBeallitasa();
 		Scene scene = new Scene(parent);
 		stage.setScene(scene);
 		stage.setResizable(false);
-//		stage.getIcons().add(new Image("/images/kondibazis.png"));
 		stage.setTitle(getAlkalmazásNeve());
 		stage.show();
 	}
-	
+
 	public void BelepesiFelulet() throws IOException {
-		Pane parent = loader.load(getClass().getResource("/fxml/BejelentkezoFelulet.fxml").openStream());
-		parent.getStylesheets().add(getClass().getResource("/css/visszaGomb.css").toString());
+		parent = loader.load(getClass().getResource("/fxml/BejelentkezoFelulet.fxml").openStream());
+		visszaGombBeallitasa();
+		iconBeallitasa();
 		Scene scene = new Scene(parent);
 		stage.setScene(scene);
 		stage.setResizable(false);
-	//	stage.getIcons().add(new Image("/images/kondibazis.png"));
 		stage.setTitle("Bejeletkezés - " + getAlkalmazásNeve());
 		stage.show();
 	}
-	
+
 	public void RegisztralasiFelulet() throws IOException {
-		Pane parent = loader.load(getClass().getResource("/fxml/RegisztraciosFelulet.fxml").openStream());
-		parent.getStylesheets().add(getClass().getResource("/css/visszaGomb.css").toString());
+		parent = loader.load(getClass().getResource("/fxml/RegisztraciosFelulet.fxml").openStream());
+		visszaGombBeallitasa();
+		iconBeallitasa();
 		Scene scene = new Scene(parent);
 		stage.setScene(scene);
 		stage.setResizable(false);
-	//	stage.getIcons().add(new Image("/images/kondibazis.png"));
 		stage.setTitle("Terem Regisztrálása - " + getAlkalmazásNeve());
 		stage.show();
 	}
-	
-	public void NevjegyFelulet() throws IOException{
-		Pane parent = loader.load(getClass().getResource("/fxml/NevjegyFelulet.fxml").openStream());
-		parent.getStylesheets().add(getClass().getResource("/css/visszaGomb.css").toString());
+
+	public void NevjegyFelulet() throws IOException {
+		parent = loader.load(getClass().getResource("/fxml/NevjegyFelulet.fxml").openStream());
+		visszaGombBeallitasa();
+		iconBeallitasa();
 		Scene scene = new Scene(parent);
 		stage.setScene(scene);
 		stage.setResizable(false);
-//		stage.getIcons().add(new Image("/images/kondibazis.png"));
 		stage.setTitle("Névjegy - " + getAlkalmazásNeve());
 		stage.show();
 	}
-	
-	/// átírni őket sorendbe
-	
-	public void FoAblakFelulet() throws IOException{
-		Pane parent = loader.load(getClass().getResource("/fxml/FoAblakFelulet.fxml").openStream());
-		//parent.getStylesheets().add(getClass().getResource("/css/visszaGomb.css").toString());
+
+	public void BerletHozzaadasaFelulet() throws IOException {
+		parent = loader.load(getClass().getResource("/fxml/BerletTipusHozzaadasaFelulet.fxml").openStream());
+		iconBeallitasa();
+		Scene scene = new Scene(parent);
+		stage.setResizable(false);
+		stage.setScene(scene);
+		stage.setTitle("Bérlet létrehozása - " + getAlkalmazásNeve());
+		stage.show();
+	}
+
+	public void FoAblakFelulet() throws IOException {
+		parent = loader.load(getClass().getResource("/fxml/FoAblakFelulet.fxml").openStream());
+		iconBeallitasa();
 		Scene scene = new Scene(parent);
 		stage.setScene(scene);
-//		stage.setResizable(false);
-//		stage.getIcons().add(new Image("/images/kondibazis.png"));
 		stage.setTitle(getAlkalmazásNeve());
 		stage.show();
 	}
-	
+
+	public void BerletLetrehozasaFoAblakFelulet() throws IOException {
+		parent = loader.load(getClass().getResource("/fxml/BerletLetrehozasFoAblakFelulet.fxml").openStream());
+		iconBeallitasa();
+		Scene scene = new Scene(parent);
+		stage.setResizable(false);
+		stage.setScene(scene);
+		stage.setTitle("Bérlet létrehozása - " + getAlkalmazásNeve());
+		stage.show();
+	}
+
+	public void TagHozzaadasaFelulet() throws IOException {
+		parent = loader.load(getClass().getResource("/fxml/TaghozzaadasaFelulet.fxml").openStream());
+		iconBeallitasa();
+		Scene scene = new Scene(parent);
+		stage.setResizable(false);
+		stage.setScene(scene);
+		stage.setTitle("Tag Hozzáadása -" + getAlkalmazásNeve());
+		stage.show();
+	}
+
 	public String getAlkalmazásNeve() {
 		return alkalmazásNeve;
 	}
+
 	public void setAlkalmazásNeve(String alkalmazásNeve) {
 		this.alkalmazásNeve = alkalmazásNeve;
 	}
-	
-	
 
 }

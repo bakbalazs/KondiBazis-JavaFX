@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.kondibazis.ui.kezelo.FoAblakKezelo">
    <center>
       <SplitPane dividerPositions="0.046822742474916385" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
         <items>
@@ -84,8 +84,8 @@
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.rowIndex="1" />
+                                    <Button fx:id="berletLetrehozasaGomb" mnemonicParsing="false" onAction="#berletLetrehozasa" text="Bérlet Létrehozása" />
+                                    <Button fx:id="tagHozzaadasaGomb" mnemonicParsing="false" onAction="#tagHozzaadasa" text="Tag Hozzáadása" GridPane.rowIndex="1" />
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.rowIndex="2" />
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" />
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="1" />
