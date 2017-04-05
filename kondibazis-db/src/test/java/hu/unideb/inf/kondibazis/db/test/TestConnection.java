@@ -12,7 +12,8 @@ import hu.unideb.inf.kondibazis.db.entitas.Konditerem;
 import hu.unideb.inf.kondibazis.db.tarolo.KonditeremTarolo;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("/spring-db.xml")
+@ContextConfiguration(locations = "classpath:/spring-db.xml")
+//@ContextConfiguration("/spring-db.xml")
 @Transactional
 @Rollback(false)
 public class TestConnection {

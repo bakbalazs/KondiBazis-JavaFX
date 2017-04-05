@@ -24,7 +24,7 @@
       <PasswordField fx:id="jelszoBevitel" layoutX="74.0" layoutY="152.0" promptText="jelszó" />
       <Button layoutX="105.0" layoutY="226.0" mnemonicParsing="false" onAction="#bejelentkezes" text="Bejelentkezés" />
       <Button layoutX="67.0" layoutY="265.0" mnemonicParsing="false" onAction="#regisztralas" text="Új Konditerem Regisztrálása" />
-      <Button fx:id="visszaGomb" layoutY="15.0" mnemonicParsing="false" onAction="#vissza" prefHeight="25.0" prefWidth="23.0" AnchorPane.bottomAnchor="270.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="277.0" AnchorPane.topAnchor="15.0" />
+      <Button fx:id="visszaGomb" contentDisplay="CENTER" layoutY="22.0" mnemonicParsing="false" onAction="#vissza" prefHeight="25.0" prefWidth="23.0" textFill="TRANSPARENT" />
       <Text fx:id="bejelentkezoUzenet" layoutX="14.0" layoutY="203.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="269.13671875" />
    </children>
 </AnchorPane>
