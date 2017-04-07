@@ -1,7 +1,15 @@
 package hu.unideb.inf.kondibazis.db.entitas;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "konditeremBerlet")
 public class KonditeremBerlet extends FoEntitas {
 
 	private static final long serialVersionUID = 1L;
@@ -23,6 +31,10 @@ public class KonditeremBerlet extends FoEntitas {
 
 	@Column(name = "berletAra")
 	private int berletAra;
+
+	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.PERSIST, CascadeType.REFRESH }, fetch = FetchType.LAZY)
+	@JoinColumn(name = "konditerem_id")
+	private Konditerem konditerem;
 
 	public String getBerletNeve() {
 		return berletNeve;
@@ -62,6 +74,14 @@ public class KonditeremBerlet extends FoEntitas {
 
 	public void setBerletAra(int berletAra) {
 		this.berletAra = berletAra;
+	}
+
+	public Konditerem getKonditerem() {
+		return konditerem;
+	}
+
+	public void setKonditerem(Konditerem konditerem) {
+		this.konditerem = konditerem;
 	}
 
 }

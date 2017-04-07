@@ -10,6 +10,9 @@
 
 		<class>hu.unideb.inf.kondibazis.db.entitas.FoEntitas</class>
 		<class>hu.unideb.inf.kondibazis.db.entitas.Konditerem</class>
+		<class>hu.unideb.inf.kondibazis.db.entitas.KonditeremBerlet</class>
+		<class>hu.unideb.inf.kondibazis.db.entitas.KonditeremTag</class>
+		<class>hu.unideb.inf.kondibazis.db.entitas.KonditeremElerhetoseg</class>
 
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 

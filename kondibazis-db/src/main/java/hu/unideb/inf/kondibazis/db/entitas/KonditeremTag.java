@@ -2,9 +2,17 @@ package hu.unideb.inf.kondibazis.db.entitas;
 
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "konditeremTag")
 public class KonditeremTag extends FoEntitas {
 
 	private static final long serialVersionUID = 1L;
@@ -36,6 +44,11 @@ public class KonditeremTag extends FoEntitas {
 	@Lob
 	@Column(name = "tagKep")
 	private byte[] tagKep;
+	
+	@ManyToOne(cascade={CascadeType.DETACH, CascadeType.PERSIST, CascadeType.REFRESH },
+			fetch=FetchType.LAZY)
+	@JoinColumn(name="konditerem_id")
+	private Konditerem konditerem;
 
 	public String getTagVezeteknev() {
 		return tagVezeteknev;

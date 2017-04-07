@@ -1,7 +1,12 @@
 package hu.unideb.inf.kondibazis.db.entitas;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "konditeremElerhetoseg")
 public class KonditeremElerhetoseg extends FoEntitas {
 
 	private static final long serialVersionUID = 1L;
@@ -41,6 +46,9 @@ public class KonditeremElerhetoseg extends FoEntitas {
 
 	@Column(name = "facebookOldalLink")
 	private String facebookOldalLink;
+
+	@OneToOne
+	private Konditerem konditerem;
 
 	public String getMegyeNeve() {
 		return megyeNeve;
@@ -128,6 +136,14 @@ public class KonditeremElerhetoseg extends FoEntitas {
 
 	public void setFacebookOldalLink(String facebookOldalLink) {
 		this.facebookOldalLink = facebookOldalLink;
+	}
+
+	public Konditerem getKonditerem() {
+		return konditerem;
+	}
+
+	public void setKonditerem(Konditerem konditerem) {
+		this.konditerem = konditerem;
 	}
 
 }
