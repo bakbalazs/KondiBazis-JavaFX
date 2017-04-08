@@ -31,7 +31,7 @@ public class Konditerem extends FoEntitas {
 
 	@OneToMany(mappedBy = "konditerem")
 	private List<KonditeremTag> konditeremTag;
-	
+
 	@OneToOne
 	private KonditeremElerhetoseg konditeremElerhetoseg;
 

@@ -27,9 +27,23 @@
 		</developer>
 	</developers>
 
-	<scm></scm>
+	<scm>
+		<url></url>
+		<connection></connection>
+		<developerConnection></developerConnection>
+	</scm>
 
-	<licenses></licenses>
+	<inceptionYear>2016</inceptionYear>
+	<organization>
+		<name>Faculty of Informatics, University of Debrecen</name>
+	</organization>
+
+	<licenses>
+		<license>
+			<name>GNU GPL V3</name>
+			<url>http://www.gnu.org/licenses/gpl.html</url>
+		</license>
+	</licenses>
 
 	<modules>
 		<module>kondibazis-db</module>
@@ -37,17 +51,6 @@
 		<module>kondibazis-szolg-api</module>
 		<module>kondibazis-ui</module>
 	</modules>
-
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>slf4j-simple</artifactId>
-				<version>1.7.18</version>
-				<scope>runtime</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
 
 	<build>
 		<pluginManagement>
