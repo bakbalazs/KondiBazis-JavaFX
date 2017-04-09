@@ -33,9 +33,9 @@
 		<developerConnection></developerConnection>
 	</scm>
 
-	<inceptionYear>2016</inceptionYear>
+	<inceptionYear>2017</inceptionYear>
 	<organization>
-		<name>Faculty of Informatics, University of Debrecen</name>
+		<name>Debreceni Egyetem Informatika Kar</name>
 	</organization>
 
 	<licenses>
@@ -51,6 +51,14 @@
 		<module>kondibazis-szolg-api</module>
 		<module>kondibazis-ui</module>
 	</modules>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+		</dependency>
+	</dependencies>
 
 	<build>
 		<pluginManagement>
@@ -82,6 +90,14 @@
 					<configuration>
 						<source>1.8</source>
 						<target>1.8</target>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-checkstyle-plugin</artifactId>
+					<version>2.17</version>
+					<configuration>
+						<configLocation>src/main/resources/checkstyle.xml</configLocation>
 					</configuration>
 				</plugin>
 			</plugins>

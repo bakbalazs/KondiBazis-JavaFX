@@ -146,4 +146,12 @@ public class KonditeremElerhetoseg extends FoEntitas {
 		this.konditerem = konditerem;
 	}
 
+	@Override
+	public String toString() {
+		return "KonditeremElerhetoseg [megyeNeve=" + megyeNeve + ", iranyitoSzam=" + iranyitoSzam + ", varosNeve="
+				+ varosNeve + ", utcaNeve=" + utcaNeve + ", hazSzam=" + hazSzam + ", emelet=" + emelet + ", ajto="
+				+ ajto + ", telefonszam=" + telefonszam + ", emailCim=" + emailCim + ", weboldalLink=" + weboldalLink
+				+ ", facebookOldalLink=" + facebookOldalLink + ", konditerem=" + konditerem + "]";
+	}
+
 }

@@ -1,5 +1,7 @@
 package hu.unideb.inf.kondibazis.db.test;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +14,7 @@ import hu.unideb.inf.kondibazis.db.entitas.Konditerem;
 import hu.unideb.inf.kondibazis.db.tarolo.KonditeremTarolo;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:/spring-db.xml")
-//@ContextConfiguration("/spring-db.xml")
+@ContextConfiguration("/spring-db.xml")
 @Transactional
 @Rollback(false)
 public class TestConnection {
@@ -21,15 +22,23 @@ public class TestConnection {
 	@Autowired
 	KonditeremTarolo ktarolo;
 
+//	@Test
+//	public void testInsert() {
+//		Konditerem random = new Konditerem();
+//
+//		random.setId(1L);
+//		random.setJelszo("sadfdfds");
+//		
+//
+//		ktarolo.save(random);
+//	}
+	
 	@Test
-	public void testInsert() {
-		Konditerem random = new Konditerem();
-
-		random.setId(1L);
-		random.setJelszo("sadfdfds");
+	public void beszurasAKonditerembe() throws Exception {
 		
-
-		ktarolo.save(random);
+		Konditerem admin = ktarolo.findByFelhasznalonev("admin");
+		assertEquals(admin.getFelhasznalonev(), "admin" );
+		
 	}
 
 }

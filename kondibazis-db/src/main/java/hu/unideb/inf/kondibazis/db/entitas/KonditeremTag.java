@@ -1,6 +1,7 @@
 package hu.unideb.inf.kondibazis.db.entitas;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -112,6 +113,14 @@ public class KonditeremTag extends FoEntitas {
 
 	public void setVasaroltBerletNeve(String vasaroltBerletNeve) {
 		this.vasaroltBerletNeve = vasaroltBerletNeve;
+	}
+
+	@Override
+	public String toString() {
+		return "KonditeremTag [tagVezeteknev=" + tagVezeteknev + ", tagKeresztnev=" + tagKeresztnev + ", tagNeme="
+				+ tagNeme + ", tagKora=" + tagKora + ", tagSzuletesidatuma=" + tagSzuletesidatuma
+				+ ", berletVasarlasideje=" + berletVasarlasideje + ", vasaroltBerletNeve=" + vasaroltBerletNeve
+				+ ", tagKep=" + Arrays.toString(tagKep) + ", konditerem=" + konditerem + "]";
 	}
 
 }

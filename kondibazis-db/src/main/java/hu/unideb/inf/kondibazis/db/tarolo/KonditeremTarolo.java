@@ -10,5 +10,7 @@ import hu.unideb.inf.kondibazis.db.entitas.Konditerem;
 @Repository
 @Transactional(propagation = Propagation.SUPPORTS)
 public interface KonditeremTarolo extends JpaRepository<Konditerem, Long> {
+	
+	Konditerem findByFelhasznalonev(String felhasznalonev) throws Exception;
 
 }

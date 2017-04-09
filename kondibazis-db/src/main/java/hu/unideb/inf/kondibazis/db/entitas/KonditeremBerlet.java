@@ -84,4 +84,10 @@ public class KonditeremBerlet extends FoEntitas {
 		this.konditerem = konditerem;
 	}
 
+	@Override
+	public String toString() {
+		return "KonditeremBerlet [berletNeve=" + berletNeve + ", mennyiOra=" + mennyiOra + ", mennyiNap=" + mennyiNap
+				+ ", mennyiHonap=" + mennyiHonap + ", berletAra=" + berletAra + ", konditerem=" + konditerem + "]";
+	}
+
 }

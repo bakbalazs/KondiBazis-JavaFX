@@ -83,4 +83,11 @@ public class Konditerem extends FoEntitas {
 		this.konditeremElerhetoseg = konditeremElerhetoseg;
 	}
 
+	@Override
+	public String toString() {
+		return "Konditerem [felhasznalonev=" + felhasznalonev + ", jelszo=" + jelszo + ", konditeremNeve="
+				+ konditeremNeve + ", konditeremBerlet=" + konditeremBerlet + ", konditeremTag=" + konditeremTag
+				+ ", konditeremElerhetoseg=" + konditeremElerhetoseg + "]";
+	}
+
 }
