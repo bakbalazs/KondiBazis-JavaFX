@@ -3,6 +3,8 @@ package hu.unideb.inf.kondibazis.ui.kezelo;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import org.springframework.stereotype.Component;
+
 import hu.unideb.inf.kondibazis.ui.bevitel.szam.NumberTextField;
 import hu.unideb.inf.kondibazis.ui.bevitel.szam.NumberTextFieldLimited;
 import javafx.event.ActionEvent;
@@ -12,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
+@Component
 public class BerletLetrehozasFoAblakKezelo implements Initializable {
 	
 	@FXML

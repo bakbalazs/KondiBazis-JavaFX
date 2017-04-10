@@ -3,10 +3,13 @@ package hu.unideb.inf.kondibazis.ui.kezelo;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import org.springframework.stereotype.Component;
+
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 
+@Component
 public class TagHozzaadasaKezelo  implements Initializable {
 	
 

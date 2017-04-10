@@ -1,116 +1,106 @@
 package hu.unideb.inf.kondibazis.ui.felulet;
 
-import java.io.IOException;
-
-import javafx.fxml.FXMLLoader;
+import javafx.event.ActionEvent;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-public class FeluletBetoltese {
+public final class FeluletBetoltese {
 
-	private FXMLLoader loader = new FXMLLoader();
-	private Stage stage = new Stage();
-	private Pane parent = new Pane();
-	private String alkalmazásNeve = "KondiBázis";
+	private static final SpringFxmlLoader loader = new SpringFxmlLoader();
+	private static String alkalmazásNeve = "KondiBázis";
+	private static final Image icon = new Image("/kepek/icon.png");
+	private static final String visszaGomb = new String("/css/visszaGomb.css");
 
-	public void iconBeallitasa() {
-		stage.getIcons().add(new Image("/kepek/icon.png"));
+	public static void InditasiFelulet(Stage primaryStage) {
+		Parent root = (Parent) loader.load("/fxml/InditasiKepernyoFelulet.fxml");
+		Scene scene = new Scene(root);
+
+		primaryStage.setTitle(getAlkalmazásNeve());
+		primaryStage.setScene(scene);
+		primaryStage.centerOnScreen();
+		primaryStage.getIcons().add(icon);
+		primaryStage.show();
 	}
 
-	public void visszaGombBeallitasa() {
-		parent.getStylesheets().add(getClass().getResource("/css/visszaGomb.css").toString());
-	}
-
-	public void InditasiFelulet() throws IOException {
-		parent = loader.load(getClass().getResource("/fxml/InditasiKepernyoFelulet.fxml").openStream());
-		iconBeallitasa();
+	public static void BejelentkezoFelulet(ActionEvent event) {
+		Parent parent = (Parent) loader.load("/fxml/BejelentkezoFelulet.fxml");
 		Scene scene = new Scene(parent);
+		scene.getStylesheets().add(visszaGomb);
+		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		stage.setTitle("Bejelentkezés - " + getAlkalmazásNeve());
 		stage.setScene(scene);
-		stage.setResizable(false);
-		stage.setTitle(getAlkalmazásNeve());
-		stage.show();
+		stage.centerOnScreen();
 	}
 
-	public void BelepesiFelulet() throws IOException {
-		parent = loader.load(getClass().getResource("/fxml/BejelentkezoFelulet.fxml").openStream());
-		visszaGombBeallitasa();
-		iconBeallitasa();
+	public static void RegisztralasiFelulet(ActionEvent event) {
+		Parent parent = (Parent) loader.load("/fxml/RegisztraciosFelulet.fxml");
 		Scene scene = new Scene(parent);
-		stage.setScene(scene);
-		stage.setResizable(false);
-		stage.setTitle("Bejeletkezés - " + getAlkalmazásNeve());
-		stage.show();
-	}
-
-	public void RegisztralasiFelulet() throws IOException {
-		parent = loader.load(getClass().getResource("/fxml/RegisztraciosFelulet.fxml").openStream());
-		visszaGombBeallitasa();
-		iconBeallitasa();
-		Scene scene = new Scene(parent);
-		stage.setScene(scene);
-		stage.setResizable(false);
+		scene.getStylesheets().add(visszaGomb);
+		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		stage.setTitle("Terem Regisztrálása - " + getAlkalmazásNeve());
-		stage.show();
+		stage.setScene(scene);
+		stage.centerOnScreen();
 	}
 
-	public void NevjegyFelulet() throws IOException {
-		parent = loader.load(getClass().getResource("/fxml/NevjegyFelulet.fxml").openStream());
-		visszaGombBeallitasa();
-		iconBeallitasa();
-		Scene scene = new Scene(parent);
-		stage.setScene(scene);
-		stage.setResizable(false);
+	public static void NevjegyFelulet(ActionEvent event) {
+		Parent root = (Parent) loader.load("/fxml/NevjegyFelulet.fxml");
+		Scene scene = new Scene(root);
+		scene.getStylesheets().add(visszaGomb);
+		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		stage.setTitle("Névjegy - " + getAlkalmazásNeve());
-		stage.show();
+		stage.setScene(scene);
+		stage.centerOnScreen();
 	}
 
-	public void BerletHozzaadasaFelulet() throws IOException {
-		parent = loader.load(getClass().getResource("/fxml/BerletTipusHozzaadasaFelulet.fxml").openStream());
-		iconBeallitasa();
-		Scene scene = new Scene(parent);
-		stage.setResizable(false);
-		stage.setScene(scene);
+	public static void BerletHozzaadasaFelulet(ActionEvent event) {
+		Parent root = (Parent) loader.load("/fxml/BerletTipusHozzaadasaFelulet.fxml");
+		Scene scene = new Scene(root);
+		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		stage.setTitle("Bérlet létrehozása - " + getAlkalmazásNeve());
-		stage.show();
+		stage.setScene(scene);
+		stage.centerOnScreen();
 	}
 
-	public void FoAblakFelulet() throws IOException {
-		parent = loader.load(getClass().getResource("/fxml/FoAblakFelulet.fxml").openStream());
-		iconBeallitasa();
-		Scene scene = new Scene(parent);
-		stage.setScene(scene);
+	public static void FoAblakFelulet(ActionEvent event) {
+		Parent root = (Parent) loader.load("/fxml/FoAblakFelulet.fxml");
+		Scene scene = new Scene(root);
+		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		stage.setTitle(getAlkalmazásNeve());
-		stage.show();
+		stage.setScene(scene);
+		stage.centerOnScreen();
 	}
 
-	public void BerletLetrehozasaFoAblakFelulet() throws IOException {
-		parent = loader.load(getClass().getResource("/fxml/BerletLetrehozasFoAblakFelulet.fxml").openStream());
-		iconBeallitasa();
-		Scene scene = new Scene(parent);
-		stage.setResizable(false);
-		stage.setScene(scene);
+	public static void BerletLetrehozasaFoAblakFelulet() {
+		Parent root = (Parent) loader.load("/fxml/BerletLetrehozasFoAblakFelulet.fxml");
+		Scene scene = new Scene(root);
+		Stage stage = new Stage();
 		stage.setTitle("Bérlet létrehozása - " + getAlkalmazásNeve());
-		stage.show();
-	}
-
-	public void TagHozzaadasaFelulet() throws IOException {
-		parent = loader.load(getClass().getResource("/fxml/TaghozzaadasaFelulet.fxml").openStream());
-		iconBeallitasa();
-		Scene scene = new Scene(parent);
-		stage.setResizable(false);
 		stage.setScene(scene);
-		stage.setTitle("Tag Hozzáadása -" + getAlkalmazásNeve());
+		stage.centerOnScreen();
+		stage.getIcons().add(icon);
 		stage.show();
 	}
 
-	public String getAlkalmazásNeve() {
+	public static void TagHozzaadasaFelulet(ActionEvent event) {
+		Parent root = (Parent) loader.load("/fxml/TaghozzaadasaFelulet.fxml");
+		Scene scene = new Scene(root);
+		Stage stage = new Stage();
+		stage.setTitle("Tag Hozzáadása -" + getAlkalmazásNeve());
+		stage.setScene(scene);
+		stage.centerOnScreen();
+		stage.getIcons().add(icon);
+		stage.show();
+	}
+
+	public static String getAlkalmazásNeve() {
 		return alkalmazásNeve;
 	}
 
-	public void setAlkalmazásNeve(String alkalmazásNeve) {
-		this.alkalmazásNeve = alkalmazásNeve;
+	public static void setAlkalmazásNeve(String alkalmazásNeve) {
+		FeluletBetoltese.alkalmazásNeve = alkalmazásNeve;
 	}
 
 }
