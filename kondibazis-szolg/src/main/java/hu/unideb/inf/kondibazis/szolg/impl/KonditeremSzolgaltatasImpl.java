@@ -18,7 +18,8 @@ public class KonditeremSzolgaltatasImpl implements KonditeremSzolgaltatas {
 	@Autowired
 	KonditeremTarolo konditeremTarolo;
 
-	public KonditeremVo findByFelhasznalonev(String felhasznalonev) {
+	@Override
+	public KonditeremVo keresFelhasznalonevet(String felhasznalonev) {
 		Konditerem k = null;
 		try {
 			k = konditeremTarolo.findByFelhasznalonev(felhasznalonev);
@@ -29,5 +30,23 @@ public class KonditeremSzolgaltatasImpl implements KonditeremSzolgaltatas {
 
 		return KonditeremMapper.toVo(k);
 	}
+
+	@Override
+	public KonditeremVo konditeremetLetrehoz(KonditeremVo konditerem) {
+		Konditerem ujkonditerem = KonditeremMapper.toDto(konditerem);
+		
+		Konditerem mentett_fh = konditeremTarolo.save(ujkonditerem);
+		if( mentett_fh == null ){
+			System.out.println("nem sikerült menti");
+		} else {
+			
+			System.out.println("sikeresen elmentésre került");
+		}
+
+		return KonditeremMapper.toVo(mentett_fh);
+	}
+
+
+
 
 }
