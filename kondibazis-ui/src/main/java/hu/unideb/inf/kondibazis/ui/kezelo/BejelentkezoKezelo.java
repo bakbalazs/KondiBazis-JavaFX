@@ -11,9 +11,25 @@ import hu.unideb.inf.kondibazis.ui.main.Inditas;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TextField;
+import javafx.scene.control.PasswordField;
+import javafx.scene.text.Text;
+import javafx.scene.control.Button;
 
 @Component
 public class BejelentkezoKezelo implements Initializable {
+
+	@FXML 
+	private TextField felhasznalonevBevitel;
+	
+	@FXML 
+	private PasswordField jelszoBevitel;
+	
+	@FXML 
+	private Text bejelentkezoUzenet;
+	
+	@FXML 
+	private Button visszaGomb;
 
 	@FXML
 	public void bejelentkezes(ActionEvent event) throws IOException {

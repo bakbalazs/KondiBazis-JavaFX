@@ -1,59 +1,153 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.*?>
 <?import javafx.scene.image.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="495.0" prefWidth="430.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.kondibazis.ui.kezelo.TagHozzaadasaKezelo">
-   <children>
-      <Text fill="#b80000" layoutX="172.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="KondiBázis" AnchorPane.topAnchor="15.0">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Text>
-      <Text fill="#b80000" layoutX="154.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tag Hozzáadása">
-         <font>
-            <Font size="17.0" />
-         </font>
-      </Text>
-      <Text layoutX="29.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vezetéknév:" AnchorPane.leftAnchor="29.0" />
-      <Text layoutX="29.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Keresztnév:" AnchorPane.leftAnchor="29.0" />
-      <Text layoutX="29.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nem:" AnchorPane.leftAnchor="29.0" />
-      <Text layoutX="31.0" layoutY="238.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Születési dátum:" AnchorPane.leftAnchor="29.0" />
-      <Text layoutX="29.0" layoutY="285.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lakhely(város csak):" AnchorPane.leftAnchor="29.0" />
-      <Text layoutX="29.0" layoutY="328.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Megye:" AnchorPane.leftAnchor="29.0" />
-      <Text layoutX="29.0" layoutY="372.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Beiratkozás ideje:" AnchorPane.leftAnchor="29.0" />
-      <SplitMenuButton layoutX="247.0" layoutY="331.0" mnemonicParsing="false" text="Bérletek">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="527.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <SplitPane dividerPositions="0.13904761904761906" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
         <items>
-          <MenuItem mnemonicParsing="false" text="Action 1" />
-          <MenuItem mnemonicParsing="false" text="Action 2" />
+            <GridPane alignment="CENTER" prefHeight="66.0" prefWidth="598.0">
+              <columnConstraints>
+                <ColumnConstraints />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Text fill="#b80000" strokeType="OUTSIDE" strokeWidth="0.0" text="KondiBázis">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font></Text>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Text fill="#b80000" strokeType="OUTSIDE" strokeWidth="0.0" text="Tag Hozzáadása">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font></Text>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </GridPane>
+            <SplitPane dividerPositions="0.8106904231625836" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" SplitPane.resizableWithParent="false">
+              <items>
+                  <SplitPane dividerPositions="0.5" prefHeight="160.0" prefWidth="200.0" SplitPane.resizableWithParent="false">
+                    <items>
+                        <GridPane>
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Vezetéknév:" GridPane.rowIndex="1" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Keresztnév:" GridPane.rowIndex="2" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nem:" GridPane.rowIndex="3" />
+                              <DatePicker GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <DatePicker GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Születési dátum:" GridPane.rowIndex="4" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lakhely(város csak):" GridPane.rowIndex="5" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Megye:" GridPane.rowIndex="6" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Beiratkozás ideje:" GridPane.rowIndex="7" />
+                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                              <SplitMenuButton mnemonicParsing="false" text="SplitMenuButton" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" text="Action 1" />
+                                  <MenuItem mnemonicParsing="false" text="Action 2" />
+                                </items>
+                              </SplitMenuButton>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bérlet választás:" GridPane.rowIndex="8" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                              <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                 <children>
+                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                       <children>
+                                          <RadioButton mnemonicParsing="false" text="Nő" />
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                       <children>
+                                          <RadioButton mnemonicParsing="false" text="Férfi" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Választott bérlet:" GridPane.rowIndex="9" />
+                           </children>
+                        </GridPane>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="300.0" prefWidth="283.0">
+                                 <children>
+                                    <ImageView fitHeight="186.0" fitWidth="195.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                    </items>
+                  </SplitPane>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <VBox prefHeight="82.0" prefWidth="302.0">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="55.0" prefWidth="318.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="318.0" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" prefHeight="34.0" prefWidth="318.0">
+                                 <children>
+                                    <Button mnemonicParsing="false" text="Tag Hozzáadása" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+              </items>
+            </SplitPane>
         </items>
-      </SplitMenuButton>
-      <ImageView fx:id="kepMegjelenes" fitHeight="175.0" fitWidth="175.0" layoutX="220.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="186.0" AnchorPane.leftAnchor="220.0" AnchorPane.rightAnchor="29.0" AnchorPane.topAnchor="89.0" />
-      <Button layoutX="244.0" layoutY="112.0" mnemonicParsing="false" onAction="#tallozas" opacity="0.0" prefHeight="175.0" prefWidth="175.0" text="Button" AnchorPane.bottomAnchor="219.0" AnchorPane.leftAnchor="220.0" AnchorPane.rightAnchor="35.0" AnchorPane.topAnchor="89.0" />
-      <Text fx:id="belepettKonditerem" fill="#b80000" layoutX="98.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="233.44873046875">
-         <font>
-            <Font size="17.0" />
-         </font>
-      </Text>
-      <TextField fx:id="vezeteknevBevitel" layoutX="28.0" layoutY="106.0" AnchorPane.leftAnchor="29.0" />
-      <TextField fx:id="keresztnevBevitel" layoutX="28.0" layoutY="154.0" AnchorPane.leftAnchor="28.0" />
-      <RadioButton fx:id="noValasztasGomb" layoutX="28.0" layoutY="200.0" mnemonicParsing="false" onAction="#noValasztas" text="Nő">
-         <toggleGroup>
-            <ToggleGroup fx:id="nemek" />
-         </toggleGroup></RadioButton>
-      <RadioButton fx:id="ferfiValasztasGomb" layoutX="74.0" layoutY="200.0" mnemonicParsing="false" onAction="#ferfiValasztas" text="Férfi" toggleGroup="$nemek" />
-      <DatePicker fx:id="szuldatumBevitel" layoutX="29.0" layoutY="242.0" onAction="#szuldatumKivalaszt" AnchorPane.leftAnchor="29.0" />
-      <TextField fx:id="varosneveBevitel" layoutX="29.0" layoutY="289.0" AnchorPane.leftAnchor="29.0" />
-      <TextField fx:id="megyeBevitel" layoutX="29.0" layoutY="331.0" AnchorPane.leftAnchor="29.0" />
-      <DatePicker fx:id="beiratkozasBevitel" layoutX="29.0" layoutY="375.0" onAction="#beiratkozasKivalaszt" AnchorPane.leftAnchor="29.0" />
-      <Button fx:id="hozzaadasGomb" layoutX="164.0" layoutY="436.0" mnemonicParsing="false" onAction="#hozzaadas" text="Tag Hozzáadása" />
-      <Text fx:id="hozzaadasUzenet" layoutX="97.0" layoutY="481.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="245.44873046875" />
-      <Text layoutX="244.0" layoutY="372.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Választott Bérlet:" />
-      <Text layoutX="237.0" layoutY="392.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="102.0" />
-   </children>
-</AnchorPane>
+      </SplitPane>
+   </center>
+</BorderPane>

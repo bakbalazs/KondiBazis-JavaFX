@@ -61,12 +61,13 @@ public class RegisztralasKezelo implements Initializable {
 		}
 		
 		if(ok) {
-			KonditeremVo uj = new KonditeremVo();
-			uj.setKonditeremNeve(konditeremnevBevitel.getText());
-			uj.setFelhasznalonev(felhasznalonevBevitel.getText());
-			uj.setJelszo(jelszoBevitel.getText());
-			konditeremSzolgaltatas.konditeremetLetrehoz(uj);
-			regisztraciosUzenet.setText("Sikeres létrehozás");
+//			KonditeremVo uj = new KonditeremVo();
+//			uj.setKonditeremNeve(konditeremnevBevitel.getText());
+//			uj.setFelhasznalonev(felhasznalonevBevitel.getText());
+//			uj.setJelszo(jelszoBevitel.getText());
+//			konditeremSzolgaltatas.konditeremetLetrehoz(uj);
+//			regisztraciosUzenet.setText("Sikeres létrehozás");
+			FeluletBetoltese.BerletHozzaadasaFelulet(event);
 		}
 		
 		

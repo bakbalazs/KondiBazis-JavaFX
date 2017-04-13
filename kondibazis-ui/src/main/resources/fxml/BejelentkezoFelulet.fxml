@@ -2,29 +2,94 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="310.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.kondibazis.ui.kezelo.BejelentkezoKezelo">
+<GridPane alignment="CENTER" hgap="10.0" prefWidth="300.0" vgap="10.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.kondibazis.ui.kezelo.BejelentkezoKezelo">
+  <columnConstraints>
+    <ColumnConstraints />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="24.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="45.0" minHeight="10.0" prefHeight="24.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="44.0" minHeight="7.0" prefHeight="7.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="70.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="86.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="44.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="58.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="58.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <padding>
+      <Insets bottom="10.0" left="25.0" right="25.0" top="25.0" />
+   </padding>
    <children>
-      <Text fill="#b80000" layoutX="106.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="KondiBázis" textAlignment="CENTER" AnchorPane.topAnchor="15.0">
+      <Text fill="#b80000" strokeType="OUTSIDE" strokeWidth="0.0" text="KondiBázis" textAlignment="CENTER" wrappingWidth="250.13671875">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Text fill="#b80000" layoutX="96.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bejelentkezés">
+      <Button fx:id="visszaGomb" mnemonicParsing="false" onAction="#vissza" prefHeight="23.0" prefWidth="23.0" />
+      <Text fill="#b80000" strokeType="OUTSIDE" strokeWidth="0.0" text="Bejelentkezés" textAlignment="CENTER" wrappingWidth="252.13671875" GridPane.rowIndex="1">
          <font>
-            <Font size="18.0" />
+            <Font size="17.0" />
          </font>
       </Text>
-      <Text layoutX="27.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Felhasználónév:" />
-      <Text layoutX="28.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jelszó:" />
-      <TextField fx:id="felhasznaloBevitel" layoutX="75.0" layoutY="99.0" promptText="felhasználónév" />
-      <PasswordField fx:id="jelszoBevitel" layoutX="74.0" layoutY="152.0" promptText="jelszó" />
-      <Button layoutX="105.0" layoutY="226.0" mnemonicParsing="false" onAction="#bejelentkezes" text="Bejelentkezés" />
-      <Button layoutX="67.0" layoutY="265.0" mnemonicParsing="false" onAction="#regisztralas" text="Új Konditerem Regisztrálása" />
-      <Button fx:id="visszaGomb" contentDisplay="CENTER" layoutY="22.0" mnemonicParsing="false" onAction="#vissza" prefHeight="25.0" prefWidth="23.0" textFill="TRANSPARENT" />
-      <Text fx:id="bejelentkezoUzenet" layoutX="14.0" layoutY="203.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="269.13671875" />
+      <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
+         <children>
+            <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Felhasználónév:" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="42.0" prefWidth="151.0">
+               <children>
+                  <TextField fx:id="felhasznalonevBevitel" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="4">
+         <children>
+            <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Jelszó:" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="33.0" prefWidth="151.0">
+               <children>
+                  <PasswordField fx:id="jelszoBevitel" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="5">
+         <children>
+            <VBox alignment="CENTER" prefHeight="33.0" prefWidth="255.0">
+               <children>
+                  <Text fx:id="bejelentkezoUzenet" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="252.0" />
+               </children></VBox>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="7">
+         <children>
+            <VBox alignment="CENTER" prefHeight="33.0" prefWidth="129.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#regisztralas" text="Terem Regisztrálása" />
+               </children></VBox>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="6">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#bejelentkezes" text="Bejelenetkezés" />
+                     </children></VBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
    </children>
-</AnchorPane>
+</GridPane>
