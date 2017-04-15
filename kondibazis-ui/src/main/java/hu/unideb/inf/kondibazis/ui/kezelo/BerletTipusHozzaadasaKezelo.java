@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 
 import hu.unideb.inf.kondibazis.ui.bevitel.szam.NumberTextField;
 import hu.unideb.inf.kondibazis.ui.bevitel.szam.NumberTextFieldLimited;
-import hu.unideb.inf.kondibazis.ui.felulet.FeluletBetoltese;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -18,9 +17,6 @@ import javafx.scene.text.Text;
 
 @Component
 public class BerletTipusHozzaadasaKezelo implements Initializable {
-
-	FeluletBetoltese feluletBetoltese = new FeluletBetoltese();
-
 	@FXML
 	private Button letrehozasGomb;
 
