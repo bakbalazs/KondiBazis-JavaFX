@@ -14,6 +14,10 @@ public final class FeluletBetoltese {
 	private static String alkalmazásNeve = "KondiBázis";
 	private static final Image icon = new Image("/kepek/icon.png");
 	private static final String visszaGomb = new String("/css/visszaGomb.css");
+	
+	public static final Image joBeirt = new Image("/kepek/pipa.png");
+
+	public static final Image rosszBeirt = new Image("/kepek/x.png");
 
 	public static void InditasiFelulet(Stage primaryStage) {
 		Parent root = (Parent) loader.load("/fxml/InditasiKepernyoFelulet.fxml");

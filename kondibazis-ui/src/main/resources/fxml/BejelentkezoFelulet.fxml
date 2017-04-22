@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane alignment="CENTER" hgap="10.0" prefWidth="300.0" vgap="10.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.kondibazis.ui.kezelo.BejelentkezoKezelo">
+<GridPane alignment="CENTER" hgap="10.0" prefHeight="325.0" prefWidth="350.0" vgap="10.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.kondibazis.ui.kezelo.BejelentkezoKezelo">
   <columnConstraints>
     <ColumnConstraints />
   </columnConstraints>
@@ -20,9 +21,6 @@
       <RowConstraints maxHeight="58.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
     <RowConstraints maxHeight="58.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
   </rowConstraints>
-   <padding>
-      <Insets bottom="10.0" left="25.0" right="25.0" top="25.0" />
-   </padding>
    <children>
       <Text fill="#b80000" strokeType="OUTSIDE" strokeWidth="0.0" text="KondiBázis" textAlignment="CENTER" wrappingWidth="250.13671875">
          <font>
@@ -47,6 +45,10 @@
                   <TextField fx:id="felhasznalonevBevitel" />
                </children>
             </VBox>
+            <VBox alignment="CENTER" prefHeight="19.0" prefWidth="25.0">
+               <children>
+                  <ImageView fx:id="felhasznalonevJoRossz" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" />
+               </children></VBox>
          </children>
       </HBox>
       <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="4">
@@ -61,6 +63,10 @@
                   <PasswordField fx:id="jelszoBevitel" />
                </children>
             </VBox>
+            <VBox alignment="CENTER" prefHeight="33.0" prefWidth="25.0">
+               <children>
+                  <ImageView fx:id="jelszoJoRossz" fitHeight="27.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" />
+               </children></VBox>
          </children>
       </HBox>
       <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="5">
@@ -68,7 +74,8 @@
             <VBox alignment="CENTER" prefHeight="33.0" prefWidth="255.0">
                <children>
                   <Text fx:id="bejelentkezoUzenet" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="252.0" />
-               </children></VBox>
+               </children>
+            </VBox>
          </children>
       </HBox>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="7">
@@ -92,4 +99,7 @@
          </children>
       </HBox>
    </children>
+   <padding>
+      <Insets bottom="10.0" left="25.0" right="25.0" top="25.0" />
+   </padding>
 </GridPane>

@@ -17,19 +17,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.text.Text;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 
 @Component
 public class RegisztralasKezelo implements Initializable {
 
 	@Autowired
 	KonditeremSzolgaltatas konditeremSzolgaltatas;
-	
-	private Image joBeirt = new Image("/kepek/pipa.png");
-	
-	private Image rosszBeirt = new Image("/kepek/x.png");
 
 	@FXML
 	private TextField konditeremnevBevitel;
@@ -46,13 +41,13 @@ public class RegisztralasKezelo implements Initializable {
 	@FXML
 	private Text regisztraciosUzenet;
 
-	@FXML 
+	@FXML
 	private ImageView konditeremneveJoRossz;
 
-	@FXML 
+	@FXML
 	private ImageView felhasznalonevJoRossz;
 
-	@FXML 
+	@FXML
 	private ImageView jelszoJoRossz;
 
 	@FXML
@@ -60,38 +55,41 @@ public class RegisztralasKezelo implements Initializable {
 
 		boolean ok = true;
 		regisztraciosUzenet.setText("");
-		
-		if(konditeremnevBevitel.getText().length() == 0) {
+
+		if (konditeremnevBevitel.getText().length() == 0) {
 			regisztraciosUzenet.setText(regisztraciosUzenet.getText() + "Konditerem nevének a megadása kötelező!\n");
-			ok = false;
-		}
-		
-		if(felhasznalonevBevitel.getText().length() == 0) {
-			regisztraciosUzenet.setText(regisztraciosUzenet.getText() + "Felhasználónév megadása kötelező!\n");
-			ok = false;
-		}
-		if(jelszoBevitel.getText().length() == 0) {
-			regisztraciosUzenet.setText(regisztraciosUzenet.getText() + "Jelszó megadása kötlező!\n");
+			konditeremneveJoRossz.setImage(FeluletBetoltese.rosszBeirt);
 			ok = false;
 		}
 
-		
-		if(ok) {
-			if(konditeremSzolgaltatas.keresFelhasznalonevet(felhasznalonevBevitel.getText()) !=null) {
+		if (felhasznalonevBevitel.getText().length() == 0) {
+			regisztraciosUzenet.setText(regisztraciosUzenet.getText() + "Felhasználónév megadása kötelező!\n");
+			felhasznalonevJoRossz.setImage(FeluletBetoltese.rosszBeirt);
+			ok = false;
+		}
+		if (jelszoBevitel.getText().length() == 0) {
+			regisztraciosUzenet.setText(regisztraciosUzenet.getText() + "Jelszó megadása kötlező!\n");
+			felhasznalonevJoRossz.setImage(FeluletBetoltese.rosszBeirt);
+			ok = false;
+		}
+
+		if (ok) {
+			if (konditeremSzolgaltatas.keresFelhasznalonevet(felhasznalonevBevitel.getText()) != null) {
 				regisztraciosUzenet.setText(regisztraciosUzenet.getText() + "Ilyen felhazsnáló már létezik");
-				
-				
+				felhasznalonevJoRossz.setImage(FeluletBetoltese.rosszBeirt);
+				felhasznalonevBevitel.clear();
 			} else {
-			KonditeremVo uj = new KonditeremVo();
-			uj.setKonditeremNeve(konditeremnevBevitel.getText());
-			uj.setFelhasznalonev(felhasznalonevBevitel.getText());
-			uj.setJelszo(jelszoBevitel.getText());
-			konditeremSzolgaltatas.konditeremetLetrehoz(uj);
-			regisztraciosUzenet.setText("Sikeres létrehozás");
+				KonditeremVo uj = new KonditeremVo();
+				uj.setKonditeremNeve(konditeremnevBevitel.getText());
+				uj.setFelhasznalonev(felhasznalonevBevitel.getText());
+				uj.setJelszo(jelszoBevitel.getText());
+				konditeremSzolgaltatas.konditeremetLetrehoz(uj);
+				konditeremneveJoRossz.setImage(FeluletBetoltese.joBeirt);
+				felhasznalonevJoRossz.setImage(FeluletBetoltese.joBeirt);
+				jelszoJoRossz.setImage(FeluletBetoltese.joBeirt);
+				regisztraciosUzenet.setText("Konditerem sikeresen regisztrálva.");
 			}
 		}
-		
-		
 
 		/*
 		 * // sikeres reg esetén feluletBetoltese.BerletHozzaadasaFelulet();
@@ -105,9 +103,6 @@ public class RegisztralasKezelo implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		konditeremneveJoRossz.setImage(joBeirt);
-		felhasznalonevJoRossz.setImage(rosszBeirt);
-		jelszoJoRossz.setImage(joBeirt);
 	}
 
 }

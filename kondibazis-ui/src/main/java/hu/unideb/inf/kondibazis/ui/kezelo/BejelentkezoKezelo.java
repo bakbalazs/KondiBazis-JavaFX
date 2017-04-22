@@ -14,10 +14,11 @@ import hu.unideb.inf.kondibazis.ui.main.Inditas;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TextField;
-import javafx.scene.control.PasswordField;
-import javafx.scene.text.Text;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 
 @Component
 public class BejelentkezoKezelo implements Initializable {
@@ -40,18 +41,30 @@ public class BejelentkezoKezelo implements Initializable {
 	private Button visszaGomb;
 
 	@FXML
+	private ImageView felhasznalonevJoRossz;
+
+	@FXML
+	private ImageView jelszoJoRossz;
+
+	@FXML
 	public void bejelentkezes(ActionEvent event) throws IOException {
 
 		KonditeremVo konditerem = konditeremSzolgaltatas.keresFelhasznalonevet(felhasznalonevBevitel.getText());
 
 		if (konditerem == null) {
-			bejelentkezoUzenet.setText("Nincs iylen nevű felhazsnáló!");
+			bejelentkezoUzenet.setText("Nincs ilyen nevű felhasználó!");
+			felhasznalonevJoRossz.setImage(FeluletBetoltese.rosszBeirt);
+			jelszoJoRossz.setImage(FeluletBetoltese.rosszBeirt);
+			felhasznalonevBevitel.clear();
+			jelszoBevitel.clear();
 		} else {
 			if (konditerem.getJelszo().equals(jelszoBevitel.getText())) {
 				setBejelentkezettKonditeremNeve(konditerem.getKonditeremNeve());
 				FeluletBetoltese.FoAblakFelulet(event);
 			} else {
 				bejelentkezoUzenet.setText("Helytelen jelszó!");
+				jelszoJoRossz.setImage(FeluletBetoltese.rosszBeirt);
+				jelszoBevitel.clear();
 			}
 		}
 
@@ -77,6 +90,7 @@ public class BejelentkezoKezelo implements Initializable {
 
 	public static void setBejelentkezettKonditeremNeve(String bejelentkezettKonditeremNeve) {
 		BejelentkezoKezelo.bejelentkezettKonditeremNeve = bejelentkezettKonditeremNeve;
+
 	}
 
 }

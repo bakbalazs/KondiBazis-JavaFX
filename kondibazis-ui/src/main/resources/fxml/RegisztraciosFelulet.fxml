@@ -7,7 +7,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane alignment="CENTER" hgap="10.0" prefHeight="335.0" prefWidth="377.0" vgap="10.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.kondibazis.ui.kezelo.RegisztralasKezelo">
+<GridPane alignment="CENTER" hgap="10.0" prefHeight="335.0" prefWidth="342.0" vgap="10.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.kondibazis.ui.kezelo.RegisztralasKezelo">
   <columnConstraints>
     <ColumnConstraints />
   </columnConstraints>
@@ -45,9 +45,9 @@
                   <TextField fx:id="konditeremnevBevitel" prefHeight="25.0" prefWidth="129.0" />
                </children>
             </VBox>
-            <VBox prefHeight="30.0" prefWidth="30.0">
+            <VBox alignment="CENTER" prefHeight="30.0" prefWidth="25.0">
                <children>
-                  <ImageView fx:id="konditeremneveJoRossz" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="konditeremneveJoRossz" fitHeight="24.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </VBox>
          </children>
@@ -64,9 +64,9 @@
                   <TextField fx:id="felhasznalonevBevitel" prefHeight="25.0" prefWidth="149.0" />
                </children>
             </VBox>
-            <VBox prefHeight="30.0" prefWidth="30.0">
+            <VBox alignment="CENTER" prefHeight="30.0" prefWidth="25.0">
                <children>
-                  <ImageView fx:id="felhasznalonevJoRossz" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="felhasznalonevJoRossz" fitHeight="24.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </VBox>
          </children>
@@ -83,9 +83,9 @@
                   <PasswordField fx:id="jelszoBevitel" prefHeight="25.0" prefWidth="147.0" />
                </children>
             </VBox>
-            <VBox prefHeight="30.0" prefWidth="30.0">
+            <VBox alignment="CENTER" prefHeight="30.0" prefWidth="25.0">
                <children>
-                  <ImageView fx:id="jelszoJoRossz" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="jelszoJoRossz" fitHeight="24.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </VBox>
          </children>
