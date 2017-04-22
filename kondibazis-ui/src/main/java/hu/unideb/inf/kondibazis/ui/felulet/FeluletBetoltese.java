@@ -1,5 +1,6 @@
 package hu.unideb.inf.kondibazis.ui.felulet;
 
+import hu.unideb.inf.kondibazis.ui.kezelo.BejelentkezoKezelo;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -68,7 +69,7 @@ public final class FeluletBetoltese {
 		Parent root = (Parent) loader.load("/fxml/FoAblakFelulet.fxml");
 		Scene scene = new Scene(root);
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		stage.setTitle(getAlkalmazásNeve());
+		stage.setTitle(getAlkalmazásNeve() + " - " + BejelentkezoKezelo.getBejelentkezettKonditeremNeve());
 		stage.setScene(scene);
 		stage.centerOnScreen();
 	}
