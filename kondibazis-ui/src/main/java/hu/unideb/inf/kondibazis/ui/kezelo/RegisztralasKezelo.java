@@ -18,6 +18,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 @Component
@@ -54,23 +55,52 @@ public class RegisztralasKezelo implements Initializable {
 	public void regisztralas(ActionEvent event) throws IOException {
 
 		boolean ok = true;
+		regisztraciosUzenet.setFill(Color.RED);
 		regisztraciosUzenet.setText("");
 
 		if (konditeremnevBevitel.getText().length() == 0) {
 			regisztraciosUzenet.setText(regisztraciosUzenet.getText() + "Konditerem nevének a megadása kötelező!\n");
 			konditeremneveJoRossz.setImage(FeluletBetoltese.rosszBeirt);
 			ok = false;
+		} else {
+			konditeremneveJoRossz.setImage(FeluletBetoltese.joBeirt);
 		}
 
 		if (felhasznalonevBevitel.getText().length() == 0) {
-			regisztraciosUzenet.setText(regisztraciosUzenet.getText() + "Felhasználónév megadása kötelező!\n");
+			regisztraciosUzenet.setText(regisztraciosUzenet.getText()
+					+ "A felhasználónév min. 5 karakter!\n Felhasználónév megadása kötelező!\n");
 			felhasznalonevJoRossz.setImage(FeluletBetoltese.rosszBeirt);
 			ok = false;
 		}
-		if (jelszoBevitel.getText().length() == 0) {
-			regisztraciosUzenet.setText(regisztraciosUzenet.getText() + "Jelszó megadása kötlező!\n");
+		if (felhasznalonevBevitel.getText().length() > 0 && felhasznalonevBevitel.getText().length() < 5) {
+			regisztraciosUzenet.setText(regisztraciosUzenet.getText()
+					+ "A felhasználónév min. 5 karakter!\n A felhasználónév túl rövid!\n");
 			felhasznalonevJoRossz.setImage(FeluletBetoltese.rosszBeirt);
+			felhasznalonevBevitel.clear();
 			ok = false;
+		}
+
+		if (jelszoBevitel.getText().length() == 0) {
+			regisztraciosUzenet
+					.setText(regisztraciosUzenet.getText() + "A jelszó min. 8 karakter!\n Jelszó megadása kötlező!\n");
+			jelszoJoRossz.setImage(FeluletBetoltese.rosszBeirt);
+			ok = false;
+		}
+
+		if (jelszoBevitel.getText().length() > 0 && jelszoBevitel.getText().length() < 8) {
+			regisztraciosUzenet
+					.setText(regisztraciosUzenet.getText() + " A jelszó min. 8 karakter!\n A jelszó túl rövid!\n");
+			jelszoJoRossz.setImage(FeluletBetoltese.rosszBeirt);
+			jelszoBevitel.clear();
+			ok = false;
+		}
+
+		if (felhasznalonevBevitel.getText().length() > 5) {
+			felhasznalonevJoRossz.setImage(FeluletBetoltese.joBeirt);
+		}
+
+		if (jelszoBevitel.getText().length() > 8) {
+			jelszoJoRossz.setImage(FeluletBetoltese.joBeirt);
 		}
 
 		if (ok) {
@@ -87,6 +117,7 @@ public class RegisztralasKezelo implements Initializable {
 				konditeremneveJoRossz.setImage(FeluletBetoltese.joBeirt);
 				felhasznalonevJoRossz.setImage(FeluletBetoltese.joBeirt);
 				jelszoJoRossz.setImage(FeluletBetoltese.joBeirt);
+				regisztraciosUzenet.setFill(Color.GREEN);
 				regisztraciosUzenet.setText("Konditerem sikeresen regisztrálva.");
 			}
 		}
