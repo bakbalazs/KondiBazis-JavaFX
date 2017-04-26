@@ -25,7 +25,7 @@
 				</executions>
 				<configuration>
 					<createDependencyReducedPom>false</createDependencyReducedPom>
-					<finalName>KondiBázis</finalName>
+					<finalName>KondiBázis - ${project.version}</finalName>
 					<outputDirectory>../</outputDirectory>
 					<shadedArtifactAttached>true</shadedArtifactAttached>
 					<shadedClassifierName>shaded</shadedClassifierName>
@@ -33,6 +33,14 @@
 						<transformer
 							implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
 							<mainClass>hu.unideb.inf.kondibazis.ui.main.Inditas</mainClass>
+						</transformer>
+						<transformer
+							implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+							<resource>META-INF/spring.handlers</resource>
+						</transformer>
+						<transformer
+							implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+							<resource>META-INF/spring.schemas</resource>
 						</transformer>
 					</transformers>
 				</configuration>
