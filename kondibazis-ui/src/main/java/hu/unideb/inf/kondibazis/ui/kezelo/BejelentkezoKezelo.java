@@ -63,6 +63,7 @@ public class BejelentkezoKezelo implements Initializable {
 				FeluletBetoltese.FoAblakFelulet(event);
 			} else {
 				bejelentkezoUzenet.setText("Helytelen jelszó!");
+				felhasznalonevJoRossz.setImage(FeluletBetoltese.joBeirt);
 				jelszoJoRossz.setImage(FeluletBetoltese.rosszBeirt);
 				jelszoBevitel.clear();
 			}

@@ -49,7 +49,7 @@
               <items>
                   <SplitPane dividerPositions="0.5">
                     <items>
-                        <GridPane>
+                        <GridPane alignment="CENTER">
                           <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.0" minWidth="8.0" prefWidth="32.0" />
                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="189.0" minWidth="10.0" prefWidth="113.0" />

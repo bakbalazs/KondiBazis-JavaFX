@@ -78,11 +78,13 @@ public class RegisztralasKezelo implements Initializable {
 			felhasznalonevJoRossz.setImage(FeluletBetoltese.rosszBeirt);
 			felhasznalonevBevitel.clear();
 			ok = false;
+		} else if (felhasznalonevBevitel.getText().length() >= 5) {
+			felhasznalonevJoRossz.setImage(FeluletBetoltese.joBeirt);
 		}
 
 		if (jelszoBevitel.getText().length() == 0) {
 			regisztraciosUzenet
-					.setText(regisztraciosUzenet.getText() + "A jelszó min. 8 karakter!\n Jelszó megadása kötlező!\n");
+					.setText(regisztraciosUzenet.getText() + "A jelszó min. 8 karakter!\n Jelszó megadása kötelező!\n");
 			jelszoJoRossz.setImage(FeluletBetoltese.rosszBeirt);
 			ok = false;
 		}
@@ -93,15 +95,17 @@ public class RegisztralasKezelo implements Initializable {
 			jelszoJoRossz.setImage(FeluletBetoltese.rosszBeirt);
 			jelszoBevitel.clear();
 			ok = false;
-		}
-
-		if (felhasznalonevBevitel.getText().length() > 5) {
-			felhasznalonevJoRossz.setImage(FeluletBetoltese.joBeirt);
-		}
-
-		if (jelszoBevitel.getText().length() > 8) {
+		} else if (jelszoBevitel.getText().length() >= 8) {
 			jelszoJoRossz.setImage(FeluletBetoltese.joBeirt);
 		}
+
+//		if (felhasznalonevBevitel.getText().length() > 5) {
+//			felhasznalonevJoRossz.setImage(FeluletBetoltese.joBeirt);
+//		}
+
+		// if (jelszoBevitel.getText().length() > 8) {
+		// jelszoJoRossz.setImage(FeluletBetoltese.joBeirt);
+		// }
 
 		if (ok) {
 			if (konditeremSzolgaltatas.keresFelhasznalonevet(felhasznalonevBevitel.getText()) != null) {
