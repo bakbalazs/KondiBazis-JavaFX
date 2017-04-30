@@ -13,6 +13,7 @@
 		<class>hu.unideb.inf.kondibazis.db.entitas.KonditeremBerlet</class>
 		<class>hu.unideb.inf.kondibazis.db.entitas.KonditeremTag</class>
 		<class>hu.unideb.inf.kondibazis.db.entitas.KonditeremElerhetoseg</class>
+		<class>hu.unideb.inf.kondibazis.db.entitas.Telepulesek</class>
 
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 
@@ -24,8 +25,8 @@
 			<property name="hibernate.connection.password" value="admin"></property>
 			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"></property>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"></property>
-			<property name="hibernate.hbm2ddl.auto" value="create" />
-			<property name="hibernate.hbm2ddl.import_files" value="create.sql"/>
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+<!-- 			<property name="hibernate.hbm2ddl.import_files" value="create.sql"/> -->
 			<property name="hibernate.flushMode" value="FLUSH_AUTO" />
 
 		</properties>
