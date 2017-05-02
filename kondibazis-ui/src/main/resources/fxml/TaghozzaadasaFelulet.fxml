@@ -40,7 +40,10 @@
                               <Font size="18.0" />
                            </font>
                         </Text>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.rowIndex="2" />
+                        <Text fx:id="konditeremNeve" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.rowIndex="2">
+                           <font>
+                              <Font size="16.0" />
+                           </font></Text>
                      </children>
                   </GridPane>
                </children>
@@ -68,19 +71,19 @@
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <TextField GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                              <TextField GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                              <TextField fx:id="vezeteknevBevitel" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                              <TextField fx:id="keresztnevBevitel" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Vezetéknév:" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Keresztnév:" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nem:" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                              <DatePicker GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                              <DatePicker GridPane.columnIndex="2" GridPane.rowIndex="7" />
+                              <DatePicker fx:id="szuldatumBevitel" onAction="#szuldatumKivalaszt" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                              <DatePicker fx:id="beiratkozasBevitel" onAction="#beriratkozasKivalaszt" GridPane.columnIndex="2" GridPane.rowIndex="7" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Születési dátum:" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lakhely(város csak):" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Megye:" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Beiratkozás ideje:" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                              <TextField GridPane.columnIndex="2" GridPane.rowIndex="5" />
-                              <TextField GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                              <TextField fx:id="varosBevitel" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                              <TextField fx:id="megyeBevitel" GridPane.columnIndex="2" GridPane.rowIndex="6" />
                               <SplitMenuButton mnemonicParsing="false" text="SplitMenuButton" GridPane.columnIndex="2" GridPane.rowIndex="8">
                                 <items>
                                   <MenuItem mnemonicParsing="false" text="Action 1" />
@@ -88,17 +91,20 @@
                                 </items>
                               </SplitMenuButton>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bérlet választás:" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="2" GridPane.rowIndex="9" />
+                              <Text fx:id="valasztottBerlet" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER" />
                               <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
                                  <children>
                                     <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                                        <children>
-                                          <RadioButton mnemonicParsing="false" text="Nő" />
+                                          <RadioButton fx:id="noValasztasGomb" mnemonicParsing="false" onAction="#noValasztas" text="Nő">
+                                             <toggleGroup>
+                                                <ToggleGroup fx:id="nemek" />
+                                             </toggleGroup></RadioButton>
                                        </children>
                                     </VBox>
                                     <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                                        <children>
-                                          <RadioButton mnemonicParsing="false" text="Férfi" />
+                                          <RadioButton fx:id="ferfiValasztasGomb" mnemonicParsing="false" onAction="#ferfiValasztas" text="Férfi" toggleGroup="$nemek" />
                                        </children>
                                     </VBox>
                                  </children>
@@ -151,12 +157,12 @@
                            <children>
                               <HBox alignment="CENTER" prefHeight="55.0" prefWidth="318.0">
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="318.0" />
+                                    <Text fx:id="tagHozzaadasUzenet" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="318.0" />
                                  </children>
                               </HBox>
                               <HBox alignment="CENTER" prefHeight="34.0" prefWidth="318.0">
                                  <children>
-                                    <Button mnemonicParsing="false" text="Tag Hozzáadása" />
+                                    <Button mnemonicParsing="false" onAction="#hozzaadas" text="Tag Hozzáadása" />
                                  </children>
                               </HBox>
                            </children>

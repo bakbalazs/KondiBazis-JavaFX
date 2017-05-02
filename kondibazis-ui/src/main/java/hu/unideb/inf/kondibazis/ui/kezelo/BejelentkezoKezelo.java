@@ -26,7 +26,9 @@ public class BejelentkezoKezelo implements Initializable {
 	@Autowired
 	KonditeremSzolgaltatas konditeremSzolgaltatas;
 
-	private static String bejelentkezettKonditeremNeve;
+	private KonditeremVo bejelentkezettKonditerem;
+	
+	private static String konditeremNeve;
 
 	@FXML
 	private TextField felhasznalonevBevitel;
@@ -59,7 +61,8 @@ public class BejelentkezoKezelo implements Initializable {
 			jelszoBevitel.clear();
 		} else {
 			if (konditerem.getJelszo().equals(jelszoBevitel.getText())) {
-				setBejelentkezettKonditeremNeve(konditerem.getKonditeremNeve());
+				bejelentkezettKonditerem = konditerem;
+				setKonditeremNeve(konditerem.getKonditeremNeve());
 				FeluletBetoltese.FoAblakFelulet(event);
 			} else {
 				bejelentkezoUzenet.setText("Helytelen jelszó!");
@@ -85,13 +88,20 @@ public class BejelentkezoKezelo implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 	}
 
-	public static String getBejelentkezettKonditeremNeve() {
-		return bejelentkezettKonditeremNeve;
+	public KonditeremVo getBejelentkezettKonditerem() {
+		return bejelentkezettKonditerem;
 	}
 
-	public static void setBejelentkezettKonditeremNeve(String bejelentkezettKonditeremNeve) {
-		BejelentkezoKezelo.bejelentkezettKonditeremNeve = bejelentkezettKonditeremNeve;
+	public void setBejelentkezettKonditerem(KonditeremVo bejelentkezettKonditerem) {
+		this.bejelentkezettKonditerem = bejelentkezettKonditerem;
+	}
 
+	public static String getKonditeremNeve() {
+		return konditeremNeve;
+	}
+
+	public static void setKonditeremNeve(String konditeremNeve) {
+		BejelentkezoKezelo.konditeremNeve = konditeremNeve;
 	}
 
 }

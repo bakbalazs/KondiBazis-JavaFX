@@ -14,7 +14,7 @@ public final class FeluletBetoltese {
 	private static String alkalmazásNeve = "KondiBázis";
 	private static final Image icon = new Image("/kepek/icon.png");
 	private static final String visszaGomb = new String("/css/visszaGomb.css");
-	
+
 	public static final Image joBeirt = new Image("/kepek/pipa.png");
 
 	public static final Image rosszBeirt = new Image("/kepek/x.png");
@@ -73,7 +73,7 @@ public final class FeluletBetoltese {
 		Parent root = (Parent) loader.load("/fxml/FoAblakFelulet.fxml");
 		Scene scene = new Scene(root);
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		stage.setTitle(getAlkalmazásNeve() + " - " + BejelentkezoKezelo.getBejelentkezettKonditeremNeve());
+		stage.setTitle(getAlkalmazásNeve() + " - " + BejelentkezoKezelo.getKonditeremNeve());
 		stage.setScene(scene);
 		stage.centerOnScreen();
 	}
