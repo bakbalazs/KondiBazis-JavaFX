@@ -29,7 +29,7 @@ public class FoAblakKezelo implements Initializable {
 	private Text konditeremNeve;
 	
 	@Autowired
-	KonditeremSzolgaltatas konditeremSzolgaltatas;
+	private KonditeremSzolgaltatas konditeremSzolgaltatas;
 
 	@Autowired
 	private BejelentkezoKezelo bejelentkezoKezelo;
@@ -49,6 +49,7 @@ public class FoAblakKezelo implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		konditeremNeve.setText(bejelentkezoKezelo.getBejelentkezettKonditerem().getKonditeremNeve());
+		bejelentkezettKonditerem = bejelentkezoKezelo.getBejelentkezettKonditerem();
 	}
 
 	public KonditeremVo getBejelentkezettKonditerem() {

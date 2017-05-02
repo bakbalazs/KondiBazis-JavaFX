@@ -10,17 +10,23 @@ public class KonditeremVo implements Serializable {
 	public KonditeremVo() {
 	}
 
+	private Long id;
+
 	private String felhasznalonev;
 
 	private String jelszo;
 
 	private String konditeremNeve;
 
-	private List<KonditeremBerletVo> konditeremBerlet;
+	private List<KonditeremTagVo> konditeremTagok;
 
-	private List<KonditeremTagVo> konditeremTag;
+	public Long getId() {
+		return id;
+	}
 
-//	private KonditeremElerhetoseg konditeremElerhetoseg;
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getFelhasznalonev() {
 		return felhasznalonev;
@@ -46,35 +52,18 @@ public class KonditeremVo implements Serializable {
 		this.konditeremNeve = konditeremNeve;
 	}
 
-	public List<KonditeremBerletVo> getKonditeremBerlet() {
-		return konditeremBerlet;
+	public List<KonditeremTagVo> getKonditeremTagok() {
+		return konditeremTagok;
 	}
 
-	public void setKonditeremBerlet(List<KonditeremBerletVo> konditeremBerlet) {
-		this.konditeremBerlet = konditeremBerlet;
+	public void setKonditeremTagok(List<KonditeremTagVo> konditeremTagok) {
+		this.konditeremTagok = konditeremTagok;
 	}
-
-	public List<KonditeremTagVo> getKonditeremTag() {
-		return konditeremTag;
-	}
-
-	public void setKonditeremTag(List<KonditeremTagVo> konditeremTag) {
-		this.konditeremTag = konditeremTag;
-	}
-
-//	public KonditeremElerhetoseg getKonditeremElerhetoseg() {
-//		return konditeremElerhetoseg;
-//	}
-//
-//	public void setKonditeremElerhetoseg(KonditeremElerhetoseg konditeremElerhetoseg) {
-//		this.konditeremElerhetoseg = konditeremElerhetoseg;
-//	}
 
 	@Override
 	public String toString() {
-		return "Konditerem [felhasznalonev=" + felhasznalonev + ", jelszo=" + jelszo + ", konditeremNeve="
-				+ konditeremNeve + ", konditeremBerlet=" + konditeremBerlet + ", konditeremTag=" + konditeremTag
-				+ ", konditeremElerhetoseg=" + "]";
+		return "KonditeremVo [id=" + id + ", felhasznalonev=" + felhasznalonev + ", jelszo=" + jelszo
+				+ ", konditeremNeve=" + konditeremNeve + ", konditeremTagok=" + konditeremTagok + "]";
 	}
 
 }

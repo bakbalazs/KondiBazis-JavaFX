@@ -3,25 +3,27 @@ package hu.unideb.inf.kondibazis.szolg.mapper;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.dozer.DozerBeanMapper;
-import org.dozer.Mapper;
+import org.modelmapper.ModelMapper;
 
 import hu.unideb.inf.kondibazis.db.entitas.Konditerem;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremVo;
 
 public class KonditeremMapper {
 
-	public static Mapper mapper = new DozerBeanMapper();
+	private static ModelMapper mapper = new ModelMapper();
 
 	public static KonditeremVo toVo(Konditerem konditeremDto) {
 		if (konditeremDto == null) {
+
 			return null;
+
 		}
 		return mapper.map(konditeremDto, KonditeremVo.class);
 	}
 
 	public static Konditerem toDto(KonditeremVo konditeremVo) {
 		if (konditeremVo == null) {
+
 			return null;
 		}
 		return mapper.map(konditeremVo, Konditerem.class);

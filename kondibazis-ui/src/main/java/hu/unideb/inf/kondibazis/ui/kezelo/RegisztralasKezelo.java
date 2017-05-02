@@ -25,7 +25,7 @@ import javafx.scene.text.Text;
 public class RegisztralasKezelo implements Initializable {
 
 	@Autowired
-	KonditeremSzolgaltatas konditeremSzolgaltatas;
+	private KonditeremSzolgaltatas konditeremSzolgaltatas;
 
 	@FXML
 	private TextField konditeremnevBevitel;
@@ -52,7 +52,7 @@ public class RegisztralasKezelo implements Initializable {
 	private ImageView jelszoJoRossz;
 
 	@FXML
-	public void regisztralas(ActionEvent event) throws IOException {
+	public void regisztralas(ActionEvent event) throws Exception {
 
 		boolean ok = true;
 		regisztraciosUzenet.setFill(Color.RED);

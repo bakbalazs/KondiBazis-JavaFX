@@ -2,10 +2,10 @@ package hu.unideb.inf.kondibazis.db.entitas;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -17,7 +17,7 @@ public class Konditerem extends FoEntitas {
 	public Konditerem() {
 	}
 
-	@Column(name = "felhasznalonev")
+	@Column(name = "felhasznalonev", unique = true)
 	private String felhasznalonev;
 
 	@Column(name = "jelszo")
@@ -26,14 +26,8 @@ public class Konditerem extends FoEntitas {
 	@Column(name = "konditeremNeve")
 	private String konditeremNeve;
 
-	@OneToMany(mappedBy = "konditerem")
-	private List<KonditeremBerlet> konditeremBerlet;
-
-	@OneToMany(mappedBy = "konditerem")
-	private List<KonditeremTag> konditeremTag;
-
-	@OneToOne
-	private KonditeremElerhetoseg konditeremElerhetoseg;
+	@OneToMany(mappedBy = "konditerem", cascade = CascadeType.MERGE)
+	private List<KonditeremTag> konditeremTagok;
 
 	public String getFelhasznalonev() {
 		return felhasznalonev;
@@ -59,35 +53,12 @@ public class Konditerem extends FoEntitas {
 		this.konditeremNeve = konditeremNeve;
 	}
 
-	public List<KonditeremBerlet> getKonditeremBerlet() {
-		return konditeremBerlet;
+	public List<KonditeremTag> getKonditeremTagok() {
+		return konditeremTagok;
 	}
 
-	public void setKonditeremBerlet(List<KonditeremBerlet> konditeremBerlet) {
-		this.konditeremBerlet = konditeremBerlet;
-	}
-
-	public List<KonditeremTag> getKonditeremTag() {
-		return konditeremTag;
-	}
-
-	public void setKonditeremTag(List<KonditeremTag> konditeremTag) {
-		this.konditeremTag = konditeremTag;
-	}
-
-	public KonditeremElerhetoseg getKonditeremElerhetoseg() {
-		return konditeremElerhetoseg;
-	}
-
-	public void setKonditeremElerhetoseg(KonditeremElerhetoseg konditeremElerhetoseg) {
-		this.konditeremElerhetoseg = konditeremElerhetoseg;
-	}
-
-	@Override
-	public String toString() {
-		return "Konditerem [felhasznalonev=" + felhasznalonev + ", jelszo=" + jelszo + ", konditeremNeve="
-				+ konditeremNeve + ", konditeremBerlet=" + konditeremBerlet + ", konditeremTag=" + konditeremTag
-				+ ", konditeremElerhetoseg=" + konditeremElerhetoseg + "]";
+	public void setKonditeremTagok(List<KonditeremTag> konditeremTagok) {
+		this.konditeremTagok = konditeremTagok;
 	}
 
 }

@@ -24,8 +24,8 @@ import javafx.scene.text.Text;
 public class BejelentkezoKezelo implements Initializable {
 
 	@Autowired
-	KonditeremSzolgaltatas konditeremSzolgaltatas;
-
+	private KonditeremSzolgaltatas konditeremSzolgaltatas;
+	
 	private KonditeremVo bejelentkezettKonditerem;
 	
 	private static String konditeremNeve;
@@ -49,7 +49,7 @@ public class BejelentkezoKezelo implements Initializable {
 	private ImageView jelszoJoRossz;
 
 	@FXML
-	public void bejelentkezes(ActionEvent event) throws IOException {
+	public void bejelentkezes(ActionEvent event) throws Exception {
 
 		KonditeremVo konditerem = konditeremSzolgaltatas.keresFelhasznalonevet(felhasznalonevBevitel.getText());
 

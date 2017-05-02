@@ -3,11 +3,8 @@ package hu.unideb.inf.kondibazis.db.entitas;
 import java.time.LocalDate;
 import java.util.Arrays;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -21,11 +18,14 @@ public class KonditeremTag extends FoEntitas {
 	public KonditeremTag() {
 	}
 
-	@Column(name = "tageVezetekneve")
+	@Column(name = "tagVezetekneve")
 	private String tagVezeteknev;
 
 	@Column(name = "tagKeresztneve")
 	private String tagKeresztnev;
+
+	@Column(name = "tagNeve")
+	private String tagNeve;
 
 	@Column(name = "tagNeme")
 	private String tagNeme;
@@ -45,10 +45,14 @@ public class KonditeremTag extends FoEntitas {
 	@Lob
 	@Column(name = "tagKep")
 	private byte[] tagKep;
-	
-	@ManyToOne(cascade={CascadeType.DETACH, CascadeType.PERSIST, CascadeType.REFRESH },
-			fetch=FetchType.LAZY)
-	@JoinColumn(name="konditerem_id")
+
+	@Column(name = "tagVarosa")
+	private String tagVarosa;
+
+	@Column(name = "tagMegyeje")
+	private String tagMegyeje;
+
+	@ManyToOne()
 	private Konditerem konditerem;
 
 	public String getTagVezeteknev() {
@@ -65,6 +69,14 @@ public class KonditeremTag extends FoEntitas {
 
 	public void setTagKeresztnev(String tagKeresztnev) {
 		this.tagKeresztnev = tagKeresztnev;
+	}
+
+	public String getTagNeve() {
+		return tagNeve;
+	}
+
+	public void setTagNeve(String tagNeve) {
+		this.tagNeve = tagNeve;
 	}
 
 	public String getTagNeme() {
@@ -99,14 +111,6 @@ public class KonditeremTag extends FoEntitas {
 		this.berletVasarlasideje = berletVasarlasideje;
 	}
 
-	public byte[] getTagKep() {
-		return tagKep;
-	}
-
-	public void setTagKep(byte[] tagKep) {
-		this.tagKep = tagKep;
-	}
-
 	public String getVasaroltBerletNeve() {
 		return vasaroltBerletNeve;
 	}
@@ -115,12 +119,44 @@ public class KonditeremTag extends FoEntitas {
 		this.vasaroltBerletNeve = vasaroltBerletNeve;
 	}
 
+	public byte[] getTagKep() {
+		return tagKep;
+	}
+
+	public void setTagKep(byte[] tagKep) {
+		this.tagKep = tagKep;
+	}
+
+	public Konditerem getKonditerem() {
+		return konditerem;
+	}
+
+	public void setKonditerem(Konditerem konditerem) {
+		this.konditerem = konditerem;
+	}
+
+	public String getTagVarosa() {
+		return tagVarosa;
+	}
+
+	public void setTagVarosa(String tagVarosa) {
+		this.tagVarosa = tagVarosa;
+	}
+
+	public String getTagMegyeje() {
+		return tagMegyeje;
+	}
+
+	public void setTagMegyeje(String tagMegyeje) {
+		this.tagMegyeje = tagMegyeje;
+	}
+
 	@Override
 	public String toString() {
-		return "KonditeremTag [tagVezeteknev=" + tagVezeteknev + ", tagKeresztnev=" + tagKeresztnev + ", tagNeme="
-				+ tagNeme + ", tagKora=" + tagKora + ", tagSzuletesidatuma=" + tagSzuletesidatuma
-				+ ", berletVasarlasideje=" + berletVasarlasideje + ", vasaroltBerletNeve=" + vasaroltBerletNeve
-				+ ", tagKep=" + Arrays.toString(tagKep) + ", konditerem=" + konditerem + "]";
+		return "KonditeremTag [tagVezeteknev=" + tagVezeteknev + ", tagKeresztnev=" + tagKeresztnev + ", tagNeve="
+				+ tagNeve + ", tagNeme=" + tagNeme + ", tagKora=" + tagKora + ", tagSzuletesidatuma="
+				+ tagSzuletesidatuma + ", berletVasarlasideje=" + berletVasarlasideje + ", vasaroltBerletNeve="
+				+ vasaroltBerletNeve + ", tagKep=" + Arrays.toString(tagKep) + ", konditerem=" + konditerem + "]";
 	}
 
 }

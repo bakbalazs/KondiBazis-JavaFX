@@ -67,7 +67,7 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
@@ -84,7 +84,7 @@
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Beiratkozás ideje:" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                               <TextField fx:id="varosBevitel" GridPane.columnIndex="2" GridPane.rowIndex="5" />
                               <TextField fx:id="megyeBevitel" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-                              <SplitMenuButton mnemonicParsing="false" text="SplitMenuButton" GridPane.columnIndex="2" GridPane.rowIndex="8">
+                              <SplitMenuButton mnemonicParsing="false" text="Bérletek" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
                                 <items>
                                   <MenuItem mnemonicParsing="false" text="Action 1" />
                                   <MenuItem mnemonicParsing="false" text="Action 2" />

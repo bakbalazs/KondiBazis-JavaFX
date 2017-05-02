@@ -16,37 +16,52 @@ import hu.unideb.inf.kondibazis.szolg.vo.KonditeremVo;
 public class KonditeremSzolgaltatasImpl implements KonditeremSzolgaltatas {
 
 	@Autowired
-	KonditeremTarolo konditeremTarolo;
+	private KonditeremTarolo konditeremTarolo;
 
 	@Override
-	public KonditeremVo keresFelhasznalonevet(String felhasznalonev) {
-		Konditerem k = null;
-		try {
-			k = konditeremTarolo.findByFelhasznalonev(felhasznalonev);
-		} catch (Exception e) {
-			// logolás
-			e.printStackTrace();
+	public KonditeremVo keresFelhasznalonevet(String felhasznalonev) throws Exception {
+
+		Konditerem k = konditeremTarolo.findByFelhasznalonev(felhasznalonev);
+
+		if (k == null) {
+
+		} else {
+
 		}
 
 		return KonditeremMapper.toVo(k);
+
 	}
 
 	@Override
 	public KonditeremVo konditeremetLetrehoz(KonditeremVo konditerem) {
-		Konditerem ujkonditerem = KonditeremMapper.toDto(konditerem);
-		
-		Konditerem mentett_fh = konditeremTarolo.save(ujkonditerem);
-		if( mentett_fh == null ){
-			System.out.println("nem sikerült menti");
+
+		Konditerem ujK = KonditeremMapper.toDto(konditerem);
+
+		Konditerem mentK = konditeremTarolo.save(ujK);
+
+		if (mentK == null) {
+
 		} else {
-			
-			System.out.println("sikeresen elmentésre került");
+
 		}
 
-		return KonditeremMapper.toVo(mentett_fh);
+		return KonditeremMapper.toVo(mentK);
+
 	}
 
+	@Override
+	public KonditeremVo frissitKonditermet(KonditeremVo konditerem) {
 
+		Konditerem uj = KonditeremMapper.toDto(konditerem);
 
+		Konditerem mentett = konditeremTarolo.save(uj);
+		if (mentett == null) {
+		} else {
+		}
+
+		return KonditeremMapper.toVo(mentett);
+
+	}
 
 }
