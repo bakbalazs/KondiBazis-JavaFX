@@ -19,6 +19,8 @@ public class KonditeremVo implements Serializable {
 	private String konditeremNeve;
 
 	private List<KonditeremTagVo> konditeremTagok;
+	
+	private List<KonditeremBerletVo> konditeremBerletek;
 
 	public Long getId() {
 		return id;
@@ -58,6 +60,17 @@ public class KonditeremVo implements Serializable {
 
 	public void setKonditeremTagok(List<KonditeremTagVo> konditeremTagok) {
 		this.konditeremTagok = konditeremTagok;
+	}
+	
+	
+	
+	
+	public List<KonditeremBerletVo> getKonditeremBerletek() {
+		return konditeremBerletek;
+	}
+
+	public void setKonditeremBerletek(List<KonditeremBerletVo> konditeremBerletek) {
+		this.konditeremBerletek = konditeremBerletek;
 	}
 
 	@Override

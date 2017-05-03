@@ -38,7 +38,7 @@ public class FoAblakKezelo implements Initializable {
 
 	@FXML
 	public void berletLetrehozasa(ActionEvent event) throws IOException {
-		FeluletBetoltese.BerletLetrehozasaFoAblakFelulet();
+		FeluletBetoltese.BerletLetrehozasaFoAblakFelulet(event);
 	}
 
 	@FXML

@@ -167,7 +167,7 @@ public class TagHozzaadasaKezelo implements Initializable {
 			
 			konditeremSzolgaltatas.frissitKonditermet(bejelentkezettKonditerem);
 			
-			letezo.setKonditerem(bejelentkezettKonditerem);;
+			letezo.setKonditerem(bejelentkezettKonditerem);
 			
 			konditeremTagSzolgaltatas.frissitKonditeremTagot(letezo);
 			

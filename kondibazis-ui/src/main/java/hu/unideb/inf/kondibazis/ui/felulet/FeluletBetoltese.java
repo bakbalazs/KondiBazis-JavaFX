@@ -78,15 +78,14 @@ public final class FeluletBetoltese {
 		stage.centerOnScreen();
 	}
 
-	public static void BerletLetrehozasaFoAblakFelulet() {
-		Parent root = (Parent) loader.load("/fxml/BerletLetrehozasFoAblakFelulet.fxml");
+	
+	public static void BerletLetrehozasaFoAblakFelulet(ActionEvent event) {
+		Parent root = (Parent) loader.load("/fxml/BerletTipusHozzaadasaFelulet.fxml");
 		Scene scene = new Scene(root);
 		Stage stage = new Stage();
 		stage.setTitle("Bérlet létrehozása - " + getAlkalmazásNeve());
 		stage.setScene(scene);
 		stage.centerOnScreen();
-		stage.getIcons().add(icon);
-		stage.show();
 	}
 
 	public static void TagHozzaadasaFelulet(ActionEvent event) {

@@ -1,10 +1,7 @@
 package hu.unideb.inf.kondibazis.db.entitas;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -20,6 +17,9 @@ public class KonditeremBerlet extends FoEntitas {
 	@Column(name = "berlet_neve")
 	private String berletNeve;
 
+	@Column(name = "berletAra")
+	private int berletAra;
+
 	@Column(name = "menniOra")
 	private int mennyiOra;
 
@@ -29,11 +29,7 @@ public class KonditeremBerlet extends FoEntitas {
 	@Column(name = "mennyiHonap")
 	private int mennyiHonap;
 
-	@Column(name = "berletAra")
-	private int berletAra;
-
-	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.PERSIST, CascadeType.REFRESH }, fetch = FetchType.LAZY)
-	@JoinColumn(name = "konditerem_id")
+	@ManyToOne()
 	private Konditerem konditerem;
 
 	public String getBerletNeve() {
@@ -42,6 +38,14 @@ public class KonditeremBerlet extends FoEntitas {
 
 	public void setBerletNeve(String berletNeve) {
 		this.berletNeve = berletNeve;
+	}
+
+	public int getBerletAra() {
+		return berletAra;
+	}
+
+	public void setBerletAra(int berletAra) {
+		this.berletAra = berletAra;
 	}
 
 	public int getMennyiOra() {
@@ -68,14 +72,6 @@ public class KonditeremBerlet extends FoEntitas {
 		this.mennyiHonap = mennyiHonap;
 	}
 
-	public int getBerletAra() {
-		return berletAra;
-	}
-
-	public void setBerletAra(int berletAra) {
-		this.berletAra = berletAra;
-	}
-
 	public Konditerem getKonditerem() {
 		return konditerem;
 	}
@@ -86,8 +82,8 @@ public class KonditeremBerlet extends FoEntitas {
 
 	@Override
 	public String toString() {
-		return "KonditeremBerlet [berletNeve=" + berletNeve + ", mennyiOra=" + mennyiOra + ", mennyiNap=" + mennyiNap
-				+ ", mennyiHonap=" + mennyiHonap + ", berletAra=" + berletAra + ", konditerem=" + konditerem + "]";
+		return "KonditeremBerlet [berletNeve=" + berletNeve + ", berletAra=" + berletAra + ", mennyiOra=" + mennyiOra
+				+ ", mennyiNap=" + mennyiNap + ", mennyiHonap=" + mennyiHonap + ", konditerem=" + konditerem + "]";
 	}
 
 }
