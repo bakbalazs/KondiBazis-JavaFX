@@ -26,6 +26,8 @@ public class RegisztralasKezelo implements Initializable {
 
 	@Autowired
 	private KonditeremSzolgaltatas konditeremSzolgaltatas;
+	
+	private KonditeremVo regisztraltKonditerem;
 
 	@FXML
 	private TextField konditeremnevBevitel;
@@ -99,14 +101,6 @@ public class RegisztralasKezelo implements Initializable {
 			jelszoJoRossz.setImage(FeluletBetoltese.joBeirt);
 		}
 
-//		if (felhasznalonevBevitel.getText().length() > 5) {
-//			felhasznalonevJoRossz.setImage(FeluletBetoltese.joBeirt);
-//		}
-
-		// if (jelszoBevitel.getText().length() > 8) {
-		// jelszoJoRossz.setImage(FeluletBetoltese.joBeirt);
-		// }
-
 		if (ok) {
 			if (konditeremSzolgaltatas.keresFelhasznalonevet(felhasznalonevBevitel.getText()) != null) {
 				regisztraciosUzenet.setText(regisztraciosUzenet.getText() + "Ilyen felhazsnáló már létezik");
@@ -118,17 +112,15 @@ public class RegisztralasKezelo implements Initializable {
 				uj.setFelhasznalonev(felhasznalonevBevitel.getText());
 				uj.setJelszo(jelszoBevitel.getText());
 				konditeremSzolgaltatas.konditeremetLetrehoz(uj);
+				regisztraltKonditerem = uj;
 				konditeremneveJoRossz.setImage(FeluletBetoltese.joBeirt);
 				felhasznalonevJoRossz.setImage(FeluletBetoltese.joBeirt);
 				jelszoJoRossz.setImage(FeluletBetoltese.joBeirt);
 				regisztraciosUzenet.setFill(Color.GREEN);
 				regisztraciosUzenet.setText("Konditerem sikeresen regisztrálva.");
+				FeluletBetoltese.KonditeremElerhetosegFelulet(event);
 			}
 		}
-
-		/*
-		 * // sikeres reg esetén feluletBetoltese.BerletHozzaadasaFelulet();
-		 */
 	}
 
 	@FXML
@@ -139,5 +131,15 @@ public class RegisztralasKezelo implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 	}
+
+	public KonditeremVo getRegisztraltKonditerem() {
+		return regisztraltKonditerem;
+	}
+
+	public void setRegisztraltKonditerem(KonditeremVo regisztraltKonditerem) {
+		this.regisztraltKonditerem = regisztraltKonditerem;
+	}
+	
+	
 
 }

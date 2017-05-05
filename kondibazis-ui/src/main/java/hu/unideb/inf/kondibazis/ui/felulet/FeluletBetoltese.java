@@ -50,21 +50,22 @@ public final class FeluletBetoltese {
 		stage.centerOnScreen();
 	}
 
+	public static void KonditeremElerhetosegFelulet(ActionEvent event) {
+		Parent root = (Parent) loader.load("/fxml/KonditeremElerhetosegFelulet.fxml");
+		Scene scene = new Scene(root);
+		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		stage.setTitle("Elérhetőség - " + getAlkalmazásNeve() + " - " );
+		//regisztrációnál belépett konditerem
+		stage.setScene(scene);
+		stage.centerOnScreen();
+	}
+
 	public static void NevjegyFelulet(ActionEvent event) {
 		Parent root = (Parent) loader.load("/fxml/NevjegyFelulet.fxml");
 		Scene scene = new Scene(root);
 		scene.getStylesheets().add(visszaGomb);
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		stage.setTitle("Névjegy - " + getAlkalmazásNeve());
-		stage.setScene(scene);
-		stage.centerOnScreen();
-	}
-
-	public static void BerletHozzaadasaFelulet(ActionEvent event) {
-		Parent root = (Parent) loader.load("/fxml/BerletTipusHozzaadasaFelulet.fxml");
-		Scene scene = new Scene(root);
-		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		stage.setTitle("Bérlet létrehozása - " + getAlkalmazásNeve());
 		stage.setScene(scene);
 		stage.centerOnScreen();
 	}
@@ -78,14 +79,15 @@ public final class FeluletBetoltese {
 		stage.centerOnScreen();
 	}
 
-	
-	public static void BerletLetrehozasaFoAblakFelulet(ActionEvent event) {
-		Parent root = (Parent) loader.load("/fxml/BerletTipusHozzaadasaFelulet.fxml");
+	public static void BerletTestreszabasaFelulet(ActionEvent event) {
+		Parent root = (Parent) loader.load("/fxml/BerletTestreszabasaFelulet.fxml");
 		Scene scene = new Scene(root);
 		Stage stage = new Stage();
-		stage.setTitle("Bérlet létrehozása - " + getAlkalmazásNeve());
+		stage.setTitle("Bérlet Testreszabása - " + getAlkalmazásNeve());
 		stage.setScene(scene);
 		stage.centerOnScreen();
+		stage.getIcons().add(icon);
+		stage.show();
 	}
 
 	public static void TagHozzaadasaFelulet(ActionEvent event) {

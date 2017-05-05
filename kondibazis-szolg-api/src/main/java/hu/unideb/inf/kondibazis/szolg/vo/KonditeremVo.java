@@ -19,7 +19,7 @@ public class KonditeremVo implements Serializable {
 	private String konditeremNeve;
 
 	private List<KonditeremTagVo> konditeremTagok;
-	
+
 	private List<KonditeremBerletVo> konditeremBerletek;
 
 	public Long getId() {
@@ -61,10 +61,7 @@ public class KonditeremVo implements Serializable {
 	public void setKonditeremTagok(List<KonditeremTagVo> konditeremTagok) {
 		this.konditeremTagok = konditeremTagok;
 	}
-	
-	
-	
-	
+
 	public List<KonditeremBerletVo> getKonditeremBerletek() {
 		return konditeremBerletek;
 	}
@@ -76,7 +73,8 @@ public class KonditeremVo implements Serializable {
 	@Override
 	public String toString() {
 		return "KonditeremVo [id=" + id + ", felhasznalonev=" + felhasznalonev + ", jelszo=" + jelszo
-				+ ", konditeremNeve=" + konditeremNeve + ", konditeremTagok=" + konditeremTagok + "]";
+				+ ", konditeremNeve=" + konditeremNeve + ", konditeremTagok=" + konditeremTagok
+				+ ", konditeremBerletek=" + konditeremBerletek + ", konditeremElerhetoseg=" + "]";
 	}
 
 }

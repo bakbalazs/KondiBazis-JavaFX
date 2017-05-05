@@ -97,7 +97,7 @@ public class TagHozzaadasaKezelo implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-//		kepMegjelenites.setImage(nincsKep);
+		kepMegjelenites.setImage(nincsKep);
 		bejelentkezettKonditerem = foAblakKezelo.getBejelentkezettKonditerem();
 		konditeremNeve.setText(foAblakKezelo.getBejelentkezettKonditerem().getKonditeremNeve());
 		beiratkozasBevitel.setValue(maiNap);
@@ -157,7 +157,7 @@ public class TagHozzaadasaKezelo implements Initializable {
 			ujTag.setTagMegyeje(megyeBevitel.getText());
 			ujTag.setBerletVasarlasideje(beiratkozasBevitel.getValue());
 			// bérletkiválasztás fontos még ehez bérletfelület és bérlettábal
-			nincsKep();
+//			nincsKep();
 			ujTag.setTagKep(kepByte);
 			// képet még visza kell nyerni
 			

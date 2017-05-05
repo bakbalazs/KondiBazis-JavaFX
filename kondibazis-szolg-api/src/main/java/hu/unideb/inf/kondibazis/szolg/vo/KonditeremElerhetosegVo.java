@@ -1,55 +1,37 @@
-package hu.unideb.inf.kondibazis.db.entitas;
+package hu.unideb.inf.kondibazis.szolg.vo;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import java.io.Serializable;
 
-@Entity
-@Table(name = "konditeremElerhetoseg")
-public class KonditeremElerhetoseg extends FoEntitas {
+public class KonditeremElerhetosegVo implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	public KonditeremElerhetoseg() {
+	public KonditeremElerhetosegVo() {
 	}
 
-	@Column(name = "megye_Neve")
 	private String megyeNeve;
 
-	@Column(name = "iranyitoSzam")
 	private Integer iranyitoSzam;
 
-	@Column(name = "varos_neve")
 	private String varosNeve;
 
-	@Column(name = "utca_Neve")
 	private String utcaNeve;
 
-	@Column(name = "haz_Szam")
 	private Integer hazSzam;
 
-	@Column(name = "emelet")
 	private Integer emelet;
 
-	@Column(name = "ajto")
 	private Integer ajto;
 
-	@Column(name = "telefonszam")
 	private String telefonszam;
 
-	@Column(name = "emailCim")
 	private String emailCim;
 
-	@Column(name = "weboldalLink")
 	private String weboldalLink;
 
-	@Column(name = "facebookOldalLink")
 	private String facebookOldalLink;
 
-	@OneToOne(cascade = CascadeType.MERGE)
-	private Konditerem konditerem;
+	private KonditeremVo konditerem;
 
 	public String getMegyeNeve() {
 		return megyeNeve;
@@ -139,17 +121,17 @@ public class KonditeremElerhetoseg extends FoEntitas {
 		this.facebookOldalLink = facebookOldalLink;
 	}
 
-	public Konditerem getKonditerem() {
+	public KonditeremVo getKonditerem() {
 		return konditerem;
 	}
 
-	public void setKonditerem(Konditerem konditerem) {
+	public void setKonditerem(KonditeremVo konditerem) {
 		this.konditerem = konditerem;
 	}
 
 	@Override
 	public String toString() {
-		return "KonditeremElerhetoseg [megyeNeve=" + megyeNeve + ", iranyitoSzam=" + iranyitoSzam + ", varosNeve="
+		return "KonditeremElerhetosegVo [megyeNeve=" + megyeNeve + ", iranyitoSzam=" + iranyitoSzam + ", varosNeve="
 				+ varosNeve + ", utcaNeve=" + utcaNeve + ", hazSzam=" + hazSzam + ", emelet=" + emelet + ", ajto="
 				+ ajto + ", telefonszam=" + telefonszam + ", emailCim=" + emailCim + ", weboldalLink=" + weboldalLink
 				+ ", facebookOldalLink=" + facebookOldalLink + ", konditerem=" + konditerem + "]";

@@ -12,7 +12,7 @@
 		<class>hu.unideb.inf.kondibazis.db.entitas.Konditerem</class>
 		<class>hu.unideb.inf.kondibazis.db.entitas.KonditeremTag</class>
 		<class>hu.unideb.inf.kondibazis.db.entitas.KonditeremBerlet</class>
-		<!-- <class>hu.unideb.inf.kondibazis.db.entitas.KonditeremElerhetoseg</class> -->
+		<class>hu.unideb.inf.kondibazis.db.entitas.KonditeremElerhetoseg</class>
 		<!-- <class>hu.unideb.inf.kondibazis.db.entitas.Telepulesek</class> -->
 
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
@@ -29,6 +29,8 @@
 				value="UTF-8" />
 			<property name="hibernate.connection.charSet" value="UTF-8" />
 			<property name="hibernate.hbm2ddl.auto" value="create" />
+<!-- 			<property name="hibernate.default_schema" value="kondibazis"/> -->
+<!-- 		<property name="hibernate.hbm2ddl.import_files" value="create.sql"/>  -->
 		</properties>
 	</persistence-unit>
 </persistence>
