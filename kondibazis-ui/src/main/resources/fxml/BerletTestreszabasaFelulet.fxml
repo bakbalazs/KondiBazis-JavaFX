@@ -179,7 +179,7 @@
 				</VBox>
 				<VBox alignment="CENTER" prefHeight="31.0" prefWidth="192.0">
 					<children>
-						<Button mnemonicParsing="false" onAction="#megse" text="Mégse" />
+						<Button fx:id="megseGomb" mnemonicParsing="false" onAction="#megse" text="Mégse" />
 					</children>
 				</VBox>
 			</children>

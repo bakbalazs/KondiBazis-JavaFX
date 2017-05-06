@@ -86,7 +86,7 @@
                                  <children>
                                     <Button fx:id="berletLetrehozasaGomb" mnemonicParsing="false" onAction="#berletLetrehozasa" text="Bérlet Létrehozása" />
                                     <Button fx:id="tagHozzaadasaGomb" mnemonicParsing="false" onAction="#tagHozzaadasa" text="Tag Hozzáadása" GridPane.rowIndex="1" />
-                                    <Button mnemonicParsing="false" text="Elérhetőség" GridPane.rowIndex="2" />
+                                    <Button mnemonicParsing="false" onAction="#elerhetosegSzerkesztese" text="Elérhetőség" GridPane.rowIndex="2" />
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" />
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="2" />

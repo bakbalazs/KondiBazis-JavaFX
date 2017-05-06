@@ -19,6 +19,14 @@ import javafx.scene.text.Text;
 @Component
 public class FoAblakKezelo implements Initializable {
 
+	@Autowired
+	private KonditeremSzolgaltatas konditeremSzolgaltatas;
+
+	@Autowired
+	private BejelentkezoKezelo bejelentkezoKezelo;
+
+	private KonditeremVo bejelentkezettKonditerem;
+	
 	@FXML
 	private Button berletLetrehozasaGomb;
 
@@ -28,13 +36,12 @@ public class FoAblakKezelo implements Initializable {
 	@FXML
 	private Text konditeremNeve;
 	
-	@Autowired
-	private KonditeremSzolgaltatas konditeremSzolgaltatas;
-
-	@Autowired
-	private BejelentkezoKezelo bejelentkezoKezelo;
-
-	private KonditeremVo bejelentkezettKonditerem;
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		konditeremNeve.setText(bejelentkezoKezelo.getBejelentkezettKonditerem().getKonditeremNeve());
+		bejelentkezettKonditerem = bejelentkezoKezelo.getBejelentkezettKonditerem();
+		System.out.println(bejelentkezettKonditerem);
+	}
 
 	@FXML
 	public void berletLetrehozasa(ActionEvent event) throws IOException {
@@ -45,11 +52,10 @@ public class FoAblakKezelo implements Initializable {
 	public void tagHozzaadasa(ActionEvent event) throws IOException {
 		FeluletBetoltese.TagHozzaadasaFelulet(event);
 	}
-
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		konditeremNeve.setText(bejelentkezoKezelo.getBejelentkezettKonditerem().getKonditeremNeve());
-		bejelentkezettKonditerem = bejelentkezoKezelo.getBejelentkezettKonditerem();
+	
+	@FXML
+	public void elerhetosegSzerkesztese(ActionEvent event) {
+	
 	}
 
 	public KonditeremVo getBejelentkezettKonditerem() {

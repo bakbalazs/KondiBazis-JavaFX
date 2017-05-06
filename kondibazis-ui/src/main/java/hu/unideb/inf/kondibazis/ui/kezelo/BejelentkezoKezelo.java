@@ -63,7 +63,8 @@ public class BejelentkezoKezelo implements Initializable {
 			if (konditerem.getJelszo().equals(jelszoBevitel.getText())) {
 				bejelentkezettKonditerem = konditerem;
 				setKonditeremNeve(konditerem.getKonditeremNeve());
-				FeluletBetoltese.FoAblakFelulet(event);
+//				FeluletBetoltese.FoAblakFelulet(event);
+				System.out.println(bejelentkezettKonditerem);
 			} else {
 				bejelentkezoUzenet.setText("Helytelen jelszó!");
 				felhasznalonevJoRossz.setImage(FeluletBetoltese.joBeirt);

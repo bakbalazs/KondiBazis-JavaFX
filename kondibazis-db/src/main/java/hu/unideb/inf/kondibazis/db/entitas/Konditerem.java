@@ -32,9 +32,6 @@ public class Konditerem extends FoEntitas {
 	@OneToMany(mappedBy = "konditerem", cascade = CascadeType.MERGE)
 	private List<KonditeremBerlet> konditeremBerletek;
 
-	// @OneToOne(mappedBy = "konditerem", cascade = CascadeType.MERGE)
-	// private KonditeremElerhetoseg konditeremElerhetoseg;
-
 	public String getFelhasznalonev() {
 		return felhasznalonev;
 	}
@@ -74,4 +71,5 @@ public class Konditerem extends FoEntitas {
 	public void setKonditeremBerletek(List<KonditeremBerlet> konditeremBerletek) {
 		this.konditeremBerletek = konditeremBerletek;
 	}
+
 }

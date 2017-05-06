@@ -3,6 +3,7 @@ package hu.unideb.inf.kondibazis.db.entitas;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -49,6 +50,8 @@ public class KonditeremElerhetoseg extends FoEntitas {
 	private String facebookOldalLink;
 
 	@OneToOne(cascade = CascadeType.MERGE)
+	@JoinColumn(name = "konditerem_id")
+//	@NotNull
 	private Konditerem konditerem;
 
 	public String getMegyeNeve() {

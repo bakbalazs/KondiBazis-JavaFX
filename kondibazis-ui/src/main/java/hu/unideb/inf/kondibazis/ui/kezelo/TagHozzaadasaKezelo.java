@@ -160,24 +160,16 @@ public class TagHozzaadasaKezelo implements Initializable {
 //			nincsKep();
 			ujTag.setTagKep(kepByte);
 			// képet még visza kell nyerni
-			
-			KonditeremTagVo letezo = konditeremTagSzolgaltatas.leterehozTagot(ujTag);
-			
-			bejelentkezettKonditerem.getKonditeremTagok().add(letezo);
-			
-			konditeremSzolgaltatas.frissitKonditermet(bejelentkezettKonditerem);
-			
-			letezo.setKonditerem(bejelentkezettKonditerem);
-			
-			konditeremTagSzolgaltatas.frissitKonditeremTagot(letezo);
-			
-			
-//
-//			bejelentkezettKonditerem.getKonditeremTagok().add(ujTag);
-//
-//			ujTag.setKonditerem(bejelentkezettKonditerem);
-//
+//			
+//			KonditeremTagVo letezo = konditeremTagSzolgaltatas.leterehozTagot(ujTag);
+//			
+//			bejelentkezettKonditerem.getKonditeremTagok().add(letezo);
+//			
 //			konditeremSzolgaltatas.frissitKonditermet(bejelentkezettKonditerem);
+//			
+//			letezo.setKonditerem(bejelentkezettKonditerem);
+//			
+//			konditeremTagSzolgaltatas.frissitKonditeremTagot(letezo);
 
 		}
 

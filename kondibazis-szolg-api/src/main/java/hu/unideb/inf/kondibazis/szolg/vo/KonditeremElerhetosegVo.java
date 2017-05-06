@@ -33,6 +33,14 @@ public class KonditeremElerhetosegVo implements Serializable {
 
 	private KonditeremVo konditerem;
 
+	public KonditeremVo getKonditerem() {
+		return konditerem;
+	}
+
+	public void setKonditerem(KonditeremVo konditerem) {
+		this.konditerem = konditerem;
+	}
+
 	public String getMegyeNeve() {
 		return megyeNeve;
 	}
@@ -119,14 +127,6 @@ public class KonditeremElerhetosegVo implements Serializable {
 
 	public void setFacebookOldalLink(String facebookOldalLink) {
 		this.facebookOldalLink = facebookOldalLink;
-	}
-
-	public KonditeremVo getKonditerem() {
-		return konditerem;
-	}
-
-	public void setKonditerem(KonditeremVo konditerem) {
-		this.konditerem = konditerem;
 	}
 
 	@Override

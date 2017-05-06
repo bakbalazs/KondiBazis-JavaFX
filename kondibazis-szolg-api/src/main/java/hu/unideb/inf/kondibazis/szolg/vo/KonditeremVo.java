@@ -74,7 +74,7 @@ public class KonditeremVo implements Serializable {
 	public String toString() {
 		return "KonditeremVo [id=" + id + ", felhasznalonev=" + felhasznalonev + ", jelszo=" + jelszo
 				+ ", konditeremNeve=" + konditeremNeve + ", konditeremTagok=" + konditeremTagok
-				+ ", konditeremBerletek=" + konditeremBerletek + ", konditeremElerhetoseg=" + "]";
+				+ ", konditeremBerletek=" + konditeremBerletek + "]";
 	}
 
 }

@@ -17,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 @Component
 public class BerletTestreszabasaKezelo implements Initializable {
@@ -36,7 +37,7 @@ public class BerletTestreszabasaKezelo implements Initializable {
 	private Button letrehozasGomb;
 
 	@FXML
-	private Button kihagyasGomb;
+	private Button megseGomb;
 
 	@FXML
 	private TextField berletnevBevitel;
@@ -81,6 +82,8 @@ public class BerletTestreszabasaKezelo implements Initializable {
 		oraBevitel.setText("0");
 		napBevitel.setText("0");
 		honapBevitel.setText("0");
+		
+		
 	}
 
 	@FXML
@@ -143,8 +146,7 @@ public class BerletTestreszabasaKezelo implements Initializable {
 
 	@FXML
 	public void megse(ActionEvent event) throws IOException {
-		// feluletBetoltese.BelepesiFelulet();
-		// ((Node) (event.getSource())).getScene().getWindow().hide();
+		((Stage)megseGomb.getScene().getWindow()).close();
 	}
 
 }

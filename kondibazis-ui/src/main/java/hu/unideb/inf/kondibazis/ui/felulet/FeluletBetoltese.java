@@ -51,8 +51,8 @@ public final class FeluletBetoltese {
 	}
 
 	public static void KonditeremElerhetosegFelulet(ActionEvent event) {
-		Parent root = (Parent) loader.load("/fxml/KonditeremElerhetosegFelulet.fxml");
-		Scene scene = new Scene(root);
+		Parent parent = (Parent) loader.load("/fxml/KonditeremElerhetosegFelulet.fxml");
+		Scene scene = new Scene(parent);
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		stage.setTitle("Elérhetőség - " + getAlkalmazásNeve() + " - " );
 		//regisztrációnál belépett konditerem

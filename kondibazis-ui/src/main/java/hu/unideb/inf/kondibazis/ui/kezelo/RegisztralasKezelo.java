@@ -112,13 +112,17 @@ public class RegisztralasKezelo implements Initializable {
 				uj.setFelhasznalonev(felhasznalonevBevitel.getText());
 				uj.setJelszo(jelszoBevitel.getText());
 				konditeremSzolgaltatas.konditeremetLetrehoz(uj);
-				regisztraltKonditerem = uj;
+				KonditeremVo letrehozott = konditeremSzolgaltatas.keresFelhasznalonevet(felhasznalonevBevitel.getText());
+				regisztraltKonditerem = letrehozott;
 				konditeremneveJoRossz.setImage(FeluletBetoltese.joBeirt);
 				felhasznalonevJoRossz.setImage(FeluletBetoltese.joBeirt);
 				jelszoJoRossz.setImage(FeluletBetoltese.joBeirt);
 				regisztraciosUzenet.setFill(Color.GREEN);
 				regisztraciosUzenet.setText("Konditerem sikeresen regisztrálva.");
 				FeluletBetoltese.KonditeremElerhetosegFelulet(event);
+//				System.out.println("##################################################################");
+//				System.out.println(regisztraltKonditerem);
+//				System.out.println("##################################################################");
 			}
 		}
 	}
@@ -130,6 +134,7 @@ public class RegisztralasKezelo implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		
 	}
 
 	public KonditeremVo getRegisztraltKonditerem() {

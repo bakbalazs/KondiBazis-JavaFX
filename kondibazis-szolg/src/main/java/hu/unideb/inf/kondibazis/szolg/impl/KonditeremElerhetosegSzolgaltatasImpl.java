@@ -15,48 +15,60 @@ import hu.unideb.inf.kondibazis.szolg.vo.KonditeremElerhetosegVo;
 @Service
 @Transactional(propagation = Propagation.REQUIRED)
 public class KonditeremElerhetosegSzolgaltatasImpl implements KonditeremElerhetosegSzolgaltatas {
-	
+
 	@Autowired
 	private KonditeremElerhetosegTarolo konditeremElerhetosegTarolo;
-	
+
 	@Autowired
 	private KonditeremSzolgaltatas konditeremSzolgaltatas;
 
 	@Override
 	public KonditeremElerhetosegVo keresElerhetoseget(Long id) {
-		return null;
+		// KonditeremElerhetoseg found =
+		// konditeremElerhetosegTarolo.findOne(id);
+		//
+		// if(found == null) {
+		//
+		// } else {
+		//
+		// }
+		//
+		// return KonditeremElerhetosegMapper.toVo(found);
+
+		return KonditeremElerhetosegMapper.toVo(konditeremElerhetosegTarolo.findById(id));
+
 	}
 
 	@Override
 	public KonditeremElerhetosegVo letrehozElerhetoseget(KonditeremElerhetosegVo ujElerhetoseg) {
 		KonditeremElerhetoseg uj = KonditeremElerhetosegMapper.toDto(ujElerhetoseg);
-		
+
 		KonditeremElerhetoseg letezo = konditeremElerhetosegTarolo.save(uj);
-		
-		if(letezo == null) {
-			
-		}else {
-			
+
+		if (letezo == null) {
+
+		} else {
+
 		}
-		
+
 		return KonditeremElerhetosegMapper.toVo(letezo);
-		
+
 	}
 
 	@Override
 	public KonditeremElerhetosegVo frissitElerhetoseget(KonditeremElerhetosegVo konditeremElerhetoseg) {
 		KonditeremElerhetoseg uj = KonditeremElerhetosegMapper.toDto(konditeremElerhetoseg);
-		
+
 		KonditeremElerhetoseg mentett = konditeremElerhetosegTarolo.save(uj);
-		
-		if(mentett == null) {
-			
+
+		if (mentett == null) {
+
 		} else {
-			
+
 		}
-		
+
 		return KonditeremElerhetosegMapper.toVo(mentett);
-		
+
 	}
 
 }
