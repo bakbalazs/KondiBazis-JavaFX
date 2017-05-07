@@ -1,3 +1,4 @@
+// CHECKSTYLE:OFF
 package hu.unideb.inf.kondibazis.ui.kezelo;
 
 import java.io.File;
@@ -101,11 +102,6 @@ public class TagHozzaadasaKezelo implements Initializable {
 		bejelentkezettKonditerem = foAblakKezelo.getBejelentkezettKonditerem();
 		konditeremNeve.setText(foAblakKezelo.getBejelentkezettKonditerem().getKonditeremNeve());
 		beiratkozasBevitel.setValue(maiNap);
-		System.out.println(
-				"##################################################################################################################");
-		System.out.println(bejelentkezettKonditerem);
-		System.out.println(
-				"##################################################################################################################");
 	}
 
 	@FXML

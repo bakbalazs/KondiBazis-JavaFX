@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "konditeremElerhetoseg")
@@ -51,7 +52,6 @@ public class KonditeremElerhetoseg extends FoEntitas {
 
 	@OneToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "konditerem_id")
-//	@NotNull
 	private Konditerem konditerem;
 
 	public String getMegyeNeve() {

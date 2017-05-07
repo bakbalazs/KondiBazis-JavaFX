@@ -314,11 +314,6 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sikeresen regisztrálva:" />
-                     </children>
-                  </VBox>
                   <VBox alignment="CENTER" prefHeight="27.0" prefWidth="122.0">
                      <children>
                         <Text fx:id="regisztraltKonditerem" strokeType="OUTSIDE" strokeWidth="0.0" />

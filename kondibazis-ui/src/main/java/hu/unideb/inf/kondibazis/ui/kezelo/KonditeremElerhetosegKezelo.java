@@ -1,3 +1,4 @@
+// CHECKSTYLE:OFF
 package hu.unideb.inf.kondibazis.ui.kezelo;
 
 import java.net.URL;
@@ -108,6 +109,8 @@ public class KonditeremElerhetosegKezelo implements Initializable {
 	@FXML
 	private ImageView facebookJoRossz;
 
+	private static String bejelentkezesUzenet;
+
 	private int iranyitoszam;
 
 	private int hazSzam;
@@ -119,7 +122,8 @@ public class KonditeremElerhetosegKezelo implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		regisztraltKondi = regisztralasKezelo.getRegisztraltKonditerem();
-		regisztraltKonditerem.setText(regisztraltKondi.getKonditeremNeve());
+		regisztraltKonditerem.setFill(Color.GREEN);
+		regisztraltKonditerem.setText("Sikeresen regisztrált konditerm: " + regisztraltKondi.getKonditeremNeve());
 		iranyitoszamBevitel.setText("0000");
 		hazSzamBevitel.setText("0");
 		emeletBevitel.setText("0");
@@ -127,12 +131,10 @@ public class KonditeremElerhetosegKezelo implements Initializable {
 		emailBevitel.setText("nincs email");
 		weboldalBevitel.setText("nincs weboldal");
 		facebookBevitel.setText("nincs facebook oldal");
-
-		System.out.println(regisztraltKondi);
 	}
 
 	@FXML
-	public void mentes(ActionEvent event) {
+	public void mentes(ActionEvent event) throws Exception {
 
 		boolean mehet = true;
 		boolean kotelezo = true;
@@ -264,7 +266,16 @@ public class KonditeremElerhetosegKezelo implements Initializable {
 
 	@FXML
 	public void megse(ActionEvent event) {
+		setBejelentkezesUzenet("Kérem jeletkezzen be a felhasználóval: " + regisztraltKondi.getFelhasznalonev());
 		FeluletBetoltese.BejelentkezoFelulet(event);
+	}
+
+	public static String getBejelentkezesUzenet() {
+		return bejelentkezesUzenet;
+	}
+
+	public static void setBejelentkezesUzenet(String bejelentkezesUzenet) {
+		KonditeremElerhetosegKezelo.bejelentkezesUzenet = bejelentkezesUzenet;
 	}
 
 }

@@ -1,3 +1,4 @@
+// CHECKSTYLE:OFF
 package hu.unideb.inf.kondibazis.ui.kezelo;
 
 import java.io.IOException;

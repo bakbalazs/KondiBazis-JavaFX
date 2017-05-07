@@ -1,3 +1,4 @@
+// CHECKSTYLE:OFF
 package hu.unideb.inf.kondibazis.ui.kezelo;
 
 import java.io.IOException;
@@ -26,7 +27,7 @@ public class RegisztralasKezelo implements Initializable {
 
 	@Autowired
 	private KonditeremSzolgaltatas konditeremSzolgaltatas;
-	
+
 	private KonditeremVo regisztraltKonditerem;
 
 	@FXML
@@ -52,6 +53,10 @@ public class RegisztralasKezelo implements Initializable {
 
 	@FXML
 	private ImageView jelszoJoRossz;
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+	}
 
 	@FXML
 	public void regisztralas(ActionEvent event) throws Exception {
@@ -112,17 +117,10 @@ public class RegisztralasKezelo implements Initializable {
 				uj.setFelhasznalonev(felhasznalonevBevitel.getText());
 				uj.setJelszo(jelszoBevitel.getText());
 				konditeremSzolgaltatas.konditeremetLetrehoz(uj);
-				KonditeremVo letrehozott = konditeremSzolgaltatas.keresFelhasznalonevet(felhasznalonevBevitel.getText());
+				KonditeremVo letrehozott = konditeremSzolgaltatas
+						.keresFelhasznalonevet(felhasznalonevBevitel.getText());
 				regisztraltKonditerem = letrehozott;
-				konditeremneveJoRossz.setImage(FeluletBetoltese.joBeirt);
-				felhasznalonevJoRossz.setImage(FeluletBetoltese.joBeirt);
-				jelszoJoRossz.setImage(FeluletBetoltese.joBeirt);
-				regisztraciosUzenet.setFill(Color.GREEN);
-				regisztraciosUzenet.setText("Konditerem sikeresen regisztrálva.");
 				FeluletBetoltese.KonditeremElerhetosegFelulet(event);
-//				System.out.println("##################################################################");
-//				System.out.println(regisztraltKonditerem);
-//				System.out.println("##################################################################");
 			}
 		}
 	}
@@ -132,11 +130,6 @@ public class RegisztralasKezelo implements Initializable {
 		FeluletBetoltese.InditasiFelulet(Inditas.primaryStage);
 	}
 
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		
-	}
-
 	public KonditeremVo getRegisztraltKonditerem() {
 		return regisztraltKonditerem;
 	}
@@ -144,7 +137,5 @@ public class RegisztralasKezelo implements Initializable {
 	public void setRegisztraltKonditerem(KonditeremVo regisztraltKonditerem) {
 		this.regisztraltKonditerem = regisztraltKonditerem;
 	}
-	
-	
 
 }

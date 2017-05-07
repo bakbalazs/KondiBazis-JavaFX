@@ -24,35 +24,16 @@ public class KonditeremElerhetosegSzolgaltatasImpl implements KonditeremElerheto
 
 	@Override
 	public KonditeremElerhetosegVo keresElerhetoseget(Long id) {
-		// KonditeremElerhetoseg found =
-		// konditeremElerhetosegTarolo.findOne(id);
-		//
-		// if(found == null) {
-		//
-		// } else {
-		//
-		// }
-		//
-		// return KonditeremElerhetosegMapper.toVo(found);
-
 		return KonditeremElerhetosegMapper.toVo(konditeremElerhetosegTarolo.findById(id));
-
 	}
 
 	@Override
-	public KonditeremElerhetosegVo letrehozElerhetoseget(KonditeremElerhetosegVo ujElerhetoseg) {
-		KonditeremElerhetoseg uj = KonditeremElerhetosegMapper.toDto(ujElerhetoseg);
-
-		KonditeremElerhetoseg letezo = konditeremElerhetosegTarolo.save(uj);
-
-		if (letezo == null) {
-
-		} else {
-
+	public void letrehozElerhetoseget(KonditeremElerhetosegVo ujElerhetoseg) throws Exception {
+		try {
+			konditeremElerhetosegTarolo.save(KonditeremElerhetosegMapper.toDto(ujElerhetoseg));
+		} catch (Exception e) {
+			throw e;
 		}
-
-		return KonditeremElerhetosegMapper.toVo(letezo);
-
 	}
 
 	@Override

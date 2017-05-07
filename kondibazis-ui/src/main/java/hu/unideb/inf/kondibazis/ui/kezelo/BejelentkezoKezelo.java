@@ -1,3 +1,4 @@
+// CHECKSTYLE:OFF
 package hu.unideb.inf.kondibazis.ui.kezelo;
 
 import java.io.IOException;
@@ -18,6 +19,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 @Component
@@ -25,9 +27,9 @@ public class BejelentkezoKezelo implements Initializable {
 
 	@Autowired
 	private KonditeremSzolgaltatas konditeremSzolgaltatas;
-	
+
 	private KonditeremVo bejelentkezettKonditerem;
-	
+
 	private static String konditeremNeve;
 
 	@FXML
@@ -48,12 +50,19 @@ public class BejelentkezoKezelo implements Initializable {
 	@FXML
 	private ImageView jelszoJoRossz;
 
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		bejelentkezoUzenet.setFill(Color.GREEN);
+		bejelentkezoUzenet.setText(KonditeremElerhetosegKezelo.getBejelentkezesUzenet());
+	}
+
 	@FXML
 	public void bejelentkezes(ActionEvent event) throws Exception {
 
 		KonditeremVo konditerem = konditeremSzolgaltatas.keresFelhasznalonevet(felhasznalonevBevitel.getText());
 
 		if (konditerem == null) {
+			bejelentkezoUzenet.setFill(Color.RED);
 			bejelentkezoUzenet.setText("Nincs ilyen nevű felhasználó!");
 			felhasznalonevJoRossz.setImage(FeluletBetoltese.rosszBeirt);
 			jelszoJoRossz.setImage(FeluletBetoltese.rosszBeirt);
@@ -63,9 +72,9 @@ public class BejelentkezoKezelo implements Initializable {
 			if (konditerem.getJelszo().equals(jelszoBevitel.getText())) {
 				bejelentkezettKonditerem = konditerem;
 				setKonditeremNeve(konditerem.getKonditeremNeve());
-//				FeluletBetoltese.FoAblakFelulet(event);
-				System.out.println(bejelentkezettKonditerem);
+				FeluletBetoltese.FoAblakFelulet(event);
 			} else {
+				bejelentkezoUzenet.setFill(Color.RED);
 				bejelentkezoUzenet.setText("Helytelen jelszó!");
 				felhasznalonevJoRossz.setImage(FeluletBetoltese.joBeirt);
 				jelszoJoRossz.setImage(FeluletBetoltese.rosszBeirt);
@@ -83,10 +92,6 @@ public class BejelentkezoKezelo implements Initializable {
 	@FXML
 	public void vissza(ActionEvent event) throws IOException {
 		FeluletBetoltese.InditasiFelulet(Inditas.primaryStage);
-	}
-
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
 	}
 
 	public KonditeremVo getBejelentkezettKonditerem() {

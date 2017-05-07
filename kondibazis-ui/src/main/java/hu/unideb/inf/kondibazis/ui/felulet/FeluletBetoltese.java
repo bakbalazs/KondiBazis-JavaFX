@@ -1,5 +1,6 @@
 package hu.unideb.inf.kondibazis.ui.felulet;
 
+import hu.unideb.inf.kondibazis.szolg.kontener.SzovegTartalom;
 import hu.unideb.inf.kondibazis.ui.kezelo.BejelentkezoKezelo;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
@@ -11,7 +12,7 @@ import javafx.stage.Stage;
 public final class FeluletBetoltese {
 
 	private static final SpringFxmlLoader loader = new SpringFxmlLoader();
-	private static String alkalmazásNeve = "KondiBázis";
+
 	private static final Image icon = new Image("/kepek/icon.png");
 	private static final String visszaGomb = new String("/css/visszaGomb.css");
 
@@ -23,7 +24,7 @@ public final class FeluletBetoltese {
 		Parent root = (Parent) loader.load("/fxml/InditasiKepernyoFelulet.fxml");
 		Scene scene = new Scene(root);
 
-		primaryStage.setTitle(getAlkalmazásNeve());
+		primaryStage.setTitle(SzovegTartalom.getAlkalmazasneve());
 		primaryStage.setScene(scene);
 		primaryStage.centerOnScreen();
 		primaryStage.getIcons().add(icon);
@@ -35,7 +36,7 @@ public final class FeluletBetoltese {
 		Scene scene = new Scene(parent);
 		scene.getStylesheets().add(visszaGomb);
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		stage.setTitle("Bejelentkezés - " + getAlkalmazásNeve());
+		stage.setTitle("Bejelentkezés - " + SzovegTartalom.getAlkalmazasneve());
 		stage.setScene(scene);
 		stage.centerOnScreen();
 	}
@@ -45,7 +46,7 @@ public final class FeluletBetoltese {
 		Scene scene = new Scene(parent);
 		scene.getStylesheets().add(visszaGomb);
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		stage.setTitle("Terem Regisztrálása - " + getAlkalmazásNeve());
+		stage.setTitle("Terem Regisztrálása - " + SzovegTartalom.getAlkalmazasneve());
 		stage.setScene(scene);
 		stage.centerOnScreen();
 	}
@@ -54,8 +55,7 @@ public final class FeluletBetoltese {
 		Parent parent = (Parent) loader.load("/fxml/KonditeremElerhetosegFelulet.fxml");
 		Scene scene = new Scene(parent);
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		stage.setTitle("Elérhetőség - " + getAlkalmazásNeve() + " - " );
-		//regisztrációnál belépett konditerem
+		stage.setTitle("Elérhetőség - " + SzovegTartalom.getAlkalmazasneve());
 		stage.setScene(scene);
 		stage.centerOnScreen();
 	}
@@ -65,7 +65,7 @@ public final class FeluletBetoltese {
 		Scene scene = new Scene(root);
 		scene.getStylesheets().add(visszaGomb);
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		stage.setTitle("Névjegy - " + getAlkalmazásNeve());
+		stage.setTitle("Névjegy - " + SzovegTartalom.getAlkalmazasneve());
 		stage.setScene(scene);
 		stage.centerOnScreen();
 	}
@@ -74,7 +74,7 @@ public final class FeluletBetoltese {
 		Parent root = (Parent) loader.load("/fxml/FoAblakFelulet.fxml");
 		Scene scene = new Scene(root);
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		stage.setTitle(getAlkalmazásNeve() + " - " + BejelentkezoKezelo.getKonditeremNeve());
+		stage.setTitle(SzovegTartalom.getAlkalmazasneve() + " - " + BejelentkezoKezelo.getKonditeremNeve());
 		stage.setScene(scene);
 		stage.centerOnScreen();
 	}
@@ -83,7 +83,7 @@ public final class FeluletBetoltese {
 		Parent root = (Parent) loader.load("/fxml/BerletTestreszabasaFelulet.fxml");
 		Scene scene = new Scene(root);
 		Stage stage = new Stage();
-		stage.setTitle("Bérlet Testreszabása - " + getAlkalmazásNeve());
+		stage.setTitle("Bérlet Testreszabása - " + SzovegTartalom.getAlkalmazasneve());
 		stage.setScene(scene);
 		stage.centerOnScreen();
 		stage.getIcons().add(icon);
@@ -94,19 +94,11 @@ public final class FeluletBetoltese {
 		Parent root = (Parent) loader.load("/fxml/TaghozzaadasaFelulet.fxml");
 		Scene scene = new Scene(root);
 		Stage stage = new Stage();
-		stage.setTitle("Tag Hozzáadása -" + getAlkalmazásNeve());
+		stage.setTitle("Tag Hozzáadása -" + SzovegTartalom.getAlkalmazasneve());
 		stage.setScene(scene);
 		stage.centerOnScreen();
 		stage.getIcons().add(icon);
 		stage.show();
-	}
-
-	public static String getAlkalmazásNeve() {
-		return alkalmazásNeve;
-	}
-
-	public static void setAlkalmazásNeve(String alkalmazásNeve) {
-		FeluletBetoltese.alkalmazásNeve = alkalmazásNeve;
 	}
 
 }

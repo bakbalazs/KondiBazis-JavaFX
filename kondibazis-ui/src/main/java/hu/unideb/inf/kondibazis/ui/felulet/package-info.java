@@ -1,6 +1,4 @@
-/**
- * 
- */
+// CHECKSTYLE:OFF
 /**
  * @author Balazs
  *
