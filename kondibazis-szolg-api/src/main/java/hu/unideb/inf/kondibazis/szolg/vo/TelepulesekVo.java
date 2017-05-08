@@ -1,25 +1,18 @@
-package hu.unideb.inf.kondibazis.db.entitas;
+package hu.unideb.inf.kondibazis.szolg.vo;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import java.io.Serializable;
 
-@Entity
-@Table(name = "telepulesek")
-public class Telepulesek extends FoEntitas {
+public class TelepulesekVo implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	public Telepulesek() {
+	public TelepulesekVo() {
 	}
 
-	@Column(name = "iranyitoszam")
 	private Integer iranyitoszam;
 
-	@Column(name = "megye")
 	private String megye;
 
-	@Column(name = "telepulesnev")
 	private String telepulesnev;
 
 	public Integer getIranyitoszam() {
@@ -46,4 +39,12 @@ public class Telepulesek extends FoEntitas {
 		this.telepulesnev = telepulesnev;
 	}
 
+	@Override
+	public String toString() {
+		return "TelepulesekVo [iranyitoszam=" + iranyitoszam + ", megye=" + megye + ", telepulesnev=" + telepulesnev
+				+ "]";
+	}
+
+	
+	
 }

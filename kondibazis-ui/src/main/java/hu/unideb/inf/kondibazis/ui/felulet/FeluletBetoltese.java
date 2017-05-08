@@ -1,33 +1,27 @@
 package hu.unideb.inf.kondibazis.ui.felulet;
 
 import hu.unideb.inf.kondibazis.szolg.kontener.SzovegTartalom;
+import hu.unideb.inf.kondibazis.szolg.kontener.TartalomBetoltese;
 import hu.unideb.inf.kondibazis.ui.kezelo.BejelentkezoKezelo;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public final class FeluletBetoltese {
 
 	private static final SpringFxmlLoader loader = new SpringFxmlLoader();
-
-	private static final Image icon = new Image("/kepek/icon.png");
 	private static final String visszaGomb = new String("/css/visszaGomb.css");
-
-	public static final Image joBeirt = new Image("/kepek/pipa.png");
-
-	public static final Image rosszBeirt = new Image("/kepek/x.png");
 
 	public static void InditasiFelulet(Stage primaryStage) {
 		Parent root = (Parent) loader.load("/fxml/InditasiKepernyoFelulet.fxml");
 		Scene scene = new Scene(root);
 
-		primaryStage.setTitle(SzovegTartalom.getAlkalmazasneve());
+		primaryStage.setTitle(SzovegTartalom.alkalmazasNeve);
 		primaryStage.setScene(scene);
 		primaryStage.centerOnScreen();
-		primaryStage.getIcons().add(icon);
+		primaryStage.getIcons().add(TartalomBetoltese.ikon);
 		primaryStage.show();
 	}
 
@@ -36,7 +30,7 @@ public final class FeluletBetoltese {
 		Scene scene = new Scene(parent);
 		scene.getStylesheets().add(visszaGomb);
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		stage.setTitle("Bejelentkezés - " + SzovegTartalom.getAlkalmazasneve());
+		stage.setTitle("Bejelentkezés - " + SzovegTartalom.alkalmazasNeve);
 		stage.setScene(scene);
 		stage.centerOnScreen();
 	}
@@ -46,7 +40,7 @@ public final class FeluletBetoltese {
 		Scene scene = new Scene(parent);
 		scene.getStylesheets().add(visszaGomb);
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		stage.setTitle("Terem Regisztrálása - " + SzovegTartalom.getAlkalmazasneve());
+		stage.setTitle("Terem Regisztrálása - " + SzovegTartalom.alkalmazasNeve);
 		stage.setScene(scene);
 		stage.centerOnScreen();
 	}
@@ -55,7 +49,7 @@ public final class FeluletBetoltese {
 		Parent parent = (Parent) loader.load("/fxml/KonditeremElerhetosegFelulet.fxml");
 		Scene scene = new Scene(parent);
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		stage.setTitle("Elérhetőség - " + SzovegTartalom.getAlkalmazasneve());
+		stage.setTitle("Elérhetőség - " + SzovegTartalom.alkalmazasNeve);
 		stage.setScene(scene);
 		stage.centerOnScreen();
 	}
@@ -65,7 +59,7 @@ public final class FeluletBetoltese {
 		Scene scene = new Scene(root);
 		scene.getStylesheets().add(visszaGomb);
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		stage.setTitle("Névjegy - " + SzovegTartalom.getAlkalmazasneve());
+		stage.setTitle("Névjegy - " + SzovegTartalom.alkalmazasNeve);
 		stage.setScene(scene);
 		stage.centerOnScreen();
 	}
@@ -74,7 +68,7 @@ public final class FeluletBetoltese {
 		Parent root = (Parent) loader.load("/fxml/FoAblakFelulet.fxml");
 		Scene scene = new Scene(root);
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		stage.setTitle(SzovegTartalom.getAlkalmazasneve() + " - " + BejelentkezoKezelo.getKonditeremNeve());
+		stage.setTitle(SzovegTartalom.alkalmazasNeve + " - " + BejelentkezoKezelo.getKonditeremNeve());
 		stage.setScene(scene);
 		stage.centerOnScreen();
 	}
@@ -83,10 +77,10 @@ public final class FeluletBetoltese {
 		Parent root = (Parent) loader.load("/fxml/BerletTestreszabasaFelulet.fxml");
 		Scene scene = new Scene(root);
 		Stage stage = new Stage();
-		stage.setTitle("Bérlet Testreszabása - " + SzovegTartalom.getAlkalmazasneve());
+		stage.setTitle("Bérlet Testreszabása - " + SzovegTartalom.alkalmazasNeve);
 		stage.setScene(scene);
 		stage.centerOnScreen();
-		stage.getIcons().add(icon);
+		stage.getIcons().add(TartalomBetoltese.ikon);
 		stage.show();
 	}
 
@@ -94,10 +88,10 @@ public final class FeluletBetoltese {
 		Parent root = (Parent) loader.load("/fxml/TaghozzaadasaFelulet.fxml");
 		Scene scene = new Scene(root);
 		Stage stage = new Stage();
-		stage.setTitle("Tag Hozzáadása -" + SzovegTartalom.getAlkalmazasneve());
+		stage.setTitle("Tag Hozzáadása -" + SzovegTartalom.alkalmazasNeve);
 		stage.setScene(scene);
 		stage.centerOnScreen();
-		stage.getIcons().add(icon);
+		stage.getIcons().add(TartalomBetoltese.ikon);
 		stage.show();
 	}
 

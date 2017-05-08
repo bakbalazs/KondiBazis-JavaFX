@@ -21,7 +21,7 @@ public class KonditeremElerhetosegVo implements Serializable {
 
 	private Integer emelet;
 
-	private Integer ajto;
+	private String ajto;
 
 	private String telefonszam;
 
@@ -89,11 +89,11 @@ public class KonditeremElerhetosegVo implements Serializable {
 		this.emelet = emelet;
 	}
 
-	public Integer getAjto() {
+	public String getAjto() {
 		return ajto;
 	}
 
-	public void setAjto(Integer ajto) {
+	public void setAjto(String ajto) {
 		this.ajto = ajto;
 	}
 

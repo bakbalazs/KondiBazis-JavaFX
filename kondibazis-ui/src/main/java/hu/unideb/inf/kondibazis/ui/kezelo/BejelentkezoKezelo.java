@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremSzolgaltatas;
+import hu.unideb.inf.kondibazis.szolg.kontener.TartalomBetoltese;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremVo;
 import hu.unideb.inf.kondibazis.ui.felulet.FeluletBetoltese;
 import hu.unideb.inf.kondibazis.ui.main.Inditas;
@@ -54,6 +55,7 @@ public class BejelentkezoKezelo implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		bejelentkezoUzenet.setFill(Color.GREEN);
 		bejelentkezoUzenet.setText(KonditeremElerhetosegKezelo.getBejelentkezesUzenet());
+		felhasznalonevBevitel.setText(KonditeremElerhetosegKezelo.getFelhasznalo());
 	}
 
 	@FXML
@@ -64,8 +66,8 @@ public class BejelentkezoKezelo implements Initializable {
 		if (konditerem == null) {
 			bejelentkezoUzenet.setFill(Color.RED);
 			bejelentkezoUzenet.setText("Nincs ilyen nevű felhasználó!");
-			felhasznalonevJoRossz.setImage(FeluletBetoltese.rosszBeirt);
-			jelszoJoRossz.setImage(FeluletBetoltese.rosszBeirt);
+			felhasznalonevJoRossz.setImage(TartalomBetoltese.rosszBeirt);
+			jelszoJoRossz.setImage(TartalomBetoltese.rosszBeirt);
 			felhasznalonevBevitel.clear();
 			jelszoBevitel.clear();
 		} else {
@@ -76,8 +78,8 @@ public class BejelentkezoKezelo implements Initializable {
 			} else {
 				bejelentkezoUzenet.setFill(Color.RED);
 				bejelentkezoUzenet.setText("Helytelen jelszó!");
-				felhasznalonevJoRossz.setImage(FeluletBetoltese.joBeirt);
-				jelszoJoRossz.setImage(FeluletBetoltese.rosszBeirt);
+				felhasznalonevJoRossz.setImage(TartalomBetoltese.joBeirt);
+				jelszoJoRossz.setImage(TartalomBetoltese.rosszBeirt);
 				jelszoBevitel.clear();
 			}
 		}

@@ -2,6 +2,8 @@
 package hu.unideb.inf.kondibazis.ui.kezelo;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,14 +11,20 @@ import org.springframework.stereotype.Component;
 
 import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremElerhetosegSzolgaltatas;
 import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremSzolgaltatas;
+import hu.unideb.inf.kondibazis.szolg.interfaces.TelepulesekSzolgaltatas;
+import hu.unideb.inf.kondibazis.szolg.kontener.TartalomBetoltese;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremElerhetosegVo;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremVo;
+import hu.unideb.inf.kondibazis.szolg.vo.TelepulesekVo;
+import hu.unideb.inf.kondibazis.ui.bevitel.szam.NumberTextFieldIranyitoszam;
 import hu.unideb.inf.kondibazis.ui.felulet.FeluletBetoltese;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
@@ -30,6 +38,9 @@ public class KonditeremElerhetosegKezelo implements Initializable {
 	private KonditeremElerhetosegSzolgaltatas konditeremElerhetosegSzolgaltatas;
 
 	@Autowired
+	private TelepulesekSzolgaltatas telepulesekSzolgaltatas;
+
+	@Autowired
 	private RegisztralasKezelo regisztralasKezelo;
 
 	private KonditeremVo regisztraltKondi;
@@ -41,7 +52,7 @@ public class KonditeremElerhetosegKezelo implements Initializable {
 	private TextField varosNeveBevitel;
 
 	@FXML
-	private TextField iranyitoszamBevitel;
+	private NumberTextFieldIranyitoszam iranyitoszamBevitel;
 
 	@FXML
 	private TextField utcaNeveBevitel;
@@ -111,149 +122,141 @@ public class KonditeremElerhetosegKezelo implements Initializable {
 
 	private static String bejelentkezesUzenet;
 
-	private int iranyitoszam;
+	private static String felhasznalo;
 
 	private int hazSzam;
 
 	private int emelet;
 
-	private int ajto;
+	private boolean kotelezo;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		regisztraltKondi = regisztralasKezelo.getRegisztraltKonditerem();
 		regisztraltKonditerem.setFill(Color.GREEN);
 		regisztraltKonditerem.setText("Sikeresen regisztrált konditerm: " + regisztraltKondi.getKonditeremNeve());
-		iranyitoszamBevitel.setText("0000");
-		hazSzamBevitel.setText("0");
-		emeletBevitel.setText("0");
-		ajtoBevitel.setText("0");
-		emailBevitel.setText("nincs email");
-		weboldalBevitel.setText("nincs weboldal");
-		facebookBevitel.setText("nincs facebook oldal");
+
+		iranyitoszamBevitel.setOnKeyReleased(new EventHandler<KeyEvent>() {
+			public void handle(KeyEvent ke) {
+
+				if (iranyitoszamBevitel.getLength() == 4) {
+					int iranyitoszamBeir = Integer.parseInt(iranyitoszamBevitel.getText());
+					TelepulesekVo ta = telepulesekSzolgaltatas.keresIranyitoszamot(iranyitoszamBeir);
+					kotelezo = false;
+					if (telepulesekSzolgaltatas.keresIranyitoszamot(iranyitoszamBeir) == null) {
+						megyeNeveBevitel.setText("");
+						varosNeveBevitel.setText("");
+						elerhetosegHiba.setText("A megadott irányítószám nem létezik!\n");
+						kotelezo = false;
+					} else if (ta.getTelepulesnev() != null) {
+						megyeNeveBevitel.setText(ta.getMegye());
+						varosNeveBevitel.setText(ta.getTelepulesnev());
+						kotelezo = true;
+					}
+				} else if (iranyitoszamBevitel.getText().equals("")) {
+					megyeNeveBevitel.setText("");
+					varosNeveBevitel.setText("");
+					elerhetosegHiba.setText("Nincs megadva irányítószám!\n");
+					kotelezo = false;
+				}
+
+			}
+		});
 	}
 
 	@FXML
 	public void mentes(ActionEvent event) throws Exception {
-
 		boolean mehet = true;
-		boolean kotelezo = true;
 
-		iranyitoszam = Integer.parseInt(iranyitoszamBevitel.getText());
 		hazSzam = Integer.parseInt(hazSzamBevitel.getText());
-		emelet = Integer.parseInt(emeletBevitel.getText());
-		ajto = Integer.parseInt(ajtoBevitel.getText());
+		// emelet = Integer.parseInt(emeletBevitel.getText());
 
-		if (megyeNeveBevitel.getText().equals("")) {
+		if (!(korzetSzamBevitel.getLength() == 2)) {
 			mehet = false;
 			kotelezo = false;
-			megyeJoRossz.setImage(FeluletBetoltese.rosszBeirt);
-			elerhetosegHiba.setFill(Color.RED);
-			elerhetosegHiba.setText("Megye megadása kötelező!\n");
-		} else {
-			elerhetosegHiba.setText("");
-			megyeJoRossz.setImage(FeluletBetoltese.joBeirt);
+			// teloszamJoRossz.setImage(FeluletBetoltese.rosszBeirt);
 		}
 
-		if (iranyitoszamBevitel.getLength() == 4 && iranyitoszam > 0000) {
+		if (korzetSzamBevitel.getLength() == 2) {
 			mehet = true;
-			iranyitoszamJoRossz.setImage(FeluletBetoltese.joBeirt);
-		} else if (iranyitoszamBevitel.getText().equals("") || iranyitoszamBevitel.getLength() < 4
-				|| iranyitoszam == 0000) {
-			mehet = false;
-			kotelezo = false;
-			elerhetosegHiba.setFill(Color.RED);
-			elerhetosegHiba.setText("Irányítószám megadása kötelező!\n");
-			iranyitoszamJoRossz.setImage(FeluletBetoltese.rosszBeirt);
+			kotelezo = true;
+			// teloszamJoRossz.setImage(FeluletBetoltese.joBeirt);
 		}
 
-		// if (varosNeveBevitel.getText().equals("")) {
-		// mehet = false;
-		// varosJoRossz.setImage(FeluletBetoltese.rosszBeirt);
-		// } else {
-		// varosJoRossz.setImage(FeluletBetoltese.joBeirt);
-		// }
-		//
-		// if (utcaNeveBevitel.getText().equals("")) {
-		// mehet = false;
-		// utcaJoRossz.setImage(FeluletBetoltese.rosszBeirt);
-		// } else {
-		// utcaJoRossz.setImage(FeluletBetoltese.joBeirt);
-		// }
-		//
-		// if (hazSzam > 0 || emelet > 0 || ajto > 0) {
-		// mehet = true;
-		// }
-		//
-		// if (!(korzetSzamBevitel.getLength() == 2)) {
-		// mehet = false;
-		// teloszamJoRossz.setImage(FeluletBetoltese.rosszBeirt);
-		// }
-		//
-		// if (korzetSzamBevitel.getLength() == 2) {
-		// mehet = true;
-		// teloszamJoRossz.setImage(FeluletBetoltese.joBeirt);
-		// }
-		//
-		// if (!(haromSzamBevitel.getLength() == 3)) {
-		// mehet = false;
-		// teloszamJoRossz.setImage(FeluletBetoltese.rosszBeirt);
-		// }
-		//
-		// if (haromSzamBevitel.getLength() == 3) {
-		// mehet = true;
-		// teloszamJoRossz.setImage(FeluletBetoltese.joBeirt);
-		// }
-		//
-		// if (!(negySzamBevitel.getLength() == 3) ||
-		// !(negySzamBevitel.getLength() == 4)) {
-		// mehet = false;
-		// teloszamJoRossz.setImage(FeluletBetoltese.rosszBeirt);
-		// }
-		//
-		// if (negySzamBevitel.getLength() == 3 ||
-		// negySzamBevitel.getLength() == 4) {
-		// mehet = true;
-		// teloszamJoRossz.setImage(FeluletBetoltese.joBeirt);
-		// }
+		if (!(haromSzamBevitel.getLength() == 3)) {
+			mehet = false;
+			kotelezo = false;
+			// teloszamJoRossz.setImage(FeluletBetoltese.rosszBeirt);
+		}
+
+		if (haromSzamBevitel.getLength() == 3) {
+			mehet = true;
+			kotelezo = true;
+			// teloszamJoRossz.setImage(FeluletBetoltese.joBeirt);
+		}
+
+		if (!(negySzamBevitel.getLength() == 3) || !(negySzamBevitel.getLength() == 4)) {
+			mehet = false;
+			kotelezo = false;
+			// teloszamJoRossz.setImage(FeluletBetoltese.rosszBeirt);
+		}
+
+		if (negySzamBevitel.getLength() == 3 || negySzamBevitel.getLength() == 4) {
+			mehet = true;
+			kotelezo = true;
+			// teloszamJoRossz.setImage(FeluletBetoltese.joBeirt);
+		}
+
+		if (kotelezo == false) {
+			mehet = false;
+			elerhetosegHiba.setText("Nem sikerült");
+		} else if (utcaNeveBevitel.getText().equals("")) {
+			mehet = false;
+			elerhetosegHiba.setText("Nem sikerült");
+		} else if (hazSzamBevitel.getText().equals("")) {
+			mehet = false;
+			elerhetosegHiba.setText("Nem sikerült");
+		} else {
+			mehet = true;
+		}
 
 		if (kotelezo == false) {
 			elerhetosegHiba.setFill(Color.RED);
 			elerhetosegHiba.setText("A csilaggal jelölt elemek nincsennek megadva!\n");
 		} else {
-			if (emailBevitel.getText().contains("@") || emailBevitel.getText().equals("nincs email")) {
+			if (emailBevitel.getText().contains("@") || emailBevitel.getText().equals("")) {
 				mehet = true;
-				emailJoRossz.setImage(FeluletBetoltese.joBeirt);
+				emailJoRossz.setImage(TartalomBetoltese.joBeirt);
 			} else {
 				mehet = false;
-				emailJoRossz.setImage(FeluletBetoltese.rosszBeirt);
+				elerhetosegHiba.setText("Nme szerepel az emailcímben a @ ");
+				emailJoRossz.setImage(TartalomBetoltese.rosszBeirt);
 
 			}
 
-			if (facebookBevitel.getText().contains("facebook")
-					|| (facebookBevitel.getText().equals("nincs facebook oldal"))) {
+			if (facebookBevitel.getText().contains("facebook") || (facebookBevitel.getText().equals(""))) {
 				mehet = true;
-				facebookJoRossz.setImage(FeluletBetoltese.joBeirt);
+				facebookJoRossz.setImage(TartalomBetoltese.joBeirt);
 			} else {
 				mehet = false;
-				facebookJoRossz.setImage(FeluletBetoltese.rosszBeirt);
+				elerhetosegHiba.setText("A facebook szó nem szerepel a linkben.");
+				facebookJoRossz.setImage(TartalomBetoltese.rosszBeirt);
 			}
 		}
 
 		if (mehet) {
 			KonditeremElerhetosegVo ujElerhetoseg = new KonditeremElerhetosegVo();
 			ujElerhetoseg.setMegyeNeve(megyeNeveBevitel.getText());
-			ujElerhetoseg.setIranyitoSzam(iranyitoszam);
+			ujElerhetoseg.setIranyitoSzam(Integer.parseInt(iranyitoszamBevitel.getText()));
 			ujElerhetoseg.setVarosNeve(varosNeveBevitel.getText());
 			ujElerhetoseg.setUtcaNeve(utcaNeveBevitel.getText());
 			ujElerhetoseg.setHazSzam(hazSzam);
 			ujElerhetoseg.setEmelet(emelet);
-			ujElerhetoseg.setAjto(ajto);
+			ujElerhetoseg.setAjto(ajtoBevitel.getText());
 			ujElerhetoseg.setTelefonszam("+36-" + korzetSzamBevitel.getText() + "-" + haromSzamBevitel.getText() + "-"
 					+ negySzamBevitel.getText());
 			ujElerhetoseg.setEmailCim(emailBevitel.getText());
 			ujElerhetoseg.setWeboldalLink(weboldalBevitel.getText());
-
 			ujElerhetoseg.setFacebookOldalLink(facebookBevitel.getText());
 
 			ujElerhetoseg.setKonditerem(regisztraltKondi);
@@ -265,8 +268,23 @@ public class KonditeremElerhetosegKezelo implements Initializable {
 	}
 
 	@FXML
-	public void megse(ActionEvent event) {
+	public void kihagyas(ActionEvent event) {
+
+		KonditeremElerhetosegVo kihagyasElerhetoseg = new KonditeremElerhetosegVo();
+		kihagyasElerhetoseg.setIranyitoSzam(0000);
+		kihagyasElerhetoseg.setMegyeNeve("nincs megadva");
+		kihagyasElerhetoseg.setVarosNeve("nincs megadva");
+		kihagyasElerhetoseg.setUtcaNeve("nincs megadva");
+		kihagyasElerhetoseg.setHazSzam(0);
+		kihagyasElerhetoseg.setEmelet(0);
+		kihagyasElerhetoseg.setAjto("nincs megadva");
+		kihagyasElerhetoseg.setTelefonszam("nincs megadva");
+		kihagyasElerhetoseg.setEmailCim("nincs megadva");
+		kihagyasElerhetoseg.setFacebookOldalLink("nincs megadva");
+		kihagyasElerhetoseg.setKonditerem(regisztraltKondi);
+
 		setBejelentkezesUzenet("Kérem jeletkezzen be a felhasználóval: " + regisztraltKondi.getFelhasznalonev());
+		setFelhasznalo(regisztraltKondi.getFelhasznalonev());
 		FeluletBetoltese.BejelentkezoFelulet(event);
 	}
 
@@ -276,6 +294,14 @@ public class KonditeremElerhetosegKezelo implements Initializable {
 
 	public static void setBejelentkezesUzenet(String bejelentkezesUzenet) {
 		KonditeremElerhetosegKezelo.bejelentkezesUzenet = bejelentkezesUzenet;
+	}
+
+	public static String getFelhasznalo() {
+		return felhasznalo;
+	}
+
+	public static void setFelhasznalo(String felhasznalo) {
+		KonditeremElerhetosegKezelo.felhasznalo = felhasznalo;
 	}
 
 }

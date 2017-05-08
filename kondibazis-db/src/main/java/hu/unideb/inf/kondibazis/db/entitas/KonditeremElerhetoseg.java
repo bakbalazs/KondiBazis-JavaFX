@@ -6,7 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "konditeremElerhetoseg")
@@ -36,7 +35,7 @@ public class KonditeremElerhetoseg extends FoEntitas {
 	private Integer emelet;
 
 	@Column(name = "ajto")
-	private Integer ajto;
+	private String ajto;
 
 	@Column(name = "telefonszam")
 	private String telefonszam;
@@ -102,11 +101,11 @@ public class KonditeremElerhetoseg extends FoEntitas {
 		this.emelet = emelet;
 	}
 
-	public Integer getAjto() {
+	public String getAjto() {
 		return ajto;
 	}
 
-	public void setAjto(Integer ajto) {
+	public void setAjto(String ajto) {
 		this.ajto = ajto;
 	}
 

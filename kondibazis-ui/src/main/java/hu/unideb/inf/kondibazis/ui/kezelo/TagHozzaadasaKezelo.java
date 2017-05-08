@@ -43,6 +43,8 @@ public class TagHozzaadasaKezelo implements Initializable {
 	private LocalDate maiNap = LocalDate.now();
 
 	private int kor;
+	
+	private byte[] kepByte;
 
 	@Autowired
 	private KonditeremSzolgaltatas konditeremSzolgaltatas;
@@ -57,8 +59,6 @@ public class TagHozzaadasaKezelo implements Initializable {
 
 	@FXML
 	private ImageView kepMegjelenites;
-
-	private byte[] kepByte;
 
 	@FXML
 	private ToggleGroup nemek;
