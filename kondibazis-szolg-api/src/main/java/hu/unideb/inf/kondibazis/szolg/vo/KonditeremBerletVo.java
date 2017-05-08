@@ -82,7 +82,7 @@ public class KonditeremBerletVo implements Serializable {
 	@Override
 	public String toString() {
 		return "KonditeremBerletVo [berletNeve=" + berletNeve + ", berletAra=" + berletAra + ", mennyiOra=" + mennyiOra
-				+ ", mennyiNap=" + mennyiNap + ", mennyiHonap=" + mennyiHonap + ", konditerem=" + konditerem + "]";
+				+ ", mennyiNap=" + mennyiNap + ", mennyiHonap=" + mennyiHonap + "]";
 	}
 
 }

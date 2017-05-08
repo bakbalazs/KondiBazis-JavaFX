@@ -10,168 +10,184 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="527.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.kondibazis.ui.kezelo.TagHozzaadasaKezelo">
    <center>
-      <SplitPane dividerPositions="0.19428571428571428" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
-        <items>
-            <GridPane>
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
+      <GridPane prefHeight="340.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <GridPane alignment="CENTER">
                <children>
-                  <GridPane>
-                    <columnConstraints>
-                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
-                    </rowConstraints>
+                  <TextField fx:id="vezeteknevBevitel" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <TextField fx:id="keresztnevBevitel" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Vezetéknév:" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Keresztnév:" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nem:" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <DatePicker fx:id="szuldatumBevitel" onAction="#szuldatumKivalaszt" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Születési dátum:" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lakhely(város csak):" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Megye:" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Beiratkozás ideje:" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                  <TextField fx:id="varosBevitel" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                  <TextField fx:id="megyeBevitel" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bérlet választás:" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                  <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
                      <children>
-                        <Text fill="#b80000" strokeType="OUTSIDE" strokeWidth="0.0" text="KondiBázis">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Text>
-                        <Text fill="#b80000" strokeType="OUTSIDE" strokeWidth="0.0" text="Tag Hozzáadása" GridPane.rowIndex="1">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Text>
-                        <Text fx:id="konditeremNeve" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.rowIndex="2">
-                           <font>
-                              <Font size="16.0" />
-                           </font></Text>
-                     </children>
-                  </GridPane>
-               </children>
-            </GridPane>
-            <SplitPane dividerPositions="0.8106904231625836" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
-              <items>
-                  <SplitPane dividerPositions="0.5">
-                    <items>
-                        <GridPane alignment="CENTER">
-                          <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.0" minWidth="8.0" prefWidth="32.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="189.0" minWidth="10.0" prefWidth="113.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="152.0" minWidth="10.0" prefWidth="152.0" />
-                          </columnConstraints>
-                          <rowConstraints>
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <TextField fx:id="vezeteknevBevitel" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                              <TextField fx:id="keresztnevBevitel" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Vezetéknév:" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Keresztnév:" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nem:" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                              <DatePicker fx:id="szuldatumBevitel" onAction="#szuldatumKivalaszt" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                              <DatePicker fx:id="beiratkozasBevitel" onAction="#beriratkozasKivalaszt" GridPane.columnIndex="2" GridPane.rowIndex="7" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Születési dátum:" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lakhely(város csak):" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Megye:" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Beiratkozás ideje:" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                              <TextField fx:id="varosBevitel" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-                              <TextField fx:id="megyeBevitel" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-                              <SplitMenuButton mnemonicParsing="false" text="Bérletek" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
-                                <items>
-                                  <MenuItem mnemonicParsing="false" text="Action 1" />
-                                  <MenuItem mnemonicParsing="false" text="Action 2" />
-                                </items>
-                              </SplitMenuButton>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bérlet választás:" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                              <Text fx:id="valasztottBerlet" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER" />
-                              <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
-                                 <children>
-                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                                       <children>
-                                          <RadioButton fx:id="noValasztasGomb" mnemonicParsing="false" onAction="#noValasztas" text="Nő">
-                                             <toggleGroup>
-                                                <ToggleGroup fx:id="nemek" />
-                                             </toggleGroup></RadioButton>
-                                       </children>
-                                    </VBox>
-                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                                       <children>
-                                          <RadioButton fx:id="ferfiValasztasGomb" mnemonicParsing="false" onAction="#ferfiValasztas" text="Férfi" toggleGroup="$nemek" />
-                                       </children>
-                                    </VBox>
-                                 </children>
-                              </HBox>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Választott bérlet:" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Adatok:" underline="true" GridPane.columnIndex="1">
-                                 <font>
-                                    <Font size="13.0" />
-                                 </font>
-                              </Text>
+                              <RadioButton fx:id="noValasztasGomb" mnemonicParsing="false" onAction="#noValasztas" text="Nő">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="nemek" />
+                                 </toggleGroup>
+                              </RadioButton>
                            </children>
-                        </GridPane>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <VBox alignment="CENTER" prefHeight="220.0" prefWidth="297.0">
-                                 <children>
-                                    <VBox alignment="CENTER" prefHeight="29.0" prefWidth="299.0">
-                                       <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Kép:" wrappingWidth="298.892578125" />
-                                       </children>
-                                    </VBox>
-                                    <VBox alignment="CENTER" prefHeight="256.0" prefWidth="297.0">
-                                       <children>
-                                          <GridPane alignment="CENTER" prefHeight="257.0" prefWidth="299.0">
-                                            <columnConstraints>
-                                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                            </columnConstraints>
-                                            <rowConstraints>
-                                              <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
-                                            </rowConstraints>
-                                             <children>
-                                                <ImageView fx:id="kepMegjelenites" fitHeight="186.0" fitWidth="195.0" pickOnBounds="true" preserveRatio="true" />
-                                                <Button mnemonicParsing="false" onAction="#tallozas" opacity="0.0" prefHeight="186.0" prefWidth="195.0">
-                                                   <cursor>
-                                                      <Cursor fx:constant="HAND" />
-                                                   </cursor></Button>
-                                             </children>
-                                          </GridPane>
-                                       </children>
-                                    </VBox>
-                                 </children>
-                              </VBox>
-                           </children>
-                        </HBox>
-                    </items>
-                  </SplitPane>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <VBox prefHeight="82.0" prefWidth="302.0">
-                           <children>
-                              <HBox alignment="CENTER" prefHeight="55.0" prefWidth="318.0">
-                                 <children>
-                                    <Text fx:id="tagHozzaadasUzenet" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="318.0" />
-                                 </children>
-                              </HBox>
-                              <HBox alignment="CENTER" prefHeight="34.0" prefWidth="318.0">
-                                 <children>
-                                    <Button mnemonicParsing="false" onAction="#hozzaadas" text="Tag Hozzáadása" />
-                                 </children>
-                              </HBox>
+                              <RadioButton fx:id="ferfiValasztasGomb" mnemonicParsing="false" onAction="#ferfiValasztas" text="Férfi" toggleGroup="$nemek" />
                            </children>
                         </VBox>
                      </children>
                   </HBox>
-              </items>
-            </SplitPane>
-        </items>
-      </SplitPane>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Adatok:" underline="true" GridPane.columnIndex="1">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Text>
+                  <ChoiceBox fx:id="berletValasztas" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="8" />
+                  <Text fx:id="beiratkozasBevitel" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
+               </children>
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.0" minWidth="8.0" prefWidth="32.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="189.0" minWidth="10.0" prefWidth="113.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="152.0" minWidth="10.0" prefWidth="152.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+               </rowConstraints>
+            </GridPane>
+            <GridPane GridPane.columnIndex="1">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="162.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="304.0" minHeight="10.0" prefHeight="277.0" valignment="CENTER" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="162.0" minHeight="10.0" prefHeight="40.0" valignment="CENTER" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tag képe:" underline="true">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </Text>
+                  <ImageView fx:id="kepMegjelenites" fitHeight="185.0" fitWidth="195.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                  <Button mnemonicParsing="false" onAction="#kepenTallozas" opacity="0.0" prefHeight="185.0" prefWidth="195.0" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="tallozasGomb" mnemonicParsing="false" onAction="#tallozas" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets left="40.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#kepTorlese" prefHeight="25.0" prefWidth="81.0" text="Kép törlése" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets right="40.0" />
+                     </GridPane.margin>
+                  </Button>
+               </children>
+            </GridPane>
+         </children>
+      </GridPane>
    </center>
+   <bottom>
+      <GridPane prefHeight="104.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="73.0" minHeight="10.0" prefHeight="73.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="47.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <HBox alignment="CENTER" prefHeight="34.0" prefWidth="318.0" GridPane.rowIndex="1">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="31.0" prefWidth="300.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#hozzaadas" prefHeight="25.0" prefWidth="116.0" text="Tag Hozzáadása" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="31.0" prefWidth="300.0">
+                     <children>
+                        <Button mnemonicParsing="false" text="Mégse" />
+                     </children>
+                  </VBox>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="55.0" prefWidth="318.0">
+               <children>
+                  <Text fx:id="tagHozzaadasUzenet" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="318.0" />
+               </children>
+            </HBox>
+         </children>
+      </GridPane>
+   </bottom>
+   <top>
+      <GridPane prefHeight="67.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <GridPane prefHeight="40.0" prefWidth="600.0">
+               <children>
+                  <Text fill="#b80000" strokeType="OUTSIDE" strokeWidth="0.0" text="KondiBázis">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <Text fill="#b80000" strokeType="OUTSIDE" strokeWidth="0.0" text="Tag Hozzáadása" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="konditeremNeve" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Text>
+               </children>
+               <columnConstraints>
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+               </rowConstraints>
+            </GridPane>
+         </children>
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+      </GridPane>
+   </top>
 </BorderPane>

@@ -3,7 +3,6 @@ package hu.unideb.inf.kondibazis.ui.kezelo;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +12,6 @@ import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremBerletSzolgaltatas;
 import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremSzolgaltatas;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremBerletVo;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremVo;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -22,10 +19,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.scene.control.ChoiceBox;
 
 @Component
-public class BerletTestreszabasaKezelo implements Initializable {
+public class BerletLetrehozasaKezelo implements Initializable {
 
 	@Autowired
 	private KonditeremSzolgaltatas konditeremSzolgaltatas;
@@ -45,7 +41,7 @@ public class BerletTestreszabasaKezelo implements Initializable {
 	private Button megseGomb;
 
 	@FXML
-	private ChoiceBox<String> berletNeveValaszto;
+	private TextField berletnevBevitel;
 
 	@FXML
 	private TextField berletaraBevitel;
@@ -68,9 +64,9 @@ public class BerletTestreszabasaKezelo implements Initializable {
 	@FXML
 	private Text berletletrehozasUzenet;
 
-	@FXML
+	@FXML 
 	private Text bejelentkezett_Konditerem;
-
+	
 	private int ar;
 
 	private int ora;
@@ -87,59 +83,37 @@ public class BerletTestreszabasaKezelo implements Initializable {
 		oraBevitel.setText("0");
 		napBevitel.setText("0");
 		honapBevitel.setText("0");
-
-		List<KonditeremBerletVo> konditeremBerletek = konditeremBerletSzolgaltatas
-				.konditeremOsszesBerlete(bejelentkezettKonditerem);
-		for (KonditeremBerletVo berletek : konditeremBerletek) {
-			berletNeveValaszto.getItems().add(berletek.getBerletNeve());
-
-			ChangeListener<String> changeListener = new ChangeListener<String>() {
-
-				@Override
-				public void changed(ObservableValue<? extends String> observable, //
-						String korabbi, String jelenlegi) {
-					if (jelenlegi != null) {
-						berletaraBevitel.setText(Integer.toString(berletek.getBerletAra()));
-						oraBevitel.setText(Integer.toString(berletek.getMennyiOra()));
-						napBevitel.setText(Integer.toString(berletek.getMennyiNap()));
-						honapBevitel.setText(Integer.toString(berletek.getMennyiHonap()));
-					}
-				}
-			};
-
-			berletNeveValaszto.getSelectionModel().selectedItemProperty().addListener(changeListener);
-
-		}
-
+		
+		
 	}
 
 	@FXML
 	public void letrehozas(ActionEvent event) {
 
 		boolean mehet = true;
-
+		
 		ar = Integer.parseInt(berletaraBevitel.getText());
 		ora = Integer.parseInt(oraBevitel.getText());
 		nap = Integer.parseInt(napBevitel.getText());
 		honap = Integer.parseInt(honapBevitel.getText());
-
-		// if (berletnevBevitel.getText().equals("")) {
-		// mehet = false;
-		// }
+		
+		if (berletnevBevitel.getText().equals("")) {
+			mehet = false;
+		}
 
 		if (berletaraBevitel.getText().equals("")) {
 			mehet = false;
 		}
-
-		if (ar == 0) {
+		
+		if(ar == 0) {
 			mehet = false;
 		}
 
 		if (ora == 0 || nap == 0 || honap == 0) {
 			mehet = false;
 		}
-
-		if ((ar > 0 && ora > 0) || (ar > 0 && nap > 0) || (ar > 0 && honap > 0)) {
+		
+		if((ar > 0 && ora >0) || (ar > 0 && nap > 0) || (ar > 0 && honap > 0 )) {
 			mehet = true;
 		}
 
@@ -151,7 +125,7 @@ public class BerletTestreszabasaKezelo implements Initializable {
 		if (mehet) {
 
 			KonditeremBerletVo ujBerlet = new KonditeremBerletVo();
-			// ujBerlet.setBerletNeve(berletnevBevitel.getText());
+			ujBerlet.setBerletNeve(berletnevBevitel.getText());
 
 			ujBerlet.setBerletAra(ar);
 			ujBerlet.setMennyiOra(ora);
@@ -167,13 +141,14 @@ public class BerletTestreszabasaKezelo implements Initializable {
 			letezo.setKonditerem(bejelentkezettKonditerem);
 
 			konditeremBerletSzolgaltatas.frissitKonditeremBerletet(letezo);
+			((Stage)megseGomb.getScene().getWindow()).close();
 		}
 
 	}
 
 	@FXML
 	public void megse(ActionEvent event) throws IOException {
-		((Stage) megseGomb.getScene().getWindow()).close();
+		((Stage)megseGomb.getScene().getWindow()).close();
 	}
 
 }

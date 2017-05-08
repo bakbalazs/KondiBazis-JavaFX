@@ -65,7 +65,7 @@ public final class FeluletBetoltese {
 	}
 
 	public static void FoAblakFelulet(ActionEvent event) {
-		Parent root = (Parent) loader.load("/fxml/FoAblakFelulet.fxml");
+		Parent root = (Parent) loader.load("/fxml/KondiBazisFoAblakFelulet.fxml");
 		Scene scene = new Scene(root);
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		stage.setTitle(SzovegTartalom.alkalmazasNeve + " - " + BejelentkezoKezelo.getKonditeremNeve());
@@ -73,11 +73,21 @@ public final class FeluletBetoltese {
 		stage.centerOnScreen();
 	}
 
+	public static void BerletLetrehozasaFelulet(ActionEvent event) {
+		Parent root = (Parent) loader.load("/fxml/BerletLetrehozasaFelulet.fxml");
+		Scene scene = new Scene(root);
+		Stage stage = new Stage();
+		stage.setTitle("Bérlet Létrehozása - " + SzovegTartalom.alkalmazasNeve);
+		stage.setScene(scene);
+		stage.centerOnScreen();
+		stage.getIcons().add(TartalomBetoltese.ikon);
+		stage.show();
+	}
 	public static void BerletTestreszabasaFelulet(ActionEvent event) {
 		Parent root = (Parent) loader.load("/fxml/BerletTestreszabasaFelulet.fxml");
 		Scene scene = new Scene(root);
 		Stage stage = new Stage();
-		stage.setTitle("Bérlet Testreszabása - " + SzovegTartalom.alkalmazasNeve);
+		stage.setTitle("Bérletek Testreszabása - " + SzovegTartalom.alkalmazasNeve);
 		stage.setScene(scene);
 		stage.centerOnScreen();
 		stage.getIcons().add(TartalomBetoltese.ikon);
@@ -94,5 +104,16 @@ public final class FeluletBetoltese {
 		stage.getIcons().add(TartalomBetoltese.ikon);
 		stage.show();
 	}
+	public static void KonditeremElerhetosegSzekeszteseFelulet(ActionEvent event) {
+		Parent parent = (Parent) loader.load("/fxml/KonditeremElerhetosegSzerkesztesFelulet.fxml");
+		Scene scene = new Scene(parent);
+		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		stage.setTitle("Elérhetőség - " + SzovegTartalom.alkalmazasNeve);
+		stage.setScene(scene);
+		stage.centerOnScreen();
+		stage.getIcons().add(TartalomBetoltese.ikon);
+		stage.show();
+	}
+	
 
 }

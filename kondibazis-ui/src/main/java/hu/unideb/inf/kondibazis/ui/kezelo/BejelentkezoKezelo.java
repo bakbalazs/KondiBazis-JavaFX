@@ -75,6 +75,7 @@ public class BejelentkezoKezelo implements Initializable {
 				bejelentkezettKonditerem = konditerem;
 				setKonditeremNeve(konditerem.getKonditeremNeve());
 				FeluletBetoltese.FoAblakFelulet(event);
+
 			} else {
 				bejelentkezoUzenet.setFill(Color.RED);
 				bejelentkezoUzenet.setText("Helytelen jelszó!");

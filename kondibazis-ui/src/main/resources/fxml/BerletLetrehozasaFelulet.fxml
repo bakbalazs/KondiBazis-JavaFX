@@ -5,7 +5,9 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="543.0" prefWidth="383.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.kondibazis.ui.kezelo.BerletTestreszabasaKezelo">
+<GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" 
+minWidth="-Infinity" prefHeight="543.0" prefWidth="383.0" xmlns="http://javafx.com/javafx/8" 
+xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.kondibazis.ui.kezelo.BerletLetrehozasaKezelo" >
 	<columnConstraints>
 		<ColumnConstraints />
 	</columnConstraints>
@@ -37,7 +39,7 @@
 			<children>
 				<VBox alignment="CENTER" prefHeight="200.0" prefWidth="383.0">
 					<children>
-						<Text fill="#b80000" strokeType="OUTSIDE" strokeWidth="0.0" text="Bérletek Testreszabása">
+						<Text fill="#b80000" strokeType="OUTSIDE" strokeWidth="0.0" text="Bérlettípus Létrehozása">
 							<font>
 								<Font size="18.0" />
 							</font>
@@ -81,9 +83,9 @@
 				<HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
 					<children>
 						<VBox alignment="CENTER" prefHeight="59.0" prefWidth="150.0">
-                     <children>
-                        <ChoiceBox fx:id="berletNeveValaszto" prefWidth="150.0" />
-                     </children>
+							<children>
+								<TextField fx:id="berletnevBevitel" />
+							</children>
 						</VBox>
 						<VBox prefHeight="59.0" prefWidth="34.0" />
 					</children>

@@ -1,5 +1,6 @@
 package hu.unideb.inf.kondibazis.db.entitas;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -25,6 +26,9 @@ public class Konditerem extends FoEntitas {
 
 	@Column(name = "konditeremNeve")
 	private String konditeremNeve;
+
+	@Column(name = "regisztralasDatuma")
+	private LocalDate regisztralasDatuma;
 
 	@OneToMany(mappedBy = "konditerem", cascade = CascadeType.MERGE)
 	private List<KonditeremTag> konditeremTagok;
@@ -62,6 +66,14 @@ public class Konditerem extends FoEntitas {
 
 	public void setKonditeremTagok(List<KonditeremTag> konditeremTagok) {
 		this.konditeremTagok = konditeremTagok;
+	}
+
+	public LocalDate getRegisztralasDatuma() {
+		return regisztralasDatuma;
+	}
+
+	public void setRegisztralasDatuma(LocalDate regisztralasDatuma) {
+		this.regisztralasDatuma = regisztralasDatuma;
 	}
 
 	public List<KonditeremBerlet> getKonditeremBerletek() {

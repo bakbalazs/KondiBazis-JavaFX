@@ -3,6 +3,7 @@ package hu.unideb.inf.kondibazis.ui.kezelo;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -117,6 +118,7 @@ public class RegisztralasKezelo implements Initializable {
 				uj.setKonditeremNeve(konditeremnevBevitel.getText());
 				uj.setFelhasznalonev(felhasznalonevBevitel.getText());
 				uj.setJelszo(jelszoBevitel.getText());
+				uj.setRegisztralasDatuma(LocalDate.now());
 				konditeremSzolgaltatas.konditeremetLetrehoz(uj);
 				KonditeremVo letrehozott = konditeremSzolgaltatas
 						.keresFelhasznalonevet(felhasznalonevBevitel.getText());

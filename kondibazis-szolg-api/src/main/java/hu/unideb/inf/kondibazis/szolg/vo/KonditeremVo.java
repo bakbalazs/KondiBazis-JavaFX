@@ -1,6 +1,7 @@
 package hu.unideb.inf.kondibazis.szolg.vo;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.List;
 
 public class KonditeremVo implements Serializable {
@@ -17,6 +18,8 @@ public class KonditeremVo implements Serializable {
 	private String jelszo;
 
 	private String konditeremNeve;
+
+	private LocalDate regisztralasDatuma;
 
 	private List<KonditeremTagVo> konditeremTagok;
 
@@ -52,6 +55,14 @@ public class KonditeremVo implements Serializable {
 
 	public void setKonditeremNeve(String konditeremNeve) {
 		this.konditeremNeve = konditeremNeve;
+	}
+
+	public LocalDate getRegisztralasDatuma() {
+		return regisztralasDatuma;
+	}
+
+	public void setRegisztralasDatuma(LocalDate regisztralasDatuma) {
+		this.regisztralasDatuma = regisztralasDatuma;
 	}
 
 	public List<KonditeremTagVo> getKonditeremTagok() {

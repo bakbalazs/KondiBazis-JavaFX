@@ -147,7 +147,7 @@ public class KonditeremTagVo implements Serializable {
 				+ ", tagNeve=" + tagNeve + ", tagNeme=" + tagNeme + ", tagKora=" + tagKora + ", tagSzuletesidatuma="
 				+ tagSzuletesidatuma + ", berletVasarlasideje=" + berletVasarlasideje + ", vasaroltBerletNeve="
 				+ vasaroltBerletNeve + ", tagKep=" + Arrays.toString(tagKep) + ", tagVarosa=" + tagVarosa
-				+ ", tagMegyeje=" + tagMegyeje + ", konditerem=" + konditerem + "]";
+				+ ", tagMegyeje=" + tagMegyeje + "]";
 	}
 
 }

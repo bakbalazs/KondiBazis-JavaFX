@@ -2,8 +2,6 @@
 package hu.unideb.inf.kondibazis.ui.kezelo;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -262,6 +260,11 @@ public class KonditeremElerhetosegKezelo implements Initializable {
 			ujElerhetoseg.setKonditerem(regisztraltKondi);
 
 			konditeremElerhetosegSzolgaltatas.letrehozElerhetoseget(ujElerhetoseg);
+			
+			setBejelentkezesUzenet("Kérem jeletkezzen be a felhasználóval: " + regisztraltKondi.getFelhasznalonev() + "\n");
+			setBejelentkezesUzenet("Elérhetőség sikeresen hozzáadva!");
+			setFelhasznalo(regisztraltKondi.getFelhasznalonev());
+			FeluletBetoltese.BejelentkezoFelulet(event);
 
 		}
 
