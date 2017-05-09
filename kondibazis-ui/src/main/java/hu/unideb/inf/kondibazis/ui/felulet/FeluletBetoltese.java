@@ -7,12 +7,19 @@ import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public final class FeluletBetoltese {
 
 	private static final SpringFxmlLoader loader = new SpringFxmlLoader();
 	private static final String visszaGomb = new String("/css/visszaGomb.css");
+
+	public static final Image ikon = new Image("/kepek/icon.png");
+
+	public static final Image joBeirt = new Image("/kepek/pipa.png");
+
+	public static final Image rosszBeirt = new Image("/kepek/x.png");
 
 	public static void InditasiFelulet(Stage primaryStage) {
 		Parent root = (Parent) loader.load("/fxml/InditasiKepernyoFelulet.fxml");
@@ -21,7 +28,7 @@ public final class FeluletBetoltese {
 		primaryStage.setTitle(SzovegTartalom.alkalmazasNeve);
 		primaryStage.setScene(scene);
 		primaryStage.centerOnScreen();
-		primaryStage.getIcons().add(TartalomBetoltese.ikon);
+		primaryStage.getIcons().add(ikon);
 		primaryStage.show();
 	}
 
@@ -80,9 +87,10 @@ public final class FeluletBetoltese {
 		stage.setTitle("Bérlet Létrehozása - " + SzovegTartalom.alkalmazasNeve);
 		stage.setScene(scene);
 		stage.centerOnScreen();
-		stage.getIcons().add(TartalomBetoltese.ikon);
+		stage.getIcons().add(ikon);
 		stage.show();
 	}
+
 	public static void BerletekModositasaFelulet(ActionEvent event) {
 		Parent root = (Parent) loader.load("/fxml/BerletekModositasaFelulet.fxml");
 		Scene scene = new Scene(root);
@@ -90,7 +98,7 @@ public final class FeluletBetoltese {
 		stage.setTitle("Bérletek Módosítása - " + SzovegTartalom.alkalmazasNeve);
 		stage.setScene(scene);
 		stage.centerOnScreen();
-		stage.getIcons().add(TartalomBetoltese.ikon);
+		stage.getIcons().add(ikon);
 		stage.show();
 	}
 
@@ -101,9 +109,10 @@ public final class FeluletBetoltese {
 		stage.setTitle("Tag Hozzáadása -" + SzovegTartalom.alkalmazasNeve);
 		stage.setScene(scene);
 		stage.centerOnScreen();
-		stage.getIcons().add(TartalomBetoltese.ikon);
+		stage.getIcons().add(ikon);
 		stage.show();
 	}
+
 	public static void KonditeremElerhetosegSzekeszteseFelulet(ActionEvent event) {
 		Parent parent = (Parent) loader.load("/fxml/KonditeremElerhetosegSzerkesztesFelulet.fxml");
 		Scene scene = new Scene(parent);
@@ -111,9 +120,8 @@ public final class FeluletBetoltese {
 		stage.setTitle("Elérhetőség  - " + SzovegTartalom.alkalmazasNeve);
 		stage.setScene(scene);
 		stage.centerOnScreen();
-		stage.getIcons().add(TartalomBetoltese.ikon);
+		stage.getIcons().add(ikon);
 		stage.show();
 	}
-	
 
 }

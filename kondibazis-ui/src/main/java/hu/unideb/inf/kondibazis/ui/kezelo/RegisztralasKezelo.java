@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremSzolgaltatas;
-import hu.unideb.inf.kondibazis.szolg.kontener.TartalomBetoltese;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremVo;
 import hu.unideb.inf.kondibazis.ui.felulet.FeluletBetoltese;
 import hu.unideb.inf.kondibazis.ui.main.Inditas;
@@ -69,49 +68,49 @@ public class RegisztralasKezelo implements Initializable {
 
 		if (konditeremnevBevitel.getText().length() == 0) {
 			regisztraciosUzenet.setText(regisztraciosUzenet.getText() + "Konditerem nevének a megadása kötelező!\n");
-			konditeremneveJoRossz.setImage(TartalomBetoltese.rosszBeirt);
+			konditeremneveJoRossz.setImage(FeluletBetoltese.rosszBeirt);
 			ok = false;
 		} else {
-			konditeremneveJoRossz.setImage(TartalomBetoltese.joBeirt);
+			konditeremneveJoRossz.setImage(FeluletBetoltese.joBeirt);
 		}
 
 		if (felhasznalonevBevitel.getText().length() == 0) {
 			regisztraciosUzenet.setText(regisztraciosUzenet.getText()
 					+ "A felhasználónév min. 5 karakter!\n Felhasználónév megadása kötelező!\n");
-			felhasznalonevJoRossz.setImage(TartalomBetoltese.rosszBeirt);
+			felhasznalonevJoRossz.setImage(FeluletBetoltese.rosszBeirt);
 			ok = false;
 		}
 		if (felhasznalonevBevitel.getText().length() > 0 && felhasznalonevBevitel.getText().length() < 5) {
 			regisztraciosUzenet.setText(regisztraciosUzenet.getText()
 					+ "A felhasználónév min. 5 karakter!\n A felhasználónév túl rövid!\n");
-			felhasznalonevJoRossz.setImage(TartalomBetoltese.rosszBeirt);
+			felhasznalonevJoRossz.setImage(FeluletBetoltese.rosszBeirt);
 			felhasznalonevBevitel.clear();
 			ok = false;
 		} else if (felhasznalonevBevitel.getText().length() >= 5) {
-			felhasznalonevJoRossz.setImage(TartalomBetoltese.joBeirt);
+			felhasznalonevJoRossz.setImage(FeluletBetoltese.joBeirt);
 		}
 
 		if (jelszoBevitel.getText().length() == 0) {
 			regisztraciosUzenet
 					.setText(regisztraciosUzenet.getText() + "A jelszó min. 8 karakter!\n Jelszó megadása kötelező!\n");
-			jelszoJoRossz.setImage(TartalomBetoltese.rosszBeirt);
+			jelszoJoRossz.setImage(FeluletBetoltese.rosszBeirt);
 			ok = false;
 		}
 
 		if (jelszoBevitel.getText().length() > 0 && jelszoBevitel.getText().length() < 8) {
 			regisztraciosUzenet
 					.setText(regisztraciosUzenet.getText() + " A jelszó min. 8 karakter!\n A jelszó túl rövid!\n");
-			jelszoJoRossz.setImage(TartalomBetoltese.rosszBeirt);
+			jelszoJoRossz.setImage(FeluletBetoltese.rosszBeirt);
 			jelszoBevitel.clear();
 			ok = false;
 		} else if (jelszoBevitel.getText().length() >= 8) {
-			jelszoJoRossz.setImage(TartalomBetoltese.joBeirt);
+			jelszoJoRossz.setImage(FeluletBetoltese.joBeirt);
 		}
 
 		if (ok) {
 			if (konditeremSzolgaltatas.keresFelhasznalonevet(felhasznalonevBevitel.getText()) != null) {
 				regisztraciosUzenet.setText(regisztraciosUzenet.getText() + "Ilyen felhazsnáló már létezik");
-				felhasznalonevJoRossz.setImage(TartalomBetoltese.rosszBeirt);
+				felhasznalonevJoRossz.setImage(FeluletBetoltese.rosszBeirt);
 				felhasznalonevBevitel.clear();
 			} else {
 				KonditeremVo uj = new KonditeremVo();

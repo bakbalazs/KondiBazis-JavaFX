@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremElerhetosegSzolgaltatas;
 import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremSzolgaltatas;
 import hu.unideb.inf.kondibazis.szolg.interfaces.TelepulesekSzolgaltatas;
-import hu.unideb.inf.kondibazis.szolg.kontener.TartalomBetoltese;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremElerhetosegVo;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremVo;
 import hu.unideb.inf.kondibazis.szolg.vo.TelepulesekVo;
@@ -224,21 +223,21 @@ public class KonditeremElerhetosegKezelo implements Initializable {
 		} else {
 			if (emailBevitel.getText().contains("@") || emailBevitel.getText().equals("")) {
 				mehet = true;
-				emailJoRossz.setImage(TartalomBetoltese.joBeirt);
+				emailJoRossz.setImage(FeluletBetoltese.joBeirt);
 			} else {
 				mehet = false;
 				elerhetosegHiba.setText("Nme szerepel az emailcímben a @ ");
-				emailJoRossz.setImage(TartalomBetoltese.rosszBeirt);
+				emailJoRossz.setImage(FeluletBetoltese.rosszBeirt);
 
 			}
 
 			if (facebookBevitel.getText().contains("facebook") || (facebookBevitel.getText().equals(""))) {
 				mehet = true;
-				facebookJoRossz.setImage(TartalomBetoltese.joBeirt);
+				facebookJoRossz.setImage(FeluletBetoltese.joBeirt);
 			} else {
 				mehet = false;
 				elerhetosegHiba.setText("A facebook szó nem szerepel a linkben.");
-				facebookJoRossz.setImage(TartalomBetoltese.rosszBeirt);
+				facebookJoRossz.setImage(FeluletBetoltese.rosszBeirt);
 			}
 		}
 
@@ -260,8 +259,9 @@ public class KonditeremElerhetosegKezelo implements Initializable {
 			ujElerhetoseg.setKonditerem(regisztraltKondi);
 
 			konditeremElerhetosegSzolgaltatas.letrehozElerhetoseget(ujElerhetoseg);
-			
-			setBejelentkezesUzenet("Kérem jeletkezzen be a felhasználóval: " + regisztraltKondi.getFelhasznalonev() + "\n");
+
+			setBejelentkezesUzenet(
+					"Kérem jeletkezzen be a felhasználóval: " + regisztraltKondi.getFelhasznalonev() + "\n");
 			setBejelentkezesUzenet("Elérhetőség sikeresen hozzáadva!");
 			setFelhasznalo(regisztraltKondi.getFelhasznalonev());
 			FeluletBetoltese.BejelentkezoFelulet(event);

@@ -98,16 +98,16 @@
       </MenuBar>
    </top>
    <bottom>
-      <TableView prefHeight="403.0" prefWidth="1200.0" tableMenuButtonVisible="true" BorderPane.alignment="CENTER">
+      <TableView fx:id="tagokTabla" prefHeight="403.0" prefWidth="1200.0" tableMenuButtonVisible="true" BorderPane.alignment="CENTER">
         <columns>
-            <TableColumn prefWidth="90.0" text="Név" visible="false" />
-            <TableColumn prefWidth="75.0" text="Vezetéknév" />
-            <TableColumn prefWidth="75.0" text="Keresztnév" />
-            <TableColumn prefWidth="75.0" text="Nem" />
-            <TableColumn prefWidth="75.0" text="Kor" />
-            <TableColumn prefWidth="88.0" text="Bérlet Neve" />
-            <TableColumn prefWidth="104.0" text="Bérlet Vásárlása" />
-            <TableColumn prefWidth="148.0" text="Bérlet Lejárati Dátuma" />
+            <TableColumn fx:id="nevOszlop" prefWidth="90.0" text="Név" visible="false" />
+            <TableColumn fx:id="vezeteknevOszlop" prefWidth="75.0" text="Vezetéknév" />
+            <TableColumn fx:id="keresztnevOszlop" prefWidth="75.0" text="Keresztnév" />
+            <TableColumn fx:id="nemOszlop" prefWidth="75.0" text="Nem" />
+            <TableColumn fx:id="korOszlop" prefWidth="75.0" text="Kor" />
+            <TableColumn fx:id="berletNeveOszlop" prefWidth="88.0" text="Bérlet Neve" />
+            <TableColumn fx:id="berletVasarlasOszlop" prefWidth="104.0" text="Bérlet Vásárlása" />
+            <TableColumn fx:id="berletLejrataOszlop" prefWidth="148.0" text="Bérlet Lejárati Dátuma" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

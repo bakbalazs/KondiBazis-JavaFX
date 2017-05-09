@@ -19,7 +19,7 @@ public class KonditeremSzolgaltatasImpl implements KonditeremSzolgaltatas {
 	private KonditeremTarolo konditeremTarolo;
 
 	@Override
-	public KonditeremVo keresFelhasznalonevet(String felhasznalonev) throws Exception {
+	public KonditeremVo keresFelhasznalonevet(String felhasznalonev) {
 
 		Konditerem k = konditeremTarolo.findByFelhasznalonev(felhasznalonev);
 

@@ -1,5 +1,7 @@
 package hu.unideb.inf.kondibazis.szolg.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -9,8 +11,10 @@ import hu.unideb.inf.kondibazis.db.entitas.KonditeremTag;
 import hu.unideb.inf.kondibazis.db.tarolo.KonditeremTagTarolo;
 import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremSzolgaltatas;
 import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremTagSzolgaltatas;
+import hu.unideb.inf.kondibazis.szolg.mapper.KonditeremMapper;
 import hu.unideb.inf.kondibazis.szolg.mapper.KonditeremTagMapper;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremTagVo;
+import hu.unideb.inf.kondibazis.szolg.vo.KonditeremVo;
 
 @Service
 @Transactional(propagation = Propagation.REQUIRED)
@@ -48,11 +52,21 @@ public class KonditeremTagSzolgaltatasImpl implements KonditeremTagSzolgaltatas 
 		return KonditeremTagMapper.toVo(found);
 	}
 
-//	@Override
-//	public List<KonditeremTagVo> konditeremOsszesTagja(KonditeremVo konditerem) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
+	@Override
+	public List<KonditeremTagVo> konditeremOsszesTagja(KonditeremVo konditerem) {
+		List<KonditeremTag> findByKonditerem = konditeremTagTarolo.findByKonditerem(KonditeremMapper.toDto(konditerem));
+		if( findByKonditerem == null ){
+//			logolo.warn("A " + felhasznalo.getFelhasznalonev() + " felhasznalonevu felhasznalonak nincsenek tranzakcioi!");
+		} else {
+//			logolo.debug("A " + felhasznalo.getFelhasznalonev() + " felhasznalonevu felhasznalonak " + findByFelhasznalo.size() + " db tranzakcioja van.");
+		}
+		
+		for(KonditeremTag konditeremTag : findByKonditerem) {
+			
+		}
+		
+		return KonditeremTagMapper.toVo(findByKonditerem);
+	}
 
 	@Override
 	public KonditeremTagVo frissitKonditeremTagot(KonditeremTagVo konditeremTag) {
