@@ -6,6 +6,9 @@ package hu.unideb.inf.kondibazis.szolg.kontener;
 public class SzovegTartalom {
 
 	public static final String alkalmazasNeve = "KondiBázis";
+	
+	public static final String ALKALMAZAS_INDITAS_LOG = "Az alkalmazás elindul.";
+	public static final String ALKALMAZAS_LEALLITAS_LOG = "Az alkalmazás leáll.";
 
 
 }

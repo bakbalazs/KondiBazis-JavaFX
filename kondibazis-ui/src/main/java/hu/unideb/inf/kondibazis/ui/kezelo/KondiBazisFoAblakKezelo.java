@@ -2,15 +2,12 @@
 package hu.unideb.inf.kondibazis.ui.kezelo;
 
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremBerletSzolgaltatas;
 import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremSzolgaltatas;
-import hu.unideb.inf.kondibazis.szolg.vo.KonditeremBerletVo;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremVo;
 import hu.unideb.inf.kondibazis.ui.felulet.FeluletBetoltese;
 import javafx.event.ActionEvent;
@@ -23,8 +20,6 @@ public class KondiBazisFoAblakKezelo implements Initializable {
 
 	@Autowired
 	private KonditeremSzolgaltatas konditeremSzolgaltatas;
-	
-
 
 	@Autowired
 	private BejelentkezoKezelo bejelentkezoKezelo;
@@ -45,9 +40,6 @@ public class KondiBazisFoAblakKezelo implements Initializable {
 		konditeremNeve.setText(bejelentkezoKezelo.getBejelentkezettKonditerem().getKonditeremNeve());
 		regisztralasDatuma.setText(bejelentkezoKezelo.getBejelentkezettKonditerem().getRegisztralasDatuma().toString());
 		bejelentkezettKonditerem = bejelentkezoKezelo.getBejelentkezettKonditerem();
-//		System.out.println(bejelentkezettKonditerem);
-//		System.out.println(konditeremBerletSzogaltatas.konditeremOsszesBerlete(bejelentkezettKonditerem));
-
 	}
 
 	@FXML
@@ -61,13 +53,21 @@ public class KondiBazisFoAblakKezelo implements Initializable {
 	}
 
 	@FXML
-	public void berletekTestreszabasa(ActionEvent event) {
-		FeluletBetoltese.BerletTestreszabasaFelulet(event);
+	public void berletekModositasa(ActionEvent event) {
+		FeluletBetoltese.BerletekModositasaFelulet(event);
 	}
 
 	@FXML
 	public void tagHozzaadasa(ActionEvent event) {
 		FeluletBetoltese.TagHozzaadasaFelulet(event);
+	}
+
+	@FXML
+	public void kijelentkezes(ActionEvent event) {
+	}
+
+	@FXML
+	public void bezaras(ActionEvent event) {
 	}
 
 	public KonditeremVo getBejelentkezettKonditerem() {

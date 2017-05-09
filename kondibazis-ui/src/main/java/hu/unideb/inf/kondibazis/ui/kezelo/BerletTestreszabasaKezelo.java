@@ -71,13 +71,7 @@ public class BerletTestreszabasaKezelo implements Initializable {
 	@FXML
 	private Text bejelentkezett_Konditerem;
 
-	private int ar;
-
-	private int ora;
-
-	private int nap;
-
-	private int honap;
+	private Long kivalasztottBerletId;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -93,82 +87,96 @@ public class BerletTestreszabasaKezelo implements Initializable {
 		for (KonditeremBerletVo berletek : konditeremBerletek) {
 			berletNeveValaszto.getItems().add(berletek.getBerletNeve());
 
-			ChangeListener<String> changeListener = new ChangeListener<String>() {
+			ChangeListener<String> valtozasFigyelo = new ChangeListener<String>() {
 
 				@Override
-				public void changed(ObservableValue<? extends String> observable, //
-						String korabbi, String jelenlegi) {
+				public void changed(ObservableValue<? extends String> megfigyelendo, String korabbi, String jelenlegi) {
 					if (jelenlegi != null) {
-						berletaraBevitel.setText(Integer.toString(berletek.getBerletAra()));
-						oraBevitel.setText(Integer.toString(berletek.getMennyiOra()));
-						napBevitel.setText(Integer.toString(berletek.getMennyiNap()));
-						honapBevitel.setText(Integer.toString(berletek.getMennyiHonap()));
+						if (jelenlegi.equals(berletek.getBerletNeve())) {
+							kivalasztottBerletId = berletek.getId();
+
+							berletaraBevitel.setText(Integer.toString(berletek.getBerletAra()));
+							oraBevitel.setText(Integer.toString(berletek.getMennyiOra()));
+							napBevitel.setText(Integer.toString(berletek.getMennyiNap()));
+							honapBevitel.setText(Integer.toString(berletek.getMennyiHonap()));
+						}
 					}
 				}
 			};
 
-			berletNeveValaszto.getSelectionModel().selectedItemProperty().addListener(changeListener);
+			berletNeveValaszto.getSelectionModel().selectedItemProperty().addListener(valtozasFigyelo);
 
 		}
 
 	}
 
 	@FXML
-	public void letrehozas(ActionEvent event) {
+	public void modositas(ActionEvent event) {
 
 		boolean mehet = true;
 
-		ar = Integer.parseInt(berletaraBevitel.getText());
-		ora = Integer.parseInt(oraBevitel.getText());
-		nap = Integer.parseInt(napBevitel.getText());
-		honap = Integer.parseInt(honapBevitel.getText());
+		KonditeremBerletVo kivalasztottBerlet = konditeremBerletSzolgaltatas.keresBerletet(kivalasztottBerletId);
 
-		// if (berletnevBevitel.getText().equals("")) {
+		kivalasztottBerlet.setBerletAra(Integer.parseInt(berletaraBevitel.getText()));
+		kivalasztottBerlet.setMennyiHonap(Integer.parseInt(honapBevitel.getText()));
+		kivalasztottBerlet.setMennyiNap(Integer.parseInt(napBevitel.getText()));
+		kivalasztottBerlet.setMennyiOra(Integer.parseInt(oraBevitel.getText()));
+
+		konditeremBerletSzolgaltatas.frissitKonditeremBerletet(kivalasztottBerlet);
+
+		//
+
+		//
+		// // if (berletnevBevitel.getText().equals("")) {
+		// // mehet = false;
+		// // }
+		//
+		// if (berletaraBevitel.getText().equals("")) {
 		// mehet = false;
 		// }
-
-		if (berletaraBevitel.getText().equals("")) {
-			mehet = false;
-		}
-
-		if (ar == 0) {
-			mehet = false;
-		}
-
-		if (ora == 0 || nap == 0 || honap == 0) {
-			mehet = false;
-		}
-
-		if ((ar > 0 && ora > 0) || (ar > 0 && nap > 0) || (ar > 0 && honap > 0)) {
-			mehet = true;
-		}
-
-		if (berletaraBevitel.getText().equals("") || oraBevitel.getText().equals("") || napBevitel.getText().equals("")
-				|| honapBevitel.getText().equals("")) {
-			mehet = false;
-		}
-
-		if (mehet) {
-
-			KonditeremBerletVo ujBerlet = new KonditeremBerletVo();
-			// ujBerlet.setBerletNeve(berletnevBevitel.getText());
-
-			ujBerlet.setBerletAra(ar);
-			ujBerlet.setMennyiOra(ora);
-			ujBerlet.setMennyiNap(nap);
-			ujBerlet.setMennyiHonap(honap);
-
-			KonditeremBerletVo letezo = konditeremBerletSzolgaltatas.letrehozBerletet(ujBerlet);
-
-			bejelentkezettKonditerem.getKonditeremBerletek().add(letezo);
-
-			konditeremSzolgaltatas.frissitKonditermet(bejelentkezettKonditerem);
-
-			letezo.setKonditerem(bejelentkezettKonditerem);
-
-			konditeremBerletSzolgaltatas.frissitKonditeremBerletet(letezo);
-		}
-
+		//
+		// if (ar == 0) {
+		// mehet = false;
+		// }
+		//
+		// if (ora == 0 || nap == 0 || honap == 0) {
+		// mehet = false;
+		// }
+		//
+		// if ((ar > 0 && ora > 0) || (ar > 0 && nap > 0) || (ar > 0 && honap >
+		// 0)) {
+		// mehet = true;
+		// }
+		//
+		// if (berletaraBevitel.getText().equals("") ||
+		// oraBevitel.getText().equals("") || napBevitel.getText().equals("")
+		// || honapBevitel.getText().equals("")) {
+		// mehet = false;
+		// }
+		//
+		// if (mehet) {
+		//
+		// KonditeremBerletVo ujBerlet = new KonditeremBerletVo();
+		//
+		// ujBerlet.setBerletNeve(neve);
+		// ujBerlet.setBerletAra(ar);
+		// ujBerlet.setMennyiOra(ora);
+		// ujBerlet.setMennyiNap(nap);
+		// ujBerlet.setMennyiHonap(honap);
+		//
+		// KonditeremBerletVo letezo =
+		// konditeremBerletSzolgaltatas.letrehozBerletet(ujBerlet);
+		//
+		// // bejelentkezettKonditerem.getKonditeremBerletek().add(letezo);
+		//
+		// //
+		// konditeremSzolgaltatas.frissitKonditermet(bejelentkezettKonditerem);
+		//
+		// // letezo.setKonditerem(bejelentkezettKonditerem);
+		//
+		// konditeremBerletSzolgaltatas.frissitKonditeremBerletet(letezo);
+		// }
+		((Stage) megseGomb.getScene().getWindow()).close();
 	}
 
 	@FXML

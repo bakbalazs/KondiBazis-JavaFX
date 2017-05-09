@@ -18,6 +18,7 @@ import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremBerletSzolgaltatas;
 import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremSzolgaltatas;
 import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremTagSzolgaltatas;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremBerletVo;
+import hu.unideb.inf.kondibazis.szolg.vo.KonditeremTagVo;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremVo;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -108,6 +109,9 @@ public class TagHozzaadasaKezelo implements Initializable {
 
 	@FXML
 	private ChoiceBox<String> berletValasztas;
+	
+	
+	private Boolean vanKep = false ;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -125,33 +129,34 @@ public class TagHozzaadasaKezelo implements Initializable {
 			berletValasztas.getItems().add(berletek.getBerletNeve());
 		}
 
+	}
+
+	 @FXML
+	 public void hozzaadas(ActionEvent event) throws IOException {
+		 KonditeremTagVo ujTag = new KonditeremTagVo();
+		 
+		 
+		 if(vanKep == true) {
+			 ujTag.setTagKep(kepByte);
+		 } else {
+			 ujTag.setTagKep(nincsKep());
+		 }
 		
-	}
+		 
+		 
+		KonditeremTagVo letezo = konditeremTagSzolgaltatas.leterehozTagot(ujTag);
 
-	@FXML
-	public void hozzaadas(ActionEvent event) throws IOException {
+		bejelentkezettKonditerem.getKonditeremTagok().add(letezo);
 
-		System.out.println(berletValasztas.getValue());
+		konditeremSzolgaltatas.frissitKonditermet(bejelentkezettKonditerem);
 
-		// KonditeremTagVo uj = new KonditeremTagVo();
-		//// uj.setTagKep(nincsKep());
-		//
-		// KonditeremTagVo letezo =
-		// konditeremTagSzolgaltatas.leterehozTagot(uj);
-		//
-		// bejelentkezettKonditerem.getKonditeremTagok().add(letezo);
-		//
-		// konditeremSzolgaltatas.frissitKonditermet(bejelentkezettKonditerem);
-		//
-		// letezo.setKonditerem(bejelentkezettKonditerem);
-		//
-		// konditeremTagSzolgaltatas.frissitKonditeremTagot(letezo);
+		letezo.setKonditerem(bejelentkezettKonditerem);
 
-	}
-
-	// @FXML
-	// public void hozzaadas(ActionEvent event) {
-	//
+		konditeremTagSzolgaltatas.frissitKonditeremTagot(letezo);
+			
+		 
+	 }
+	
 	// boolean mehet = true;
 	//
 	// if (vezeteknevBevitel.getText().equals("")) {
@@ -239,6 +244,7 @@ public class TagHozzaadasaKezelo implements Initializable {
 			fileInputStream.close();
 
 			kepMegjelenites.setImage(image);
+			vanKep = true;
 			tallozasGomb.setText("Módosítás");
 
 		} else {
@@ -246,8 +252,21 @@ public class TagHozzaadasaKezelo implements Initializable {
 			// tagHozzaadasaUzenet.setText("Nincs kép kiválasztva!");
 
 			kepMegjelenites.setImage(nincsKep);
+			vanKep = false;
 			tallozasGomb.setText("Tallózás");
 		}
+
+	}
+	
+	public byte[] nincsKep() throws IOException {
+		
+		File f = new File("src/main/resources/kepek/nincsKep.png");
+		Image i = new Image(f.toURI().toString(), 195,285,false,false);
+		byte[] kep = new byte[(int) f.length()];
+		FileInputStream fileInputStream = new FileInputStream(f);
+		fileInputStream.read(kep);
+		fileInputStream.close();
+		return kep;
 
 	}
 	//
@@ -264,6 +283,38 @@ public class TagHozzaadasaKezelo implements Initializable {
 	@FXML
 	public void szuldatumKivalaszt(ActionEvent event) {
 		korSzamolas(szuldatumBevitel.getValue(), maiNap);
+	}
+
+	@FXML
+	public void kepenTallozas(ActionEvent event) throws IOException {
+		kepValaszto.getExtensionFilters().addAll(new ExtensionFilter("Image Files (*.png , *.jpg)", "*.png", "*.jpg"));
+		kivalasztottKep = kepValaszto.showOpenDialog(null);
+
+		if (kivalasztottKep != null) {
+			Image image = new Image(kivalasztottKep.toURI().toString(), 195, 185, false, false);
+			kepByte = new byte[(int) kivalasztottKep.length()];
+			FileInputStream fileInputStream = new FileInputStream(kivalasztottKep);
+			fileInputStream.read(kepByte);
+			fileInputStream.close();
+
+			kepMegjelenites.setImage(image);
+			tallozasGomb.setText("Módosítás");
+			vanKep = true;
+		} else {
+			// tagHozzaadasaUzenet.setFill(Color.RED);
+			// tagHozzaadasaUzenet.setText("Nincs kép kiválasztva!");
+
+			vanKep = false;
+			kepMegjelenites.setImage(nincsKep);
+			tallozasGomb.setText("Tallózás");
+		}
+	}
+
+	@FXML
+	public void kepTorlese(ActionEvent event) {
+		kepMegjelenites.setImage(nincsKep);
+		tallozasGomb.setText("Tallózás");
+		vanKep = false;
 	}
 
 	private void korSzamolas(LocalDate szuletesiDatum, LocalDate maiNap) {
@@ -286,41 +337,8 @@ public class TagHozzaadasaKezelo implements Initializable {
 		this.kor = kor;
 	}
 
-	@FXML
-	public void beriratkozasKivalaszt(ActionEvent event) {
-	}
-
 	public KonditeremVo getBejelentkezettKonditerem() {
 		return bejelentkezettKonditerem;
-	}
-
-	@FXML
-	public void kepenTallozas(ActionEvent event) throws IOException {
-		kepValaszto.getExtensionFilters().addAll(new ExtensionFilter("Image Files (*.png , *.jpg)", "*.png", "*.jpg"));
-		kivalasztottKep = kepValaszto.showOpenDialog(null);
-
-		if (kivalasztottKep != null) {
-			Image image = new Image(kivalasztottKep.toURI().toString(), 195, 185, false, false);
-			kepByte = new byte[(int) kivalasztottKep.length()];
-			FileInputStream fileInputStream = new FileInputStream(kivalasztottKep);
-			fileInputStream.read(kepByte);
-			fileInputStream.close();
-
-			kepMegjelenites.setImage(image);
-			tallozasGomb.setText("Módosítás");
-		} else {
-			// tagHozzaadasaUzenet.setFill(Color.RED);
-			// tagHozzaadasaUzenet.setText("Nincs kép kiválasztva!");
-
-			kepMegjelenites.setImage(nincsKep);
-			tallozasGomb.setText("Tallózás");
-		}
-	}
-
-	@FXML
-	public void kepTorlese(ActionEvent event) {
-		kepMegjelenites.setImage(nincsKep);
-		tallozasGomb.setText("Tallózás");
 	}
 
 }

@@ -27,9 +27,13 @@ public class KonditeremBerletSzolgaltatasImpl implements KonditeremBerletSzolgal
 	private KonditeremSzolgaltatas konditeremSzolgaltatas;
 
 	@Override
-	public KonditeremBerletVo keresBerletet(String berletNeve) {
-		// TODO Auto-generated method stub
-		return null;
+	public KonditeremBerletVo keresBerletet(Long id) {
+		KonditeremBerlet found = konditeremBerletTarolo.findOne(id);
+		if (found == null) {
+		} else {
+		}
+
+		return KonditeremBerletMapper.toVo(found);
 	}
 
 	@Override
@@ -81,6 +85,21 @@ public class KonditeremBerletSzolgaltatasImpl implements KonditeremBerletSzolgal
 		}
 
 		return KonditeremBerletMapper.toVo(konditerem_berletei);
+
+	}
+
+	@Override
+	public void torolKonditeremBerletet(KonditeremBerletVo konditeremBerlet) {
+
+		KonditeremVo konditerem = konditeremBerlet.getKonditerem();
+
+		List<KonditeremBerletVo> konditeremBerletek = konditerem.getKonditeremBerletek();
+
+		konditeremBerletek.remove(konditeremBerlet);
+
+		konditeremSzolgaltatas.frissitKonditermet(konditerem);
+
+		konditeremBerletTarolo.delete(konditeremBerlet.getId());
 
 	}
 

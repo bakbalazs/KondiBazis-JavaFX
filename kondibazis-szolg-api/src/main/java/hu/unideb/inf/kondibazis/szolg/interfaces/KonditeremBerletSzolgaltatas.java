@@ -6,13 +6,17 @@ import hu.unideb.inf.kondibazis.szolg.vo.KonditeremBerletVo;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremVo;
 
 public interface KonditeremBerletSzolgaltatas {
-	
-	KonditeremBerletVo keresBerletet(String berletNeve);
+//	
+//	KonditeremBerletVo keresBerletet(String berletNeve);
 	
 	KonditeremBerletVo letrehozBerletet(KonditeremBerletVo ujBerlet);
 	
 	KonditeremBerletVo frissitKonditeremBerletet(KonditeremBerletVo konditeremBerlet);
 	
+	void torolKonditeremBerletet(KonditeremBerletVo konditeremBerlet);
+	
 	List<KonditeremBerletVo> konditeremOsszesBerlete(KonditeremVo konditerem);
+
+	KonditeremBerletVo keresBerletet(Long id);
 
 }
