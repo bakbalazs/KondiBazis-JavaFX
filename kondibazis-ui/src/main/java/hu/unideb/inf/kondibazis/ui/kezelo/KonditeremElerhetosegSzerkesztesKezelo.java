@@ -13,7 +13,7 @@ import hu.unideb.inf.kondibazis.szolg.interfaces.TelepulesekSzolgaltatas;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremElerhetosegVo;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremVo;
 import hu.unideb.inf.kondibazis.szolg.vo.TelepulesekVo;
-import hu.unideb.inf.kondibazis.ui.bevitel.szam.NumberTextFieldIranyitoszam;
+import hu.unideb.inf.kondibazis.ui.bevitel.szolg.NumberTextFieldIranyitoszam;
 import hu.unideb.inf.kondibazis.ui.felulet.FeluletBetoltese;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

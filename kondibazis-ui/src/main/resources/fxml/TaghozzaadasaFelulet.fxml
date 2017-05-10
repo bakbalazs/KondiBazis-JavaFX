@@ -32,7 +32,6 @@
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lakhely(város csak):" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Megye:" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Beiratkozás ideje:" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                  <TextField fx:id="varosBevitel" GridPane.columnIndex="2" GridPane.rowIndex="5" />
                   <TextField fx:id="megyeBevitel" GridPane.columnIndex="2" GridPane.rowIndex="6" />
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bérlet választás:" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                   <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
@@ -66,6 +65,7 @@
                   <ImageView fx:id="varosEllenoriz" fitHeight="24.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="5" />
                   <ImageView fx:id="megyeEllenoriz" fitHeight="24.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="6" />
                   <ImageView fx:id="berletvalasztasEllenoriz" fitHeight="24.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="8" />
+                  <ComboBox fx:id="varosNevBevitel" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
                </children>
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.0" minWidth="8.0" prefWidth="21.0" />

@@ -1,5 +1,7 @@
 package hu.unideb.inf.kondibazis.szolg.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -31,6 +33,35 @@ public class TelepulesekSzolgaltatasImpl implements TelepulesekSzolgaltatas {
 		
 		return TelepulesekMapper.toVo(found);
 		
+	}
+
+	@Override
+	public TelepulesekVo keresTelepulesNevet(String telepulesnev) {
+		Telepulesek found = telepulesekTarolo.findBytelepulesnev(telepulesnev);
+	if(found == null) {
+			
+		} else {
+			
+		}
+		
+		return TelepulesekMapper.toVo(found);
+	}
+
+	@Override
+	public List<TelepulesekVo> osszesTelepules() {
+		List<Telepulesek> telepulesek = telepulesekTarolo.findAll();
+		
+		if(telepulesek == null) {
+			
+		} else {
+			
+		}
+		
+		for(Telepulesek telepulesEk : telepulesek) {
+			
+		}
+		
+		return TelepulesekMapper.toVo(telepulesek);
 	}
 
 }

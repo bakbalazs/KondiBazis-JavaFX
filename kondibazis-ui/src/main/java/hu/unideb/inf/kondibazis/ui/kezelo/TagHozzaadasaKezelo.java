@@ -4,25 +4,33 @@ package hu.unideb.inf.kondibazis.ui.kezelo;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import javax.annotation.Resource;
 import javax.management.Notification;
 import org.controlsfx.control.Notifications;
+import org.controlsfx.control.textfield.TextFields;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
-import ch.qos.logback.core.net.SyslogOutputStream;
+//import ch.qos.logback.core.net.SyslogOutputStream;
 import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremBerletSzolgaltatas;
 import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremSzolgaltatas;
 import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremTagSzolgaltatas;
+import hu.unideb.inf.kondibazis.szolg.interfaces.TelepulesekSzolgaltatas;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremBerletVo;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremTagVo;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremVo;
 import hu.unideb.inf.kondibazis.szolg.vo.TelepulesekVo;
+import hu.unideb.inf.kondibazis.ui.bevitel.szolg.ComboBoxAutoComplete;
 import hu.unideb.inf.kondibazis.ui.felulet.FeluletBetoltese;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -43,6 +51,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.stage.FileChooser.ExtensionFilter;
+import javafx.scene.control.ComboBox;
 
 @Component
 public class TagHozzaadasaKezelo implements Initializable {
@@ -55,6 +64,9 @@ public class TagHozzaadasaKezelo implements Initializable {
 
 	@Autowired
 	private KonditeremTagSzolgaltatas konditeremTagSzolgaltatas;
+
+	@Autowired
+	private TelepulesekSzolgaltatas telepulesekSzolgaltatas;
 
 	@Autowired
 	private KondiBazisFoAblakKezelo foAblakKezelo;
@@ -141,6 +153,9 @@ public class TagHozzaadasaKezelo implements Initializable {
 	@FXML
 	ImageView berletvalasztasEllenoriz;
 
+	@FXML
+	ComboBox<String> varosNevBevitel = new ComboBox<>();
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		kepMegjelenites.setImage(nincsKep);
@@ -156,13 +171,36 @@ public class TagHozzaadasaKezelo implements Initializable {
 		for (KonditeremBerletVo berletek : konditeremBerletek) {
 			berletValasztas.getItems().add(berletek.getBerletNeve());
 		}
-		
-		varosBevitel.setOnKeyReleased(new EventHandler<KeyEvent>() {
-			public void handle(KeyEvent ke) {
-				
-			}
-		});
 
+		List<TelepulesekVo> telepulesek = telepulesekSzolgaltatas.osszesTelepules();
+
+		ArrayList<String> telepulesNevek = new ArrayList<>();
+		
+		for (TelepulesekVo telep : telepulesek) {
+			telepulesNevek.add(telep.getTelepulesnev());
+		}
+//
+		ArrayList<String> telepNev = removeDuplicates(telepulesNevek);
+//
+		varosNevBevitel.getItems().addAll(telepNev);
+//
+		new ComboBoxAutoComplete<String>(varosNevBevitel);
+//
+	}
+
+	public ArrayList<String> removeDuplicates(ArrayList<String> list) {
+		ArrayList<String> result = new ArrayList<>();
+
+		HashSet<String> set = new HashSet<>();
+
+		for (String item : list) {
+
+			if (!set.contains(item)) {
+				result.add(item);
+				set.add(item);
+			}
+		}
+		return result;
 	}
 
 	@FXML
@@ -290,12 +328,12 @@ public class TagHozzaadasaKezelo implements Initializable {
 			ujTag.setTagKora(tagKora);
 			ujTag.setBerletVasarlasideje(maiNap);
 			ujTag.setVasaroltBerletNeve(berletValasztas.getValue());
-
-			if (vanKep == true) {
-				ujTag.setTagKep(kepByte);
-			} else {
-				ujTag.setTagKep(nincsKep());
-			}
+			ujTag.setTagVarosa(varosNevBevitel.getValue());
+//			if (vanKep == true) {
+//				ujTag.setTagKep(kepByte);
+//			} else {
+//				ujTag.setTagKep(nincsKep());
+//			}
 
 			KonditeremTagVo letezo = konditeremTagSzolgaltatas.leterehozTagot(ujTag);
 
@@ -356,11 +394,12 @@ public class TagHozzaadasaKezelo implements Initializable {
 	}
 
 	public byte[] nincsKep() throws IOException {
-
-		File f = new File("src/main/resources/kepek/nincsKep.png");
-		new Image(f.toURI().toString(), 195, 285, false, false);
-		byte[] kep = new byte[(int) f.length()];
-		FileInputStream fileInputStream = new FileInputStream(f);
+//		File file = new File("kondibazis-ui/src/main/resources/kepek/nincsKep.png");
+		File file = new File("src/main/resources/kepek/nincsKep.png");
+		String absolutePath = file.getAbsolutePath();
+		new Image(file.toURI().toString(), 195, 285, false, false);
+		byte[] kep = new byte[(int) file.length()];
+		FileInputStream fileInputStream = new FileInputStream(absolutePath);
 		fileInputStream.read(kep);
 		fileInputStream.close();
 		return kep;
