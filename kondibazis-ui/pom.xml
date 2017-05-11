@@ -64,11 +64,6 @@
 			<artifactId>controlsfx</artifactId>
 			<version>8.40.12</version>
 		</dependency>
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.rapidpm.modul</groupId> -->
-<!-- 			<artifactId>javafx-autocomplete-textfield</artifactId> -->
-<!-- 			<version>1.2</version> -->
-<!-- 		</dependency> -->
 	</dependencies>
 
 </project>

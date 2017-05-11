@@ -32,7 +32,7 @@ public class BerletLetrehozasaKezelo implements Initializable {
 	@Autowired
 	private KondiBazisFoAblakKezelo foAblakKezelo;
 
-	private KonditeremVo bejelentkezettKonditerem;
+    private KonditeremVo bejelentkezettKonditerem;
 
 	@FXML
 	private Button letrehozasGomb;
@@ -141,6 +141,7 @@ public class BerletLetrehozasaKezelo implements Initializable {
 			letezo.setKonditerem(bejelentkezettKonditerem);
 
 			konditeremBerletSzolgaltatas.frissitKonditeremBerletet(letezo);
+			foAblakKezelo.gombFrissites();
 			((Stage)megseGomb.getScene().getWindow()).close();
 		}
 

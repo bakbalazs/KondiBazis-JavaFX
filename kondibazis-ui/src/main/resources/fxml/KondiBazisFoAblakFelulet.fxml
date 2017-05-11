@@ -58,8 +58,8 @@
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Regisztrálás dátuma:" GridPane.rowIndex="3" />
                   <Button mnemonicParsing="false" onAction="#elerhetoseg" text="Elérhetőség" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                   <Button mnemonicParsing="false" onAction="#berletekLetrehozasa" text="Bérletek Létrehozása" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                  <Button mnemonicParsing="false" onAction="#berletekModositasa" text="Bérletek Módosítása" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                  <Button mnemonicParsing="false" onAction="#tagHozzaadasa" text="Tag Hozzáadása" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                  <Button fx:id="berletModositasGomb" mnemonicParsing="false" onAction="#berletekModositasa" text="Bérletek Módosítása" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                  <Button fx:id="tagHozzaadasaGomb" mnemonicParsing="false" onAction="#tagHozzaadasa" text="Tag Hozzáadása" GridPane.columnIndex="3" GridPane.rowIndex="4" />
                   <Text fx:id="konditeremNeve" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <Text fx:id="tagokSzama" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Text fx:id="regisztralasDatuma" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />

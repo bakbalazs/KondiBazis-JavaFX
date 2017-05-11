@@ -1,8 +1,8 @@
 package hu.unideb.inf.kondibazis.ui.felulet;
 
 import hu.unideb.inf.kondibazis.szolg.kontener.SzovegTartalom;
-import hu.unideb.inf.kondibazis.szolg.kontener.TartalomBetoltese;
 import hu.unideb.inf.kondibazis.ui.kezelo.BejelentkezoKezelo;
+import hu.unideb.inf.kondibazis.ui.kezelo.KondiBazisFoAblakKezelo;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.scene.Parent;

@@ -27,6 +27,8 @@ public class KonditeremTagVo implements Serializable {
 
 	private LocalDate berletVasarlasideje;
 
+	private LocalDate berletLejaratiIdeje;
+
 	private String vasaroltBerletNeve;
 
 	private byte[] tagKep;
@@ -139,6 +141,14 @@ public class KonditeremTagVo implements Serializable {
 
 	public void setTagMegyeje(String tagMegyeje) {
 		this.tagMegyeje = tagMegyeje;
+	}
+
+	public LocalDate getBerletLejaratiIdeje() {
+		return berletLejaratiIdeje;
+	}
+
+	public void setBerletLejaratiIdeje(LocalDate berletLejaratiIdeje) {
+		this.berletLejaratiIdeje = berletLejaratiIdeje;
 	}
 
 	@Override

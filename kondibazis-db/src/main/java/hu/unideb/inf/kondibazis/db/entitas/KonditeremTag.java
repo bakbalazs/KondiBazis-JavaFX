@@ -1,162 +1,168 @@
 package hu.unideb.inf.kondibazis.db.entitas;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Arrays;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
 @Entity
 @Table(name = "konditeremTag")
 public class KonditeremTag extends FoEntitas {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	public KonditeremTag() {
-	}
+    public KonditeremTag() {
+    }
 
-	@Column(name = "tagVezetekneve")
-	private String tagVezeteknev;
+    @Column(name = "tagVezetekneve")
+    private String tagVezeteknev;
 
-	@Column(name = "tagKeresztneve")
-	private String tagKeresztnev;
+    @Column(name = "tagKeresztneve")
+    private String tagKeresztnev;
 
-	@Column(name = "tagNeve")
-	private String tagNeve;
+    @Column(name = "tagNeve")
+    private String tagNeve;
 
-	@Column(name = "tagNeme")
-	private String tagNeme;
+    @Column(name = "tagNeme")
+    private String tagNeme;
 
-	@Column(name = "tagKora")
-	private int tagKora;
+    @Column(name = "tagKora")
+    private int tagKora;
 
-	@Column(name = "tagSzuletesidatum")
-	private LocalDate tagSzuletesidatuma;
+    @Column(name = "tagSzuletesidatum")
+    private LocalDate tagSzuletesidatuma;
 
-	@Column(name = "bereletVasarlasideje")
-	private LocalDate berletVasarlasideje;
+    @Column(name = "bereletVasarlasideje")
+    private LocalDate berletVasarlasideje;
 
-	@Column(name = "vasaroltBereletneve")
-	private String vasaroltBerletNeve;
+    @Column(name = "bereletLejaratiIdeje")
+    private LocalDate berletLejaratiIdeje;
 
-	@Lob
-	@Column(name = "tagKep")
-	private byte[] tagKep;
+    @Column(name = "vasaroltBereletneve")
+    private String vasaroltBerletNeve;
 
-	@Column(name = "tagVarosa")
-	private String tagVarosa;
+    @Lob
+    @Column(name = "tagKep")
+    private byte[] tagKep;
 
-	@Column(name = "tagMegyeje")
-	private String tagMegyeje;
+    @Column(name = "tagVarosa")
+    private String tagVarosa;
 
-	@ManyToOne()
-	private Konditerem konditerem;
+    @Column(name = "tagMegyeje")
+    private String tagMegyeje;
 
-	public String getTagVezeteknev() {
-		return tagVezeteknev;
-	}
+    @ManyToOne()
+    private Konditerem konditerem;
 
-	public void setTagVezeteknev(String tagVezeteknev) {
-		this.tagVezeteknev = tagVezeteknev;
-	}
+    public String getTagVezeteknev() {
+        return tagVezeteknev;
+    }
 
-	public String getTagKeresztnev() {
-		return tagKeresztnev;
-	}
+    public void setTagVezeteknev(String tagVezeteknev) {
+        this.tagVezeteknev = tagVezeteknev;
+    }
 
-	public void setTagKeresztnev(String tagKeresztnev) {
-		this.tagKeresztnev = tagKeresztnev;
-	}
+    public String getTagKeresztnev() {
+        return tagKeresztnev;
+    }
 
-	public String getTagNeve() {
-		return tagNeve;
-	}
+    public void setTagKeresztnev(String tagKeresztnev) {
+        this.tagKeresztnev = tagKeresztnev;
+    }
 
-	public void setTagNeve(String tagNeve) {
-		this.tagNeve = tagNeve;
-	}
+    public String getTagNeve() {
+        return tagNeve;
+    }
 
-	public String getTagNeme() {
-		return tagNeme;
-	}
+    public void setTagNeve(String tagNeve) {
+        this.tagNeve = tagNeve;
+    }
 
-	public void setTagNeme(String tagNeme) {
-		this.tagNeme = tagNeme;
-	}
+    public String getTagNeme() {
+        return tagNeme;
+    }
 
-	public int getTagKora() {
-		return tagKora;
-	}
+    public void setTagNeme(String tagNeme) {
+        this.tagNeme = tagNeme;
+    }
 
-	public void setTagKora(int tagKora) {
-		this.tagKora = tagKora;
-	}
+    public int getTagKora() {
+        return tagKora;
+    }
 
-	public LocalDate getTagSzuletesidatuma() {
-		return tagSzuletesidatuma;
-	}
+    public void setTagKora(int tagKora) {
+        this.tagKora = tagKora;
+    }
 
-	public void setTagSzuletesidatuma(LocalDate tagSzuletesidatuma) {
-		this.tagSzuletesidatuma = tagSzuletesidatuma;
-	}
+    public LocalDate getTagSzuletesidatuma() {
+        return tagSzuletesidatuma;
+    }
 
-	public LocalDate getBerletVasarlasideje() {
-		return berletVasarlasideje;
-	}
+    public void setTagSzuletesidatuma(LocalDate tagSzuletesidatuma) {
+        this.tagSzuletesidatuma = tagSzuletesidatuma;
+    }
 
-	public void setBerletVasarlasideje(LocalDate berletVasarlasideje) {
-		this.berletVasarlasideje = berletVasarlasideje;
-	}
+    public LocalDate getBerletVasarlasideje() {
+        return berletVasarlasideje;
+    }
 
-	public String getVasaroltBerletNeve() {
-		return vasaroltBerletNeve;
-	}
+    public void setBerletVasarlasideje(LocalDate berletVasarlasideje) {
+        this.berletVasarlasideje = berletVasarlasideje;
+    }
 
-	public void setVasaroltBerletNeve(String vasaroltBerletNeve) {
-		this.vasaroltBerletNeve = vasaroltBerletNeve;
-	}
+    public String getVasaroltBerletNeve() {
+        return vasaroltBerletNeve;
+    }
 
-	public byte[] getTagKep() {
-		return tagKep;
-	}
+    public void setVasaroltBerletNeve(String vasaroltBerletNeve) {
+        this.vasaroltBerletNeve = vasaroltBerletNeve;
+    }
 
-	public void setTagKep(byte[] tagKep) {
-		this.tagKep = tagKep;
-	}
+    public byte[] getTagKep() {
+        return tagKep;
+    }
 
-	public Konditerem getKonditerem() {
-		return konditerem;
-	}
+    public void setTagKep(byte[] tagKep) {
+        this.tagKep = tagKep;
+    }
 
-	public void setKonditerem(Konditerem konditerem) {
-		this.konditerem = konditerem;
-	}
+    public Konditerem getKonditerem() {
+        return konditerem;
+    }
 
-	public String getTagVarosa() {
-		return tagVarosa;
-	}
+    public void setKonditerem(Konditerem konditerem) {
+        this.konditerem = konditerem;
+    }
 
-	public void setTagVarosa(String tagVarosa) {
-		this.tagVarosa = tagVarosa;
-	}
+    public String getTagVarosa() {
+        return tagVarosa;
+    }
 
-	public String getTagMegyeje() {
-		return tagMegyeje;
-	}
+    public void setTagVarosa(String tagVarosa) {
+        this.tagVarosa = tagVarosa;
+    }
 
-	public void setTagMegyeje(String tagMegyeje) {
-		this.tagMegyeje = tagMegyeje;
-	}
+    public String getTagMegyeje() {
+        return tagMegyeje;
+    }
 
-	@Override
-	public String toString() {
-		return "KonditeremTag [tagVezeteknev=" + tagVezeteknev + ", tagKeresztnev=" + tagKeresztnev + ", tagNeve="
-				+ tagNeve + ", tagNeme=" + tagNeme + ", tagKora=" + tagKora + ", tagSzuletesidatuma="
-				+ tagSzuletesidatuma + ", berletVasarlasideje=" + berletVasarlasideje + ", vasaroltBerletNeve="
-				+ vasaroltBerletNeve + ", tagKep=" + Arrays.toString(tagKep) + ", konditerem=" + konditerem + "]";
-	}
+    public void setTagMegyeje(String tagMegyeje) {
+        this.tagMegyeje = tagMegyeje;
+    }
+
+    public LocalDate getBerletLejaratiIdeje() {
+        return berletLejaratiIdeje;
+    }
+
+    public void setBerletLejaratiIdeje(LocalDate berletLejaratiIdeje) {
+        this.berletLejaratiIdeje = berletLejaratiIdeje;
+    }
+
+    @Override
+    public String toString() {
+        return "KonditeremTag [tagVezeteknev=" + tagVezeteknev + ", tagKeresztnev=" + tagKeresztnev + ", tagNeve="
+                + tagNeve + ", tagNeme=" + tagNeme + ", tagKora=" + tagKora + ", tagSzuletesidatuma="
+                + tagSzuletesidatuma + ", berletVasarlasideje=" + berletVasarlasideje + ", vasaroltBerletNeve="
+                + vasaroltBerletNeve + ", tagKep=" + Arrays.toString(tagKep) + ", konditerem=" + konditerem + "]";
+    }
 
 }
