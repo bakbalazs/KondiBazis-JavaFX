@@ -3,7 +3,6 @@ package hu.unideb.inf.kondibazis.ui.main;
 
 import java.io.IOException;
 
-import hu.unideb.inf.kondibazis.szolg.kontener.SzovegTartalom;
 import hu.unideb.inf.kondibazis.ui.felulet.FeluletBetoltese;
 import hu.unideb.inf.kondibazis.ui.felulet.SpringFxmlLoader;
 import javafx.application.Application;
@@ -24,13 +23,13 @@ public class Inditas extends Application {
 	}
 
 	public static void main(String[] args) {
-		logolo.info(SzovegTartalom.ALKALMAZAS_INDITAS_LOG);
+		logolo.info("Az alkalmazás elindul.");
 		launch(args);
 	}
 	
 	@Override
 	public void stop() throws Exception {
-		logolo.info(SzovegTartalom.ALKALMAZAS_LEALLITAS_LOG);
+		logolo.info("Az alkalmazás leáll.");
 		SpringFxmlLoader.close();
 	}
 }

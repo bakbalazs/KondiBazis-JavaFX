@@ -2,7 +2,6 @@
 package hu.unideb.inf.kondibazis.ui.kezelo;
 
 import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremBerletSzolgaltatas;
-import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremSzolgaltatas;
 import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremTagSzolgaltatas;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremBerletVo;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremTagVo;
@@ -14,12 +13,19 @@ import hu.unideb.inf.kondibazis.ui.model.TagData;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,9 +41,6 @@ import java.util.ResourceBundle;
 public class KondiBazisFoAblakKezelo implements Initializable {
 
     private static Logger logolo = LoggerFactory.getLogger(KondiBazisFoAblakKezelo.class);
-
-    @Autowired
-    private KonditeremSzolgaltatas konditeremSzolgaltatas;
 
     @Autowired
     private BejelentkezoKezelo bejelentkezoKezelo;
@@ -94,40 +97,30 @@ public class KondiBazisFoAblakKezelo implements Initializable {
     @FXML
     private Button tagHozzaadasaGomb;
 
+    @FXML
+    private RadioButton osszesTagGomb;
+
+    @FXML
+    private Tab szuresEskereses;
+
+    @FXML
+    private Tab tagModositas;
+
     private boolean lejart = false;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        tagModositasTabGombElrejtes();
+
         bejelentkezettKonditerem = bejelentkezoKezelo.getBejelentkezettKonditerem();
         tagTablazatAdatok = FXCollections.observableArrayList();
+
         gombFrissites();
         adatFrissites();
 
         konditeremNeve.setText(bejelentkezoKezelo.getBejelentkezettKonditerem().getKonditeremNeve());
         regisztralasDatuma.setText(bejelentkezoKezelo.getBejelentkezettKonditerem().getRegisztralasDatuma().toString());
-
-        logolo.debug("Táblázat oszlop értékeinek beállítása.");
-
-        nevOszlop.setCellValueFactory(celldata -> celldata.getValue().getTagNeveProperty());
-
-        vezeteknevOszlop.setCellValueFactory(celldata -> celldata.getValue().getTagVezetekneveProperty());
-
-        keresztnevOszlop.setCellValueFactory(celldata -> celldata.getValue().getTagKeresztneveProperty());
-
-        nemOszlop.setCellValueFactory(celldata -> celldata.getValue().getTagNemeProperty());
-
-        korOszlop.setCellValueFactory(celldata -> celldata.getValue().getTagKoraProperty());
-
-        berletVasarlasOszlop.setCellValueFactory(celldata -> celldata.getValue().getBerletVasarlasIdejeProperty());
-
-        berletLejrataOszlop.setCellValueFactory(celldata -> celldata.getValue().getBerletLejaratiIdejeProperty());
-
-        berletNeveOszlop.setCellValueFactory(celldata -> celldata.getValue().getVasaroltBerletNeveProperty());
-
-        logolo.debug("Tablazat adatainak inicializalasa");
-
-        tagokTabla.setItems(tagTablazatAdatok);
 
     }
 
@@ -156,15 +149,28 @@ public class KondiBazisFoAblakKezelo implements Initializable {
     }
 
     @FXML
-    public void kijelentkezes(ActionEvent event) {
+    public void kijelentkezes() {
 
         logolo.info("Kijeletkezés gomb megnyomva.");
 
-        if (showConfirmDialog("Kijeletkezés megerősítő ablak.", "Kijeletkezés megerősítés.", "Biztosan ki akar jelentkeztni?", Alert.AlertType.CONFIRMATION) == true) {
+        if (kijeletkezesMegerositesFelulet("Kijeletkezés megerősítő ablak", "Kijeletkezés megerősítés.", "Biztosan ki akar jelentkeztni?", Alert.AlertType.CONFIRMATION) == true) {
             logolo.info("Sikeres kijeletkezés.");
             bejelentkezettKonditerem = null;
             tagokTabla = null;
+            Image pipa = new Image("/kepek/pipaErtesites.png", 85.0, 85.0, true, true);
+            Notifications ertesites = Notifications.create().title("Kijeletkezés").text("Sikeres kijeletkezés.")
+                    .graphic(new ImageView(pipa))
+                    .hideAfter(Duration.seconds(2)).position(Pos.BOTTOM_RIGHT)
+                    .onAction(new EventHandler<ActionEvent>() {
+                        @Override
+                        public void handle(ActionEvent event) {
+                            logolo.info("Az értesítésre kattintottak.");
+                        }
+                    });
+
             FeluletBetoltese.InditasiFelulet(Inditas.primaryStage);
+            ertesites.show();
+
         } else {
             logolo.info("Nem történt kijeletkezés.");
         }
@@ -177,13 +183,56 @@ public class KondiBazisFoAblakKezelo implements Initializable {
         Platform.exit();
     }
 
+    @FXML
+    public void varosStatisztika(ActionEvent event) {
+        FeluletBetoltese.VarosStatisztikaFelulet(event);
+    }
 
-    public boolean showConfirmDialog(String title, String header, String content, Alert.AlertType alertType) {
+
+    @FXML
+    public void lejartBerletuTagok() {
+
+        FilteredList<TagData> filter = new FilteredList<>(tagTablazatAdatok, tagok -> true);
+
+        filter.setPredicate(tag -> {
+            if (tag.getTagNeme().toString().contains("Nő")) {
+                return true;
+            }
+            return false;
+        });
+        logolo.info("Lejárt bérletű tagok mutatása.");
+        tagokTabla.setItems(filter);
+    }
+
+    @FXML
+    public void aktivBerletuTagok() {
+        LocalDate a = LocalDate.of(2017, 3, 5);
+
+
+        FilteredList<TagData> filter = new FilteredList<>(tagTablazatAdatok, tagok -> true);
+
+        filter.setPredicate(tag -> {
+            if (!tag.getBerletLejaratiIdeje().toString().contains(a.toString())) {
+                return true;
+            }
+            return false;
+        });
+        logolo.info("Aktív bérletes tagok mutatása.");
+        tagokTabla.setItems(filter);
+    }
+
+    @FXML
+    public void osszesTagKivalasztas() {
+        osszesTag();
+    }
+
+    public boolean kijeletkezesMegerositesFelulet(String cim, String fejlec, String tartalom, Alert.AlertType alertType) {
         logolo.info("Kijeletkezés megerősítrése ablak.");
         final Alert alert = new Alert(alertType);
-        alert.setTitle(title);
-        alert.setHeaderText(header);
-        alert.setContentText(content);
+        alert.setTitle(cim);
+        alert.setHeaderText(fejlec);
+        alert.setContentText(tartalom);
+
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
         stage.getIcons().add(FeluletBetoltese.ikon);
         alert.getButtonTypes().clear();
@@ -247,34 +296,58 @@ public class KondiBazisFoAblakKezelo implements Initializable {
                             konditeremTagVo.getBerletLejaratiIdeje()
                     )
             );
-            logolo.debug("Adat: " + tagTablazatAdatok.get(tagTablazatAdatok.size()-1));
+            logolo.debug("Adat: " + tagTablazatAdatok.get(tagTablazatAdatok.size() - 1));
         }
-        LocalDate a = LocalDate.of(2017, 3, 5);
 
-        for (KonditeremTagVo konditeremTagVo : konditerem_tagjai) {
-
-            System.out.println("####################################################################################");
-            System.out.println(konditeremTagVo.getBerletLejaratiIdeje());
-            System.out.println(LocalDate.now());
-            System.out.println(a.toString());
-            System.out.println("####################################################################################");
-
-            if (konditeremTagVo.getBerletLejaratiIdeje().equals(a)) {
-                System.out.println("####################################################################################");
-                lejart = true;
-            }
-
-        }
-        System.out.println("####################################################################################");
-        System.out.println("####################################################################################");
-        System.out.println();
-        System.out.println("####################################################################################");
+        osszesTag();
+//        LocalDate a = LocalDate.of(2017, 3, 5);
+//
+//        for (KonditeremTagVo konditeremTagVo : konditerem_tagjai) {
+//
+//            System.out.println("####################################################################################");
+//            System.out.println(konditeremTagVo.getBerletLejaratiIdeje());
+//            System.out.println(LocalDate.now());
+//            System.out.println(a.toString());
+//            System.out.println("####################################################################################");
+//
+//            if (konditeremTagVo.getBerletLejaratiIdeje().equals(a)) {
+//                System.out.println("####################################################################################");
+//                lejart = true;
+//            }
+//
+//        }
 
 
     }
-//		if(lejart = true) {
-//            setStyle("-fx-background-color: RED ;");
-//        }
+
+    public void osszesTag() {
+
+        osszesTagGomb.setSelected(true);
+
+        nevOszlop.setCellValueFactory(celldata -> celldata.getValue().getTagNeveProperty());
+
+        vezeteknevOszlop.setCellValueFactory(celldata -> celldata.getValue().getTagVezetekneveProperty());
+
+        keresztnevOszlop.setCellValueFactory(celldata -> celldata.getValue().getTagKeresztneveProperty());
+
+        nemOszlop.setCellValueFactory(celldata -> celldata.getValue().getTagNemeProperty());
+
+        korOszlop.setCellValueFactory(celldata -> celldata.getValue().getTagKoraProperty());
+
+        berletVasarlasOszlop.setCellValueFactory(celldata -> celldata.getValue().getBerletVasarlasIdejeProperty());
+
+        berletLejrataOszlop.setCellValueFactory(celldata -> celldata.getValue().getBerletLejaratiIdejeProperty());
+
+        berletNeveOszlop.setCellValueFactory(celldata -> celldata.getValue().getVasaroltBerletNeveProperty());
+
+        logolo.debug("Összes tag megjelenítése.");
+
+        tagokTabla.setItems(tagTablazatAdatok);
+    }
+
+    public void tagModositasTabGombElrejtes() {
+           tagModositas.setDisable(true);
+    }
 
     public KonditeremVo getBejelentkezettKonditerem() {
         return bejelentkezettKonditerem;

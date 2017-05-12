@@ -2,7 +2,6 @@
 package hu.unideb.inf.kondibazis.ui.kezelo;
 
 import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremSzolgaltatas;
-import hu.unideb.inf.kondibazis.szolg.kontener.SzovegTartalom;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremVo;
 import hu.unideb.inf.kondibazis.ui.felulet.FeluletBetoltese;
 import hu.unideb.inf.kondibazis.ui.main.Inditas;
@@ -56,7 +55,7 @@ public class BejelentkezoKezelo implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        logolo.info(SzovegTartalom.BEJELETKEZO_FELLULET_INDITAS_LOG);
+        logolo.info("Elindult a bejeletkező felület.");
         bejelentkezoUzenet.setFill(Color.GREEN);
         bejelentkezoUzenet.setText(KonditeremElerhetosegKezelo.getBejelentkezesUzenet());
         felhasznalonevBevitel.setText(KonditeremElerhetosegKezelo.getFelhasznalo());
@@ -64,12 +63,13 @@ public class BejelentkezoKezelo implements Initializable {
 
     @FXML
     public void bejelentkezes(ActionEvent event) throws Exception {
-        logolo.debug(SzovegTartalom.BEJELETKEZO_FELULET_GOMB_LOG);
+        logolo.debug("Bejeletkezés gomb megnyomva!");
         KonditeremVo konditerem = konditeremSzolgaltatas.keresFelhasznalonevet(felhasznalonevBevitel.getText());
 
         if (konditerem == null) {
             bejelentkezoUzenet.setFill(Color.RED);
             bejelentkezoUzenet.setText("Nincs ilyen nevű felhasználó!");
+            logolo.debug("A felhasználó nem létezik " + felhasznalonevBevitel.getText());
             felhasznalonevJoRossz.setImage(FeluletBetoltese.rosszBeirt);
             jelszoJoRossz.setImage(FeluletBetoltese.rosszBeirt);
             felhasznalonevBevitel.clear();
@@ -79,15 +79,15 @@ public class BejelentkezoKezelo implements Initializable {
                 bejelentkezettKonditerem = konditerem;
                 setKonditeremNeve(konditerem.getKonditeremNeve());
                 FeluletBetoltese.FoAblakFelulet(event);
-                logolo.debug(SzovegTartalom.BEJELENTKEZO_FELULET_FELHAZSNALO_HELYES + felhasznalonevBevitel.getText());
+                logolo.debug("A felhasználó sikeresen bejelentkezett: " + felhasznalonevBevitel.getText());
 
             } else {
                 bejelentkezoUzenet.setFill(Color.RED);
-                bejelentkezoUzenet.setText(SzovegTartalom.BEJELETKEZO_FELULET_JELSZO);
+                bejelentkezoUzenet.setText("Helytelen jelszó!");
                 felhasznalonevJoRossz.setImage(FeluletBetoltese.joBeirt);
                 jelszoJoRossz.setImage(FeluletBetoltese.rosszBeirt);
                 jelszoBevitel.clear();
-                logolo.debug(SzovegTartalom.BEJELETKEZO_FELULET_JELSZO + " " + jelszoBevitel.getText());
+                logolo.debug("Helytelen jelszó!" + " " + jelszoBevitel.getText());
             }
         }
 
@@ -95,11 +95,13 @@ public class BejelentkezoKezelo implements Initializable {
 
     @FXML
     public void regisztralas(ActionEvent event) throws IOException {
+        logolo.debug("Regisztrálás felület indul.");
         FeluletBetoltese.RegisztralasiFelulet(event);
     }
 
     @FXML
     public void vissza(ActionEvent event) throws IOException {
+        logolo.debug("Indítása felület indul.");
         FeluletBetoltese.InditasiFelulet(Inditas.primaryStage);
     }
 

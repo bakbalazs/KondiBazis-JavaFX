@@ -5,7 +5,6 @@ import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremBerletSzolgaltatas;
 import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremSzolgaltatas;
 import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremTagSzolgaltatas;
 import hu.unideb.inf.kondibazis.szolg.interfaces.TelepulesekSzolgaltatas;
-import hu.unideb.inf.kondibazis.szolg.kontener.SzovegTartalom;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremBerletVo;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremTagVo;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremVo;
@@ -27,6 +26,8 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 import org.controlsfx.control.textfield.TextFields;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -43,6 +44,8 @@ import java.util.ResourceBundle;
 
 @Component
 public class TagHozzaadasaKezelo implements Initializable {
+
+    private static Logger logolo = LoggerFactory.getLogger(TagHozzaadasaKezelo.class);
 
     @Autowired
     private KonditeremSzolgaltatas konditeremSzolgaltatas;
@@ -143,6 +146,7 @@ public class TagHozzaadasaKezelo implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        logolo.debug("Tag hozzáadása felület elindítva.");
         kepMegjelenites.setImage(nincsKep);
         bejelentkezettKonditerem = foAblakKezelo.getBejelentkezettKonditerem();
         konditeremNeve.setText(foAblakKezelo.getBejelentkezettKonditerem().getKonditeremNeve());
@@ -173,7 +177,7 @@ public class TagHozzaadasaKezelo implements Initializable {
 //                System.out.println("#####################################################################################################################");
 //            }
         }
-        ArrayList<String> telepNev = removeDuplicates(telepulesNevek);
+        ArrayList<String> telepNev = duplakTorlese(telepulesNevek);
 
         TextFields.bindAutoCompletion(varosNevBevitel, telepNev);
 
@@ -181,6 +185,7 @@ public class TagHozzaadasaKezelo implements Initializable {
 
     @FXML
     public void tallozas(ActionEvent event) throws IOException {
+        logolo.info("Tallózás gombra kattintva.");
         kepValaszto.getExtensionFilters().addAll(new ExtensionFilter("Image Files (*.png , *.jpg)", "*.png", "*.jpg"));
         kivalasztottKep = kepValaszto.showOpenDialog(null);
 
@@ -193,6 +198,7 @@ public class TagHozzaadasaKezelo implements Initializable {
 
             kepMegjelenites.setImage(image);
             vanKep = true;
+            logolo.debug("A kiválasztott kép beállítva.");
             tallozasGomb.setText("Módosítás");
 
         } else {
@@ -201,12 +207,14 @@ public class TagHozzaadasaKezelo implements Initializable {
             kepMegjelenites.setImage(nincsKep);
             vanKep = false;
             tallozasGomb.setText("Tallózás");
+            logolo.debug("Nincs kép kiválasztva, a NincsKep kép lesz berakva");
         }
 
     }
 
     @FXML
     public void kepenTallozas(ActionEvent event) throws IOException {
+        logolo.info("Képre kattintva a tallózáshot.");
         kepValaszto.getExtensionFilters().addAll(new ExtensionFilter("Image Files (*.png , *.jpg)", "*.png", "*.jpg"));
         kivalasztottKep = kepValaszto.showOpenDialog(null);
 
@@ -218,6 +226,7 @@ public class TagHozzaadasaKezelo implements Initializable {
             fileInputStream.close();
 
             kepMegjelenites.setImage(image);
+            logolo.debug("A kiválasztott kép beállítva.");
             tallozasGomb.setText("Módosítás");
             vanKep = true;
         } else {
@@ -227,11 +236,14 @@ public class TagHozzaadasaKezelo implements Initializable {
             vanKep = false;
             kepMegjelenites.setImage(nincsKep);
             tallozasGomb.setText("Tallózás");
+            logolo.debug("Nincs kép kiválasztva, a NincsKep kép lesz berakva");
+
         }
     }
 
     @FXML
     public void kepTorlese(ActionEvent event) {
+        logolo.debug("Kép törlésére kattintva.\n Nincs kép kép berakva.");
         kepMegjelenites.setImage(nincsKep);
         tallozasGomb.setText("Tallózás");
         vanKep = false;
@@ -239,6 +251,7 @@ public class TagHozzaadasaKezelo implements Initializable {
 
     @FXML
     public void hozzaadas(ActionEvent event) throws IOException {
+        logolo.info("Hozzáadás gombra kattintva.");
 
         boolean mehet = false;
         boolean kotelezo = false;
@@ -301,7 +314,7 @@ public class TagHozzaadasaKezelo implements Initializable {
 
         if (kotelezo == true) {
             tagHozzaadasUzenet.setFill(Color.RED);
-            tagHozzaadasUzenet.setText(SzovegTartalom.Tag_Csillaggal_jelolt);
+            tagHozzaadasUzenet.setText("A csilaggal megjelölt adatok megadása kötelező!");
             mehet = false;
         } else if (mehet) {
 
@@ -351,18 +364,19 @@ public class TagHozzaadasaKezelo implements Initializable {
             konditeremTagSzolgaltatas.frissitKonditeremTagot(letezo);
 
             Image pipa = new Image("/kepek/pipaErtesites.png", 85.0, 85.0, true, true);
-            Notifications n = Notifications.create().title("Tag Hozzáadása").text("A tag sikeresen hozzáadva!")
+            Notifications ertesites = Notifications.create().title("Tag Hozzáadása").text("A tag sikeresen hozzáadva!")
                     .graphic(new ImageView(pipa)).hideAfter(Duration.seconds(5)).position(Pos.BOTTOM_RIGHT)
                     .onAction(new EventHandler<ActionEvent>() {
 
                         @Override
                         public void handle(ActionEvent event) {
-                            System.out.println("Értesítésre kattintottak");
+                           logolo.info("Az értesítésre kattintottak.");
                         }
                     });
+            logolo.info("Tag sikeresen hozzáadava : " + vezeteknevBevitel.getText() + " " + keresztnevBevitel.getText() +  "névvel.");
             foAblakKezelo.adatFrissites();
             ((Stage) megseGomb.getScene().getWindow()).close();
-            n.show();
+            ertesites.show();
 
         }
     }
@@ -395,19 +409,19 @@ public class TagHozzaadasaKezelo implements Initializable {
         return kep;
     }
 
-    private ArrayList<String> removeDuplicates(ArrayList<String> list) {
-        ArrayList<String> result = new ArrayList<>();
+    private ArrayList<String> duplakTorlese(ArrayList<String> lista) {
+        ArrayList<String> eredmeny = new ArrayList<>();
 
         HashSet<String> set = new HashSet<>();
 
-        for (String item : list) {
+        for (String eleme : lista) {
 
-            if (!set.contains(item)) {
-                result.add(item);
-                set.add(item);
+            if (!set.contains(eleme)) {
+                eredmeny.add(eleme);
+                set.add(eleme);
             }
         }
-        return result;
+        return eredmeny;
     }
 
     public KonditeremVo getBejelentkezettKonditerem() {
