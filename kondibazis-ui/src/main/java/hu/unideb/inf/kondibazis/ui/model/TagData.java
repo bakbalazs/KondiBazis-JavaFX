@@ -7,7 +7,7 @@ import javafx.beans.property.StringProperty;
 
 public class TagData {
 
-	// private long id;
+	 private long id;
 	private StringProperty tagNeve;
 	private StringProperty tagVezetekneve;
 	private StringProperty tagKeresztneve;
@@ -23,7 +23,8 @@ public class TagData {
 	}
 
 	//
-	public TagData(String tagNeve, String tagVezetekneve, String tagKeresztneve ,String tagNeme, Integer tagKora,String vasaroltBerletNeve, LocalDate berletVasarlasideje , LocalDate berletLejaratiIdeje) {
+	public TagData(long id, String tagNeve, String tagVezetekneve, String tagKeresztneve ,String tagNeme, Integer tagKora,String vasaroltBerletNeve, LocalDate berletVasarlasideje , LocalDate berletLejaratiIdeje) {
+		this.setId(id);
 		this.tagNeve = new SimpleStringProperty(tagNeve);
 		this.tagVezetekneve = new SimpleStringProperty(tagVezetekneve);
 		this.tagKeresztneve = new SimpleStringProperty(tagKeresztneve);
@@ -135,5 +136,27 @@ public class TagData {
 	public StringProperty getVasaroltBerletNeveProperty() {
 		return vasaroltBerletNeve;
 	}
-	
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	@Override
+	public String toString() {
+		return "TagData{" +
+				"id=" + id +
+				", tagNeve=" + tagNeve +
+				", tagVezetekneve=" + tagVezetekneve +
+				", tagKeresztneve=" + tagKeresztneve +
+				", tagNeme=" + tagNeme +
+				", tagKora=" + tagKora +
+				", berletVasarlasIdeje=" + berletVasarlasIdeje +
+				", berletLejaratiIdeje=" + berletLejaratiIdeje +
+				", vasaroltBerletNeve=" + vasaroltBerletNeve +
+				'}';
+	}
 }

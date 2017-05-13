@@ -49,9 +49,9 @@
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text=" adatok" GridPane.columnIndex="1" GridPane.halignment="LEFT" />
                </children>
             </GridPane>
-            <TabPane tabClosingPolicy="UNAVAILABLE" GridPane.columnIndex="1">
+            <TabPane fx:id="tabPane" tabClosingPolicy="UNAVAILABLE" GridPane.columnIndex="1">
               <tabs>
-                <Tab fx:id="szures" text="Szűrés és keresés">
+                <Tab fx:id="szuresEskereses" text="Szűrés és keresés">
                      <content>
                         <GridPane>
                           <columnConstraints>
@@ -67,23 +67,35 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.rowIndex="1" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.rowIndex="2" />
-                              <RadioButton fx:id="osszesTagGomb" mnemonicParsing="false" onAction="#osszesTagKivalasztas" text="Összes Tag" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <RadioButton mnemonicParsing="false" onAction="#aktivBerletuTagok" text="Aktív bérletű tagok" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                              <RadioButton mnemonicParsing="false" onAction="#lejartBerletuTagok" text="Lejárt Bérletű tagok" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                              <ChoiceBox prefHeight="25.0" prefWidth="122.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <TextField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="123.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Szűrés bérletre:" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Keresés:" GridPane.rowIndex="2" />
+                              <RadioButton fx:id="osszesTagGomb" mnemonicParsing="false" onAction="#osszestagBerlet" text="Összes Tag" GridPane.columnIndex="1">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="berletSzures" />
+                                 </toggleGroup></RadioButton>
+                              <RadioButton fx:id="aktivberletGomb" mnemonicParsing="false" onAction="#aktivBerlet" text="Aktív bérletű tagok" toggleGroup="$berletSzures" GridPane.columnIndex="2" />
+                              <RadioButton fx:id="lejertberletGomb" mnemonicParsing="false" onAction="#lejartBerlet" text="Lejárt Bérletű tagok" toggleGroup="$berletSzures" GridPane.columnIndex="3" />
+                              <TextField fx:id="keresesszovegBevitel" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="123.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                              <ComboBox fx:id="valaszt" prefHeight="25.0" prefWidth="124.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Szűrés nemre:" GridPane.rowIndex="1" />
+                              <RadioButton fx:id="ferfiGomb" mnemonicParsing="false" onAction="#ferfiTagok" text="Férfiak" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="nemSzures" />
+                                 </toggleGroup>
+                              </RadioButton>
+                              <RadioButton fx:id="noGomb" mnemonicParsing="false" onAction="#noTagok" text="Nők" toggleGroup="$nemSzures" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                              <RadioButton fx:id="osszesTagNemGomb" mnemonicParsing="false" onAction="#osszestagNem" text="Összes Tag" toggleGroup="$nemSzures" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                            </children>
                         </GridPane>
                      </content>
                 </Tab>
-                <Tab fx:id="tagModositas" text="Tag módosítása">
+                <Tab fx:id="tagModositas" closable="false" text="Tag módosítása">
                      <content>
                         <GridPane alignment="CENTER">
                           <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="442.0" minWidth="10.0" prefWidth="437.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="288.0" minWidth="10.0" prefWidth="150.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="516.0" minWidth="10.0" prefWidth="426.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="446.0" minWidth="1.0" prefWidth="12.0" />
+                            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="288.0" minWidth="10.0" prefWidth="149.0" />
                           </columnConstraints>
                           <rowConstraints>
                             <RowConstraints maxHeight="159.0" minHeight="10.0" prefHeight="154.0" vgrow="SOMETIMES" />
@@ -100,9 +112,9 @@
                                     <Insets right="60.0" />
                                  </GridPane.margin>
                               </Button>
-                              <Button mnemonicParsing="false" text="Tallozás" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" />
-                              <Button mnemonicParsing="false" text="Kép törlése" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
-                              <GridPane alignment="CENTER">
+                              <Button mnemonicParsing="false" text="Tallozás" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="1" />
+                              <Button mnemonicParsing="false" text="Kép törlése" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+                              <GridPane alignment="CENTER" prefHeight="154.0" prefWidth="458.0">
                                 <columnConstraints>
                                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="99.0" minWidth="10.0" prefWidth="84.0" />
                                   <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="156.0" minWidth="10.0" prefWidth="155.0" />
@@ -123,9 +135,9 @@
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Születési dátum:" GridPane.rowIndex="3" />
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bérlet neve:" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Vásárolt bérlet neve és dátuma:" wrappingWidth="89.359375" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                                    <TextField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="128.0" GridPane.columnIndex="1" />
-                                    <TextField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="128.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <DatePicker prefHeight="25.0" prefWidth="123.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <TextField fx:id="vezeteknevModosit" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="128.0" GridPane.columnIndex="1" />
+                                    <TextField fx:id="keresztnevModosit" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="128.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <DatePicker fx:id="szuletesiDatumModosit" prefHeight="25.0" prefWidth="123.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
                                     <ChoiceBox prefHeight="25.0" prefWidth="116.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
                                     <RadioButton mnemonicParsing="false" text="Nő" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2">
@@ -140,7 +152,7 @@
                                     </RadioButton>
                                  </children>
                               </GridPane>
-                              <ImageView fitHeight="157.0" fitWidth="151.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
+                              <ImageView fitHeight="134.0" fitWidth="149.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" />
                            </children>
                         </GridPane>
                      </content>
@@ -155,6 +167,7 @@
         <menus>
           <Menu mnemonicParsing="false" text="Fájl">
             <items>
+                  <CheckMenuItem fx:id="szures" mnemonicParsing="false" onAction="#szuresKereses" text="Szűrés és keresés" />
               <MenuItem mnemonicParsing="false" onAction="#kijelentkezes" text="Kijeletkezés" />
                   <MenuItem mnemonicParsing="false" onAction="#bezaras" text="Bezarás" />
             </items>

@@ -11,6 +11,8 @@ import hu.unideb.inf.kondibazis.ui.felulet.SpringFxmlLoader;
 import hu.unideb.inf.kondibazis.ui.main.Inditas;
 import hu.unideb.inf.kondibazis.ui.model.TagData;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -33,6 +35,7 @@ import org.springframework.stereotype.Component;
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -63,6 +66,22 @@ public class KondiBazisFoAblakKezelo implements Initializable {
     private Text regisztralasDatuma;
 
     private ObservableList<TagData> tagTablazatAdatok;
+
+    private FilteredList<TagData> lejartberletuTagok;
+
+    private FilteredList<TagData> aktivberletuTagok;
+
+    private FilteredList<TagData> lejartberletesNok;
+
+    private FilteredList<TagData> aktivberletesNok;
+
+    private FilteredList<TagData> noiTagok;
+
+    private FilteredList<TagData> lejartberletesFerfiak;
+
+    private FilteredList<TagData> aktivberletesFerfiak;
+
+    private FilteredList<TagData> ferfiTagok;
 
     @FXML
     private TableView<TagData> tagokTabla;
@@ -101,17 +120,63 @@ public class KondiBazisFoAblakKezelo implements Initializable {
     private RadioButton osszesTagGomb;
 
     @FXML
+    private RadioButton osszesTagNemGomb;
+
+    @FXML
+    private RadioButton lejertberletGomb;
+
+    @FXML
+    private RadioButton aktivberletGomb;
+
+    @FXML
+    private RadioButton ferfiGomb;
+
+    @FXML
+    private RadioButton noGomb;
+
+    @FXML
     private Tab szuresEskereses;
 
     @FXML
     private Tab tagModositas;
 
+    @FXML
+    private TextField keresesszovegBevitel;
+
     private boolean lejart = false;
+
+    @FXML
+    private ComboBox<String> valaszt;
+
+    @FXML
+    private CheckMenuItem szures;
+
+    private KonditeremTagVo kivalasztottTag;
+
+    @FXML
+    private TabPane tabPane;
+
+    @FXML
+    private TextField vezeteknevModosit;
+
+    @FXML
+    private TextField keresztnevModosit;
+
+    @FXML
+    private DatePicker szuletesiDatumModosit;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        tagModositasTabGombElrejtes();
+        szuresEskereses.setDisable(true);
+
+
+        osszesTagGomb.setSelected(true);
+        osszesTagNemGomb.setSelected(true);
+
+        keresesszovegBevitel.setVisible(false);
+
+        tagModositasElrejtes();
 
         bejelentkezettKonditerem = bejelentkezoKezelo.getBejelentkezettKonditerem();
         tagTablazatAdatok = FXCollections.observableArrayList();
@@ -122,6 +187,132 @@ public class KondiBazisFoAblakKezelo implements Initializable {
         konditeremNeve.setText(bejelentkezoKezelo.getBejelentkezettKonditerem().getKonditeremNeve());
         regisztralasDatuma.setText(bejelentkezoKezelo.getBejelentkezettKonditerem().getRegisztralasDatuma().toString());
 
+
+
+        tagokTabla.getSelectionModel()
+                .selectedItemProperty()
+                .addListener( (observable, oldValue, newValue) -> tagSzerkesztes(newValue) );
+
+
+        valaszt.getItems().add("Név");
+        valaszt.getItems().add("Bérlet neve");
+
+        FilteredList<TagData> kereses = new FilteredList<TagData>(tagTablazatAdatok, p -> true);
+
+
+        valaszt.valueProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue ov, String t, String t1) {
+                if (t1.equals("Név")) {
+                    keresesszovegBevitel.setVisible(true);
+                    keresesszovegBevitel.textProperty().addListener((observable, oldValue, newValue) -> {
+                        kereses.setPredicate(tagData -> {
+                            if (newValue == null || newValue.isEmpty()) {
+                                return true;
+                            }
+
+                            String lowerCaseFilter = newValue.toLowerCase();
+                            if (tagData.getTagNeve().toString().toLowerCase().contains(lowerCaseFilter)) {
+                                return true;
+                            }
+
+
+                            return false;
+                        });
+                    });
+                    tagokTabla.setItems(kereses);
+                } else if (t1.equals("Bérlet neve")) {
+                    keresesszovegBevitel.setVisible(true);
+                    keresesszovegBevitel.textProperty().addListener((observable, oldValue, newValue) -> {
+                        kereses.setPredicate(tagData -> {
+                            if (newValue == null || newValue.isEmpty()) {
+                                return true;
+                            }
+
+                            String lowerCaseFilter = newValue.toLowerCase();
+                            if (tagData.getVasaroltBerletNeve().toString().toLowerCase().contains(lowerCaseFilter)) {
+                                return true;
+                            }
+
+
+                            return false;
+                        });
+                    });
+                    tagokTabla.setItems(kereses);
+                }
+            }
+        });
+
+        szuresek();
+
+    }
+
+
+
+    @FXML
+    public void osszestagBerlet(ActionEvent event) {
+        if (osszesTagGomb.isSelected() && osszesTagNemGomb.isSelected()) {
+            tagokTabla.setItems(tagTablazatAdatok);
+        } else if (osszesTagGomb.isSelected() && ferfiGomb.isSelected()) {
+            tagokTabla.setItems(ferfiTagok);
+        } else if (osszesTagGomb.isSelected() && noGomb.isSelected()) {
+            tagokTabla.setItems(noiTagok);
+        }
+    }
+
+    @FXML
+    public void osszestagNem(ActionEvent event) {
+        if (osszesTagNemGomb.isSelected() && osszesTagGomb.isSelected()) {
+            tagokTabla.setItems(tagTablazatAdatok);
+        } else if (osszesTagNemGomb.isSelected() && aktivberletGomb.isSelected()) {
+            tagokTabla.setItems(aktivberletuTagok);
+        } else if (osszesTagNemGomb.isSelected() && lejertberletGomb.isSelected()) {
+            tagokTabla.setItems(lejartberletuTagok);
+        }
+    }
+
+    @FXML
+    public void aktivBerlet(ActionEvent event) {
+        if (aktivberletGomb.isSelected() && osszesTagNemGomb.isSelected()) {
+            tagokTabla.setItems(aktivberletuTagok);
+        } else if (aktivberletGomb.isSelected() && ferfiGomb.isSelected()) {
+            tagokTabla.setItems(aktivberletesFerfiak);
+        } else if (aktivberletGomb.isSelected() && noGomb.isSelected()) {
+            tagokTabla.setItems(aktivberletesNok);
+        }
+    }
+
+    @FXML
+    public void lejartBerlet(ActionEvent event) {
+        if (lejertberletGomb.isSelected() && osszesTagNemGomb.isSelected()) {
+            tagokTabla.setItems(lejartberletuTagok);
+        } else if (lejertberletGomb.isSelected() && ferfiGomb.isSelected()) {
+            tagokTabla.setItems(lejartberletesFerfiak);
+        } else if (lejertberletGomb.isSelected() && noGomb.isSelected()) {
+            tagokTabla.setItems(lejartberletesNok);
+        }
+    }
+
+    @FXML
+    public void noTagok(ActionEvent event) {
+        if (noGomb.isSelected() && aktivberletGomb.isSelected()) {
+            tagokTabla.setItems(aktivberletesNok);
+        } else if (noGomb.isSelected() && lejertberletGomb.isSelected()) {
+            tagokTabla.setItems(lejartberletesNok);
+        } else if (noGomb.isSelected() && osszesTagGomb.isSelected()) {
+            tagokTabla.setItems(noiTagok);
+        }
+    }
+
+    @FXML
+    public void ferfiTagok(ActionEvent event) {
+        if (ferfiGomb.isSelected() && aktivberletGomb.isSelected()) {
+            tagokTabla.setItems(aktivberletesFerfiak);
+        } else if (ferfiGomb.isSelected() && lejertberletGomb.isSelected()) {
+            tagokTabla.setItems(lejartberletesFerfiak);
+        } else if (ferfiGomb.isSelected() && osszesTagGomb.isSelected()) {
+            tagokTabla.setItems(ferfiTagok);
+        }
     }
 
     @FXML
@@ -146,6 +337,15 @@ public class KondiBazisFoAblakKezelo implements Initializable {
     public void tagHozzaadasa(ActionEvent event) {
         logolo.info("Tag Hozzáadása gombra kattintva.");
         FeluletBetoltese.TagHozzaadasaFelulet(event);
+    }
+
+    @FXML
+    public void szuresKereses(ActionEvent event) {
+        if (szures.isSelected()) {
+            szuresEskereses.setDisable(false);
+        } else {
+            szuresEskereses.setDisable(true);
+        }
     }
 
     @FXML
@@ -188,45 +388,7 @@ public class KondiBazisFoAblakKezelo implements Initializable {
         FeluletBetoltese.VarosStatisztikaFelulet(event);
     }
 
-
-    @FXML
-    public void lejartBerletuTagok() {
-
-        FilteredList<TagData> filter = new FilteredList<>(tagTablazatAdatok, tagok -> true);
-
-        filter.setPredicate(tag -> {
-            if (tag.getTagNeme().toString().contains("Nő")) {
-                return true;
-            }
-            return false;
-        });
-        logolo.info("Lejárt bérletű tagok mutatása.");
-        tagokTabla.setItems(filter);
-    }
-
-    @FXML
-    public void aktivBerletuTagok() {
-        LocalDate a = LocalDate.of(2017, 3, 5);
-
-
-        FilteredList<TagData> filter = new FilteredList<>(tagTablazatAdatok, tagok -> true);
-
-        filter.setPredicate(tag -> {
-            if (!tag.getBerletLejaratiIdeje().toString().contains(a.toString())) {
-                return true;
-            }
-            return false;
-        });
-        logolo.info("Aktív bérletes tagok mutatása.");
-        tagokTabla.setItems(filter);
-    }
-
-    @FXML
-    public void osszesTagKivalasztas() {
-        osszesTag();
-    }
-
-    public boolean kijeletkezesMegerositesFelulet(String cim, String fejlec, String tartalom, Alert.AlertType alertType) {
+    private boolean kijeletkezesMegerositesFelulet(String cim, String fejlec, String tartalom, Alert.AlertType alertType) {
         logolo.info("Kijeletkezés megerősítrése ablak.");
         final Alert alert = new Alert(alertType);
         alert.setTitle(cim);
@@ -260,9 +422,11 @@ public class KondiBazisFoAblakKezelo implements Initializable {
         if (konditeremBerletek.isEmpty()) {
             berletModositasGomb.setDisable(true);
             tagHozzaadasaGomb.setDisable(true);
+
         } else if (!konditeremBerletek.isEmpty()) {
             berletModositasGomb.setDisable(false);
             tagHozzaadasaGomb.setDisable(false);
+
         }
     }
 
@@ -286,6 +450,7 @@ public class KondiBazisFoAblakKezelo implements Initializable {
         for (KonditeremTagVo konditeremTagVo : konditerem_tagjai) {
 
             tagTablazatAdatok.add(new TagData(
+                            konditeremTagVo.getId(),
                             konditeremTagVo.getTagNeve(),
                             konditeremTagVo.getTagVezeteknev(),
                             konditeremTagVo.getTagKeresztnev(),
@@ -300,29 +465,10 @@ public class KondiBazisFoAblakKezelo implements Initializable {
         }
 
         osszesTag();
-//        LocalDate a = LocalDate.of(2017, 3, 5);
-//
-//        for (KonditeremTagVo konditeremTagVo : konditerem_tagjai) {
-//
-//            System.out.println("####################################################################################");
-//            System.out.println(konditeremTagVo.getBerletLejaratiIdeje());
-//            System.out.println(LocalDate.now());
-//            System.out.println(a.toString());
-//            System.out.println("####################################################################################");
-//
-//            if (konditeremTagVo.getBerletLejaratiIdeje().equals(a)) {
-//                System.out.println("####################################################################################");
-//                lejart = true;
-//            }
-//
-//        }
-
 
     }
 
-    public void osszesTag() {
-
-        osszesTagGomb.setSelected(true);
+    private void osszesTag() {
 
         nevOszlop.setCellValueFactory(celldata -> celldata.getValue().getTagNeveProperty());
 
@@ -345,8 +491,96 @@ public class KondiBazisFoAblakKezelo implements Initializable {
         tagokTabla.setItems(tagTablazatAdatok);
     }
 
-    public void tagModositasTabGombElrejtes() {
-           tagModositas.setDisable(true);
+
+    private void szuresek() {
+        LocalDate a = LocalDate.of(2017, 3, 7);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+        noiTagok = new FilteredList<>(tagTablazatAdatok, tagok -> true);
+        ferfiTagok = new FilteredList<>(tagTablazatAdatok, tagok -> true);
+
+        aktivberletuTagok = new FilteredList<>(tagTablazatAdatok, tagok -> true);
+        aktivberletesNok = new FilteredList<>(aktivberletuTagok, tagok -> true);
+        aktivberletesFerfiak = new FilteredList<>(aktivberletuTagok, tagok -> true);
+
+        lejartberletuTagok = new FilteredList<>(tagTablazatAdatok, tagok -> true);
+        lejartberletesNok = new FilteredList<>(lejartberletuTagok, tagok -> true);
+        lejartberletesFerfiak = new FilteredList<>(lejartberletuTagok, tagok -> true);
+
+        ferfiTagok.setPredicate(tag -> {
+            if (tag.getTagNeme().toString().contains("Férfi")) {
+                return true;
+            }
+            return false;
+        });
+
+        noiTagok.setPredicate(tag -> {
+            if (tag.getTagNeme().toString().contains("Nő")) {
+                return true;
+            }
+            return false;
+        });
+
+        aktivberletuTagok.setPredicate(tag -> {
+            if (LocalDate.parse(tag.getBerletLejaratiIdeje().getValue(), formatter).compareTo(a) == 0 || LocalDate.parse(tag.getBerletLejaratiIdeje().getValue(), formatter).compareTo(a) > 0) {
+                return true;
+            }
+            return false;
+        });
+
+        aktivberletesNok.setPredicate(tag -> {
+            if (tag.getTagNeme().toString().contains("Nő")) {
+                return true;
+            }
+            return false;
+        });
+
+        aktivberletesFerfiak.setPredicate(tag -> {
+            if (tag.getTagNeme().toString().contains("Férfi")) {
+                return true;
+            }
+            return false;
+        });
+
+        lejartberletuTagok.setPredicate(tag -> {
+            if (LocalDate.parse(tag.getBerletLejaratiIdeje().getValue(), formatter).compareTo(a) < 0 || LocalDate.parse(tag.getBerletLejaratiIdeje().getValue(), formatter).compareTo(a) == -1) {
+                return true;
+            } else {
+                return false;
+            }
+
+        });
+
+        lejartberletesNok.setPredicate(tag -> {
+            if (tag.getTagNeme().toString().contains("Nő")) {
+                return true;
+            }
+            return false;
+        });
+
+        lejartberletesFerfiak.setPredicate(tag -> {
+            if (tag.getTagNeme().toString().contains("Férfi")) {
+                return true;
+            }
+            return false;
+        });
+    }
+
+    private void tagSzerkesztes(TagData tData) {
+        if(tData != null) {
+            kivalasztottTag = konditeremtagSzolgaltatas.keresTagot(tData.getId());
+            
+            tagModositas.setDisable(false);
+            tabPane.getSelectionModel().select(tagModositas);
+
+            vezeteknevModosit.setText(tData.getTagVezetekneve().getValue());
+            keresztnevModosit.setText(tData.getTagKeresztneve().getValue());
+
+        }
+    }
+
+    public void tagModositasElrejtes() {
+        tagModositas.setDisable(true);
     }
 
     public KonditeremVo getBejelentkezettKonditerem() {

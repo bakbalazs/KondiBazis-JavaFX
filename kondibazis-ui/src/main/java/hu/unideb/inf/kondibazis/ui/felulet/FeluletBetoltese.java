@@ -128,7 +128,7 @@ public final class FeluletBetoltese {
 		Parent parent = (Parent) loader.load("/fxml/VarosStatisztika.fxml");
 		Scene scene = new Scene(parent);
 		Stage stage = new Stage();
-		stage.setTitle("Város statisztika  - " + alkalmazasNeve + BejelentkezoKezelo.getKonditeremNeve());
+		stage.setTitle("Város statisztika  - " + alkalmazasNeve  +" - "+ BejelentkezoKezelo.getKonditeremNeve());
 		stage.setScene(scene);
 		stage.centerOnScreen();
 		stage.getIcons().add(ikon);

@@ -1,6 +1,8 @@
 // CHECKSTYLE:OFF
 package hu.unideb.inf.kondibazis.ui.kezelo;
 
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
 import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremSzolgaltatas;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremVo;
 import hu.unideb.inf.kondibazis.ui.felulet.FeluletBetoltese;
@@ -8,9 +10,6 @@ import hu.unideb.inf.kondibazis.ui.main.Inditas;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
@@ -36,16 +35,13 @@ public class BejelentkezoKezelo implements Initializable {
     private static String konditeremNeve;
 
     @FXML
-    private TextField felhasznalonevBevitel;
+    private JFXTextField felhasznalonevBevitel;
 
     @FXML
-    private PasswordField jelszoBevitel;
+    private JFXPasswordField jelszoBevitel;
 
     @FXML
     private Text bejelentkezoUzenet;
-
-    @FXML
-    private Button visszaGomb;
 
     @FXML
     private ImageView felhasznalonevJoRossz;
@@ -80,7 +76,6 @@ public class BejelentkezoKezelo implements Initializable {
                 setKonditeremNeve(konditerem.getKonditeremNeve());
                 FeluletBetoltese.FoAblakFelulet(event);
                 logolo.debug("A felhasználó sikeresen bejelentkezett: " + felhasznalonevBevitel.getText());
-
             } else {
                 bejelentkezoUzenet.setFill(Color.RED);
                 bejelentkezoUzenet.setText("Helytelen jelszó!");
