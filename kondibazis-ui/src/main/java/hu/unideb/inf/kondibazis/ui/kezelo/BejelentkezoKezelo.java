@@ -10,6 +10,7 @@ import hu.unideb.inf.kondibazis.ui.main.Inditas;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
@@ -49,9 +50,13 @@ public class BejelentkezoKezelo implements Initializable {
     @FXML
     private ImageView jelszoJoRossz;
 
+    @FXML
+    private ImageView visszaGombKep;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         logolo.info("Elindult a bejeletkező felület.");
+        visszaGombKep.setImage(FeluletBetoltese.visszaGomb);
         bejelentkezoUzenet.setFill(Color.GREEN);
         bejelentkezoUzenet.setText(KonditeremElerhetosegKezelo.getBejelentkezesUzenet());
         felhasznalonevBevitel.setText(KonditeremElerhetosegKezelo.getFelhasznalo());

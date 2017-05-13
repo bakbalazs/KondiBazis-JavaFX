@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 public final class FeluletBetoltese {
 
 	private static final SpringFxmlLoader loader = new SpringFxmlLoader();
-	private static final String visszaGomb = new String("/css/visszaGomb.css");
+//	private static final String visszaGomb = new String("/css/visszaGomb.css");
 
 	public static final String alkalmazasNeve = "KondiBázis";
 
@@ -20,6 +20,8 @@ public final class FeluletBetoltese {
 	public static final Image joBeirt = new Image("/kepek/pipa.png");
 
 	public static final Image rosszBeirt = new Image("/kepek/x.png");
+
+	public static final Image visszaGomb = new Image("/kepek/visszaGomb.png");
 
 	public static void InditasiFelulet(Stage primaryStage) {
 		Parent root = (Parent) loader.load("/fxml/InditasiKepernyoFelulet.fxml");
@@ -35,7 +37,6 @@ public final class FeluletBetoltese {
 	public static void BejelentkezoFelulet(ActionEvent event) {
 		Parent parent = (Parent) loader.load("/fxml/BejelentkezoFelulet.fxml");
 		Scene scene = new Scene(parent);
-		scene.getStylesheets().add(visszaGomb);
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		stage.setTitle("Bejelentkezés - " + alkalmazasNeve);
 		stage.setScene(scene);
@@ -45,7 +46,6 @@ public final class FeluletBetoltese {
 	public static void RegisztralasiFelulet(ActionEvent event) {
 		Parent parent = (Parent) loader.load("/fxml/RegisztraciosFelulet.fxml");
 		Scene scene = new Scene(parent);
-		scene.getStylesheets().add(visszaGomb);
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		stage.setTitle("Terem Regisztrálása - " + alkalmazasNeve);
 		stage.setScene(scene);
@@ -64,7 +64,6 @@ public final class FeluletBetoltese {
 	public static void NevjegyFelulet(ActionEvent event) {
 		Parent root = (Parent) loader.load("/fxml/NevjegyFelulet.fxml");
 		Scene scene = new Scene(root);
-		scene.getStylesheets().add(visszaGomb);
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		stage.setTitle("Névjegy - " + alkalmazasNeve);
 		stage.setScene(scene);

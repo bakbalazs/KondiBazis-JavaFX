@@ -1,14 +1,9 @@
 // CHECKSTYLE:OFF
 package hu.unideb.inf.kondibazis.ui.kezelo;
 
-import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremBerletSzolgaltatas;
-import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremSzolgaltatas;
-import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremTagSzolgaltatas;
-import hu.unideb.inf.kondibazis.szolg.interfaces.TelepulesekSzolgaltatas;
-import hu.unideb.inf.kondibazis.szolg.vo.KonditeremBerletVo;
-import hu.unideb.inf.kondibazis.szolg.vo.KonditeremTagVo;
-import hu.unideb.inf.kondibazis.szolg.vo.KonditeremVo;
-import hu.unideb.inf.kondibazis.szolg.vo.TelepulesekVo;
+import hu.unideb.inf.kondibazis.db.entitas.KonditeremTagKepe;
+import hu.unideb.inf.kondibazis.szolg.interfaces.*;
+import hu.unideb.inf.kondibazis.szolg.vo.*;
 import hu.unideb.inf.kondibazis.ui.felulet.FeluletBetoltese;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -57,6 +52,9 @@ public class TagHozzaadasaKezelo implements Initializable {
     private KonditeremTagSzolgaltatas konditeremTagSzolgaltatas;
 
     @Autowired
+    private KonditeremTagKepeSzolgaltatas konditeremTagKepeSzolgaltatas;
+
+    @Autowired
     private TelepulesekSzolgaltatas telepulesekSzolgaltatas;
 
     @Autowired
@@ -100,9 +98,6 @@ public class TagHozzaadasaKezelo implements Initializable {
     private TextField varosNevBevitel;
 
     @FXML
-    private TextField megyeNevBevitel;
-
-    @FXML
     private Text beiratkozasBevitel;
 
     @FXML
@@ -139,10 +134,9 @@ public class TagHozzaadasaKezelo implements Initializable {
     private ImageView varosEllenoriz;
 
     @FXML
-    private ImageView megyeEllenoriz;
-
-    @FXML
     private ImageView berletvalasztasEllenoriz;
+
+    private String megyeNev;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -166,16 +160,13 @@ public class TagHozzaadasaKezelo implements Initializable {
         ArrayList<String> telepulesNevek = new ArrayList<>();
 
 
-
         for (TelepulesekVo telep : telepulesek) {
             telepulesNevek.add(telep.getTelepulesnev());
-//            if(varosNevBevitel.getText().equals(telep.getTelepulesnev())) {
-//               System.out.println("#####################################################################################################################");
-//                System.out.println("#####################################################################################################################");
-//                System.out.println("#####################################################################################################################");
-//                System.out.println(telep.getMegye());
-//                System.out.println("#####################################################################################################################");
-//            }
+            varosNevBevitel.textProperty().addListener((observable, oldValue, newValue) -> {
+                if (newValue.equals(telep.getTelepulesnev())) {
+                    megyeNev = telep.getMegye();
+                }
+            });
         }
         ArrayList<String> telepNev = duplakTorlese(telepulesNevek);
 
@@ -319,6 +310,7 @@ public class TagHozzaadasaKezelo implements Initializable {
         } else if (mehet) {
 
             KonditeremTagVo ujTag = new KonditeremTagVo();
+            KonditeremTagKepeVo ujTagKepe = new KonditeremTagKepeVo();
             ujTag.setTagNeve(vezeteknevBevitel.getText() + " " + keresztnevBevitel.getText());
             ujTag.setTagVezeteknev(vezeteknevBevitel.getText());
             ujTag.setTagKeresztnev(keresztnevBevitel.getText());
@@ -345,13 +337,14 @@ public class TagHozzaadasaKezelo implements Initializable {
             }
 
             ujTag.setTagVarosa(varosNevBevitel.getText());
+            ujTag.setTagMegyeje(megyeNev);
 
 
-//			if (vanKep == true) {
-//				ujTag.setTagKep(kepByte);
-//			} else {
-//				ujTag.setTagKep(nincsKep());
-//			}
+            if (vanKep == true) {
+                ujTagKepe.setTagKep(kepByte);
+            } else {
+                ujTagKepe.setTagKep(nincsKep());
+            }
 
             KonditeremTagVo letezo = konditeremTagSzolgaltatas.leterehozTagot(ujTag);
 
@@ -363,6 +356,10 @@ public class TagHozzaadasaKezelo implements Initializable {
 
             konditeremTagSzolgaltatas.frissitKonditeremTagot(letezo);
 
+            ujTagKepe.setKonditeremTag(letezo);
+            konditeremTagKepeSzolgaltatas.leterehozTagKepet(ujTagKepe);
+
+
             Image pipa = new Image("/kepek/pipaErtesites.png", 85.0, 85.0, true, true);
             Notifications ertesites = Notifications.create().title("Tag Hozzáadása").text("A tag sikeresen hozzáadva!")
                     .graphic(new ImageView(pipa)).hideAfter(Duration.seconds(5)).position(Pos.BOTTOM_RIGHT)
@@ -370,10 +367,10 @@ public class TagHozzaadasaKezelo implements Initializable {
 
                         @Override
                         public void handle(ActionEvent event) {
-                           logolo.info("Az értesítésre kattintottak.");
+                            logolo.info("Az értesítésre kattintottak.");
                         }
                     });
-            logolo.info("Tag sikeresen hozzáadava : " + vezeteknevBevitel.getText() + " " + keresztnevBevitel.getText() +  "névvel.");
+            logolo.info("Tag sikeresen hozzáadava : " + vezeteknevBevitel.getText() + " " + keresztnevBevitel.getText() + "névvel.");
             foAblakKezelo.adatFrissites();
             ((Stage) megseGomb.getScene().getWindow()).close();
             ertesites.show();

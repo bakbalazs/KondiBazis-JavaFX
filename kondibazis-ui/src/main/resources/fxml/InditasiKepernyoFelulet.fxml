@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.validation.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.effect.*?>
+<?import com.jfoenix.controls.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
@@ -23,24 +27,39 @@
 	</padding>
 	<children>
 		<HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
-			<children>
-				<Button mnemonicParsing="false" onAction="#bejelentkezes" text="Bejelentkezés" />
-			</children>
+         <children>
+            <JFXButton buttonType="RAISED" onAction="#bejelentkezes" ripplerFill="WHITE" style="-fx-background-color: #b80000;" text="Bejelentkezés" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></JFXButton>
+         </children>
 		</HBox>
 		<HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
-			<children>
-				<Button mnemonicParsing="false" onAction="#regisztracio" text="Terem Regisztrálás" />
-			</children>
+         <children>
+            <JFXButton buttonType="RAISED" onAction="#regisztracio" ripplerFill="WHITE" style="-fx-background-color: #b80000;" text="Terem Regisztrálás" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+         </children>
 		</HBox>
 		<HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
-			<children>
-				<Button mnemonicParsing="false" onAction="#nevjegy" text="Névjegy" />
-			</children>
+         <children>
+            <JFXButton buttonType="RAISED" onAction="#nevjegy" ripplerFill="WHITE" style="-fx-background-color: #b80000;" text="Névjegy" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+         </children>
 		</HBox>
 		<HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="4">
-			<children>
-				<Button mnemonicParsing="false" onAction="#kilepes" text="Kilépés" />
-			</children>
+         <children>
+            <JFXButton buttonType="RAISED" onAction="#kilepes" ripplerFill="WHITE" style="-fx-background-color: b80000;" text="Kilépés" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+         </children>
 		</HBox>
 		<HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="5">
 			<children>

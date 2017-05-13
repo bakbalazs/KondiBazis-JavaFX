@@ -2,8 +2,10 @@
 package hu.unideb.inf.kondibazis.ui.kezelo;
 
 import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremBerletSzolgaltatas;
+import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremTagKepeSzolgaltatas;
 import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremTagSzolgaltatas;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremBerletVo;
+import hu.unideb.inf.kondibazis.szolg.vo.KonditeremTagKepeVo;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremTagVo;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremVo;
 import hu.unideb.inf.kondibazis.ui.felulet.FeluletBetoltese;
@@ -16,6 +18,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -24,6 +27,8 @@ import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.PixelWriter;
+import javafx.scene.image.WritableImage;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -33,6 +38,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -45,11 +54,18 @@ public class KondiBazisFoAblakKezelo implements Initializable {
 
     private static Logger logolo = LoggerFactory.getLogger(KondiBazisFoAblakKezelo.class);
 
+    @FXML
+    private ImageView test;
+
     @Autowired
     private BejelentkezoKezelo bejelentkezoKezelo;
 
     @Autowired
     private KonditeremTagSzolgaltatas konditeremtagSzolgaltatas;
+
+
+    @Autowired
+    private KonditeremTagKepeSzolgaltatas konditeremtagkepeSzolgaltatas;
 
     @Autowired
     private KonditeremBerletSzolgaltatas konditeremBerletSzolgaltatas;
@@ -165,6 +181,12 @@ public class KondiBazisFoAblakKezelo implements Initializable {
     @FXML
     private DatePicker szuletesiDatumModosit;
 
+    @FXML
+    private RadioButton noModosit;
+
+    @FXML
+    private RadioButton ferfiModosit;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -188,10 +210,15 @@ public class KondiBazisFoAblakKezelo implements Initializable {
         regisztralasDatuma.setText(bejelentkezoKezelo.getBejelentkezettKonditerem().getRegisztralasDatuma().toString());
 
 
-
         tagokTabla.getSelectionModel()
                 .selectedItemProperty()
-                .addListener( (observable, oldValue, newValue) -> tagSzerkesztes(newValue) );
+                .addListener((observable, oldValue, newValue) -> {
+                    try {
+                        tagSzerkesztes(newValue);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
 
 
         valaszt.getItems().add("Név");
@@ -246,7 +273,6 @@ public class KondiBazisFoAblakKezelo implements Initializable {
         szuresek();
 
     }
-
 
 
     @FXML
@@ -451,6 +477,7 @@ public class KondiBazisFoAblakKezelo implements Initializable {
 
             tagTablazatAdatok.add(new TagData(
                             konditeremTagVo.getId(),
+                            konditeremTagVo.getTagSzuletesidatuma(),
                             konditeremTagVo.getTagNeve(),
                             konditeremTagVo.getTagVezeteknev(),
                             konditeremTagVo.getTagKeresztnev(),
@@ -566,17 +593,53 @@ public class KondiBazisFoAblakKezelo implements Initializable {
         });
     }
 
-    private void tagSzerkesztes(TagData tData) {
-        if(tData != null) {
+    private void tagSzerkesztes(TagData tData) throws IOException {
+        if (tData != null) {
             kivalasztottTag = konditeremtagSzolgaltatas.keresTagot(tData.getId());
-            
+
+
             tagModositas.setDisable(false);
             tabPane.getSelectionModel().select(tagModositas);
 
             vezeteknevModosit.setText(tData.getTagVezetekneve().getValue());
             keresztnevModosit.setText(tData.getTagKeresztneve().getValue());
+            tData.getTagNeve().getValue();
+
+            if (tData.getTagNeme().getValue().equals("Nő")) {
+                noModosit.setSelected(true);
+            } else if (tData.getTagNeme().getValue().equals("Férfi")) {
+                ferfiModosit.setSelected(true);
+            }
+
+            szuletesiDatumModosit.setValue(tData.getTagSzuletesiIdeje());
+
+            List<KonditeremTagKepeVo> a = konditeremtagkepeSzolgaltatas.osszesKep();
+            for (KonditeremTagKepeVo asd : a) {
+                if (asd.getKonditeremTag().getId() == tData.getId()) {
+                    System.out.println(asd.getTagKep());
+
+
+                    test.setImage(byteKonvertalasKeppe(asd.getTagKep(),149,134));
+                }
+            }
+
+
+//
+//            System.out.println(konditeremtagkepeSzolgaltatas.osszesKep());
 
         }
+    }
+
+    private Image byteKonvertalasKeppe(byte[] raw, final int width, final int height) {
+        WritableImage image = new WritableImage(width, height);
+        try {
+            ByteArrayInputStream bis = new ByteArrayInputStream(raw);
+            BufferedImage read = ImageIO.read(bis);
+            image = SwingFXUtils.toFXImage(read, null);
+        } catch (IOException ex) {
+//            Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return image;
     }
 
     public void tagModositasElrejtes() {

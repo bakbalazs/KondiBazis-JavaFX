@@ -31,8 +31,6 @@ public class KonditeremTagVo implements Serializable {
 
 	private String vasaroltBerletNeve;
 
-	private byte[] tagKep;
-
 	private String tagVarosa;
 
 	private String tagMegyeje;
@@ -111,14 +109,6 @@ public class KonditeremTagVo implements Serializable {
 		this.vasaroltBerletNeve = vasaroltBerletNeve;
 	}
 
-	public byte[] getTagKep() {
-		return tagKep;
-	}
-
-	public void setTagKep(byte[] tagKep) {
-		this.tagKep = tagKep;
-	}
-
 	public KonditeremVo getKonditerem() {
 		return konditerem;
 	}
@@ -156,7 +146,7 @@ public class KonditeremTagVo implements Serializable {
 		return "KonditeremTagVo [id=" + id + ", tagVezeteknev=" + tagVezeteknev + ", tagKeresztnev=" + tagKeresztnev
 				+ ", tagNeve=" + tagNeve + ", tagNeme=" + tagNeme + ", tagKora=" + tagKora + ", tagSzuletesidatuma="
 				+ tagSzuletesidatuma + ", berletVasarlasideje=" + berletVasarlasideje + ", vasaroltBerletNeve="
-				+ vasaroltBerletNeve + ", tagKep=" + Arrays.toString(tagKep) + ", tagVarosa=" + tagVarosa
+				+ vasaroltBerletNeve + ", tagVarosa=" + tagVarosa
 				+ ", tagMegyeje=" + tagMegyeje + "]";
 	}
 

@@ -8,6 +8,7 @@ import javafx.beans.property.StringProperty;
 public class TagData {
 
 	 private long id;
+	 private LocalDate tagSzuletesiIdeje;
 	private StringProperty tagNeve;
 	private StringProperty tagVezetekneve;
 	private StringProperty tagKeresztneve;
@@ -23,8 +24,9 @@ public class TagData {
 	}
 
 	//
-	public TagData(long id, String tagNeve, String tagVezetekneve, String tagKeresztneve ,String tagNeme, Integer tagKora,String vasaroltBerletNeve, LocalDate berletVasarlasideje , LocalDate berletLejaratiIdeje) {
+	public TagData(long id,LocalDate tagSzuletesiIdeje, String tagNeve, String tagVezetekneve, String tagKeresztneve ,String tagNeme, Integer tagKora,String vasaroltBerletNeve, LocalDate berletVasarlasideje , LocalDate berletLejaratiIdeje) {
 		this.setId(id);
+		this.setTagSzuletesiIdeje(tagSzuletesiIdeje);
 		this.tagNeve = new SimpleStringProperty(tagNeve);
 		this.tagVezetekneve = new SimpleStringProperty(tagVezetekneve);
 		this.tagKeresztneve = new SimpleStringProperty(tagKeresztneve);
@@ -145,10 +147,19 @@ public class TagData {
 		this.id = id;
 	}
 
+	public LocalDate getTagSzuletesiIdeje() {
+		return tagSzuletesiIdeje;
+	}
+
+	public void setTagSzuletesiIdeje(LocalDate tagSzuletesiIdeje) {
+		this.tagSzuletesiIdeje = tagSzuletesiIdeje;
+	}
+
 	@Override
 	public String toString() {
 		return "TagData{" +
 				"id=" + id +
+				", tagSzuletesiIdeje=" + tagSzuletesiIdeje +
 				", tagNeve=" + tagNeve +
 				", tagVezetekneve=" + tagVezetekneve +
 				", tagKeresztneve=" + tagKeresztneve +

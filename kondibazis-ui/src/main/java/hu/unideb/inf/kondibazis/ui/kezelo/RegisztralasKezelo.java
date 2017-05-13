@@ -45,9 +45,6 @@ public class RegisztralasKezelo implements Initializable {
 	private PasswordField jelszoBevitel;
 
 	@FXML
-	private Button visszaGomb;
-
-	@FXML
 	private Text regisztraciosUzenet;
 
 	@FXML
@@ -59,8 +56,12 @@ public class RegisztralasKezelo implements Initializable {
 	@FXML
 	private ImageView jelszoJoRossz;
 
+	@FXML
+	private ImageView visszaGombKep;
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		visszaGombKep.setImage(FeluletBetoltese.visszaGomb);
 	    logolo.info("A terem regisztrálás felület elindítva.");
 	}
 

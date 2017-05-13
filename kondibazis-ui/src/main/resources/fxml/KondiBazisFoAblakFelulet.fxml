@@ -137,22 +137,25 @@
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Vásárolt bérlet neve és dátuma:" wrappingWidth="89.359375" GridPane.columnIndex="3" GridPane.rowIndex="3" />
                                     <TextField fx:id="vezeteknevModosit" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="128.0" GridPane.columnIndex="1" />
                                     <TextField fx:id="keresztnevModosit" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="128.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <DatePicker fx:id="szuletesiDatumModosit" prefHeight="25.0" prefWidth="123.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <DatePicker fx:id="szuletesiDatumModosit" prefHeight="25.0" prefWidth="123.0" showWeekNumbers="true" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
                                     <ChoiceBox prefHeight="25.0" prefWidth="116.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-                                    <RadioButton mnemonicParsing="false" text="Nő" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2">
+                                    <RadioButton fx:id="noModosit" mnemonicParsing="false" text="Nő" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2">
                                        <GridPane.margin>
                                           <Insets left="20.0" />
                                        </GridPane.margin>
+                                       <toggleGroup>
+                                          <ToggleGroup fx:id="nemModositas" />
+                                       </toggleGroup>
                                     </RadioButton>
-                                    <RadioButton mnemonicParsing="false" text="Férfi" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+                                    <RadioButton fx:id="ferfiModosit" mnemonicParsing="false" text="Férfi" toggleGroup="$nemModositas" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
                                        <GridPane.margin>
                                           <Insets right="20.0" />
                                        </GridPane.margin>
                                     </RadioButton>
                                  </children>
                               </GridPane>
-                              <ImageView fitHeight="134.0" fitWidth="149.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" />
+                              <ImageView fx:id="test" fitHeight="134.0" fitWidth="149.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" />
                            </children>
                         </GridPane>
                      </content>

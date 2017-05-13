@@ -40,10 +40,6 @@ public class KonditeremTag extends FoEntitas {
     @Column(name = "vasaroltBereletneve")
     private String vasaroltBerletNeve;
 
-    @Lob
-    @Column(name = "tagKep")
-    private byte[] tagKep;
-
     @Column(name = "tagVarosa")
     private String tagVarosa;
 
@@ -117,14 +113,6 @@ public class KonditeremTag extends FoEntitas {
         this.vasaroltBerletNeve = vasaroltBerletNeve;
     }
 
-    public byte[] getTagKep() {
-        return tagKep;
-    }
-
-    public void setTagKep(byte[] tagKep) {
-        this.tagKep = tagKep;
-    }
-
     public Konditerem getKonditerem() {
         return konditerem;
     }
@@ -162,7 +150,7 @@ public class KonditeremTag extends FoEntitas {
         return "KonditeremTag [tagVezeteknev=" + tagVezeteknev + ", tagKeresztnev=" + tagKeresztnev + ", tagNeve="
                 + tagNeve + ", tagNeme=" + tagNeme + ", tagKora=" + tagKora + ", tagSzuletesidatuma="
                 + tagSzuletesidatuma + ", berletVasarlasideje=" + berletVasarlasideje + ", vasaroltBerletNeve="
-                + vasaroltBerletNeve + ", tagKep=" + Arrays.toString(tagKep) + ", konditerem=" + konditerem + "]";
+                + vasaroltBerletNeve +  ", konditerem=" + konditerem + "]";
     }
 
 }

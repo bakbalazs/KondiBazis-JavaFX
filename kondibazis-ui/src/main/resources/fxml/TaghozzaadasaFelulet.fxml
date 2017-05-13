@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.control.*?>
@@ -26,13 +27,6 @@
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Vezetéknév:*" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Keresztnév:*" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nem:*" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <DatePicker fx:id="szuldatumBevitel" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Születési dátum:*" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lakhely(város csak):*" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Megye:" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Beiratkozás ideje:" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                  <TextField fx:id="megyeNevBevitel" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bérlet választás:*" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                   <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
                      <children>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
@@ -51,19 +45,23 @@
                         </VBox>
                      </children>
                   </HBox>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Születési dátum:*" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <DatePicker fx:id="szuldatumBevitel" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Város:" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Beiratkozás ideje:" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bérlet választás:*" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Adatok:" underline="true" GridPane.columnIndex="1">
                      <font>
                         <Font size="13.0" />
                      </font>
                   </Text>
-                  <ChoiceBox fx:id="berletValasztas" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="8" />
-                  <Text fx:id="beiratkozasBevitel" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
+                  <ChoiceBox fx:id="berletValasztas" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+                  <Text fx:id="beiratkozasBevitel" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
                   <ImageView fx:id="keresztnevEllenoriz" fitHeight="24.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="2" />
                   <ImageView fx:id="nemEllenoriz" fitHeight="24.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="3" />
                   <ImageView fx:id="szuldatumEllenoriz" fitHeight="24.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="4" />
                   <ImageView fx:id="varosEllenoriz" fitHeight="24.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-                  <ImageView fx:id="megyeEllenoriz" fitHeight="24.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="6" />
-                  <ImageView fx:id="berletvalasztasEllenoriz" fitHeight="24.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="8" />
+                  <ImageView fx:id="berletvalasztasEllenoriz" fitHeight="24.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="7" />
                   <TextField fx:id="varosNevBevitel" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
                </children>
                <columnConstraints>
@@ -73,7 +71,6 @@
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="152.0" minWidth="10.0" prefWidth="32.0" />
                </columnConstraints>
                <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
