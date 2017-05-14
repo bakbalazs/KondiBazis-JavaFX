@@ -40,6 +40,9 @@ public class KonditeremTag extends FoEntitas {
     @Column(name = "vasaroltBereletneve")
     private String vasaroltBerletNeve;
 
+    @Column(name = "vasaroltBerletTipusa")
+    private String vasaroltBerletTipusa;
+
     @Column(name = "tagVarosa")
     private String tagVarosa;
 
@@ -113,6 +116,14 @@ public class KonditeremTag extends FoEntitas {
         this.vasaroltBerletNeve = vasaroltBerletNeve;
     }
 
+    public String getVasaroltBerletTipusa() {
+        return vasaroltBerletTipusa;
+    }
+
+    public void setVasaroltBerletTipusa(String vasaroltBerletTipusa) {
+        this.vasaroltBerletTipusa = vasaroltBerletTipusa;
+    }
+
     public Konditerem getKonditerem() {
         return konditerem;
     }
@@ -147,10 +158,20 @@ public class KonditeremTag extends FoEntitas {
 
     @Override
     public String toString() {
-        return "KonditeremTag [tagVezeteknev=" + tagVezeteknev + ", tagKeresztnev=" + tagKeresztnev + ", tagNeve="
-                + tagNeve + ", tagNeme=" + tagNeme + ", tagKora=" + tagKora + ", tagSzuletesidatuma="
-                + tagSzuletesidatuma + ", berletVasarlasideje=" + berletVasarlasideje + ", vasaroltBerletNeve="
-                + vasaroltBerletNeve +  ", konditerem=" + konditerem + "]";
+        return "KonditeremTag{" +
+                "tagVezeteknev='" + tagVezeteknev + '\'' +
+                ", tagKeresztnev='" + tagKeresztnev + '\'' +
+                ", tagNeve='" + tagNeve + '\'' +
+                ", tagNeme='" + tagNeme + '\'' +
+                ", tagKora=" + tagKora +
+                ", tagSzuletesidatuma=" + tagSzuletesidatuma +
+                ", berletVasarlasideje=" + berletVasarlasideje +
+                ", berletLejaratiIdeje=" + berletLejaratiIdeje +
+                ", vasaroltBerletNeve='" + vasaroltBerletNeve + '\'' +
+                ", vasaroltBerletTipusa='" + vasaroltBerletTipusa + '\'' +
+                ", tagVarosa='" + tagVarosa + '\'' +
+                ", tagMegyeje='" + tagMegyeje + '\'' +
+                ", konditerem=" + konditerem +
+                '}';
     }
-
 }

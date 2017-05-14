@@ -177,7 +177,7 @@
 			<children>
 				<VBox alignment="CENTER" prefHeight="31.0" prefWidth="192.0">
 					<children>
-						<Button onAction="#letrehozas" text="Létrehozás" />
+						<Button fx:id="letrehozasGomb" onAction="#letrehozas" text="Létrehozás" />
 					</children>
 				</VBox>
 				<VBox alignment="CENTER" prefHeight="31.0" prefWidth="192.0">

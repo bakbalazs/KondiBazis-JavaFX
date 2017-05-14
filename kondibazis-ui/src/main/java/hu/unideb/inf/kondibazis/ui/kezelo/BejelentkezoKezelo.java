@@ -10,6 +10,7 @@ import hu.unideb.inf.kondibazis.ui.main.Inditas;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
@@ -53,13 +54,23 @@ public class BejelentkezoKezelo implements Initializable {
     @FXML
     private ImageView visszaGombKep;
 
+    private boolean visszaGombLenyomva;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         logolo.info("Elindult a bejeletkező felület.");
+        felhasznalonevBevitel.setAlignment(Pos.CENTER);
         visszaGombKep.setImage(FeluletBetoltese.visszaGomb);
         bejelentkezoUzenet.setFill(Color.GREEN);
-        bejelentkezoUzenet.setText(KonditeremElerhetosegKezelo.getBejelentkezesUzenet());
-        felhasznalonevBevitel.setText(KonditeremElerhetosegKezelo.getFelhasznalo());
+        if (KondiBazisFoAblakKezelo.isKijelentkezes() || isVisszaGombLenyomva()) {
+            bejelentkezoUzenet.setText(KondiBazisFoAblakKezelo.getBejelentkezesUzenet());
+            felhasznalonevBevitel.setText(KondiBazisFoAblakKezelo.getFelhasznalo());
+        } else {
+            bejelentkezoUzenet.setText(KonditeremElerhetosegKezelo.getBejelentkezesUzenet());
+            felhasznalonevBevitel.setText(KonditeremElerhetosegKezelo.getFelhasznalo());
+
+        }
+
     }
 
     @FXML
@@ -102,6 +113,7 @@ public class BejelentkezoKezelo implements Initializable {
     @FXML
     public void vissza(ActionEvent event) throws IOException {
         logolo.debug("Indítása felület indul.");
+        setVisszaGombLenyomva(true);
         FeluletBetoltese.InditasiFelulet(Inditas.primaryStage);
     }
 
@@ -121,4 +133,11 @@ public class BejelentkezoKezelo implements Initializable {
         BejelentkezoKezelo.konditeremNeve = konditeremNeve;
     }
 
+    public boolean isVisszaGombLenyomva() {
+        return visszaGombLenyomva;
+    }
+
+    public void setVisszaGombLenyomva(boolean visszaGombLenyomva) {
+        this.visszaGombLenyomva = visszaGombLenyomva;
+    }
 }

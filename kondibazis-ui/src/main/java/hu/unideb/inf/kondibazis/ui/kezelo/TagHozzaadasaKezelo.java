@@ -328,12 +328,16 @@ public class TagHozzaadasaKezelo implements Initializable {
                     .konditeremOsszesBerlete(bejelentkezettKonditerem);
             for (KonditeremBerletVo berletek : konditeremBerletek) {
 
-                if (berletek.getBerletNeve().equals(berletValasztas.getValue()))
-
+                if (berletek.getBerletNeve().equals(berletValasztas.getValue())) {
                     h = berletek.getMennyiHonap();
-                na = berletek.getMennyiNap();
-                o = berletek.getMennyiOra();
-                ujTag.setBerletLejaratiIdeje(maiNap.plusMonths(h));
+                    na = berletek.getMennyiNap();
+
+                    ujTag.setBerletLejaratiIdeje(maiNap.plusMonths(h));
+                }
+                if (berletek.getBerletNeve().equals(berletValasztas.getValue())) {
+                    ujTag.setVasaroltBerletTipusa(berletek.getBerletTipusa());
+                }
+
             }
 
             ujTag.setTagVarosa(varosNevBevitel.getText());

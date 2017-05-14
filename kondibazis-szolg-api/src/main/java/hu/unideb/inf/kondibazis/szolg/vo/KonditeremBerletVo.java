@@ -15,11 +15,13 @@ public class KonditeremBerletVo implements Serializable {
 
 	private int berletAra;
 
-	private int mennyiOra;
+	private int mennyiAlkalom;
 
 	private int mennyiNap;
 
 	private int mennyiHonap;
+
+	private String berletTipusa;
 
 	private KonditeremVo konditerem;
 
@@ -47,12 +49,12 @@ public class KonditeremBerletVo implements Serializable {
 		this.berletAra = berletAra;
 	}
 
-	public int getMennyiOra() {
-		return mennyiOra;
+	public int getMennyiAlkalom() {
+		return mennyiAlkalom;
 	}
 
-	public void setMennyiOra(int mennyiOra) {
-		this.mennyiOra = mennyiOra;
+	public void setMennyiAlkalom(int mennyiAlkalom) {
+		this.mennyiAlkalom = mennyiAlkalom;
 	}
 
 	public int getMennyiNap() {
@@ -71,6 +73,14 @@ public class KonditeremBerletVo implements Serializable {
 		this.mennyiHonap = mennyiHonap;
 	}
 
+	public String getBerletTipusa() {
+		return berletTipusa;
+	}
+
+	public void setBerletTipusa(String berletTipusa) {
+		this.berletTipusa = berletTipusa;
+	}
+
 	public KonditeremVo getKonditerem() {
 		return konditerem;
 	}
@@ -81,8 +91,14 @@ public class KonditeremBerletVo implements Serializable {
 
 	@Override
 	public String toString() {
-		return "KonditeremBerletVo [berletNeve=" + berletNeve + ", berletAra=" + berletAra + ", mennyiOra=" + mennyiOra
-				+ ", mennyiNap=" + mennyiNap + ", mennyiHonap=" + mennyiHonap + "]";
+		return "KonditeremBerletVo{" +
+				"id=" + id +
+				", berletNeve='" + berletNeve + '\'' +
+				", berletAra=" + berletAra +
+				", mennyiAlkalom=" + mennyiAlkalom +
+				", mennyiNap=" + mennyiNap +
+				", mennyiHonap=" + mennyiHonap +
+				", berletTipusa='" + berletTipusa + '\'' +
+				'}';
 	}
-
 }

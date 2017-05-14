@@ -1,5 +1,7 @@
 package hu.unideb.inf.kondibazis.db.entitas;
 
+import org.springframework.stereotype.Component;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -9,81 +11,98 @@ import javax.persistence.Table;
 @Table(name = "konditeremBerlet")
 public class KonditeremBerlet extends FoEntitas {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	public KonditeremBerlet() {
-	}
+    public KonditeremBerlet() {
+    }
 
-	@Column(name = "berlet_neve")
-	private String berletNeve;
+    @Column(name = "berlet_neve")
+    private String berletNeve;
 
-	@Column(name = "berletAra")
-	private int berletAra;
+    @Column(name = "berletAra")
+    private int berletAra;
 
-	@Column(name = "menniOra")
-	private int mennyiOra;
+    @Column(name = "mennyiAlkalom")
+    private int mennyiAlkalom;
 
-	@Column(name = "mennyiNap")
-	private int mennyiNap;
+    @Column(name = "mennyiNap")
+    private int mennyiNap;
 
-	@Column(name = "mennyiHonap")
-	private int mennyiHonap;
+    @Column(name = "mennyiHonap")
+    private int mennyiHonap;
 
-	@ManyToOne()
-	private Konditerem konditerem;
+    @Column(name = "berletTipusa")
+    private String berletTipusa;
 
-	public String getBerletNeve() {
-		return berletNeve;
-	}
+    @ManyToOne()
+    private Konditerem konditerem;
 
-	public void setBerletNeve(String berletNeve) {
-		this.berletNeve = berletNeve;
-	}
+    public String getBerletNeve() {
+        return berletNeve;
+    }
 
-	public int getBerletAra() {
-		return berletAra;
-	}
+    public void setBerletNeve(String berletNeve) {
+        this.berletNeve = berletNeve;
+    }
 
-	public void setBerletAra(int berletAra) {
-		this.berletAra = berletAra;
-	}
+    public int getBerletAra() {
+        return berletAra;
+    }
 
-	public int getMennyiOra() {
-		return mennyiOra;
-	}
+    public void setBerletAra(int berletAra) {
+        this.berletAra = berletAra;
+    }
 
-	public void setMennyiOra(int mennyiOra) {
-		this.mennyiOra = mennyiOra;
-	}
+    public int getMennyiAlkalom() {
+        return mennyiAlkalom;
+    }
 
-	public int getMennyiNap() {
-		return mennyiNap;
-	}
+    public void setMennyiAlkalom(int mennyiAlkalom) {
+        this.mennyiAlkalom = mennyiAlkalom;
+    }
 
-	public void setMennyiNap(int mennyiNap) {
-		this.mennyiNap = mennyiNap;
-	}
+    public int getMennyiNap() {
+        return mennyiNap;
+    }
 
-	public int getMennyiHonap() {
-		return mennyiHonap;
-	}
+    public void setMennyiNap(int mennyiNap) {
+        this.mennyiNap = mennyiNap;
+    }
 
-	public void setMennyiHonap(int mennyiHonap) {
-		this.mennyiHonap = mennyiHonap;
-	}
+    public int getMennyiHonap() {
+        return mennyiHonap;
+    }
 
-	public Konditerem getKonditerem() {
-		return konditerem;
-	}
+    public void setMennyiHonap(int mennyiHonap) {
+        this.mennyiHonap = mennyiHonap;
+    }
 
-	public void setKonditerem(Konditerem konditerem) {
-		this.konditerem = konditerem;
-	}
+    public String getBerletTipusa() {
+        return berletTipusa;
+    }
 
-	@Override
-	public String toString() {
-		return "KonditeremBerlet [berletNeve=" + berletNeve + ", berletAra=" + berletAra + ", mennyiOra=" + mennyiOra
-				+ ", mennyiNap=" + mennyiNap + ", mennyiHonap=" + mennyiHonap + ", konditerem=" + konditerem + "]";
-	}
+    public void setBerletTipusa(String berletTipusa) {
+        this.berletTipusa = berletTipusa;
+    }
 
+    public Konditerem getKonditerem() {
+        return konditerem;
+    }
+
+    public void setKonditerem(Konditerem konditerem) {
+        this.konditerem = konditerem;
+    }
+
+    @Override
+    public String toString() {
+        return "KonditeremBerlet{" +
+                "berletNeve='" + berletNeve + '\'' +
+                ", berletAra=" + berletAra +
+                ", mennyiAlkalom=" + mennyiAlkalom +
+                ", mennyiNap=" + mennyiNap +
+                ", mennyiHonap=" + mennyiHonap +
+                ", berletTipusa='" + berletTipusa + '\'' +
+                ", konditerem=" + konditerem +
+                '}';
+    }
 }

@@ -54,15 +54,11 @@ public class KondiBazisFoAblakKezelo implements Initializable {
 
     private static Logger logolo = LoggerFactory.getLogger(KondiBazisFoAblakKezelo.class);
 
-    @FXML
-    private ImageView test;
-
     @Autowired
     private BejelentkezoKezelo bejelentkezoKezelo;
 
     @Autowired
     private KonditeremTagSzolgaltatas konditeremtagSzolgaltatas;
-
 
     @Autowired
     private KonditeremTagKepeSzolgaltatas konditeremtagkepeSzolgaltatas;
@@ -80,24 +76,6 @@ public class KondiBazisFoAblakKezelo implements Initializable {
 
     @FXML
     private Text regisztralasDatuma;
-
-    private ObservableList<TagData> tagTablazatAdatok;
-
-    private FilteredList<TagData> lejartberletuTagok;
-
-    private FilteredList<TagData> aktivberletuTagok;
-
-    private FilteredList<TagData> lejartberletesNok;
-
-    private FilteredList<TagData> aktivberletesNok;
-
-    private FilteredList<TagData> noiTagok;
-
-    private FilteredList<TagData> lejartberletesFerfiak;
-
-    private FilteredList<TagData> aktivberletesFerfiak;
-
-    private FilteredList<TagData> ferfiTagok;
 
     @FXML
     private TableView<TagData> tagokTabla;
@@ -159,15 +137,11 @@ public class KondiBazisFoAblakKezelo implements Initializable {
     @FXML
     private TextField keresesszovegBevitel;
 
-    private boolean lejart = false;
-
     @FXML
     private ComboBox<String> valaszt;
 
     @FXML
     private CheckMenuItem szures;
-
-    private KonditeremTagVo kivalasztottTag;
 
     @FXML
     private TabPane tabPane;
@@ -187,11 +161,40 @@ public class KondiBazisFoAblakKezelo implements Initializable {
     @FXML
     private RadioButton ferfiModosit;
 
+    @FXML
+    private ImageView kepModositasa;
+
+    private ObservableList<TagData> tagTablazatAdatok;
+
+    private FilteredList<TagData> lejartberletuTagok;
+
+    private FilteredList<TagData> aktivberletuTagok;
+
+    private FilteredList<TagData> lejartberletesNok;
+
+    private FilteredList<TagData> aktivberletesNok;
+
+    private FilteredList<TagData> noiTagok;
+
+    private FilteredList<TagData> lejartberletesFerfiak;
+
+    private FilteredList<TagData> aktivberletesFerfiak;
+
+    private FilteredList<TagData> ferfiTagok;
+
+    private KonditeremTagVo kivalasztottTag;
+
+    private boolean lejart = false;
+
+    private static String bejelentkezesUzenet;
+
+    private static String felhasznalo;
+
+    private static boolean kijelentkezes;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
         szuresEskereses.setDisable(true);
-
 
         osszesTagGomb.setSelected(true);
         osszesTagNemGomb.setSelected(true);
@@ -237,13 +240,10 @@ public class KondiBazisFoAblakKezelo implements Initializable {
                             if (newValue == null || newValue.isEmpty()) {
                                 return true;
                             }
-
                             String lowerCaseFilter = newValue.toLowerCase();
                             if (tagData.getTagNeve().toString().toLowerCase().contains(lowerCaseFilter)) {
                                 return true;
                             }
-
-
                             return false;
                         });
                     });
@@ -255,13 +255,10 @@ public class KondiBazisFoAblakKezelo implements Initializable {
                             if (newValue == null || newValue.isEmpty()) {
                                 return true;
                             }
-
                             String lowerCaseFilter = newValue.toLowerCase();
                             if (tagData.getVasaroltBerletNeve().toString().toLowerCase().contains(lowerCaseFilter)) {
                                 return true;
                             }
-
-
                             return false;
                         });
                     });
@@ -269,9 +266,7 @@ public class KondiBazisFoAblakKezelo implements Initializable {
                 }
             }
         });
-
         szuresek();
-
     }
 
 
@@ -393,7 +388,9 @@ public class KondiBazisFoAblakKezelo implements Initializable {
                             logolo.info("Az értesítésre kattintottak.");
                         }
                     });
-
+            setKijelentkezes(true);
+            setBejelentkezesUzenet("");
+            setFelhasznalo("");
             FeluletBetoltese.InditasiFelulet(Inditas.primaryStage);
             ertesites.show();
 
@@ -520,7 +517,7 @@ public class KondiBazisFoAblakKezelo implements Initializable {
 
 
     private void szuresek() {
-        LocalDate a = LocalDate.of(2017, 3, 7);
+        LocalDate a = LocalDate.of(2017, 3, 14);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
         noiTagok = new FilteredList<>(tagTablazatAdatok, tagok -> true);
@@ -613,20 +610,12 @@ public class KondiBazisFoAblakKezelo implements Initializable {
 
             szuletesiDatumModosit.setValue(tData.getTagSzuletesiIdeje());
 
-            List<KonditeremTagKepeVo> a = konditeremtagkepeSzolgaltatas.osszesKep();
-            for (KonditeremTagKepeVo asd : a) {
-                if (asd.getKonditeremTag().getId() == tData.getId()) {
-                    System.out.println(asd.getTagKep());
-
-
-                    test.setImage(byteKonvertalasKeppe(asd.getTagKep(),149,134));
+            List<KonditeremTagKepeVo> osszesKep = konditeremtagkepeSzolgaltatas.osszesKep();
+            for (KonditeremTagKepeVo kepek : osszesKep) {
+                if (kepek.getKonditeremTag().getId() == tData.getId()) {
+                    kepModositasa.setImage(byteKonvertalasKeppe(kepek.getTagKep(), 149, 134));
                 }
             }
-
-
-//
-//            System.out.println(konditeremtagkepeSzolgaltatas.osszesKep());
-
         }
     }
 
@@ -654,4 +643,28 @@ public class KondiBazisFoAblakKezelo implements Initializable {
         this.bejelentkezettKonditerem = bejelentkezettKonditerem;
     }
 
+
+    public static String getBejelentkezesUzenet() {
+        return bejelentkezesUzenet;
+    }
+
+    public static void setBejelentkezesUzenet(String bejelentkezesUzenet) {
+        KondiBazisFoAblakKezelo.bejelentkezesUzenet = bejelentkezesUzenet;
+    }
+
+    public static String getFelhasznalo() {
+        return felhasznalo;
+    }
+
+    public static void setFelhasznalo(String felhasznalo) {
+        KondiBazisFoAblakKezelo.felhasznalo = felhasznalo;
+    }
+
+    public static boolean isKijelentkezes() {
+        return kijelentkezes;
+    }
+
+    public static void setKijelentkezes(boolean kijelentkezes) {
+        KondiBazisFoAblakKezelo.kijelentkezes = kijelentkezes;
+    }
 }

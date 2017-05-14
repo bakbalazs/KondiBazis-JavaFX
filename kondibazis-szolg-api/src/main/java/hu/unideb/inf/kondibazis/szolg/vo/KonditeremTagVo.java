@@ -6,148 +6,158 @@ import java.util.Arrays;
 
 public class KonditeremTagVo implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	public KonditeremTagVo() {
-	}
+    public KonditeremTagVo() {
+    }
 
-	private Long id;
+    private Long id;
 
-	private String tagVezeteknev;
+    private String tagVezeteknev;
 
-	private String tagKeresztnev;
+    private String tagKeresztnev;
 
-	private String tagNeve;
+    private String tagNeve;
 
-	private String tagNeme;
+    private String tagNeme;
 
-	private int tagKora;
+    private int tagKora;
 
-	private LocalDate tagSzuletesidatuma;
+    private LocalDate tagSzuletesidatuma;
 
-	private LocalDate berletVasarlasideje;
+    private LocalDate berletVasarlasideje;
 
-	private LocalDate berletLejaratiIdeje;
+    private LocalDate berletLejaratiIdeje;
 
-	private String vasaroltBerletNeve;
+    private String vasaroltBerletNeve;
 
-	private String tagVarosa;
+    private String vasaroltBerletTipusa;
 
-	private String tagMegyeje;
+    private String tagVarosa;
 
-	private KonditeremVo konditerem;
+    private String tagMegyeje;
 
-	public Long getId() {
-		return id;
-	}
+    private KonditeremVo konditerem;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public String getTagVezeteknev() {
-		return tagVezeteknev;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public void setTagVezeteknev(String tagVezeteknev) {
-		this.tagVezeteknev = tagVezeteknev;
-	}
+    public String getTagVezeteknev() {
+        return tagVezeteknev;
+    }
 
-	public String getTagKeresztnev() {
-		return tagKeresztnev;
-	}
+    public void setTagVezeteknev(String tagVezeteknev) {
+        this.tagVezeteknev = tagVezeteknev;
+    }
 
-	public void setTagKeresztnev(String tagKeresztnev) {
-		this.tagKeresztnev = tagKeresztnev;
-	}
+    public String getTagKeresztnev() {
+        return tagKeresztnev;
+    }
 
-	public String getTagNeve() {
-		return tagNeve;
-	}
+    public void setTagKeresztnev(String tagKeresztnev) {
+        this.tagKeresztnev = tagKeresztnev;
+    }
 
-	public void setTagNeve(String tagNeve) {
-		this.tagNeve = tagNeve;
-	}
+    public String getTagNeve() {
+        return tagNeve;
+    }
 
-	public String getTagNeme() {
-		return tagNeme;
-	}
+    public void setTagNeve(String tagNeve) {
+        this.tagNeve = tagNeve;
+    }
 
-	public void setTagNeme(String tagNeme) {
-		this.tagNeme = tagNeme;
-	}
+    public String getTagNeme() {
+        return tagNeme;
+    }
 
-	public int getTagKora() {
-		return tagKora;
-	}
+    public void setTagNeme(String tagNeme) {
+        this.tagNeme = tagNeme;
+    }
 
-	public void setTagKora(int tagKora) {
-		this.tagKora = tagKora;
-	}
+    public int getTagKora() {
+        return tagKora;
+    }
 
-	public LocalDate getTagSzuletesidatuma() {
-		return tagSzuletesidatuma;
-	}
+    public void setTagKora(int tagKora) {
+        this.tagKora = tagKora;
+    }
 
-	public void setTagSzuletesidatuma(LocalDate tagSzuletesidatuma) {
-		this.tagSzuletesidatuma = tagSzuletesidatuma;
-	}
+    public LocalDate getTagSzuletesidatuma() {
+        return tagSzuletesidatuma;
+    }
 
-	public LocalDate getBerletVasarlasideje() {
-		return berletVasarlasideje;
-	}
+    public void setTagSzuletesidatuma(LocalDate tagSzuletesidatuma) {
+        this.tagSzuletesidatuma = tagSzuletesidatuma;
+    }
 
-	public void setBerletVasarlasideje(LocalDate berletVasarlasideje) {
-		this.berletVasarlasideje = berletVasarlasideje;
-	}
+    public LocalDate getBerletVasarlasideje() {
+        return berletVasarlasideje;
+    }
 
-	public String getVasaroltBerletNeve() {
-		return vasaroltBerletNeve;
-	}
+    public void setBerletVasarlasideje(LocalDate berletVasarlasideje) {
+        this.berletVasarlasideje = berletVasarlasideje;
+    }
 
-	public void setVasaroltBerletNeve(String vasaroltBerletNeve) {
-		this.vasaroltBerletNeve = vasaroltBerletNeve;
-	}
+    public String getVasaroltBerletNeve() {
+        return vasaroltBerletNeve;
+    }
 
-	public KonditeremVo getKonditerem() {
-		return konditerem;
-	}
+    public void setVasaroltBerletNeve(String vasaroltBerletNeve) {
+        this.vasaroltBerletNeve = vasaroltBerletNeve;
+    }
 
-	public void setKonditerem(KonditeremVo konditerem) {
-		this.konditerem = konditerem;
-	}
+    public KonditeremVo getKonditerem() {
+        return konditerem;
+    }
 
-	public String getTagVarosa() {
-		return tagVarosa;
-	}
+    public void setKonditerem(KonditeremVo konditerem) {
+        this.konditerem = konditerem;
+    }
 
-	public void setTagVarosa(String tagVarosa) {
-		this.tagVarosa = tagVarosa;
-	}
+    public String getVasaroltBerletTipusa() {
+        return vasaroltBerletTipusa;
+    }
 
-	public String getTagMegyeje() {
-		return tagMegyeje;
-	}
+    public void setVasaroltBerletTipusa(String vasaroltBerletTipusa) {
+        this.vasaroltBerletTipusa = vasaroltBerletTipusa;
+    }
 
-	public void setTagMegyeje(String tagMegyeje) {
-		this.tagMegyeje = tagMegyeje;
-	}
+    public String getTagVarosa() {
+        return tagVarosa;
+    }
 
-	public LocalDate getBerletLejaratiIdeje() {
-		return berletLejaratiIdeje;
-	}
+    public void setTagVarosa(String tagVarosa) {
+        this.tagVarosa = tagVarosa;
+    }
 
-	public void setBerletLejaratiIdeje(LocalDate berletLejaratiIdeje) {
-		this.berletLejaratiIdeje = berletLejaratiIdeje;
-	}
+    public String getTagMegyeje() {
+        return tagMegyeje;
+    }
 
-	@Override
-	public String toString() {
-		return "KonditeremTagVo [id=" + id + ", tagVezeteknev=" + tagVezeteknev + ", tagKeresztnev=" + tagKeresztnev
-				+ ", tagNeve=" + tagNeve + ", tagNeme=" + tagNeme + ", tagKora=" + tagKora + ", tagSzuletesidatuma="
-				+ tagSzuletesidatuma + ", berletVasarlasideje=" + berletVasarlasideje + ", vasaroltBerletNeve="
-				+ vasaroltBerletNeve + ", tagVarosa=" + tagVarosa
-				+ ", tagMegyeje=" + tagMegyeje + "]";
-	}
+    public void setTagMegyeje(String tagMegyeje) {
+        this.tagMegyeje = tagMegyeje;
+    }
+
+    public LocalDate getBerletLejaratiIdeje() {
+        return berletLejaratiIdeje;
+    }
+
+    public void setBerletLejaratiIdeje(LocalDate berletLejaratiIdeje) {
+        this.berletLejaratiIdeje = berletLejaratiIdeje;
+    }
+
+    @Override
+    public String toString() {
+        return "KonditeremTagVo [id=" + id + ", tagVezeteknev=" + tagVezeteknev + ", tagKeresztnev=" + tagKeresztnev
+                + ", tagNeve=" + tagNeve + ", tagNeme=" + tagNeme + ", tagKora=" + tagKora + ", tagSzuletesidatuma="
+                + tagSzuletesidatuma + ", berletVasarlasideje=" + berletVasarlasideje + ", vasaroltBerletNeve="
+                + vasaroltBerletNeve + ", tagVarosa=" + tagVarosa
+                + ", tagMegyeje=" + tagMegyeje + "]";
+    }
 
 }

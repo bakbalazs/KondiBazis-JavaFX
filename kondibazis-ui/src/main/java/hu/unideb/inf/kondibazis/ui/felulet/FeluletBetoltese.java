@@ -11,7 +11,6 @@ import javafx.stage.Stage;
 public final class FeluletBetoltese {
 
 	private static final SpringFxmlLoader loader = new SpringFxmlLoader();
-//	private static final String visszaGomb = new String("/css/visszaGomb.css");
 
 	public static final String alkalmazasNeve = "KondiBázis";
 
@@ -124,7 +123,7 @@ public final class FeluletBetoltese {
 	}
 
 	public static void VarosStatisztikaFelulet(ActionEvent event) {
-		Parent parent = (Parent) loader.load("/fxml/VarosStatisztika.fxml");
+		Parent parent = (Parent) loader.load("/fxml/VarosStatisztikaFelulet.fxml");
 		Scene scene = new Scene(parent);
 		Stage stage = new Stage();
 		stage.setTitle("Város statisztika  - " + alkalmazasNeve  +" - "+ BejelentkezoKezelo.getKonditeremNeve());

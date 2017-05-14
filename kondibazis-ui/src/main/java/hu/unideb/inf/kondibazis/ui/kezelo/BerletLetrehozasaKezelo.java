@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import hu.unideb.inf.kondibazis.szolg.vo.KonditeremBerletVo;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.ChoiceBox;
@@ -13,7 +14,6 @@ import org.springframework.stereotype.Component;
 
 import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremBerletSzolgaltatas;
 import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremSzolgaltatas;
-import hu.unideb.inf.kondibazis.szolg.vo.KonditeremBerletVo;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremVo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -26,194 +26,248 @@ import javafx.stage.Stage;
 @Component
 public class BerletLetrehozasaKezelo implements Initializable {
 
-	@Autowired
-	private KonditeremSzolgaltatas konditeremSzolgaltatas;
+    @Autowired
+    private KonditeremSzolgaltatas konditeremSzolgaltatas;
 
-	@Autowired
-	private KonditeremBerletSzolgaltatas konditeremBerletSzolgaltatas;
+    @Autowired
+    private KonditeremBerletSzolgaltatas konditeremBerletSzolgaltatas;
 
-	@Autowired
-	private KondiBazisFoAblakKezelo foAblakKezelo;
+    @Autowired
+    private KondiBazisFoAblakKezelo foAblakKezelo;
 
     private KonditeremVo bejelentkezettKonditerem;
 
-	@FXML
-	private Button letrehozasGomb;
+    @FXML
+    private Button megseGomb;
 
-	@FXML
-	private Button megseGomb;
+    @FXML
+    private TextField berletnevBevitel;
 
-	@FXML
-	private TextField berletnevBevitel;
+    @FXML
+    private TextField berletaraBevitel;
 
-	@FXML
-	private TextField berletaraBevitel;
+    @FXML
+    private TextField napBevitel;
 
-	@FXML
-	private TextField napBevitel;
+    @FXML
+    private TextField honapBevitel;
 
-	@FXML
-	private TextField honapBevitel;
+    @FXML
+    private Text letrehozasUzenet;
 
-	@FXML
-	private Text letrehozasUzenet;
+    @FXML
+    private Text regisztraltKonditerem;
 
-	@FXML
-	private Text regisztraltKonditerem;
+    @FXML
+    private Text berletletrehozasUzenet;
 
-	@FXML
-	private Text berletletrehozasUzenet;
+    @FXML
+    private Text bejelentkezett_Konditerem;
 
-	@FXML 
-	private Text bejelentkezett_Konditerem;
+    @FXML
+    private ChoiceBox<String> berlettipusValasztasa;
 
-	@FXML
-	private ChoiceBox berlettipusValasztasa;
+    @FXML
+    private Text berletnevSzoveg;
 
-	@FXML
-	private Text berletnevSzoveg;
+    @FXML
+    private Text berletaraSzoveg;
 
-	@FXML
-	private Text berletaraSzoveg;
+    @FXML
+    private Text berletnapSzoveg;
 
-	@FXML
-	private Text berletnapSzoveg;
+    @FXML
+    private Text berlethonapSzoveg;
 
-	@FXML
-	private Text berlethonapSzoveg;
+    @FXML
+    private Text ftJel;
 
-	@FXML
-	private Text ftJel;
+    @FXML
+    private TextField alakomBevitel;
 
-	@FXML
-	private TextField alakomBevitel;
+    @FXML
+    private Text alkalomSzoveg;
 
-	@FXML
-	private Text alkalomSzoveg;
+    @FXML
+    private Button letrehozasGomb;
 
-	private int ar;
+    private int ar;
 
-	private int nap;
+    private int nap;
 
-	private int honap;
+    private int honap;
 
-	public void alaperket(boolean e) {
-		berletnevSzoveg.setVisible(e);
-		berletnevBevitel.setVisible(e);
-		berletaraSzoveg.setVisible(e);
-		berletaraBevitel.setVisible(e);
-		ftJel.setVisible(e);
-	}
+    private int alkalom;
 
-	public void idokorlatosBerlet(boolean e) {
-		berletnapSzoveg.setVisible(e);
-		napBevitel.setVisible(e);
-		berlethonapSzoveg.setVisible(e);
-		honapBevitel.setVisible(e);
-	}
-
-	public void alkalmasBerlet(boolean e) {
-		alakomBevitel.setVisible(e);
-		alkalomSzoveg.setVisible(e);
-	}
-
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		idokorlatosBerlet(false);
-		alkalmasBerlet(false);
-		alaperket(false);
-		berlettipusValasztasa.getItems().add("Alkalmas bérlet");
-		berlettipusValasztasa.getItems().add("Időkorlátos bérlet");
-		bejelentkezettKonditerem = foAblakKezelo.getBejelentkezettKonditerem();
-		bejelentkezett_Konditerem.setText(bejelentkezettKonditerem.getKonditeremNeve());
-		berletaraBevitel.setText("0");
-		napBevitel.setText("0");
-		honapBevitel.setText("0");
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        idokorlatosBerlet(false);
+        alkalmasBerlet(false);
+        alapertek(false);
+        berlettipusValasztasa.getItems().add("Alkalmas bérlet");
+        berlettipusValasztasa.getItems().add("Időkorlátos bérlet");
+        bejelentkezettKonditerem = foAblakKezelo.getBejelentkezettKonditerem();
+        bejelentkezett_Konditerem.setText(bejelentkezettKonditerem.getKonditeremNeve());
+        berletaraBevitel.setText("0");
+        napBevitel.setText("0");
+        honapBevitel.setText("0");
+        alakomBevitel.setText("0");
 
 
-		berlettipusValasztasa.valueProperty().addListener(new ChangeListener<String>() {
-			@Override
-			public void changed(ObservableValue ov, String t, String t1) {
-				if (t1.equals("Alkalmas bérlet")) {
-					alaperket(true);
-					idokorlatosBerlet(false);
-					alkalmasBerlet(true);
-
-				} else if (t1.equals("Időkorlátos bérlet")) {
-					alaperket(true);
-					idokorlatosBerlet(true);
-					alkalmasBerlet(false);
-				}
-			}
-		});
-		
-		
-	}
-
-	@FXML
-	public void letrehozas(ActionEvent event) {
-
-//		boolean mehet = true;
-//
-//		ar = Integer.parseInt(berletaraBevitel.getText());
-//		nap = Integer.parseInt(napBevitel.getText());
-//		honap = Integer.parseInt(honapBevitel.getText());
-//
-//		if (berletnevBevitel.getText().equals("")) {
-//			mehet = false;
-//		}
-//
-//		if (berletaraBevitel.getText().equals("")) {
-//			mehet = false;
-//		}
-//
-//		if(ar == 0) {
-//			mehet = false;
-//		}
-//
-//		if (ora == 0 || nap == 0 || honap == 0) {
-//			mehet = false;
-//		}
-//
-//		if((ar > 0 && ora >0) || (ar > 0 && nap > 0) || (ar > 0 && honap > 0 )) {
-//			mehet = true;
-//		}
-//
-//		if (berletaraBevitel.getText().equals("") || napBevitel.getText().equals("")
-//				|| honapBevitel.getText().equals("")) {
-//			mehet = false;
-//		}
-//
-//		if (mehet) {
-//
-//			KonditeremBerletVo ujBerlet = new KonditeremBerletVo();
-//			ujBerlet.setBerletNeve(berletnevBevitel.getText());
-//
-//			ujBerlet.setBerletAra(ar);
-//			ujBerlet.setMennyiOra(ora);
-//			ujBerlet.setMennyiNap(nap);
-//			ujBerlet.setMennyiHonap(honap);
-//
-//			KonditeremBerletVo letezo = konditeremBerletSzolgaltatas.letrehozBerletet(ujBerlet);
-//
-//			bejelentkezettKonditerem.getKonditeremBerletek().add(letezo);
-//
-//			konditeremSzolgaltatas.frissitKonditermet(bejelentkezettKonditerem);
-//
-//			letezo.setKonditerem(bejelentkezettKonditerem);
-//
-//			konditeremBerletSzolgaltatas.frissitKonditeremBerletet(letezo);
-//			foAblakKezelo.gombFrissites();
-//			((Stage)megseGomb.getScene().getWindow()).close();
-//		}
-
-	}
-
-	@FXML
-	public void megse(ActionEvent event) throws IOException {
-		((Stage)megseGomb.getScene().getWindow()).close();
-	}
+        berlettipusValasztasa.valueProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue ov, String t, String t1) {
+                if (t1.equals("Alkalmas bérlet")) {
+                    alapertek(true);
+                    idokorlatosBerlet(false);
+                    alkalmasBerlet(true);
+                } else if (t1.equals("Időkorlátos bérlet")) {
+                    alapertek(true);
+                    idokorlatosBerlet(true);
+                    alkalmasBerlet(false);
+                }
+            }
+        });
 
 
+    }
 
+    @FXML
+    public void letrehozas(ActionEvent event) {
+
+        boolean mehetAlkalmas = true;
+        boolean mehetIdokorlatos = true;
+
+        if (berlettipusValasztasa.getValue().equals("Alkalmas bérlet")) {
+            ar = Integer.parseInt(berletaraBevitel.getText());
+            alkalom = Integer.parseInt(alakomBevitel.getText());
+
+            if (berletnevBevitel.getText().equals("")) {
+                mehetAlkalmas = false;
+            }
+
+            if (berletaraBevitel.getText().equals("")) {
+                mehetAlkalmas = false;
+            }
+
+            if(ar == 0) {
+                mehetAlkalmas = false;
+            }
+
+            if ( alkalom == 0) {
+                mehetAlkalmas = false;
+            }
+
+            if((ar > 0 && alkalom > 0)) {
+                mehetAlkalmas = true;
+            }
+
+            if (berletaraBevitel.getText().equals("") || alakomBevitel.getText().equals("")) {
+                mehetAlkalmas = false;
+            }
+
+            if (mehetAlkalmas) {
+
+                KonditeremBerletVo ujBerlet = new KonditeremBerletVo();
+                ujBerlet.setBerletNeve(berletnevBevitel.getText() + " ("+ berlettipusValasztasa.getValue()+ ")");
+                ujBerlet.setBerletTipusa(berlettipusValasztasa.getValue());
+                ujBerlet.setBerletAra(ar);
+                ujBerlet.setMennyiAlkalom(alkalom);
+
+                KonditeremBerletVo letezo = konditeremBerletSzolgaltatas.letrehozBerletet(ujBerlet);
+
+                bejelentkezettKonditerem.getKonditeremBerletek().add(letezo);
+
+                konditeremSzolgaltatas.frissitKonditermet(bejelentkezettKonditerem);
+
+                letezo.setKonditerem(bejelentkezettKonditerem);
+
+                konditeremBerletSzolgaltatas.frissitKonditeremBerletet(letezo);
+                foAblakKezelo.gombFrissites();
+                ((Stage)megseGomb.getScene().getWindow()).close();
+            }
+
+        } else if (berlettipusValasztasa.getValue().equals("Időkorlátos bérlet")) {
+
+		ar = Integer.parseInt(berletaraBevitel.getText());
+		nap = Integer.parseInt(napBevitel.getText());
+		honap = Integer.parseInt(honapBevitel.getText());
+
+		if (berletnevBevitel.getText().equals("")) {
+			mehetIdokorlatos = false;
+		}
+
+		if (berletaraBevitel.getText().equals("")) {
+			mehetIdokorlatos = false;
+		}
+
+		if(ar == 0) {
+			mehetIdokorlatos = false;
+		}
+
+		if ( nap == 0 || honap == 0) {
+			mehetIdokorlatos = false;
+		}
+
+		if((ar > 0 && nap > 0) || (ar > 0 && honap > 0 )) {
+			mehetIdokorlatos = true;
+		}
+
+		if (berletaraBevitel.getText().equals("") || napBevitel.getText().equals("")
+				|| honapBevitel.getText().equals("")) {
+			mehetIdokorlatos = false;
+		}
+
+		if (mehetIdokorlatos) {
+
+			KonditeremBerletVo ujBerlet = new KonditeremBerletVo();
+			ujBerlet.setBerletNeve(berletnevBevitel.getText() + " ("+ berlettipusValasztasa.getValue()+ ")");
+            ujBerlet.setBerletTipusa(berlettipusValasztasa.getValue());
+			ujBerlet.setBerletAra(ar);
+			ujBerlet.setMennyiNap(nap);
+			ujBerlet.setMennyiHonap(honap);
+
+			KonditeremBerletVo letezo = konditeremBerletSzolgaltatas.letrehozBerletet(ujBerlet);
+
+			bejelentkezettKonditerem.getKonditeremBerletek().add(letezo);
+
+			konditeremSzolgaltatas.frissitKonditermet(bejelentkezettKonditerem);
+
+			letezo.setKonditerem(bejelentkezettKonditerem);
+
+			konditeremBerletSzolgaltatas.frissitKonditeremBerletet(letezo);
+			foAblakKezelo.gombFrissites();
+			((Stage)megseGomb.getScene().getWindow()).close();
+		}
+        }
+
+    }
+
+    @FXML
+    public void megse(ActionEvent event) throws IOException {
+        ((Stage) megseGomb.getScene().getWindow()).close();
+    }
+
+
+    private void alapertek(boolean megjelenes) {
+        berletnevSzoveg.setVisible(megjelenes);
+        berletnevBevitel.setVisible(megjelenes);
+        berletaraSzoveg.setVisible(megjelenes);
+        berletaraBevitel.setVisible(megjelenes);
+        ftJel.setVisible(megjelenes);
+        letrehozasGomb.setVisible(megjelenes);
+
+    }
+
+    private void idokorlatosBerlet(boolean megjelenes) {
+        berletnapSzoveg.setVisible(megjelenes);
+        napBevitel.setVisible(megjelenes);
+        berlethonapSzoveg.setVisible(megjelenes);
+        honapBevitel.setVisible(megjelenes);
+    }
+
+    private void alkalmasBerlet(boolean megjelenes) {
+        alakomBevitel.setVisible(megjelenes);
+        alkalomSzoveg.setVisible(megjelenes);
+    }
 }

@@ -83,9 +83,14 @@ public class KonditeremVo implements Serializable {
 
 	@Override
 	public String toString() {
-		return "KonditeremVo [id=" + id + ", felhasznalonev=" + felhasznalonev + ", jelszo=" + jelszo
-				+ ", konditeremNeve=" + konditeremNeve + ", konditeremTagok=" + konditeremTagok
-				+ ", konditeremBerletek=" + konditeremBerletek + "]";
+		return "KonditeremVo{" +
+				"id=" + id +
+				", felhasznalonev='" + felhasznalonev + '\'' +
+				", jelszo='" + jelszo + '\'' +
+				", konditeremNeve='" + konditeremNeve + '\'' +
+				", regisztralasDatuma=" + regisztralasDatuma +
+				", konditeremTagok=" + konditeremTagok +
+				", konditeremBerletek=" + konditeremBerletek +
+				'}';
 	}
-
 }

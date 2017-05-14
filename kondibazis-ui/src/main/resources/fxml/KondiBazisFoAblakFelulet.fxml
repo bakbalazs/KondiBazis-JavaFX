@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.validation.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
@@ -68,15 +69,15 @@
                           </rowConstraints>
                            <children>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Szűrés bérletre:" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Keresés:" GridPane.rowIndex="2" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Keresés:" GridPane.rowIndex="3" />
                               <RadioButton fx:id="osszesTagGomb" mnemonicParsing="false" onAction="#osszestagBerlet" text="Összes Tag" GridPane.columnIndex="1">
                                  <toggleGroup>
                                     <ToggleGroup fx:id="berletSzures" />
                                  </toggleGroup></RadioButton>
                               <RadioButton fx:id="aktivberletGomb" mnemonicParsing="false" onAction="#aktivBerlet" text="Aktív bérletű tagok" toggleGroup="$berletSzures" GridPane.columnIndex="2" />
                               <RadioButton fx:id="lejertberletGomb" mnemonicParsing="false" onAction="#lejartBerlet" text="Lejárt Bérletű tagok" toggleGroup="$berletSzures" GridPane.columnIndex="3" />
-                              <TextField fx:id="keresesszovegBevitel" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="123.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                              <ComboBox fx:id="valaszt" prefHeight="25.0" prefWidth="124.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <TextField fx:id="keresesszovegBevitel" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="123.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                              <ComboBox fx:id="valaszt" prefHeight="25.0" prefWidth="124.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Szűrés nemre:" GridPane.rowIndex="1" />
                               <RadioButton fx:id="ferfiGomb" mnemonicParsing="false" onAction="#ferfiTagok" text="Férfiak" GridPane.columnIndex="3" GridPane.rowIndex="1">
                                  <toggleGroup>
@@ -85,6 +86,35 @@
                               </RadioButton>
                               <RadioButton fx:id="noGomb" mnemonicParsing="false" onAction="#noTagok" text="Nők" toggleGroup="$nemSzures" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                               <RadioButton fx:id="osszesTagNemGomb" mnemonicParsing="false" onAction="#osszestagNem" text="Összes Tag" toggleGroup="$nemSzures" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Szűrés korra:" GridPane.rowIndex="2" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mettől:" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Meddig:" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                              <RadioButton mnemonicParsing="false" prefHeight="17.0" prefWidth="36.0" text="Be" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <GridPane.margin>
+                                    <Insets right="60.0" />
+                                 </GridPane.margin>
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="korSzures" />
+                                 </toggleGroup>
+                              </RadioButton>
+                              <RadioButton mnemonicParsing="false" prefHeight="17.0" prefWidth="38.0" text="Ki" toggleGroup="$korSzures" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                                 <GridPane.margin>
+                                    <Insets left="60.0" />
+                                 </GridPane.margin>
+                              </RadioButton>
+                              <TextField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="42.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <GridPane.margin>
+                                    <Insets left="100.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <TextField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="42.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                 <GridPane.margin>
+                                    <Insets left="100.0" />
+                                 </GridPane.margin>
+                              </TextField>
                            </children>
                         </GridPane>
                      </content>
@@ -155,7 +185,7 @@
                                     </RadioButton>
                                  </children>
                               </GridPane>
-                              <ImageView fx:id="test" fitHeight="134.0" fitWidth="149.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" />
+                              <ImageView fx:id="kepModositasa" fitHeight="134.0" fitWidth="149.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" />
                            </children>
                         </GridPane>
                      </content>
