@@ -3,6 +3,7 @@ package hu.unideb.inf.kondibazis.ui.kezelo;
 
 import hu.unideb.inf.kondibazis.db.entitas.KonditeremTagKepe;
 import hu.unideb.inf.kondibazis.szolg.interfaces.*;
+import hu.unideb.inf.kondibazis.szolg.kiegeszito.Ertesites;
 import hu.unideb.inf.kondibazis.szolg.vo.*;
 import hu.unideb.inf.kondibazis.ui.felulet.FeluletBetoltese;
 import javafx.event.ActionEvent;
@@ -138,6 +139,10 @@ public class TagHozzaadasaKezelo implements Initializable {
 
     private String megyeNev;
 
+    private int nap;
+
+    private int honap;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         logolo.debug("Tag hozzáadása felület elindítva.");
@@ -193,8 +198,6 @@ public class TagHozzaadasaKezelo implements Initializable {
             tallozasGomb.setText("Módosítás");
 
         } else {
-            // tagHozzaadasaUzenet.setFill(Color.RED);
-            // tagHozzaadasaUzenet.setText("Nincs kép kiválasztva!");
             kepMegjelenites.setImage(nincsKep);
             vanKep = false;
             tallozasGomb.setText("Tallózás");
@@ -221,14 +224,11 @@ public class TagHozzaadasaKezelo implements Initializable {
             tallozasGomb.setText("Módosítás");
             vanKep = true;
         } else {
-            // tagHozzaadasaUzenet.setFill(Color.RED);
-            // tagHozzaadasaUzenet.setText("Nincs kép kiválasztva!");
 
             vanKep = false;
             kepMegjelenites.setImage(nincsKep);
             tallozasGomb.setText("Tallózás");
             logolo.debug("Nincs kép kiválasztva, a NincsKep kép lesz berakva");
-
         }
     }
 
@@ -303,7 +303,7 @@ public class TagHozzaadasaKezelo implements Initializable {
             mehet = true;
         }
 
-        if (kotelezo == true) {
+        if (kotelezo) {
             tagHozzaadasUzenet.setFill(Color.RED);
             tagHozzaadasUzenet.setText("A csilaggal megjelölt adatok megadása kötelező!");
             mehet = false;
@@ -320,24 +320,22 @@ public class TagHozzaadasaKezelo implements Initializable {
             ujTag.setBerletVasarlasideje(maiNap);
             ujTag.setVasaroltBerletNeve(berletValasztas.getValue());
 
-            long h = 0;
-            long na = 0;
-            long o = 0;
-
             List<KonditeremBerletVo> konditeremBerletek = konditeremBerletSzolgaltatas
                     .konditeremOsszesBerlete(bejelentkezettKonditerem);
             for (KonditeremBerletVo berletek : konditeremBerletek) {
 
                 if (berletek.getBerletNeve().equals(berletValasztas.getValue())) {
-                    h = berletek.getMennyiHonap();
-                    na = berletek.getMennyiNap();
-
-                    ujTag.setBerletLejaratiIdeje(maiNap.plusMonths(h));
+                    nap = berletek.getMennyiNap();
+                    honap = berletek.getMennyiHonap();
+                    if (nap > 0) {
+                        ujTag.setBerletLejaratiIdeje(maiNap.plusDays(nap).minusDays(1));
+                    } else if (honap > 0) {
+                        ujTag.setBerletLejaratiIdeje(maiNap.plusMonths(honap));
+                    }
                 }
                 if (berletek.getBerletNeve().equals(berletValasztas.getValue())) {
                     ujTag.setVasaroltBerletTipusa(berletek.getBerletTipusa());
                 }
-
             }
 
             ujTag.setTagVarosa(varosNevBevitel.getText());
@@ -361,24 +359,13 @@ public class TagHozzaadasaKezelo implements Initializable {
             konditeremTagSzolgaltatas.frissitKonditeremTagot(letezo);
 
             ujTagKepe.setKonditeremTag(letezo);
+
             konditeremTagKepeSzolgaltatas.leterehozTagKepet(ujTagKepe);
 
-
-            Image pipa = new Image("/kepek/pipaErtesites.png", 85.0, 85.0, true, true);
-            Notifications ertesites = Notifications.create().title("Tag Hozzáadása").text("A tag sikeresen hozzáadva!")
-                    .graphic(new ImageView(pipa)).hideAfter(Duration.seconds(5)).position(Pos.BOTTOM_RIGHT)
-                    .onAction(new EventHandler<ActionEvent>() {
-
-                        @Override
-                        public void handle(ActionEvent event) {
-                            logolo.info("Az értesítésre kattintottak.");
-                        }
-                    });
-            logolo.info("Tag sikeresen hozzáadava : " + vezeteknevBevitel.getText() + " " + keresztnevBevitel.getText() + "névvel.");
             foAblakKezelo.adatFrissites();
-            ((Stage) megseGomb.getScene().getWindow()).close();
-            ertesites.show();
 
+            ((Stage) megseGomb.getScene().getWindow()).close();
+            Ertesites.ertesites("Tag Hozzáadása", "A tag sikeresen hozzáadva!", "Tag sikeresen hozzáadava : " + vezeteknevBevitel.getText() + " " + keresztnevBevitel.getText() + "névvel.", "Tag létrehozása után.");
         }
     }
 
@@ -423,6 +410,11 @@ public class TagHozzaadasaKezelo implements Initializable {
             }
         }
         return eredmeny;
+    }
+
+    @FXML
+    public void megse(ActionEvent event) throws IOException {
+        ((Stage) megseGomb.getScene().getWindow()).close();
     }
 
     public KonditeremVo getBejelentkezettKonditerem() {

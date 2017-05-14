@@ -52,9 +52,6 @@ public class BerletTestreszabasaKezelo implements Initializable {
     private TextField berletaraBevitel;
 
     @FXML
-    private TextField oraBevitel;
-
-    @FXML
     private TextField napBevitel;
 
     @FXML

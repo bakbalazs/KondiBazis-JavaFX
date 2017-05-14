@@ -171,7 +171,6 @@ public class KonditeremElerhetosegKezelo implements Initializable {
 
 		hazSzam = Integer.parseInt(hazSzamBevitel.getText());
 		// emelet = Integer.parseInt(emeletBevitel.getText());
-
 		if (!(korzetSzamBevitel.getLength() == 2)) {
 			mehet = false;
 			kotelezo = false;

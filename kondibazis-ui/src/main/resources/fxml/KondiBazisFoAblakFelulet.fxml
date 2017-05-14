@@ -1,15 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.validation.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckMenuItem?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="644.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.kondibazis.ui.kezelo.KondiBazisFoAblakKezelo">
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="644.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.kondibazis.ui.kezelo.KondiBazisFoAblakKezelo">
    <center>
       <GridPane alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" BorderPane.alignment="CENTER">
         <columnConstraints>
@@ -207,16 +221,16 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Szerkesztés">
             <items>
-                <MenuItem mnemonicParsing="false" text="Bérlet létrehozása" />
-                  <MenuItem mnemonicParsing="false" text="Bérletek testreszabása" />
+                <MenuItem mnemonicParsing="false" onAction="#berletletrehozasaMenu" text="Bérlet létrehozása" />
+                  <MenuItem mnemonicParsing="false" onAction="#berlettestreszabasaMenu" text="Bérletek testreszabása" />
             </items>
           </Menu>
-            <Menu mnemonicParsing="false" text="Statisztikák">
+            <Menu fx:id="statisztikaMenu" mnemonicParsing="false" text="Statisztikák">
               <items>
                 <MenuItem mnemonicParsing="false" onAction="#varosStatisztika" text="Város statisztika" />
-                  <MenuItem mnemonicParsing="false" text="Unspecified Action" />
-                  <MenuItem mnemonicParsing="false" text="Unspecified Action" />
-                  <MenuItem mnemonicParsing="false" text="Unspecified Action" />
+                  <MenuItem mnemonicParsing="false" onAction="#megyeStatisztika" text="Megye statisztika" />
+                  <MenuItem mnemonicParsing="false" onAction="#nemekStatisztika" text="Nemek statisztika" />
+                  <MenuItem mnemonicParsing="false" onAction="#berletTipusStatisztika" text="Bérlet Típus statisztika" />
                   <MenuItem mnemonicParsing="false" text="Unspecified Action" />
                   <MenuItem mnemonicParsing="false" text="Unspecified Action" />
                   <MenuItem mnemonicParsing="false" text="Unspecified Action" />
@@ -239,7 +253,7 @@
             <TableColumn fx:id="nemOszlop" prefWidth="75.0" text="Nem" />
             <TableColumn fx:id="korOszlop" prefWidth="75.0" text="Kor" />
             <TableColumn fx:id="berletNeveOszlop" prefWidth="88.0" text="Bérlet Neve" />
-            <TableColumn fx:id="berletVasarlasOszlop" prefWidth="104.0" text="Bérlet Vásárlása" />
+            <TableColumn fx:id="berletVasarlasOszlop" prefWidth="104.0" text="Bérlet Vásárlása" visible="false" />
             <TableColumn fx:id="berletLejrataOszlop" prefWidth="148.0" text="Bérlet Lejárati Dátuma" />
         </columns>
          <columnResizePolicy>

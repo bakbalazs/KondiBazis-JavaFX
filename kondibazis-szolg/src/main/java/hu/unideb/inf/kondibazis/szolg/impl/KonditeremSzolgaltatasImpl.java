@@ -77,5 +77,31 @@ public class KonditeremSzolgaltatasImpl implements KonditeremSzolgaltatas {
         return res;
     }
 
+    @Override
+    public Map<String, Long> megyeDiagramKonditeremTagokhoz(KonditeremVo konditerem) {
+        List<KonditeremTagVo> konditeremTagLisa = konditerem.getKonditeremTagok();
+
+        Map<String, Long> res = konditeremTagLisa.stream().collect(Collectors.groupingBy(KonditeremTagVo::getTagMegyeje, Collectors.counting()));
+
+        return res;
+    }
+
+    @Override
+    public Map<String, Long> nemekDiagramKonditeremTagokhoz(KonditeremVo konditerem) {
+        List<KonditeremTagVo> konditeremTagLisa = konditerem.getKonditeremTagok();
+
+        Map<String, Long> res = konditeremTagLisa.stream().collect(Collectors.groupingBy(KonditeremTagVo::getTagNeme, Collectors.counting()));
+
+        return res;
+    }
+
+    @Override
+    public Map<String, Long> berlettipusDiagramKonditeremTagokhoz(KonditeremVo konditerem) {
+        List<KonditeremTagVo> konditeremTagLisa = konditerem.getKonditeremTagok();
+
+        Map<String, Long> res = konditeremTagLisa.stream().collect(Collectors.groupingBy(KonditeremTagVo::getVasaroltBerletTipusa, Collectors.counting()));
+
+        return res;
+    }
 
 }

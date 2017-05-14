@@ -5,10 +5,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import hu.unideb.inf.kondibazis.szolg.kiegeszito.Ertesites;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremBerletVo;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.paint.Color;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -51,12 +53,6 @@ public class BerletLetrehozasaKezelo implements Initializable {
 
     @FXML
     private TextField honapBevitel;
-
-    @FXML
-    private Text letrehozasUzenet;
-
-    @FXML
-    private Text regisztraltKonditerem;
 
     @FXML
     private Text berletletrehozasUzenet;
@@ -150,15 +146,15 @@ public class BerletLetrehozasaKezelo implements Initializable {
                 mehetAlkalmas = false;
             }
 
-            if(ar == 0) {
+            if (ar == 0) {
                 mehetAlkalmas = false;
             }
 
-            if ( alkalom == 0) {
+            if (alkalom == 0) {
                 mehetAlkalmas = false;
             }
 
-            if((ar > 0 && alkalom > 0)) {
+            if ((ar > 0 && alkalom > 0)) {
                 mehetAlkalmas = true;
             }
 
@@ -169,7 +165,7 @@ public class BerletLetrehozasaKezelo implements Initializable {
             if (mehetAlkalmas) {
 
                 KonditeremBerletVo ujBerlet = new KonditeremBerletVo();
-                ujBerlet.setBerletNeve(berletnevBevitel.getText() + " ("+ berlettipusValasztasa.getValue()+ ")");
+                ujBerlet.setBerletNeve(berletnevBevitel.getText() + " (" + berlettipusValasztasa.getValue() + ")");
                 ujBerlet.setBerletTipusa(berlettipusValasztasa.getValue());
                 ujBerlet.setBerletAra(ar);
                 ujBerlet.setMennyiAlkalom(alkalom);
@@ -183,62 +179,73 @@ public class BerletLetrehozasaKezelo implements Initializable {
                 letezo.setKonditerem(bejelentkezettKonditerem);
 
                 konditeremBerletSzolgaltatas.frissitKonditeremBerletet(letezo);
+
                 foAblakKezelo.gombFrissites();
-                ((Stage)megseGomb.getScene().getWindow()).close();
+
+                ((Stage) megseGomb.getScene().getWindow()).close();
+                Ertesites.ertesites("Bérlet Létrehozása" , "A bérlet sikeresen létrehozva!" , "A bérlet sikeresen létrehozva : " + berletnevBevitel.getText() + " névvel.", "Bérlet létrehozása után.");
             }
 
         } else if (berlettipusValasztasa.getValue().equals("Időkorlátos bérlet")) {
 
-		ar = Integer.parseInt(berletaraBevitel.getText());
-		nap = Integer.parseInt(napBevitel.getText());
-		honap = Integer.parseInt(honapBevitel.getText());
+            ar = Integer.parseInt(berletaraBevitel.getText());
+            nap = Integer.parseInt(napBevitel.getText());
+            honap = Integer.parseInt(honapBevitel.getText());
 
-		if (berletnevBevitel.getText().equals("")) {
-			mehetIdokorlatos = false;
-		}
+            if (berletnevBevitel.getText().equals("")) {
+                mehetIdokorlatos = false;
+            }
 
-		if (berletaraBevitel.getText().equals("")) {
-			mehetIdokorlatos = false;
-		}
+            if (berletaraBevitel.getText().equals("")) {
+                mehetIdokorlatos = false;
+            }
 
-		if(ar == 0) {
-			mehetIdokorlatos = false;
-		}
+            if (ar == 0) {
+                mehetIdokorlatos = false;
+            }
 
-		if ( nap == 0 || honap == 0) {
-			mehetIdokorlatos = false;
-		}
+            if (nap == 0 || honap == 0) {
+                mehetIdokorlatos = false;
+            }
 
-		if((ar > 0 && nap > 0) || (ar > 0 && honap > 0 )) {
-			mehetIdokorlatos = true;
-		}
+            if ((ar > 0 && nap > 0) || (ar > 0 && honap > 0)) {
+                mehetIdokorlatos = true;
+            }
 
-		if (berletaraBevitel.getText().equals("") || napBevitel.getText().equals("")
-				|| honapBevitel.getText().equals("")) {
-			mehetIdokorlatos = false;
-		}
+            if (berletaraBevitel.getText().equals("") || napBevitel.getText().equals("")
+                    || honapBevitel.getText().equals("")) {
+                mehetIdokorlatos = false;
+            }
 
-		if (mehetIdokorlatos) {
+            if (mehetIdokorlatos == false) {
+                berletletrehozasUzenet.setFill(Color.RED);
+                berletletrehozasUzenet.setText("A csilaggal megjelölt adatok megadása kötelező!");
 
-			KonditeremBerletVo ujBerlet = new KonditeremBerletVo();
-			ujBerlet.setBerletNeve(berletnevBevitel.getText() + " ("+ berlettipusValasztasa.getValue()+ ")");
-            ujBerlet.setBerletTipusa(berlettipusValasztasa.getValue());
-			ujBerlet.setBerletAra(ar);
-			ujBerlet.setMennyiNap(nap);
-			ujBerlet.setMennyiHonap(honap);
+            } else if (mehetIdokorlatos) {
 
-			KonditeremBerletVo letezo = konditeremBerletSzolgaltatas.letrehozBerletet(ujBerlet);
+                KonditeremBerletVo ujBerlet = new KonditeremBerletVo();
+                ujBerlet.setBerletNeve(berletnevBevitel.getText() + " (" + berlettipusValasztasa.getValue() + ")");
+                ujBerlet.setBerletTipusa(berlettipusValasztasa.getValue());
+                ujBerlet.setBerletAra(ar);
+                ujBerlet.setMennyiNap(nap);
+                ujBerlet.setMennyiHonap(honap);
 
-			bejelentkezettKonditerem.getKonditeremBerletek().add(letezo);
 
-			konditeremSzolgaltatas.frissitKonditermet(bejelentkezettKonditerem);
+                KonditeremBerletVo letezo = konditeremBerletSzolgaltatas.letrehozBerletet(ujBerlet);
 
-			letezo.setKonditerem(bejelentkezettKonditerem);
+                bejelentkezettKonditerem.getKonditeremBerletek().add(letezo);
 
-			konditeremBerletSzolgaltatas.frissitKonditeremBerletet(letezo);
-			foAblakKezelo.gombFrissites();
-			((Stage)megseGomb.getScene().getWindow()).close();
-		}
+                konditeremSzolgaltatas.frissitKonditermet(bejelentkezettKonditerem);
+
+                letezo.setKonditerem(bejelentkezettKonditerem);
+
+                konditeremBerletSzolgaltatas.frissitKonditeremBerletet(letezo);
+
+                foAblakKezelo.gombFrissites();
+
+                ((Stage) megseGomb.getScene().getWindow()).close();
+                Ertesites.ertesites("Bérlet Létrehozása" , "A bérlet sikeresen létrehozva!" , "A bérlet sikeresen létrehozva : " + berletnevBevitel.getText() + " névvel." , "Bérlet létrehozása után.");
+            }
         }
 
     }
@@ -270,4 +277,5 @@ public class BerletLetrehozasaKezelo implements Initializable {
         alakomBevitel.setVisible(megjelenes);
         alkalomSzoveg.setVisible(megjelenes);
     }
+
 }

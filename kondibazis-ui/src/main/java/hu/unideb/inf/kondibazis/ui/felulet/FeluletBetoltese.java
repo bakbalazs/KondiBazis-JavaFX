@@ -133,4 +133,37 @@ public final class FeluletBetoltese {
 		stage.show();
 	}
 
+	public static void MegyeStatisztikaFelulet(ActionEvent event) {
+		Parent parent = (Parent) loader.load("/fxml/MegyeStatisztikaFelulet.fxml");
+		Scene scene = new Scene(parent);
+		Stage stage = new Stage();
+		stage.setTitle("Megye statisztika  - " + alkalmazasNeve  +" - "+ BejelentkezoKezelo.getKonditeremNeve());
+		stage.setScene(scene);
+		stage.centerOnScreen();
+		stage.getIcons().add(ikon);
+		stage.show();
+	}
+
+	public static void NemekStatisztikaFelulet(ActionEvent event) {
+		Parent parent = (Parent) loader.load("/fxml/NemekStatisztikaFelulet.fxml");
+		Scene scene = new Scene(parent);
+		Stage stage = new Stage();
+		stage.setTitle("Nemek statisztika  - " + alkalmazasNeve  +" - "+ BejelentkezoKezelo.getKonditeremNeve());
+		stage.setScene(scene);
+		stage.centerOnScreen();
+		stage.getIcons().add(ikon);
+		stage.show();
+	}
+
+	public static void BerletTipusStatisztikaFelulet(ActionEvent event) {
+		Parent parent = (Parent) loader.load("/fxml/BerletTipusStatisztikaFelulet.fxml");
+		Scene scene = new Scene(parent);
+		Stage stage = new Stage();
+		stage.setTitle("Bérlettípus statisztika  - " + alkalmazasNeve  +" - "+ BejelentkezoKezelo.getKonditeremNeve());
+		stage.setScene(scene);
+		stage.centerOnScreen();
+		stage.getIcons().add(ikon);
+		stage.show();
+	}
+
 }

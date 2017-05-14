@@ -47,7 +47,7 @@
                   </HBox>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Születési dátum:*" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <DatePicker fx:id="szuldatumBevitel" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Város:" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Város:*" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Beiratkozás ideje:" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bérlet választás:*" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Adatok:" underline="true" GridPane.columnIndex="1">
@@ -121,13 +121,13 @@
       </GridPane>
    </center>
    <bottom>
-      <GridPane prefHeight="104.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <GridPane prefHeight="68.0" prefWidth="600.0" BorderPane.alignment="CENTER">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints maxHeight="73.0" minHeight="10.0" prefHeight="73.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="47.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="73.0" minHeight="10.0" prefHeight="54.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="80.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <HBox alignment="CENTER" prefHeight="34.0" prefWidth="318.0" GridPane.rowIndex="1">
@@ -139,7 +139,7 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="31.0" prefWidth="300.0">
                      <children>
-                        <Button fx:id="megseGomb" mnemonicParsing="false" text="Mégse" />
+                        <Button fx:id="megseGomb" mnemonicParsing="false" onAction="#megse" text="Mégse" />
                      </children>
                   </VBox>
                </children>
@@ -147,7 +147,7 @@
                   <Insets />
                </opaqueInsets>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="55.0" prefWidth="318.0">
+            <HBox alignment="CENTER" prefHeight="25.0" prefWidth="600.0">
                <children>
                   <Text fx:id="tagHozzaadasUzenet" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="318.0" />
                </children>

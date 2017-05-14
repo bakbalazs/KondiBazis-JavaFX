@@ -13,5 +13,11 @@ public interface KonditeremSzolgaltatas {
 	KonditeremVo frissitKonditermet(KonditeremVo konditerem);
 
 	Map<String, Long> varosDiagramKonditeremTagokhoz(KonditeremVo konditerem);
+
+	Map<String, Long> megyeDiagramKonditeremTagokhoz(KonditeremVo konditerem);
+
+	Map<String, Long> nemekDiagramKonditeremTagokhoz(KonditeremVo konditerem);
+
+	Map<String, Long> berlettipusDiagramKonditeremTagokhoz(KonditeremVo konditerem);
 	
 }

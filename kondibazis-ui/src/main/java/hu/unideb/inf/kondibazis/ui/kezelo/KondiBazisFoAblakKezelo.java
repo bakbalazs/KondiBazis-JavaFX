@@ -4,6 +4,7 @@ package hu.unideb.inf.kondibazis.ui.kezelo;
 import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremBerletSzolgaltatas;
 import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremTagKepeSzolgaltatas;
 import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremTagSzolgaltatas;
+import hu.unideb.inf.kondibazis.szolg.kiegeszito.Ertesites;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremBerletVo;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremTagKepeVo;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremTagVo;
@@ -13,6 +14,7 @@ import hu.unideb.inf.kondibazis.ui.felulet.SpringFxmlLoader;
 import hu.unideb.inf.kondibazis.ui.main.Inditas;
 import hu.unideb.inf.kondibazis.ui.model.TagData;
 import javafx.application.Platform;
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -163,6 +165,9 @@ public class KondiBazisFoAblakKezelo implements Initializable {
 
     @FXML
     private ImageView kepModositasa;
+
+    @FXML
+    private Menu statisztikaMenu;
 
     private ObservableList<TagData> tagTablazatAdatok;
 
@@ -364,6 +369,12 @@ public class KondiBazisFoAblakKezelo implements Initializable {
     public void szuresKereses(ActionEvent event) {
         if (szures.isSelected()) {
             szuresEskereses.setDisable(false);
+            Platform.runLater(new Runnable() {
+                @Override public void run() {
+                    tagokTabla.getSelectionModel().clearSelection();
+                }});
+            tagModositas.setDisable(true);
+            tabPane.getSelectionModel().select(szuresEskereses);
         } else {
             szuresEskereses.setDisable(true);
         }
@@ -378,21 +389,11 @@ public class KondiBazisFoAblakKezelo implements Initializable {
             logolo.info("Sikeres kijeletkezés.");
             bejelentkezettKonditerem = null;
             tagokTabla = null;
-            Image pipa = new Image("/kepek/pipaErtesites.png", 85.0, 85.0, true, true);
-            Notifications ertesites = Notifications.create().title("Kijeletkezés").text("Sikeres kijeletkezés.")
-                    .graphic(new ImageView(pipa))
-                    .hideAfter(Duration.seconds(2)).position(Pos.BOTTOM_RIGHT)
-                    .onAction(new EventHandler<ActionEvent>() {
-                        @Override
-                        public void handle(ActionEvent event) {
-                            logolo.info("Az értesítésre kattintottak.");
-                        }
-                    });
             setKijelentkezes(true);
             setBejelentkezesUzenet("");
             setFelhasznalo("");
             FeluletBetoltese.InditasiFelulet(Inditas.primaryStage);
-            ertesites.show();
+            Ertesites.ertesites("Kijeletkezés", "Sikeres kijeletkezés.","Sikeres kijeletkezés.", "Sikeres kijeletkezés után" );
 
         } else {
             logolo.info("Nem történt kijeletkezés.");
@@ -409,6 +410,31 @@ public class KondiBazisFoAblakKezelo implements Initializable {
     @FXML
     public void varosStatisztika(ActionEvent event) {
         FeluletBetoltese.VarosStatisztikaFelulet(event);
+    }
+
+    @FXML
+    public void megyeStatisztika(ActionEvent event) {
+        FeluletBetoltese.MegyeStatisztikaFelulet(event);
+    }
+
+    @FXML
+    public void nemekStatisztika(ActionEvent event) {
+        FeluletBetoltese.NemekStatisztikaFelulet(event);
+    }
+
+    @FXML
+    public void berletTipusStatisztika(ActionEvent event) {
+        FeluletBetoltese.BerletTipusStatisztikaFelulet(event);
+    }
+
+    @FXML
+    public void berletletrehozasaMenu(ActionEvent event) {
+        FeluletBetoltese.BerletLetrehozasaFelulet(event);
+    }
+
+    @FXML
+    public void berlettestreszabasaMenu(ActionEvent event) {
+        FeluletBetoltese.BerletekModositasaFelulet(event);
     }
 
     private boolean kijeletkezesMegerositesFelulet(String cim, String fejlec, String tartalom, Alert.AlertType alertType) {
@@ -445,11 +471,12 @@ public class KondiBazisFoAblakKezelo implements Initializable {
         if (konditeremBerletek.isEmpty()) {
             berletModositasGomb.setDisable(true);
             tagHozzaadasaGomb.setDisable(true);
+            statisztikaMenu.setDisable(true);
 
         } else if (!konditeremBerletek.isEmpty()) {
             berletModositasGomb.setDisable(false);
             tagHozzaadasaGomb.setDisable(false);
-
+            statisztikaMenu.setDisable(false);
         }
     }
 
@@ -597,6 +624,14 @@ public class KondiBazisFoAblakKezelo implements Initializable {
 
             tagModositas.setDisable(false);
             tabPane.getSelectionModel().select(tagModositas);
+            szuresEskereses.setDisable(true);
+            szures.setSelected(false);
+//            osszesTagGomb.setSelected(true);
+//            osszesTagNemGomb.setSelected(true);
+//            adatFrissites();
+
+//HIBAAAAAA
+
 
             vezeteknevModosit.setText(tData.getTagVezetekneve().getValue());
             keresztnevModosit.setText(tData.getTagKeresztneve().getValue());
@@ -642,7 +677,6 @@ public class KondiBazisFoAblakKezelo implements Initializable {
     public void setBejelentkezettKonditerem(KonditeremVo bejelentkezettKonditerem) {
         this.bejelentkezettKonditerem = bejelentkezettKonditerem;
     }
-
 
     public static String getBejelentkezesUzenet() {
         return bejelentkezesUzenet;
