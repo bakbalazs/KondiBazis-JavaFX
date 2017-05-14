@@ -1,16 +1,13 @@
 // CHECKSTYLE:OFF
 package hu.unideb.inf.kondibazis.ui.kezelo;
 
-import hu.unideb.inf.kondibazis.db.entitas.KonditeremTagKepe;
 import hu.unideb.inf.kondibazis.szolg.interfaces.*;
 import hu.unideb.inf.kondibazis.szolg.kiegeszito.Ertesites;
 import hu.unideb.inf.kondibazis.szolg.vo.*;
 import hu.unideb.inf.kondibazis.ui.felulet.FeluletBetoltese;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -19,8 +16,6 @@ import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
-import javafx.util.Duration;
-import org.controlsfx.control.Notifications;
 import org.controlsfx.control.textfield.TextFields;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

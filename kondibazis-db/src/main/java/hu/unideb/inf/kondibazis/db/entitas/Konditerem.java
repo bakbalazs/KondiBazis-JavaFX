@@ -1,87 +1,176 @@
 package hu.unideb.inf.kondibazis.db.entitas;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-
+/**
+ * Az adatbázisban egy konditeremet reprezentáló osztály.
+ * Ez egy entitás amit az adatbázisba leképezve egy konditerem nevű táblát kapunk a megfelelő oszlopokkal.
+ */
 @Entity
 @Table(name = "konditerem")
 public class Konditerem extends FoEntitas {
 
-	private static final long serialVersionUID = 1L;
+    /**
+     * Alapértelmezett szerializációs azonosító.
+     */
+    private static final long serialVersionUID = 1L;
 
-	public Konditerem() {
-	}
+    /**
+     * Üres konstruktor a szerializálhatóság miatt.
+     */
+    public Konditerem() {
+    }
 
-	@Column(name = "felhasznalonev", unique = true)
-	private String felhasznalonev;
+    /**
+     * A konditerem felhasználóneve.
+     * Ez egy egyedi felhasználónév, csak egyszer szerepelhet.
+     * Ezt a {@link javax.persistence.Column Column} annotáció unique=true tagja biztosítja.
+     */
+    @Column(name = "felhasznalonev", unique = true)
+    private String felhasznalonev;
 
-	@Column(name = "jelszo")
-	private String jelszo;
+    /**
+     * A konditerem jelszava.
+     */
+    @Column(name = "jelszo")
+    private String jelszo;
 
-	@Column(name = "konditeremNeve")
-	private String konditeremNeve;
+    /**
+     * A konditerem neve.
+     */
+    @Column(name = "konditeremNeve")
+    private String konditeremNeve;
 
-	@Column(name = "regisztralasDatuma")
-	private LocalDate regisztralasDatuma;
+    /**
+     * A konditerem regisztrálásának a dátuma.
+     */
+    @Column(name = "regisztralasDatuma")
+    private LocalDate regisztralasDatuma;
 
-	@OneToMany(mappedBy = "konditerem", cascade = CascadeType.MERGE)
-	private List<KonditeremTag> konditeremTagok;
+    /**
+     * A konditeremhez tartozó tagok. Minden tagot külön kezelünk így minden konditerem rendelkezik egy listával, amelyben a tagjai szerepelnek.
+     * A {@link javax.persistence.OneToMany OnToMany} annotáció megmondja hogy egy konditeremhez több tag tartozik.
+     * A mappedBy taggal megadjuk hogy hol találja a Hibernate a konfigurációt ehhez az adattaghoz, ezesetben a kapcsolat másik
+     * oldalán a "konditerem" nevű adattagon lesz megadva a konfiguráció.
+     */
+    @OneToMany(mappedBy = "konditerem", cascade = CascadeType.MERGE,fetch=FetchType.LAZY)
+    private List<KonditeremTag> konditeremTagok;
 
-	@OneToMany(mappedBy = "konditerem", cascade = CascadeType.MERGE)
-	private List<KonditeremBerlet> konditeremBerletek;
+    /**
+     *
+     *
+     */
+    @OneToMany(mappedBy = "konditerem", cascade = CascadeType.MERGE, fetch=FetchType.LAZY)
+    private List<KonditeremBerlet> konditeremBerletek;
 
-	public String getFelhasznalonev() {
-		return felhasznalonev;
-	}
+    /**
+     * Visszaadja a konditerem felhasználónevét.
+     *
+     * @return A konditerem felhasználóneve.
+     */
+    public String getFelhasznalonev() {
+        return felhasznalonev;
+    }
 
-	public void setFelhasznalonev(String felhasznalonev) {
-		this.felhasznalonev = felhasznalonev;
-	}
+    /**
+     * Beállítja a konditerem felhasználónevét.
+     *
+     * @param felhasznalonev A beállítandó felhasználónév.
+     */
+    public void setFelhasznalonev(String felhasznalonev) {
+        this.felhasznalonev = felhasznalonev;
+    }
 
-	public String getJelszo() {
-		return jelszo;
-	}
+    /**
+     * Visszaadja a konditerem jelszavát.
+     *
+     * @return A konditerem jelszava.
+     */
+    public String getJelszo() {
+        return jelszo;
+    }
 
-	public void setJelszo(String jelszo) {
-		this.jelszo = jelszo;
-	}
+    /**
+     * Beállítja a konditerem jelszavát.
+     *
+     * @param jelszo A beállítandó jelszó.
+     */
+    public void setJelszo(String jelszo) {
+        this.jelszo = jelszo;
+    }
 
-	public String getKonditeremNeve() {
-		return konditeremNeve;
-	}
+    /**
+     * Visszaadja a konditerem nevét.
+     *
+     * @return A konditerem neve.
+     */
+    public String getKonditeremNeve() {
+        return konditeremNeve;
+    }
 
-	public void setKonditeremNeve(String konditeremNeve) {
-		this.konditeremNeve = konditeremNeve;
-	}
+    /**
+     * Beállítja a konditerem nevét.
+     *
+     * @param konditeremNeve A beállítandó név.
+     */
+    public void setKonditeremNeve(String konditeremNeve) {
+        this.konditeremNeve = konditeremNeve;
+    }
 
-	public List<KonditeremTag> getKonditeremTagok() {
-		return konditeremTagok;
-	}
+    /**
+     * Visszaadja a konditerem tagjait.
+     *
+     * @return Egy {@link java.util.List List} amiben a kondietrem tagjai szerepelnek.
+     */
+    public List<KonditeremTag> getKonditeremTagok() {
+        return konditeremTagok;
+    }
 
-	public void setKonditeremTagok(List<KonditeremTag> konditeremTagok) {
-		this.konditeremTagok = konditeremTagok;
-	}
+    /**
+     * Beállítja a konditerem tagjait.
+     *
+     * @param konditeremTagok A {@link java.util.List List} amiben a konditerem tagjai vannak.
+     */
+    public void setKonditeremTagok(List<KonditeremTag> konditeremTagok) {
+        this.konditeremTagok = konditeremTagok;
+    }
 
-	public LocalDate getRegisztralasDatuma() {
-		return regisztralasDatuma;
-	}
+    /**
+     * Visszaadja a konditerem regisztrálásának a dátumát.
+     *
+     * @return A konditerem regisztrálásának a dátuma.
+     */
+    public LocalDate getRegisztralasDatuma() {
+        return regisztralasDatuma;
+    }
 
-	public void setRegisztralasDatuma(LocalDate regisztralasDatuma) {
-		this.regisztralasDatuma = regisztralasDatuma;
-	}
+    /**
+     * Beállítja a konditerem regisztrálásának a dátumát.
+     *
+     * @param regisztralasDatuma A beállítandó dátum.
+     */
+    public void setRegisztralasDatuma(LocalDate regisztralasDatuma) {
+        this.regisztralasDatuma = regisztralasDatuma;
+    }
 
-	public List<KonditeremBerlet> getKonditeremBerletek() {
-		return konditeremBerletek;
-	}
+    /**
+     * Visszaadja a konditerem bérleteit.
+     *
+     * @return Egy {@link java.util.List List} amiben a konditerem bérletei szerepelnek.
+     */
+    public List<KonditeremBerlet> getKonditeremBerletek() {
+        return konditeremBerletek;
+    }
 
-	public void setKonditeremBerletek(List<KonditeremBerlet> konditeremBerletek) {
-		this.konditeremBerletek = konditeremBerletek;
-	}
+    /**
+     * Beállítja a konditerem bérleteit.
+     *
+     * @param konditeremBerletek A {@link java.util.List List} amiben a konditerem bérletei vannak.
+     */
+    public void setKonditeremBerletek(List<KonditeremBerlet> konditeremBerletek) {
+        this.konditeremBerletek = konditeremBerletek;
+    }
 
 }

@@ -1,9 +1,9 @@
 package hu.unideb.inf.kondibazis.szolg.interfaces;
 
-import java.util.List;
-
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremTagVo;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremVo;
+
+import java.util.List;
 
 public interface KonditeremTagSzolgaltatas {
 	

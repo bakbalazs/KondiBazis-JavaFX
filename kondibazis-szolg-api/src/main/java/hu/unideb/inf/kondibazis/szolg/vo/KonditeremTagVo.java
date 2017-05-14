@@ -2,7 +2,6 @@ package hu.unideb.inf.kondibazis.szolg.vo;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Arrays;
 
 public class KonditeremTagVo implements Serializable {
 

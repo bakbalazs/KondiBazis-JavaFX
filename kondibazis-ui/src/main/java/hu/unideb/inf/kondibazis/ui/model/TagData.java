@@ -1,29 +1,28 @@
+// CHECKSTYLE:OFF
 package hu.unideb.inf.kondibazis.ui.model;
-
-import java.time.LocalDate;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+import java.time.LocalDate;
+
 public class TagData {
 
-	 private long id;
-	 private LocalDate tagSzuletesiIdeje;
+	private long id;
+	private LocalDate tagSzuletesiIdeje;
 	private StringProperty tagNeve;
 	private StringProperty tagVezetekneve;
 	private StringProperty tagKeresztneve;
 	private StringProperty tagNeme;
-	 private StringProperty tagKora;
-	 private StringProperty berletVasarlasIdeje;
+	private StringProperty tagKora;
+	private StringProperty berletVasarlasIdeje;
 	private StringProperty berletLejaratiIdeje;
-	 private StringProperty vasaroltBerletNeve;
+	private StringProperty vasaroltBerletNeve;
 
 	public TagData() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	//
 	public TagData(long id,LocalDate tagSzuletesiIdeje, String tagNeve, String tagVezetekneve, String tagKeresztneve ,String tagNeme, Integer tagKora,String vasaroltBerletNeve, LocalDate berletVasarlasideje , LocalDate berletLejaratiIdeje) {
 		this.setId(id);
 		this.setTagSzuletesiIdeje(tagSzuletesiIdeje);

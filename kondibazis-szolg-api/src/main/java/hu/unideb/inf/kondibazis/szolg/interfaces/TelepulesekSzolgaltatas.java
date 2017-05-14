@@ -1,8 +1,8 @@
 package hu.unideb.inf.kondibazis.szolg.interfaces;
 
-import java.util.List;
-
 import hu.unideb.inf.kondibazis.szolg.vo.TelepulesekVo;
+
+import java.util.List;
 
 public interface TelepulesekSzolgaltatas {
 	

@@ -1,7 +1,5 @@
 package hu.unideb.inf.kondibazis.ui.bevitel.szolg;
 
-import java.util.stream.Stream;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
@@ -10,6 +8,8 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Window;
+
+import java.util.stream.Stream;
 
 public class ComboBoxAutoComplete<T> {
 

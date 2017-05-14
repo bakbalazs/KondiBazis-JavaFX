@@ -1,14 +1,6 @@
 // CHECKSTYLE:OFF
 package hu.unideb.inf.kondibazis.ui.kezelo;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
 import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremElerhetosegSzolgaltatas;
 import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremSzolgaltatas;
 import hu.unideb.inf.kondibazis.szolg.interfaces.TelepulesekSzolgaltatas;
@@ -26,6 +18,13 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 @Component
 public class KonditeremElerhetosegKezelo implements Initializable {

@@ -1,12 +1,11 @@
 package hu.unideb.inf.kondibazis.db.tarolo;
 
-import java.util.List;
-
+import hu.unideb.inf.kondibazis.db.entitas.Konditerem;
+import hu.unideb.inf.kondibazis.db.entitas.KonditeremTag;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import hu.unideb.inf.kondibazis.db.entitas.Konditerem;
-import hu.unideb.inf.kondibazis.db.entitas.KonditeremTag;
+import java.util.List;
 
 @Repository
 public interface KonditeremTagTarolo extends JpaRepository<KonditeremTag, Long> {

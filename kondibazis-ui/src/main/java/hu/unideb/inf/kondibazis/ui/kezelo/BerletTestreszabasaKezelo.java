@@ -1,15 +1,6 @@
 // CHECKSTYLE:OFF
 package hu.unideb.inf.kondibazis.ui.kezelo;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.List;
-import java.util.ResourceBundle;
-
-import hu.unideb.inf.kondibazis.db.entitas.KonditeremBerlet;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
 import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremBerletSzolgaltatas;
 import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremSzolgaltatas;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremBerletVo;
@@ -20,10 +11,17 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.scene.control.ChoiceBox;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.List;
+import java.util.ResourceBundle;
 
 @Component
 public class BerletTestreszabasaKezelo implements Initializable {

@@ -1,29 +1,28 @@
 // CHECKSTYLE:OFF
 package hu.unideb.inf.kondibazis.ui.kezelo;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-
-import hu.unideb.inf.kondibazis.szolg.kiegeszito.Ertesites;
-import hu.unideb.inf.kondibazis.szolg.vo.KonditeremBerletVo;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.paint.Color;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
 import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremBerletSzolgaltatas;
 import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremSzolgaltatas;
+import hu.unideb.inf.kondibazis.szolg.kiegeszito.Ertesites;
+import hu.unideb.inf.kondibazis.szolg.vo.KonditeremBerletVo;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremVo;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 @Component
 public class BerletLetrehozasaKezelo implements Initializable {

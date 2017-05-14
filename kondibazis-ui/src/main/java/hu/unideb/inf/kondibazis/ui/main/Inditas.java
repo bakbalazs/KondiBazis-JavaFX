@@ -1,14 +1,14 @@
 // CHECKSTYLE:OFF
 package hu.unideb.inf.kondibazis.ui.main;
 
-import java.io.IOException;
-
 import hu.unideb.inf.kondibazis.ui.felulet.FeluletBetoltese;
 import hu.unideb.inf.kondibazis.ui.felulet.SpringFxmlLoader;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.IOException;
 
 public class Inditas extends Application {
 	

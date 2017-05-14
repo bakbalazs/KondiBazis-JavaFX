@@ -1,12 +1,5 @@
 package hu.unideb.inf.kondibazis.szolg.impl;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
-
 import hu.unideb.inf.kondibazis.db.entitas.KonditeremTag;
 import hu.unideb.inf.kondibazis.db.tarolo.KonditeremTagTarolo;
 import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremSzolgaltatas;
@@ -15,6 +8,12 @@ import hu.unideb.inf.kondibazis.szolg.mapper.KonditeremMapper;
 import hu.unideb.inf.kondibazis.szolg.mapper.KonditeremTagMapper;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremTagVo;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremVo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @Transactional(propagation = Propagation.REQUIRED)

@@ -1,14 +1,13 @@
 // CHECKSTYLE:OFF
 package hu.unideb.inf.kondibazis.ui.felulet;
 
-import java.io.IOException;
-import java.io.InputStream;
-
+import javafx.fxml.FXMLLoader;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import javafx.fxml.FXMLLoader;
+import java.io.IOException;
+import java.io.InputStream;
 
 
 public class SpringFxmlLoader {

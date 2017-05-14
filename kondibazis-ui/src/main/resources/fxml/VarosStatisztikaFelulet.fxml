@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.chart.*?>
-<?import javafx.scene.layout.*?>
-
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.layout.BorderPane?>
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.kondibazis.ui.kezelo.statisztika.VarosStatisztikaKezelo">
    <center>
       <PieChart fx:id="varos_diagram" legendVisible="false" title="Konditermenként Városok" BorderPane.alignment="CENTER" />

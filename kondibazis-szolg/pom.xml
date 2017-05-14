@@ -7,6 +7,7 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>kondibazis-szolg</artifactId>
+	<name>KondiBázis szolgáltatás réteg</name>
 
 	<dependencies>
 		<dependency>
@@ -46,7 +47,13 @@
 			<version>4.2.5.RELEASE</version>
 			<scope>provided</scope>
 		</dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>1.10.19</version>
+            <scope>test</scope>
+        </dependency>
 
-	</dependencies>
+    </dependencies>
 
 </project>

@@ -1,16 +1,6 @@
 // CHECKSTYLE:OFF
 package hu.unideb.inf.kondibazis.ui.kezelo;
 
-import java.io.IOException;
-import java.net.URL;
-import java.time.LocalDate;
-import java.util.ResourceBundle;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
 import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremSzolgaltatas;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremVo;
 import hu.unideb.inf.kondibazis.ui.felulet.FeluletBetoltese;
@@ -18,12 +8,20 @@ import hu.unideb.inf.kondibazis.ui.main.Inditas;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import java.io.IOException;
+import java.net.URL;
+import java.time.LocalDate;
+import java.util.ResourceBundle;
 
 @Component
 public class RegisztralasKezelo implements Initializable {

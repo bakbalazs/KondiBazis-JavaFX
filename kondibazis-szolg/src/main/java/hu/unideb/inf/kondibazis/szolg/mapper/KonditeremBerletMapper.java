@@ -1,12 +1,11 @@
 package hu.unideb.inf.kondibazis.szolg.mapper;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.modelmapper.ModelMapper;
-
 import hu.unideb.inf.kondibazis.db.entitas.KonditeremBerlet;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremBerletVo;
+import org.modelmapper.ModelMapper;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class KonditeremBerletMapper {
 	private static ModelMapper mapper = new ModelMapper();

@@ -3,7 +3,6 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-
 <AnchorPane prefHeight="483.0" prefWidth="485.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.kondibazis.ui.kezelo.NevjegyKezelo">
 	<children>
       <JFXButton fx:id="visszaGomb1" buttonType="RAISED" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#vissza" prefHeight="23.0" prefWidth="23.0" ripplerFill="#ffffff00" text=" " textFill="#ffffff00">

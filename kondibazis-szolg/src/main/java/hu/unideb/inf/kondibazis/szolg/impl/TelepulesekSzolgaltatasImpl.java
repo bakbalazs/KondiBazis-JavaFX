@@ -1,17 +1,16 @@
 package hu.unideb.inf.kondibazis.szolg.impl;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
-
 import hu.unideb.inf.kondibazis.db.entitas.Telepulesek;
 import hu.unideb.inf.kondibazis.db.tarolo.TelepulesekTarolo;
 import hu.unideb.inf.kondibazis.szolg.interfaces.TelepulesekSzolgaltatas;
 import hu.unideb.inf.kondibazis.szolg.mapper.TelepulesekMapper;
 import hu.unideb.inf.kondibazis.szolg.vo.TelepulesekVo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @Transactional(propagation = Propagation.REQUIRED)
