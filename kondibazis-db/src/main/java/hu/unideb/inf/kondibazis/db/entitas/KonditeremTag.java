@@ -86,6 +86,12 @@ public class KonditeremTag extends FoEntitas {
     private String vasaroltBerletTipusa;
 
     /**
+     * A Tag által vásrolt bérlet mennyi alkalomig jó.(Ha alkalmas bérlet vásárolt)
+     */
+    @Column(name = "mennyiAlkalomMeg")
+    private int mennyiAlkalomMeg;
+
+    /**
      * A Tag városa.
      */
     @Column(name = "tagVarosa")
@@ -229,6 +235,15 @@ public class KonditeremTag extends FoEntitas {
      */
     public void setVasaroltBerletNeve(String vasaroltBerletNeve) {
         this.vasaroltBerletNeve = vasaroltBerletNeve;
+    }
+
+    //TODO
+    public int getMennyiAlkalomMeg() {
+        return mennyiAlkalomMeg;
+    }
+
+    public void setMennyiAlkalomMeg(int mennyiAlkalomMeg) {
+        this.mennyiAlkalomMeg = mennyiAlkalomMeg;
     }
 
     /**

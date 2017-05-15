@@ -7,12 +7,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class Ertesites {
 
-    private static Logger logolo = LoggerFactory.getLogger(Ertesites.class);
+//    private static Logger logolo = LoggerFactory.getLogger(Ertesites.class);
 
     public static void ertesites(String cim, String megjelenoSzoveg, String logoloSzoveg, String feluletNeve) {
         Image pipa = new Image("/kepek/pipaErtesites.png", 85.0, 85.0, true, true);
@@ -22,10 +20,10 @@ public class Ertesites {
 
                     @Override
                     public void handle(ActionEvent event) {
-                                logolo.info("Az értesítésre kattintottak: "+ feluletNeve);
+//                                logolo.info("Az értesítésre kattintottak: "+ feluletNeve);
                     }
                 });
-                logolo.info(logoloSzoveg);
+//                logolo.info(logoloSzoveg);
         ertesites.show();
     }
 }

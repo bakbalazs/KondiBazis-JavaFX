@@ -14,6 +14,7 @@ import hu.unideb.inf.kondibazis.ui.felulet.SpringFxmlLoader;
 import hu.unideb.inf.kondibazis.ui.main.Inditas;
 import hu.unideb.inf.kondibazis.ui.model.TagData;
 import javafx.application.Platform;
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -211,7 +212,6 @@ public class KondiBazisFoAblakKezelo implements Initializable {
         konditeremNeve.setText(bejelentkezoKezelo.getBejelentkezettKonditerem().getKonditeremNeve());
         regisztralasDatuma.setText(bejelentkezoKezelo.getBejelentkezettKonditerem().getRegisztralasDatuma().toString());
 
-
         tagokTabla.getSelectionModel()
                 .selectedItemProperty()
                 .addListener((observable, oldValue, newValue) -> {
@@ -221,6 +221,34 @@ public class KondiBazisFoAblakKezelo implements Initializable {
                         e.printStackTrace();
                     }
                 });
+
+        TableColumn<TagData, TagData> alkalmakOszlop = new TableColumn<>("Alkalmak");
+        alkalmakOszlop.setMaxWidth(4800);
+        alkalmakOszlop.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
+        alkalmakOszlop.setCellFactory(param -> new TableCell<TagData, TagData>() {
+            private final Button mennyiAlkalomMegGomb = new Button("Még 5 alkalom van hátra.");
+
+            @Override
+            protected void updateItem(TagData person, boolean empty) {
+                super.updateItem(person, empty);
+
+                if (person == null) {
+                    setGraphic(null);
+                    return;
+                }
+
+                setGraphic(mennyiAlkalomMegGomb);
+
+                mennyiAlkalomMegGomb.setOnAction(event -> mennyiAlkalomMegGomb.setText("sdass"));
+
+            }
+
+
+        });
+
+
+
+        tagokTabla.getColumns().add(alkalmakOszlop);
 
 
         valaszt.getItems().add("Név");
