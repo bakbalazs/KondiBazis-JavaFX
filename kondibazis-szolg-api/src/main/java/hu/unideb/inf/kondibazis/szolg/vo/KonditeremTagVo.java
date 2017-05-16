@@ -36,6 +36,8 @@ public class KonditeremTagVo implements Serializable {
 
     private String tagMegyeje;
 
+    private int mennyiAlkalomMeg;
+
     private KonditeremVo konditerem;
 
     public Long getId() {
@@ -150,13 +152,32 @@ public class KonditeremTagVo implements Serializable {
         this.berletLejaratiIdeje = berletLejaratiIdeje;
     }
 
-    @Override
-    public String toString() {
-        return "KonditeremTagVo [id=" + id + ", tagVezeteknev=" + tagVezeteknev + ", tagKeresztnev=" + tagKeresztnev
-                + ", tagNeve=" + tagNeve + ", tagNeme=" + tagNeme + ", tagKora=" + tagKora + ", tagSzuletesidatuma="
-                + tagSzuletesidatuma + ", berletVasarlasideje=" + berletVasarlasideje + ", vasaroltBerletNeve="
-                + vasaroltBerletNeve + ", tagVarosa=" + tagVarosa
-                + ", tagMegyeje=" + tagMegyeje + "]";
+    public int getMennyiAlkalomMeg() {
+        return mennyiAlkalomMeg;
     }
 
+    public void setMennyiAlkalomMeg(int mennyiAlkalomMeg) {
+        this.mennyiAlkalomMeg = mennyiAlkalomMeg;
+    }
+
+    @Override
+    public String toString() {
+        return "KonditeremTagVo{" +
+                "id=" + id +
+                ", tagVezeteknev='" + tagVezeteknev + '\'' +
+                ", tagKeresztnev='" + tagKeresztnev + '\'' +
+                ", tagNeve='" + tagNeve + '\'' +
+                ", tagNeme='" + tagNeme + '\'' +
+                ", tagKora=" + tagKora +
+                ", tagSzuletesidatuma=" + tagSzuletesidatuma +
+                ", berletVasarlasideje=" + berletVasarlasideje +
+                ", berletLejaratiIdeje=" + berletLejaratiIdeje +
+                ", vasaroltBerletNeve='" + vasaroltBerletNeve + '\'' +
+                ", vasaroltBerletTipusa='" + vasaroltBerletTipusa + '\'' +
+                ", tagVarosa='" + tagVarosa + '\'' +
+                ", tagMegyeje='" + tagMegyeje + '\'' +
+                ", mennyiAlkalomMeg=" + mennyiAlkalomMeg +
+                ", konditerem=" + konditerem +
+                '}';
+    }
 }

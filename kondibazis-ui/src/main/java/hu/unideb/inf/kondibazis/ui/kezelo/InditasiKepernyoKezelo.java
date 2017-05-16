@@ -32,7 +32,7 @@ public class InditasiKepernyoKezelo implements Initializable {
 	}
 
 	@FXML
-	public void kilepes(ActionEvent event) {
+	public void kilepes() {
 		SpringFxmlLoader.close();
 		Platform.exit();
 	}

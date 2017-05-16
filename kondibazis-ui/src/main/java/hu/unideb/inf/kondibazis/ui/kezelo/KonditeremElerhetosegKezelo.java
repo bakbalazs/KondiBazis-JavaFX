@@ -32,9 +32,6 @@ public class KonditeremElerhetosegKezelo implements Initializable {
 	private static final Logger logolo = LoggerFactory.getLogger(KonditeremElerhetosegKezelo.class);
 
 	@Autowired
-	private KonditeremSzolgaltatas konditeremSzolgaltatas;
-
-	@Autowired
 	private KonditeremElerhetosegSzolgaltatas konditeremElerhetosegSzolgaltatas;
 
 	@Autowired

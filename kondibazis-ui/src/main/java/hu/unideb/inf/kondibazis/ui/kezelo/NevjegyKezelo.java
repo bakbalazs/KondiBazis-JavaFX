@@ -16,7 +16,7 @@ import java.util.ResourceBundle;
 public class NevjegyKezelo implements Initializable {
 
 	@FXML
-	public void vissza(ActionEvent event) throws IOException {
+	public void vissza() throws IOException {
 		FeluletBetoltese.InditasiFelulet(Inditas.primaryStage);
 	}
 

@@ -43,7 +43,7 @@ public class KonditeremTagSzolgaltatasImpl implements KonditeremTagSzolgaltatas 
 
 	@Override
 	public KonditeremTagVo keresTagot(Long id) {
-		KonditeremTag found = konditeremTagTarolo.findOne(id);
+		KonditeremTag found = konditeremTagTarolo.findById(id);
 		if (found == null) {
 		} else {
 		}

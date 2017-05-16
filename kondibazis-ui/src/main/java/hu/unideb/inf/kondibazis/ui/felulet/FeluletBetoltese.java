@@ -13,7 +13,7 @@ public final class FeluletBetoltese {
 
     private static final SpringFxmlLoader loader = new SpringFxmlLoader();
 
-    public static final String alkalmazasNeve = "KondiBázis";
+    private static final String alkalmazasNeve = "KondiBázis";
 
     public static final Image ikon = new Image("/kepek/icon.png");
 
@@ -79,8 +79,8 @@ public final class FeluletBetoltese {
         stage.centerOnScreen();
     }
 
-    public static void BerletLetrehozasaFelulet(ActionEvent event) {
-        Parent root = (Parent) loader.load("/fxml/BerletLetrehozasaFelulet.fxml");
+    public static void BerletLetrehozasaFelulet() {
+        Parent root = (Parent) loader.load("/fxml/BerletLetrehozasFoAblakFelulet.fxml");
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setTitle("Bérlet Létrehozása - " + alkalmazasNeve);
@@ -90,7 +90,7 @@ public final class FeluletBetoltese {
         stage.show();
     }
 
-    public static void BerletekModositasaFelulet(ActionEvent event) {
+    public static void BerletekModositasaFelulet() {
         Parent root = (Parent) loader.load("/fxml/BerletekModositasaFelulet.fxml");
         Scene scene = new Scene(root);
         Stage stage = new Stage();
@@ -101,7 +101,7 @@ public final class FeluletBetoltese {
         stage.show();
     }
 
-    public static void TagHozzaadasaFelulet(ActionEvent event) {
+    public static void TagHozzaadasaFelulet() {
         Parent root = (Parent) loader.load("/fxml/TaghozzaadasaFelulet.fxml");
         Scene scene = new Scene(root);
         Stage stage = new Stage();
@@ -112,7 +112,7 @@ public final class FeluletBetoltese {
         stage.show();
     }
 
-    public static void KonditeremElerhetosegSzekeszteseFelulet(ActionEvent event) {
+    public static void KonditeremElerhetosegSzekeszteseFelulet() {
         Parent parent = (Parent) loader.load("/fxml/KonditeremElerhetosegSzerkesztesFelulet.fxml");
         Scene scene = new Scene(parent);
         Stage stage = new Stage();
@@ -123,7 +123,7 @@ public final class FeluletBetoltese {
         stage.show();
     }
 
-    public static void VarosStatisztikaFelulet(ActionEvent event) {
+    public static void VarosStatisztikaFelulet() {
         Parent parent = (Parent) loader.load("/fxml/VarosStatisztikaFelulet.fxml");
         Scene scene = new Scene(parent);
         Stage stage = new Stage();
@@ -134,7 +134,7 @@ public final class FeluletBetoltese {
         stage.show();
     }
 
-    public static void MegyeStatisztikaFelulet(ActionEvent event) {
+    public static void MegyeStatisztikaFelulet() {
         Parent parent = (Parent) loader.load("/fxml/MegyeStatisztikaFelulet.fxml");
         Scene scene = new Scene(parent);
         Stage stage = new Stage();
@@ -145,7 +145,7 @@ public final class FeluletBetoltese {
         stage.show();
     }
 
-    public static void NemekStatisztikaFelulet(ActionEvent event) {
+    public static void NemekStatisztikaFelulet() {
         Parent parent = (Parent) loader.load("/fxml/NemekStatisztikaFelulet.fxml");
         Scene scene = new Scene(parent);
         Stage stage = new Stage();
@@ -156,7 +156,7 @@ public final class FeluletBetoltese {
         stage.show();
     }
 
-    public static void BerletTipusStatisztikaFelulet(ActionEvent event) {
+    public static void BerletTipusStatisztikaFelulet() {
         Parent parent = (Parent) loader.load("/fxml/BerletTipusStatisztikaFelulet.fxml");
         Scene scene = new Scene(parent);
         Stage stage = new Stage();

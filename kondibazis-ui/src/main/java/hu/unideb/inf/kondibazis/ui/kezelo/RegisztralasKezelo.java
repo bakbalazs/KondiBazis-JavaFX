@@ -149,7 +149,7 @@ public class RegisztralasKezelo implements Initializable {
 		FeluletBetoltese.InditasiFelulet(Inditas.primaryStage);
 	}
 
-	public KonditeremVo getRegisztraltKonditerem() {
+	private KonditeremVo getRegisztraltKonditerem() {
 		return regisztraltKonditerem;
 	}
 

@@ -2,10 +2,9 @@
 package hu.unideb.inf.kondibazis.ui.kezelo;
 
 import hu.unideb.inf.kondibazis.szolg.interfaces.*;
-import hu.unideb.inf.kondibazis.szolg.kiegeszito.Ertesites;
 import hu.unideb.inf.kondibazis.szolg.vo.*;
 import hu.unideb.inf.kondibazis.ui.felulet.FeluletBetoltese;
-import javafx.event.ActionEvent;
+import hu.unideb.inf.kondibazis.ui.kiegeszito.Ertesites;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -134,10 +133,6 @@ public class TagHozzaadasaKezelo implements Initializable {
 
     private String megyeNev;
 
-    private int nap;
-
-    private int honap;
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         logolo.debug("Tag hozzáadása felület elindítva.");
@@ -175,7 +170,7 @@ public class TagHozzaadasaKezelo implements Initializable {
     }
 
     @FXML
-    public void tallozas(ActionEvent event) throws IOException {
+    public void tallozas() throws IOException {
         logolo.info("Tallózás gombra kattintva.");
         kepValaszto.getExtensionFilters().addAll(new ExtensionFilter("Image Files (*.png , *.jpg)", "*.png", "*.jpg"));
         kivalasztottKep = kepValaszto.showOpenDialog(null);
@@ -202,7 +197,7 @@ public class TagHozzaadasaKezelo implements Initializable {
     }
 
     @FXML
-    public void kepenTallozas(ActionEvent event) throws IOException {
+    public void kepenTallozas() throws IOException {
         logolo.info("Képre kattintva a tallózáshot.");
         kepValaszto.getExtensionFilters().addAll(new ExtensionFilter("Image Files (*.png , *.jpg)", "*.png", "*.jpg"));
         kivalasztottKep = kepValaszto.showOpenDialog(null);
@@ -228,7 +223,7 @@ public class TagHozzaadasaKezelo implements Initializable {
     }
 
     @FXML
-    public void kepTorlese(ActionEvent event) {
+    public void kepTorlese() {
         logolo.debug("Kép törlésére kattintva.\n Nincs kép kép berakva.");
         kepMegjelenites.setImage(nincsKep);
         tallozasGomb.setText("Tallózás");
@@ -236,7 +231,7 @@ public class TagHozzaadasaKezelo implements Initializable {
     }
 
     @FXML
-    public void hozzaadas(ActionEvent event) throws IOException {
+    public void hozzaadas() throws IOException {
         logolo.info("Hozzáadás gombra kattintva.");
 
         boolean mehet = false;
@@ -318,26 +313,33 @@ public class TagHozzaadasaKezelo implements Initializable {
             List<KonditeremBerletVo> konditeremBerletek = konditeremBerletSzolgaltatas
                     .konditeremOsszesBerlete(bejelentkezettKonditerem);
             for (KonditeremBerletVo berletek : konditeremBerletek) {
-
-                if (berletek.getBerletNeve().equals(berletValasztas.getValue())) {
-                    nap = berletek.getMennyiNap();
-                    honap = berletek.getMennyiHonap();
+                System.out.println(berletek.getBerletNeve());
+                /// ha tarlmaza hogy időkorlátos akkor a napot hónapot ha tatlamaz hogy alkalmas akkor a menyi alkalommal dolgot mentse
+                if (berletek.getBerletTipusa().contains("Időkorlátos")) {
+                    int nap = berletek.getMennyiNap();
+                    int honap = berletek.getMennyiHonap();
                     if (nap > 0) {
                         ujTag.setBerletLejaratiIdeje(maiNap.plusDays(nap).minusDays(1));
                     } else if (honap > 0) {
                         ujTag.setBerletLejaratiIdeje(maiNap.plusMonths(honap));
                     }
                 }
-                if (berletek.getBerletNeve().equals(berletValasztas.getValue())) {
-                    ujTag.setVasaroltBerletTipusa(berletek.getBerletTipusa());
+                if (berletek.getBerletTipusa().contains("Alkalmas")) {
+                    int alkalom = berletek.getMennyiAlkalom();
+                    if (alkalom > 0) {
+                        ujTag.setBerletLejaratiIdeje(LocalDate.now());
+                        ujTag.setMennyiAlkalomMeg(alkalom);
+                    }
                 }
+                ujTag.setVasaroltBerletTipusa(berletek.getBerletTipusa());
+
             }
 
             ujTag.setTagVarosa(varosNevBevitel.getText());
             ujTag.setTagMegyeje(megyeNev);
 
 
-            if (vanKep == true) {
+            if (vanKep) {
                 ujTagKepe.setTagKep(kepByte);
             } else {
                 ujTagKepe.setTagKep(nincsKep());
@@ -365,8 +367,7 @@ public class TagHozzaadasaKezelo implements Initializable {
     }
 
     private int korSzamolas(LocalDate szuletesiDatum) {
-        int kor = (int) ChronoUnit.YEARS.between(szuletesiDatum, maiNap);
-        return kor;
+        return (int) ChronoUnit.YEARS.between(szuletesiDatum, maiNap);
     }
 
     private String nemValasztas() {
@@ -408,8 +409,9 @@ public class TagHozzaadasaKezelo implements Initializable {
     }
 
     @FXML
-    public void megse(ActionEvent event) throws IOException {
+    public void megse() throws IOException {
         ((Stage) megseGomb.getScene().getWindow()).close();
+        logolo.info("Mégse gomb megnyomva, így a konditerem nem adott hozzá új tagot.");
     }
 
     public KonditeremVo getBejelentkezettKonditerem() {

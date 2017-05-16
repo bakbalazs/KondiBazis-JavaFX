@@ -110,9 +110,9 @@ public class BejelentkezoKezelo implements Initializable {
     }
 
     @FXML
-    public void vissza(ActionEvent event) throws IOException {
+    public void vissza() throws IOException {
         logolo.debug("Indítása felület indul.");
-        setVisszaGombLenyomva(true);
+        setVisszaGombLenyomva();
         FeluletBetoltese.InditasiFelulet(Inditas.primaryStage);
     }
 
@@ -120,23 +120,19 @@ public class BejelentkezoKezelo implements Initializable {
         return bejelentkezettKonditerem;
     }
 
-    public void setBejelentkezettKonditerem(KonditeremVo bejelentkezettKonditerem) {
-        this.bejelentkezettKonditerem = bejelentkezettKonditerem;
-    }
-
     public static String getKonditeremNeve() {
         return konditeremNeve;
     }
 
-    public static void setKonditeremNeve(String konditeremNeve) {
+    private static void setKonditeremNeve(String konditeremNeve) {
         BejelentkezoKezelo.konditeremNeve = konditeremNeve;
     }
 
-    public boolean isVisszaGombLenyomva() {
+    private boolean isVisszaGombLenyomva() {
         return visszaGombLenyomva;
     }
 
-    public void setVisszaGombLenyomva(boolean visszaGombLenyomva) {
-        this.visszaGombLenyomva = visszaGombLenyomva;
+    private void setVisszaGombLenyomva() {
+        this.visszaGombLenyomva = true;
     }
 }

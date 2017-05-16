@@ -18,12 +18,13 @@ public class TagData {
 	private StringProperty berletVasarlasIdeje;
 	private StringProperty berletLejaratiIdeje;
 	private StringProperty vasaroltBerletNeve;
+	private StringProperty mennyiAlkalom;
 
 	public TagData() {
 		super();
 	}
 
-	public TagData(long id,LocalDate tagSzuletesiIdeje, String tagNeve, String tagVezetekneve, String tagKeresztneve ,String tagNeme, Integer tagKora,String vasaroltBerletNeve, LocalDate berletVasarlasideje , LocalDate berletLejaratiIdeje) {
+	public TagData(long id,LocalDate tagSzuletesiIdeje, String tagNeve, String tagVezetekneve, String tagKeresztneve ,String tagNeme, Integer tagKora,String vasaroltBerletNeve, LocalDate berletVasarlasideje , LocalDate berletLejaratiIdeje, Integer mennyiAlkalom) {
 		this.setId(id);
 		this.setTagSzuletesiIdeje(tagSzuletesiIdeje);
 		this.tagNeve = new SimpleStringProperty(tagNeve);
@@ -34,6 +35,7 @@ public class TagData {
 		this.berletVasarlasIdeje = new SimpleStringProperty(berletVasarlasideje.toString());
 		this.berletLejaratiIdeje = new SimpleStringProperty(berletLejaratiIdeje.toString());
 		this.vasaroltBerletNeve = new SimpleStringProperty(vasaroltBerletNeve);
+		this.mennyiAlkalom = new SimpleStringProperty(mennyiAlkalom.toString());
 	}
 
 	public StringProperty getTagNeve() {
@@ -110,7 +112,7 @@ public class TagData {
 		return berletLejaratiIdeje;
 	}
 
-	
+
 	public StringProperty getTagNeme() {
 		return tagNeme;
 	}
@@ -123,7 +125,17 @@ public class TagData {
 		return tagNeme;
 	}
 
-	
+	public StringProperty getMennyiAlkalom() {
+		return mennyiAlkalom;
+	}
+
+	public void setmennyiAlkalom(String mennyiAlkalom) {
+		this.mennyiAlkalom.set(mennyiAlkalom);
+	}
+
+	public StringProperty getMennyiAlkalomProperty() {
+		return mennyiAlkalom;
+	}
 
 	
 	public StringProperty getVasaroltBerletNeve() {
@@ -153,6 +165,8 @@ public class TagData {
 	public void setTagSzuletesiIdeje(LocalDate tagSzuletesiIdeje) {
 		this.tagSzuletesiIdeje = tagSzuletesiIdeje;
 	}
+
+
 
 	@Override
 	public String toString() {

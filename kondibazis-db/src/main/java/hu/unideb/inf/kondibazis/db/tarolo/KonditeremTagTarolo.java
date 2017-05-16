@@ -9,7 +9,9 @@ import java.util.List;
 
 @Repository
 public interface KonditeremTagTarolo extends JpaRepository<KonditeremTag, Long> {
-	
-	List<KonditeremTag> findByKonditerem(Konditerem konditerem);
+
+    List<KonditeremTag> findByKonditerem(Konditerem konditerem);
+
+    KonditeremTag findById(long id);
 
 }
