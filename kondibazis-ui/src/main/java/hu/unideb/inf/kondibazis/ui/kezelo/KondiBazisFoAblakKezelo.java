@@ -10,8 +10,8 @@ import hu.unideb.inf.kondibazis.szolg.vo.KonditeremTagVo;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremVo;
 import hu.unideb.inf.kondibazis.ui.felulet.FeluletBetoltese;
 import hu.unideb.inf.kondibazis.ui.felulet.SpringFxmlLoader;
-import hu.unideb.inf.kondibazis.ui.kiegeszito.Ertesites;
 import hu.unideb.inf.kondibazis.ui.kiegeszito.KepKonvertalas;
+import hu.unideb.inf.kondibazis.ui.kiegeszito.KiegeszitoFelulet;
 import hu.unideb.inf.kondibazis.ui.main.Inditas;
 import hu.unideb.inf.kondibazis.ui.model.TagData;
 import javafx.application.Platform;
@@ -28,7 +28,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +38,6 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 @Component
@@ -178,19 +176,19 @@ public class KondiBazisFoAblakKezelo implements Initializable {
 
     private FilteredList<TagData> ferfiTagok;
 
-    private KonditeremTagVo kivalasztottTag;
-
-    private boolean lejart = false;
-
     private static String bejelentkezesUzenet;
 
     private static String felhasznalo;
 
     private static boolean kijelentkezes;
 
+    private static String lejartBerletStyle;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         tagokTabla.setPlaceholder(new Text("Nem található egy tag sem."));
+
+        lejartBerletStyle = "-fx-background-color: red;";
 
         szuresEskereses.setDisable(true);
 
@@ -220,54 +218,50 @@ public class KondiBazisFoAblakKezelo implements Initializable {
                     }
                 });
 
-        // csak akkor jelenjen meg gomb ha alkalmas bérletet vett
         TableColumn<TagData, TagData> alkalmakOszlop = new TableColumn<>("Alkalmak");
         alkalmakOszlop.setMaxWidth(4800);
         alkalmakOszlop.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
         alkalmakOszlop.setCellFactory(param -> new TableCell<TagData, TagData>() {
 
-
             @Override
-            protected void updateItem(TagData person, boolean empty) {
-                super.updateItem(person, empty);
-
-                if (person == null) {
+            protected void updateItem(TagData tag, boolean empty) {
+                super.updateItem(tag, empty);
+                if (tag == null) {
                     setGraphic(null);
+                    setStyle("");
                     return;
                 }
+                final Button mennyiAlkalomMegGomb = new Button("Még " + tag.getMennyiAlkalom().getValue() + " alkalom van hátra.");
+                TableRow adottSor = getTableRow();
 
-                final Button mennyiAlkalomMegGomb = new Button("Még " + person.getMennyiAlkalom().getValue() + " alkalom van hátra.");
-                if (person.getVasaroltBerletNeve().toString().contains("Alkalmas bérlet")) {
+                if (Integer.parseInt(tag.getMennyiAlkalom().getValue()) == 0) {
+                    mennyiAlkalomMegGomb.setText("Nincs több alkalom.");
+                    adottSor.setStyle(lejartBerletStyle);
+                    mennyiAlkalomMegGomb.setDisable(true);
+                } else {
+                    adottSor.setStyle("");
+                }
+
+                if (tag.getVasaroltBerletNeve().toString().contains("Alkalmas bérlet")) {
                     setGraphic(mennyiAlkalomMegGomb);
                 }
                 mennyiAlkalomMegGomb.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
-                        // itt az adatbázisba felül kell írni a hátralévő alklamat
-                        adatFrissites();
-                        System.out.println("#############################################################################################");
-                        System.out.println("#############################################################################################");
-                        System.out.println("#############################################################################################");
-                        System.out.println("#############################################################################################");
-                        System.out.println("#############################################################################################");
-                        System.out.println("#############################################################################################");
-                        System.out.println("#############################################################################################");
-                        int i = Integer.parseInt(person.getMennyiAlkalom().getValue());
-                        System.out.println(i - 1);
-                        // id alapján keresem a tagot és módosítom a menyi alaklom még hátra
-                        // ha menyi alkalom 0 kakor lejárt bérletes
-                        KonditeremTagVo konditeremTagVo = konditeremTagSzolgaltatas.keresTagot(person.getId()); // az adott tag akinek a gombjára kattintunk
-
-                        System.out.println("#############################################################################################");
-                        System.out.println("#############################################################################################");
-                        System.out.println("#############################################################################################");
-                        System.out.println("#############################################################################################");
-                        System.out.println("#############################################################################################");
-                        System.out.println("#############################################################################################");
-                        System.out.println("#############################################################################################");
-                        System.out.println("#############################################################################################");
-                        System.out.println("#############################################################################################");
-
+                        int i = Integer.parseInt(tag.getMennyiAlkalom().getValue());
+                        Long tagId = tag.getId();
+                        KonditeremTagVo konditeremTagVo = konditeremTagSzolgaltatas.keresTagot(tagId);
+                        if (i != 0) {
+                            adottSor.setStyle("");
+                            int t = i - 1;
+                            konditeremTagVo.setMennyiAlkalomMeg(t);
+                            konditeremTagSzolgaltatas.frissitKonditeremTagot(konditeremTagVo);
+                            adatFrissites();
+                        } else if (Integer.parseInt(tag.getMennyiAlkalom().getValue()) == 0) {
+                            mennyiAlkalomMegGomb.setText("Nincs több alkalom.");
+                            adottSor.setStyle(lejartBerletStyle);
+                            mennyiAlkalomMegGomb.setDisable(true);
+                        }
                     }
                 });
             }
@@ -294,10 +288,7 @@ public class KondiBazisFoAblakKezelo implements Initializable {
                                 return true;
                             }
                             String lowerCaseFilter = newValue.toLowerCase();
-                            if (tagData.getTagNeve().toString().toLowerCase().contains(lowerCaseFilter)) {
-                                return true;
-                            }
-                            return false;
+                            return tagData.getTagNeve().toString().toLowerCase().contains(lowerCaseFilter);
                         });
                     });
                     tagokTabla.setItems(kereses);
@@ -309,10 +300,7 @@ public class KondiBazisFoAblakKezelo implements Initializable {
                                 return true;
                             }
                             String lowerCaseFilter = newValue.toLowerCase();
-                            if (tagData.getVasaroltBerletNeve().toString().toLowerCase().contains(lowerCaseFilter)) {
-                                return true;
-                            }
-                            return false;
+                            return tagData.getVasaroltBerletNeve().toString().toLowerCase().contains(lowerCaseFilter);
                         });
                     });
                     tagokTabla.setItems(kereses);
@@ -430,7 +418,7 @@ public class KondiBazisFoAblakKezelo implements Initializable {
 
         logolo.info("Kijeletkezés gomb megnyomva.");
 
-        if (kijeletkezesMegerositesFelulet("Kijeletkezés megerősítő ablak", "Kijeletkezés megerősítés.", "Biztosan ki akar jelentkeztni?", Alert.AlertType.CONFIRMATION)) {
+        if (KiegeszitoFelulet.kijeletkezesMegerositesFelulet("Kijeletkezés megerősítő ablak", "Kijeletkezés megerősítés.", "Biztosan ki akar jelentkeztni?", Alert.AlertType.CONFIRMATION)) {
             logolo.info("Sikeres kijeletkezés.");
             bejelentkezettKonditerem = null;
             tagokTabla = null;
@@ -438,7 +426,7 @@ public class KondiBazisFoAblakKezelo implements Initializable {
             setBejelentkezesUzenet("");
             setFelhasznalo("");
             FeluletBetoltese.InditasiFelulet(Inditas.primaryStage);
-            Ertesites.ertesites("Kijeletkezés", "Sikeres kijeletkezés.", "Sikeres kijeletkezés.", "Sikeres kijeletkezés után");
+            KiegeszitoFelulet.ertesites("Kijeletkezés", "Sikeres kijeletkezés.", "Sikeres kijeletkezés.", "Sikeres kijeletkezés után");
 
         } else {
             logolo.info("Nem történt kijeletkezés.");
@@ -446,67 +434,43 @@ public class KondiBazisFoAblakKezelo implements Initializable {
     }
 
     @FXML
-    public void bezaras(ActionEvent event) {
+    public void bezaras() {
         logolo.info("Bezárás menüre kattintva.");
         SpringFxmlLoader.close();
         Platform.exit();
     }
 
     @FXML
-    public void varosStatisztika(ActionEvent event) {
+    public void varosStatisztika() {
         FeluletBetoltese.VarosStatisztikaFelulet();
     }
 
     @FXML
-    public void megyeStatisztika(ActionEvent event) {
+    public void megyeStatisztika() {
         FeluletBetoltese.MegyeStatisztikaFelulet();
     }
 
     @FXML
-    public void nemekStatisztika(ActionEvent event) {
+    public void nemekStatisztika() {
         FeluletBetoltese.NemekStatisztikaFelulet();
     }
 
     @FXML
-    public void berletTipusStatisztika(ActionEvent event) {
+    public void berletTipusStatisztika() {
         FeluletBetoltese.BerletTipusStatisztikaFelulet();
     }
 
     @FXML
-    public void berletletrehozasaMenu(ActionEvent event) {
+    public void berletletrehozasaMenu() {
         FeluletBetoltese.BerletLetrehozasaFelulet();
     }
 
     @FXML
-    public void berlettestreszabasaMenu(ActionEvent event) {
+    public void berlettestreszabasaMenu() {
         FeluletBetoltese.BerletekModositasaFelulet();
     }
 
-    private boolean kijeletkezesMegerositesFelulet(String cim, String fejlec, String tartalom, Alert.AlertType alertType) {
-        logolo.info("Kijeletkezés megerősítrése ablak.");
-        final Alert alert = new Alert(alertType);
-        alert.setTitle(cim);
-        alert.setHeaderText(fejlec);
-        alert.setContentText(tartalom);
-
-        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-        stage.getIcons().add(FeluletBetoltese.ikon);
-        alert.getButtonTypes().clear();
-        alert.getButtonTypes().addAll(ButtonType.YES, ButtonType.NO);
-
-        Button yesButton = (Button) alert.getDialogPane().lookupButton(ButtonType.YES);
-        yesButton.setText("Kijeletkezés");
-        yesButton.setDefaultButton(false);
-
-        Button noButton = (Button) alert.getDialogPane().lookupButton(ButtonType.NO);
-        noButton.setText("Mégsem");
-        noButton.setDefaultButton(true);
-
-        final Optional<ButtonType> result = alert.showAndWait();
-        return result.get() == ButtonType.YES;
-    }
-
-    public void gombFrissites() {
+    void gombFrissites() {
 
         logolo.debug("Gomgok frissítése ha törtét bérlet létrehozás.");
 
@@ -525,7 +489,7 @@ public class KondiBazisFoAblakKezelo implements Initializable {
         }
     }
 
-    public void adatFrissites() {
+    void adatFrissites() {
 
         logolo.debug("Adatfrissítés.");
 
@@ -623,7 +587,7 @@ public class KondiBazisFoAblakKezelo implements Initializable {
 
     private void tagSzerkesztes(TagData tData) throws IOException {
         if (tData != null) {
-            kivalasztottTag = konditeremTagSzolgaltatas.keresTagot(tData.getId());
+            KonditeremTagVo kivalasztottTag = konditeremTagSzolgaltatas.keresTagot(tData.getId());
 
             tagModositas.setDisable(false);
             tabPane.getSelectionModel().select(tagModositas);

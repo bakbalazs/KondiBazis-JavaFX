@@ -55,14 +55,14 @@ public class Konditerem extends FoEntitas {
      * A mappedBy taggal megadjuk hogy hol találja a Hibernate a konfigurációt ehhez az adattaghoz, ezesetben a kapcsolat másik
      * oldalán a "konditerem" nevű adattagon lesz megadva a konfiguráció.
      */
-    @OneToMany(mappedBy = "konditerem", cascade = CascadeType.MERGE,fetch=FetchType.LAZY)
+    @OneToMany(mappedBy = "konditerem", cascade = CascadeType.PERSIST,fetch=FetchType.LAZY)
     private List<KonditeremTag> konditeremTagok;
 
     /**
      *
      *
      */
-    @OneToMany(mappedBy = "konditerem", cascade = CascadeType.MERGE, fetch=FetchType.LAZY)
+    @OneToMany(mappedBy = "konditerem", cascade = CascadeType.PERSIST, fetch=FetchType.LAZY)
     private List<KonditeremBerlet> konditeremBerletek;
 
     /**

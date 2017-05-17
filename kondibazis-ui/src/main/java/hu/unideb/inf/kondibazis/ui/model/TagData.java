@@ -166,21 +166,11 @@ public class TagData {
 		this.tagSzuletesiIdeje = tagSzuletesiIdeje;
 	}
 
-
-
 	@Override
 	public String toString() {
 		return "TagData{" +
 				"id=" + id +
-				", tagSzuletesiIdeje=" + tagSzuletesiIdeje +
-				", tagNeve=" + tagNeve +
-				", tagVezetekneve=" + tagVezetekneve +
-				", tagKeresztneve=" + tagKeresztneve +
-				", tagNeme=" + tagNeme +
-				", tagKora=" + tagKora +
-				", berletVasarlasIdeje=" + berletVasarlasIdeje +
-				", berletLejaratiIdeje=" + berletLejaratiIdeje +
-				", vasaroltBerletNeve=" + vasaroltBerletNeve +
+				", mennyiAlkalom=" + mennyiAlkalom +
 				'}';
 	}
 }

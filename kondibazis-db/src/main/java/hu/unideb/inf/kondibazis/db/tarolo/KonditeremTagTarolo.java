@@ -12,6 +12,4 @@ public interface KonditeremTagTarolo extends JpaRepository<KonditeremTag, Long> 
 
     List<KonditeremTag> findByKonditerem(Konditerem konditerem);
 
-    KonditeremTag findById(long id);
-
 }

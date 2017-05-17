@@ -10,7 +10,7 @@ public interface KonditeremTagKepeSzolgaltatas {
 
 //    List<KonditeremTagKepeVo> konditeremTagOsszesKepe(KonditeremTagKepeVo konditeremTagKepeVo);
 
-    public void leterehozTagKepet(KonditeremTagKepeVo ujTag);
+    KonditeremTagKepeVo leterehozTagKepet(KonditeremTagKepeVo ujTag);
 
     List<KonditeremTagKepeVo> osszesKep();
 }

@@ -4,7 +4,7 @@ import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremBerletSzolgaltatas;
 import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremSzolgaltatas;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremBerletVo;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremVo;
-import hu.unideb.inf.kondibazis.ui.kiegeszito.Ertesites;
+import hu.unideb.inf.kondibazis.ui.kiegeszito.KiegeszitoFelulet;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -155,20 +155,16 @@ public class BerletLetrehozasFoAblakKezelo implements Initializable {
                 ujBerlet.setBerletAra(ar);
                 ujBerlet.setMennyiAlkalom(alkalom);
 
-                KonditeremBerletVo letezo = konditeremBerletSzolgaltatas.letrehozBerletet(ujBerlet);
-
-                bejelentkezettKonditerem.getKonditeremBerletek().add(letezo);
-
                 konditeremSzolgaltatas.frissitKonditermet(bejelentkezettKonditerem);
 
-                letezo.setKonditerem(bejelentkezettKonditerem);
+                ujBerlet.setKonditerem(bejelentkezettKonditerem);
 
-                konditeremBerletSzolgaltatas.frissitKonditeremBerletet(letezo);
+                konditeremBerletSzolgaltatas.frissitKonditeremBerletet(ujBerlet);
 
                 foAblakKezelo.gombFrissites();
 
                 ((Stage) megseGomb.getScene().getWindow()).close();
-                Ertesites.ertesites("Bérlet Létrehozása", "A bérlet sikeresen létrehozva!", "A bérlet sikeresen létrehozva : " + berletnevBevitel.getText() + " névvel.", "Bérlet létrehozása után.");
+                KiegeszitoFelulet.ertesites("Bérlet Létrehozása", "A bérlet sikeresen létrehozva!", "A bérlet sikeresen létrehozva : " + berletnevBevitel.getText() + " névvel.", "Bérlet létrehozása után.");
             }
 
         } else if (berlettipusValasztasa.getValue().equals("Időkorlátos bérlet")) {
@@ -229,7 +225,7 @@ public class BerletLetrehozasFoAblakKezelo implements Initializable {
                 foAblakKezelo.gombFrissites();
 
                 ((Stage) megseGomb.getScene().getWindow()).close();
-                Ertesites.ertesites("Bérlet Létrehozása", "A bérlet sikeresen létrehozva!", "A bérlet sikeresen létrehozva : " + berletnevBevitel.getText() + " névvel.", "Bérlet létrehozása után.");
+                KiegeszitoFelulet.ertesites("Bérlet Létrehozása", "A bérlet sikeresen létrehozva!", "A bérlet sikeresen létrehozva : " + berletnevBevitel.getText() + " névvel.", "Bérlet létrehozása után.");
             }
         }
 

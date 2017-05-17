@@ -106,27 +106,23 @@ public class BerletTestreszabasaKezelo implements Initializable {
         for (KonditeremBerletVo berletek : konditeremBerletek) {
             berletNeveValaszto.getItems().add(berletek.getBerletNeve());
 
-            ChangeListener<String> valtozasFigyelo = new ChangeListener<String>() {
-
-                @Override
-                public void changed(ObservableValue<? extends String> megfigyelendo, String korabbi, String jelenlegi) {
-                    if (jelenlegi != null) {
-                        if (jelenlegi.equals(berletek.getBerletNeve())) {
-                            kivalasztottBerletId = berletek.getId();
-                            if (berletek.getBerletTipusa().equals("Alkalmas bérlet")) {
-                                alapErtek(true);
-                                alkalmasBerlet(true);
-                                idokorlatosBerlet(false);
-                                berletaraBevitel.setText(Integer.toString(berletek.getBerletAra()));
-                                alkalomBevitel.setText(Integer.toString(berletek.getMennyiAlkalom()));
-                            } else if (berletek.getBerletTipusa().equals("Időkorlátos bérlet")) {
-                                alapErtek(true);
-                                idokorlatosBerlet(true);
-                                alkalmasBerlet(false);
-                                berletaraBevitel.setText(Integer.toString(berletek.getBerletAra()));
-                                napBevitel.setText(Integer.toString(berletek.getMennyiNap()));
-                                honapBevitel.setText(Integer.toString(berletek.getMennyiHonap()));
-                            }
+            ChangeListener<String> valtozasFigyelo = (megfigyelendo, korabbi, jelenlegi) -> {
+                if (jelenlegi != null) {
+                    if (jelenlegi.equals(berletek.getBerletNeve())) {
+                        kivalasztottBerletId = berletek.getId();
+                        if (berletek.getBerletTipusa().equals("Alkalmas bérlet")) {
+                            alapErtek(true);
+                            alkalmasBerlet(true);
+                            idokorlatosBerlet(false);
+                            berletaraBevitel.setText(Integer.toString(berletek.getBerletAra()));
+                            alkalomBevitel.setText(Integer.toString(berletek.getMennyiAlkalom()));
+                        } else if (berletek.getBerletTipusa().equals("Időkorlátos bérlet")) {
+                            alapErtek(true);
+                            idokorlatosBerlet(true);
+                            alkalmasBerlet(false);
+                            berletaraBevitel.setText(Integer.toString(berletek.getBerletAra()));
+                            napBevitel.setText(Integer.toString(berletek.getMennyiNap()));
+                            honapBevitel.setText(Integer.toString(berletek.getMennyiHonap()));
                         }
                     }
                 }
@@ -137,7 +133,7 @@ public class BerletTestreszabasaKezelo implements Initializable {
     }
 
     @FXML
-    public void modositas(ActionEvent event) {
+    public void modositas() {
         KonditeremBerletVo kivalasztottBerlet = konditeremBerletSzolgaltatas.keresBerletet(kivalasztottBerletId);
 
         if (kivalasztottBerlet.getBerletTipusa().equals("Alkalmas bérlet")) {
@@ -157,7 +153,7 @@ public class BerletTestreszabasaKezelo implements Initializable {
     }
 
     @FXML
-    public void megse(ActionEvent event) throws IOException {
+    public void megse() throws IOException {
         ((Stage) megseGomb.getScene().getWindow()).close();
     }
 

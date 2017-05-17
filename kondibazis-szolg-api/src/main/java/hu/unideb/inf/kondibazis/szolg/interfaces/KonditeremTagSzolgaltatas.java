@@ -8,8 +8,10 @@ import java.util.List;
 public interface KonditeremTagSzolgaltatas {
 	
 	KonditeremTagVo keresTagot(Long id);
-	
-	KonditeremTagVo leterehozTagot (KonditeremTagVo ujTag);
+
+	KonditeremTagVo leterehozTagot(KonditeremTagVo ujTag);
+
+	void modositTagot (KonditeremTagVo modositTag);
 
 	KonditeremTagVo frissitKonditeremTagot(KonditeremTagVo konditeremTag);
 

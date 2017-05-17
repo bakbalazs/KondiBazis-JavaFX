@@ -4,7 +4,7 @@ package hu.unideb.inf.kondibazis.ui.kezelo;
 import hu.unideb.inf.kondibazis.szolg.interfaces.*;
 import hu.unideb.inf.kondibazis.szolg.vo.*;
 import hu.unideb.inf.kondibazis.ui.felulet.FeluletBetoltese;
-import hu.unideb.inf.kondibazis.ui.kiegeszito.Ertesites;
+import hu.unideb.inf.kondibazis.ui.kiegeszito.KiegeszitoFelulet;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -315,24 +315,24 @@ public class TagHozzaadasaKezelo implements Initializable {
             for (KonditeremBerletVo berletek : konditeremBerletek) {
                 System.out.println(berletek.getBerletNeve());
                 /// ha tarlmaza hogy időkorlátos akkor a napot hónapot ha tatlamaz hogy alkalmas akkor a menyi alkalommal dolgot mentse
-                if (berletek.getBerletTipusa().contains("Időkorlátos")) {
+                if (berletValasztas.getValue().contains("Időkorlátos")) {
                     int nap = berletek.getMennyiNap();
                     int honap = berletek.getMennyiHonap();
+                    ujTag.setVasaroltBerletTipusa(berletek.getBerletTipusa());
                     if (nap > 0) {
                         ujTag.setBerletLejaratiIdeje(maiNap.plusDays(nap).minusDays(1));
                     } else if (honap > 0) {
                         ujTag.setBerletLejaratiIdeje(maiNap.plusMonths(honap));
                     }
                 }
-                if (berletek.getBerletTipusa().contains("Alkalmas")) {
+                if (berletValasztas.getValue().contains("Alkalmas")) {
                     int alkalom = berletek.getMennyiAlkalom();
                     if (alkalom > 0) {
+                        ujTag.setVasaroltBerletTipusa(berletek.getBerletTipusa());
                         ujTag.setBerletLejaratiIdeje(LocalDate.now());
                         ujTag.setMennyiAlkalomMeg(alkalom);
                     }
                 }
-                ujTag.setVasaroltBerletTipusa(berletek.getBerletTipusa());
-
             }
 
             ujTag.setTagVarosa(varosNevBevitel.getText());
@@ -345,24 +345,18 @@ public class TagHozzaadasaKezelo implements Initializable {
                 ujTagKepe.setTagKep(nincsKep());
             }
 
-            KonditeremTagVo letezo = konditeremTagSzolgaltatas.leterehozTagot(ujTag);
-
-            bejelentkezettKonditerem.getKonditeremTagok().add(letezo);
-
             konditeremSzolgaltatas.frissitKonditermet(bejelentkezettKonditerem);
 
-            letezo.setKonditerem(bejelentkezettKonditerem);
+            ujTag.setKonditerem(bejelentkezettKonditerem);
 
-            konditeremTagSzolgaltatas.frissitKonditeremTagot(letezo);
-
-            ujTagKepe.setKonditeremTag(letezo);
+            ujTagKepe.setKonditeremTag(ujTag);
 
             konditeremTagKepeSzolgaltatas.leterehozTagKepet(ujTagKepe);
 
             foAblakKezelo.adatFrissites();
 
             ((Stage) megseGomb.getScene().getWindow()).close();
-            Ertesites.ertesites("Tag Hozzáadása", "A tag sikeresen hozzáadva!", "Tag sikeresen hozzáadava : " + vezeteknevBevitel.getText() + " " + keresztnevBevitel.getText() + "névvel.", "Tag létrehozása után.");
+            KiegeszitoFelulet.ertesites("Tag Hozzáadása", "A tag sikeresen hozzáadva!", "Tag sikeresen hozzáadava : " + vezeteknevBevitel.getText() + " " + keresztnevBevitel.getText() + "névvel.", "Tag létrehozása után.");
         }
     }
 

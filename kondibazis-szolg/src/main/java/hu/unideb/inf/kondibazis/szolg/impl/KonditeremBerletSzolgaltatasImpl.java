@@ -53,9 +53,7 @@ public class KonditeremBerletSzolgaltatasImpl implements KonditeremBerletSzolgal
 
 	@Override
 	public KonditeremBerletVo frissitKonditeremBerletet(KonditeremBerletVo konditeremBerlet) {
-		KonditeremBerlet uj = KonditeremBerletMapper.toDto(konditeremBerlet);
-
-		KonditeremBerlet mentett = konditeremBerletTarolo.save(uj);
+		KonditeremBerlet mentett = konditeremBerletTarolo.save(KonditeremBerletMapper.toDto(konditeremBerlet));
 
 		if (mentett == null) {
 

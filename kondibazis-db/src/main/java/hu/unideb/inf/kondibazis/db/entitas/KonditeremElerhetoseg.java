@@ -24,7 +24,7 @@ public class KonditeremElerhetoseg extends FoEntitas {
     /**
      * Megye neve ahol a konditerem található.
      */
-    @Column(name = "megye_Neve")
+    @Column(name = "megyeNeve")
     private String megyeNeve;
 
     /**
@@ -36,19 +36,19 @@ public class KonditeremElerhetoseg extends FoEntitas {
     /**
      * Város neve ahol a konditerem található.
      */
-    @Column(name = "varos_neve")
+    @Column(name = "varosNeve")
     private String varosNeve;
 
     /**
      * Utca neve ahol a konditerem található.
      */
-    @Column(name = "utca_Neve")
+    @Column(name = "utcaNeve")
     private String utcaNeve;
 
     /**
      * Pontos ház szám ahol a konditerem található.
      */
-    @Column(name = "haz_Szam")
+    @Column(name = "hazSzam")
     private Integer hazSzam;
 
     /**
@@ -90,8 +90,8 @@ public class KonditeremElerhetoseg extends FoEntitas {
     /**
      *
      */
-    @OneToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "konditerem_id")
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "konditeremId")
     private Konditerem konditerem;
 
     /**

@@ -31,7 +31,7 @@ public class KonditeremTagKepe extends FoEntitas {
     /**
      *
      */
-    @OneToOne(cascade = CascadeType.MERGE ,fetch=FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.PERSIST ,fetch=FetchType.LAZY)
     @JoinColumn(name = "konditeremTag_id")
     private KonditeremTag konditeremTag;
 

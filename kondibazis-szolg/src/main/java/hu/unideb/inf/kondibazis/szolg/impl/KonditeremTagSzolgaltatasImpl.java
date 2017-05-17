@@ -42,8 +42,13 @@ public class KonditeremTagSzolgaltatasImpl implements KonditeremTagSzolgaltatas 
 	}
 
 	@Override
+	public void modositTagot(KonditeremTagVo modositTag) {
+		konditeremTagTarolo.saveAndFlush(KonditeremTagMapper.toDto(modositTag));
+	}
+
+	@Override
 	public KonditeremTagVo keresTagot(Long id) {
-		KonditeremTag found = konditeremTagTarolo.findById(id);
+		KonditeremTag found = konditeremTagTarolo.findOne(id);
 		if (found == null) {
 		} else {
 		}
@@ -70,9 +75,7 @@ public class KonditeremTagSzolgaltatasImpl implements KonditeremTagSzolgaltatas 
 	@Override
 	public KonditeremTagVo frissitKonditeremTagot(KonditeremTagVo konditeremTag) {
 
-		KonditeremTag uj = KonditeremTagMapper.toDto(konditeremTag);
-
-		KonditeremTag mentett = konditeremTagTarolo.save(uj);
+		KonditeremTag mentett = konditeremTagTarolo.save(KonditeremTagMapper.toDto(konditeremTag));
 
 		if (mentett == null) {
 
@@ -83,5 +86,6 @@ public class KonditeremTagSzolgaltatasImpl implements KonditeremTagSzolgaltatas 
 		return KonditeremTagMapper.toVo(mentett);
 
 	}
+
 
 }
