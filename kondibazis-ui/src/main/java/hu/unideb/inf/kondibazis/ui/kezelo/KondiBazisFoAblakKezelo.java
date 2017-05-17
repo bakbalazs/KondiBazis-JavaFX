@@ -108,6 +108,9 @@ public class KondiBazisFoAblakKezelo implements Initializable {
     private RadioButton osszesTagNemGomb;
 
     @FXML
+    private RadioButton osszesTagBerletTipusGomb;
+
+    @FXML
     private RadioButton lejertberletGomb;
 
     @FXML
@@ -118,6 +121,12 @@ public class KondiBazisFoAblakKezelo implements Initializable {
 
     @FXML
     private RadioButton noGomb;
+
+    @FXML
+    private RadioButton alkalmasBerletekGomb;
+
+    @FXML
+    private RadioButton idokorlatosBerletekGomb;
 
     @FXML
     private Tab szuresEskereses;
@@ -160,21 +169,57 @@ public class KondiBazisFoAblakKezelo implements Initializable {
 
     private ObservableList<TagData> tagTablazatAdatok;
 
-    private FilteredList<TagData> lejartberletuTagok;
+    private FilteredList<TagData> lejartBerletuTagok;
 
-    private FilteredList<TagData> aktivberletuTagok;
+    private FilteredList<TagData> aktivBerletuTagok;
 
-    private FilteredList<TagData> lejartberletesNok;
+    private FilteredList<TagData> lejartBerletesNok;
 
-    private FilteredList<TagData> aktivberletesNok;
+    private FilteredList<TagData> aktivBerletesNok;
 
     private FilteredList<TagData> noiTagok;
 
-    private FilteredList<TagData> lejartberletesFerfiak;
+    private FilteredList<TagData> lejartBerletesFerfiak;
 
-    private FilteredList<TagData> aktivberletesFerfiak;
+    private FilteredList<TagData> aktivBerletesFerfiak;
 
     private FilteredList<TagData> ferfiTagok;
+
+    private FilteredList<TagData> alkalmasBerletek;
+
+    private FilteredList<TagData> idokorlatosBerletek;
+
+    private FilteredList<TagData> alkalmasBerletesNok;
+
+    private FilteredList<TagData> alkalmasBerletesFerfiak;
+
+    private FilteredList<TagData> idokorlatosBerletesFerfiak;
+
+    private FilteredList<TagData> idokorlatosBerletesNok;
+
+    private FilteredList<TagData> lejartAlkalmasTagok;
+
+    private FilteredList<TagData> lejartIdokorlatosTagok;
+
+    private FilteredList<TagData> aktivAlkalmasTagok;
+
+    private FilteredList<TagData> aktivIdokorlatosTagok;
+
+    private FilteredList<TagData> alkalmasAktivNoiTagok;
+
+    private FilteredList<TagData> alkalmasLejartNoiTagok;
+
+    private FilteredList<TagData> idokorlatosAktivNoiTagok;
+
+    private FilteredList<TagData> idokorlatosLejartNoiTagok;
+
+    private FilteredList<TagData> alkalmasAktivFerfiTagok;
+
+    private FilteredList<TagData> alkalmasLejartFerfiTagok;
+
+    private FilteredList<TagData> idokorlatosAktivFerfiTagok;
+
+    private FilteredList<TagData> idokorlatosLejartFerfiTagok;
 
     private static String bejelentkezesUzenet;
 
@@ -194,6 +239,7 @@ public class KondiBazisFoAblakKezelo implements Initializable {
 
         osszesTagGomb.setSelected(true);
         osszesTagNemGomb.setSelected(true);
+        osszesTagBerletTipusGomb.setSelected(true);
 
         keresesszovegBevitel.setVisible(false);
 
@@ -271,8 +317,8 @@ public class KondiBazisFoAblakKezelo implements Initializable {
         });
 
         TableColumn<TagData, TagData> berletLejaratiDatuma = new TableColumn<>("Berlet Lejárati Dátuma");
-        berletLejaratiDatuma .setMaxWidth(4800);
-        berletLejaratiDatuma .setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
+        berletLejaratiDatuma.setMaxWidth(4800);
+        berletLejaratiDatuma.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
         berletLejaratiDatuma.setCellFactory(param -> new TableCell<TagData, TagData>() {
 
             @Override
@@ -342,68 +388,210 @@ public class KondiBazisFoAblakKezelo implements Initializable {
 
 
     @FXML
-    public void osszestagBerlet() {
-        if (osszesTagGomb.isSelected() && osszesTagNemGomb.isSelected()) {
+    private void osszesTagBerlet() {
+        if (osszesTagGomb.isSelected() && osszesTagNemGomb.isSelected() && osszesTagBerletTipusGomb.isSelected()) {
             tagokTabla.setItems(tagTablazatAdatok);
-        } else if (osszesTagGomb.isSelected() && ferfiGomb.isSelected()) {
+        } else if (osszesTagGomb.isSelected() && ferfiGomb.isSelected() && osszesTagBerletTipusGomb.isSelected()) {
             tagokTabla.setItems(ferfiTagok);
-        } else if (osszesTagGomb.isSelected() && noGomb.isSelected()) {
+        } else if (osszesTagGomb.isSelected() && noGomb.isSelected() && osszesTagBerletTipusGomb.isSelected()) {
             tagokTabla.setItems(noiTagok);
+        } else if (osszesTagGomb.isSelected() && osszesTagNemGomb.isSelected() && alkalmasBerletekGomb.isSelected()) {
+            tagokTabla.setItems(alkalmasBerletek);
+        } else if (osszesTagGomb.isSelected() && osszesTagNemGomb.isSelected() && idokorlatosBerletekGomb.isSelected()) {
+            tagokTabla.setItems(idokorlatosBerletek);
+        } else if (osszesTagGomb.isSelected() && ferfiGomb.isSelected() && alkalmasBerletekGomb.isSelected()) {
+            tagokTabla.setItems(alkalmasBerletesFerfiak);
+        } else if (osszesTagGomb.isSelected() && ferfiGomb.isSelected() && idokorlatosBerletekGomb.isSelected()) {
+            tagokTabla.setItems(idokorlatosBerletesFerfiak);
+        } else if (osszesTagGomb.isSelected() && noGomb.isSelected() && alkalmasBerletekGomb.isSelected()) {
+            tagokTabla.setItems(alkalmasBerletesNok);
+        } else if (osszesTagGomb.isSelected() && noGomb.isSelected() && idokorlatosBerletekGomb.isSelected()) {
+            tagokTabla.setItems(idokorlatosBerletesNok);
         }
     }
 
     @FXML
-    public void osszestagNem() {
-        if (osszesTagNemGomb.isSelected() && osszesTagGomb.isSelected()) {
+    private void osszesTagNem() {
+        if (osszesTagNemGomb.isSelected() && osszesTagGomb.isSelected() && osszesTagBerletTipusGomb.isSelected()) {
             tagokTabla.setItems(tagTablazatAdatok);
-        } else if (osszesTagNemGomb.isSelected() && aktivberletGomb.isSelected()) {
-            tagokTabla.setItems(aktivberletuTagok);
-        } else if (osszesTagNemGomb.isSelected() && lejertberletGomb.isSelected()) {
-            tagokTabla.setItems(lejartberletuTagok);
+        } else if (osszesTagNemGomb.isSelected() && aktivberletGomb.isSelected() && osszesTagBerletTipusGomb.isSelected()) {
+            tagokTabla.setItems(aktivBerletuTagok);
+        } else if (osszesTagNemGomb.isSelected() && lejertberletGomb.isSelected() && osszesTagBerletTipusGomb.isSelected()) {
+            tagokTabla.setItems(lejartBerletuTagok);
+        } else if (osszesTagNemGomb.isSelected() && osszesTagGomb.isSelected() && alkalmasBerletekGomb.isSelected()) {
+            tagokTabla.setItems(alkalmasBerletek);
+        } else if (osszesTagNemGomb.isSelected() && osszesTagGomb.isSelected() && idokorlatosBerletekGomb.isSelected()) {
+            tagokTabla.setItems(idokorlatosBerletek);
+        } else if (osszesTagNemGomb.isSelected() && aktivberletGomb.isSelected() && alkalmasBerletekGomb.isSelected()) {
+            tagokTabla.setItems(aktivAlkalmasTagok);
+        } else if (osszesTagNemGomb.isSelected() && lejertberletGomb.isSelected() && alkalmasBerletekGomb.isSelected()) {
+            tagokTabla.setItems(lejartAlkalmasTagok);
+        } else if (osszesTagNemGomb.isSelected() && aktivberletGomb.isSelected() && idokorlatosBerletekGomb.isSelected()) {
+            tagokTabla.setItems(aktivIdokorlatosTagok);
+        } else if (osszesTagNemGomb.isSelected() && lejertberletGomb.isSelected() && idokorlatosBerletekGomb.isSelected()) {
+            tagokTabla.setItems(lejartIdokorlatosTagok);
         }
     }
 
     @FXML
-    public void aktivBerlet() {
-        if (aktivberletGomb.isSelected() && osszesTagNemGomb.isSelected()) {
-            tagokTabla.setItems(aktivberletuTagok);
-        } else if (aktivberletGomb.isSelected() && ferfiGomb.isSelected()) {
-            tagokTabla.setItems(aktivberletesFerfiak);
-        } else if (aktivberletGomb.isSelected() && noGomb.isSelected()) {
-            tagokTabla.setItems(aktivberletesNok);
-        }
-    }
-
-    @FXML
-    public void lejartBerlet() {
-        if (lejertberletGomb.isSelected() && osszesTagNemGomb.isSelected()) {
-            tagokTabla.setItems(lejartberletuTagok);
-        } else if (lejertberletGomb.isSelected() && ferfiGomb.isSelected()) {
-            tagokTabla.setItems(lejartberletesFerfiak);
-        } else if (lejertberletGomb.isSelected() && noGomb.isSelected()) {
-            tagokTabla.setItems(lejartberletesNok);
-        }
-    }
-
-    @FXML
-    public void noTagok() {
-        if (noGomb.isSelected() && aktivberletGomb.isSelected()) {
-            tagokTabla.setItems(aktivberletesNok);
-        } else if (noGomb.isSelected() && lejertberletGomb.isSelected()) {
-            tagokTabla.setItems(lejartberletesNok);
-        } else if (noGomb.isSelected() && osszesTagGomb.isSelected()) {
+    private void osszesTagBerletTipus() {
+        if (osszesTagBerletTipusGomb.isSelected() && osszesTagNemGomb.isSelected() && osszesTagGomb.isSelected()) {
+            tagokTabla.setItems(tagTablazatAdatok);
+        } else if (osszesTagBerletTipusGomb.isSelected() && noGomb.isSelected() && osszesTagGomb.isSelected()) {
             tagokTabla.setItems(noiTagok);
+        } else if (osszesTagBerletTipusGomb.isSelected() && ferfiGomb.isSelected() && osszesTagGomb.isSelected()) {
+            tagokTabla.setItems(ferfiTagok);
+        } else if (osszesTagBerletTipusGomb.isSelected() && osszesTagNemGomb.isSelected() && aktivberletGomb.isSelected()) {
+            tagokTabla.setItems(aktivBerletuTagok);
+        } else if (osszesTagBerletTipusGomb.isSelected() && osszesTagNemGomb.isSelected() && lejertberletGomb.isSelected()) {
+            tagokTabla.setItems(lejartBerletuTagok);
+        } else if (osszesTagBerletTipusGomb.isSelected() && noGomb.isSelected() && aktivberletGomb.isSelected()) {
+            tagokTabla.setItems(aktivBerletesNok);
+        } else if (osszesTagBerletTipusGomb.isSelected() && ferfiGomb.isSelected() && aktivberletGomb.isSelected()) {
+            tagokTabla.setItems(aktivBerletesFerfiak);
+        } else if (osszesTagBerletTipusGomb.isSelected() && noGomb.isSelected() && lejertberletGomb.isSelected()) {
+            tagokTabla.setItems(lejartBerletesNok);
+        } else if (osszesTagBerletTipusGomb.isSelected() && ferfiGomb.isSelected() && lejertberletGomb.isSelected()) {
+            tagokTabla.setItems(lejartBerletesFerfiak);
         }
     }
 
     @FXML
-    public void ferfiTagok() {
-        if (ferfiGomb.isSelected() && aktivberletGomb.isSelected()) {
-            tagokTabla.setItems(aktivberletesFerfiak);
-        } else if (ferfiGomb.isSelected() && lejertberletGomb.isSelected()) {
-            tagokTabla.setItems(lejartberletesFerfiak);
-        } else if (ferfiGomb.isSelected() && osszesTagGomb.isSelected()) {
+    private void aktivBerlet() {
+        if (aktivberletGomb.isSelected() && osszesTagNemGomb.isSelected() && osszesTagBerletTipusGomb.isSelected()) {
+            tagokTabla.setItems(aktivBerletuTagok);
+        } else if (aktivberletGomb.isSelected() && ferfiGomb.isSelected() && osszesTagBerletTipusGomb.isSelected()) {
+            tagokTabla.setItems(aktivBerletesFerfiak);
+        } else if (aktivberletGomb.isSelected() && noGomb.isSelected() && osszesTagBerletTipusGomb.isSelected()) {
+            tagokTabla.setItems(aktivBerletesNok);
+        } else if (aktivberletGomb.isSelected() && osszesTagNemGomb.isSelected() && alkalmasBerletekGomb.isSelected()) {
+            tagokTabla.setItems(aktivAlkalmasTagok);
+        } else if (aktivberletGomb.isSelected() && osszesTagNemGomb.isSelected() && idokorlatosBerletekGomb.isSelected()) {
+            tagokTabla.setItems(aktivIdokorlatosTagok);
+        } else if (aktivberletGomb.isSelected() && noGomb.isSelected() && alkalmasBerletekGomb.isSelected()) {
+            tagokTabla.setItems(alkalmasAktivNoiTagok);
+        } else if (aktivberletGomb.isSelected() && noGomb.isSelected() && idokorlatosBerletekGomb.isSelected()) {
+            tagokTabla.setItems(idokorlatosAktivNoiTagok);
+        } else if (aktivberletGomb.isSelected() && ferfiGomb.isSelected() && alkalmasBerletekGomb.isSelected()) {
+            tagokTabla.setItems(alkalmasAktivFerfiTagok);
+        } else if (aktivberletGomb.isSelected() && ferfiGomb.isSelected() && idokorlatosBerletekGomb.isSelected()) {
+            tagokTabla.setItems(idokorlatosAktivFerfiTagok);
+        }
+
+    }
+
+    @FXML
+    private void lejartBerlet() {
+        if (lejertberletGomb.isSelected() && osszesTagNemGomb.isSelected() && osszesTagBerletTipusGomb.isSelected()) {
+            tagokTabla.setItems(lejartBerletuTagok);
+        } else if (lejertberletGomb.isSelected() && ferfiGomb.isSelected() && osszesTagBerletTipusGomb.isSelected()) {
+            tagokTabla.setItems(lejartBerletesFerfiak);
+        } else if (lejertberletGomb.isSelected() && noGomb.isSelected() && osszesTagBerletTipusGomb.isSelected()) {
+            tagokTabla.setItems(lejartBerletesNok);
+        } else if (lejertberletGomb.isSelected() && osszesTagNemGomb.isSelected() && alkalmasBerletekGomb.isSelected()) {
+            tagokTabla.setItems(lejartAlkalmasTagok);
+        } else if (lejertberletGomb.isSelected() && osszesTagNemGomb.isSelected() && idokorlatosBerletekGomb.isSelected()) {
+            tagokTabla.setItems(lejartIdokorlatosTagok);
+        } else if (lejertberletGomb.isSelected() && noGomb.isSelected() && alkalmasBerletekGomb.isSelected()) {
+            tagokTabla.setItems(alkalmasLejartNoiTagok);
+        } else if (lejertberletGomb.isSelected() && noGomb.isSelected() && idokorlatosBerletekGomb.isSelected()) {
+            tagokTabla.setItems(idokorlatosLejartNoiTagok);
+        } else if (lejertberletGomb.isSelected() && ferfiGomb.isSelected() && alkalmasBerletekGomb.isSelected()) {
+            tagokTabla.setItems(alkalmasLejartFerfiTagok);
+        } else if (lejertberletGomb.isSelected() && ferfiGomb.isSelected() && idokorlatosBerletekGomb.isSelected()) {
+            tagokTabla.setItems(idokorlatosLejartFerfiTagok);
+        }
+    }
+
+    @FXML
+    private void noTagok() {
+        if (noGomb.isSelected() && osszesTagGomb.isSelected() && osszesTagBerletTipusGomb.isSelected()) {
+            tagokTabla.setItems(noiTagok);
+        } else if (noGomb.isSelected() && aktivberletGomb.isSelected() && osszesTagBerletTipusGomb.isSelected()) {
+            tagokTabla.setItems(aktivBerletesNok);
+        } else if (noGomb.isSelected() && lejertberletGomb.isSelected() && osszesTagBerletTipusGomb.isSelected()) {
+            tagokTabla.setItems(lejartBerletesNok);
+        } else if (noGomb.isSelected() && osszesTagGomb.isSelected() && alkalmasBerletekGomb.isSelected()) {
+            tagokTabla.setItems(alkalmasBerletesNok);
+        } else if (noGomb.isSelected() && osszesTagGomb.isSelected() && idokorlatosBerletekGomb.isSelected()) {
+            tagokTabla.setItems(idokorlatosBerletesNok);
+        } else if (noGomb.isSelected() && aktivberletGomb.isSelected() && alkalmasBerletekGomb.isSelected()) {
+            tagokTabla.setItems(alkalmasAktivNoiTagok);
+        } else if (noGomb.isSelected() && lejertberletGomb.isSelected() && idokorlatosBerletekGomb.isSelected()) {
+            tagokTabla.setItems(idokorlatosLejartNoiTagok);
+        } else if (noGomb.isSelected() && aktivberletGomb.isSelected() && idokorlatosBerletekGomb.isSelected()) {
+            tagokTabla.setItems(idokorlatosAktivNoiTagok);
+        } else if (noGomb.isSelected() && lejertberletGomb.isSelected() && alkalmasBerletekGomb.isSelected()) {
+            tagokTabla.setItems(alkalmasLejartNoiTagok);
+        }
+    }
+
+    @FXML
+    private void ferfiTagok() {
+        if (ferfiGomb.isSelected() && osszesTagGomb.isSelected() && osszesTagBerletTipusGomb.isSelected()) {
             tagokTabla.setItems(ferfiTagok);
+        } else if (ferfiGomb.isSelected() && aktivberletGomb.isSelected() && osszesTagBerletTipusGomb.isSelected()) {
+            tagokTabla.setItems(aktivBerletesFerfiak);
+        } else if (ferfiGomb.isSelected() && lejertberletGomb.isSelected() && osszesTagBerletTipusGomb.isSelected()) {
+            tagokTabla.setItems(lejartBerletesFerfiak);
+        } else if (ferfiGomb.isSelected() && osszesTagGomb.isSelected() && alkalmasBerletekGomb.isSelected()) {
+            tagokTabla.setItems(alkalmasBerletesFerfiak);
+        } else if (ferfiGomb.isSelected() && osszesTagGomb.isSelected() && idokorlatosBerletekGomb.isSelected()) {
+            tagokTabla.setItems(idokorlatosBerletesFerfiak);
+        } else if (ferfiGomb.isSelected() && aktivberletGomb.isSelected() && alkalmasBerletekGomb.isSelected()) {
+            tagokTabla.setItems(alkalmasAktivFerfiTagok);
+        } else if (ferfiGomb.isSelected() && lejertberletGomb.isSelected() && idokorlatosBerletekGomb.isSelected()) {
+            tagokTabla.setItems(idokorlatosLejartFerfiTagok);
+        } else if (ferfiGomb.isSelected() && aktivberletGomb.isSelected() && idokorlatosBerletekGomb.isSelected()) {
+            tagokTabla.setItems(idokorlatosAktivFerfiTagok);
+        } else if (ferfiGomb.isSelected() && lejertberletGomb.isSelected() && alkalmasBerletekGomb.isSelected()) {
+            tagokTabla.setItems(alkalmasLejartFerfiTagok);
+        }
+    }
+
+    @FXML
+    private void alkalmasBerletek() {
+        if (alkalmasBerletekGomb.isSelected() && osszesTagGomb.isSelected() && osszesTagNemGomb.isSelected()) {
+            tagokTabla.setItems(alkalmasBerletek);
+        } else if (alkalmasBerletekGomb.isSelected() && aktivberletGomb.isSelected() && osszesTagNemGomb.isSelected()) {
+            tagokTabla.setItems(aktivAlkalmasTagok);
+        } else if (alkalmasBerletekGomb.isSelected() && lejertberletGomb.isSelected() && osszesTagNemGomb.isSelected()) {
+            tagokTabla.setItems(lejartAlkalmasTagok);
+        } else if (alkalmasBerletekGomb.isSelected() && osszesTagGomb.isSelected() && noGomb.isSelected()) {
+            tagokTabla.setItems(alkalmasBerletesNok);
+        } else if (alkalmasBerletekGomb.isSelected() && osszesTagGomb.isSelected() && ferfiGomb.isSelected()) {
+            tagokTabla.setItems(alkalmasBerletesFerfiak);
+        } else if (alkalmasBerletekGomb.isSelected() && aktivberletGomb.isSelected() && noGomb.isSelected()) {
+            tagokTabla.setItems(alkalmasAktivNoiTagok);
+        } else if (alkalmasBerletekGomb.isSelected() && aktivberletGomb.isSelected() && ferfiGomb.isSelected()) {
+            tagokTabla.setItems(alkalmasAktivFerfiTagok);
+        } else if (alkalmasBerletekGomb.isSelected() && lejertberletGomb.isSelected() && noGomb.isSelected()) {
+            tagokTabla.setItems(alkalmasLejartNoiTagok);
+        } else if (alkalmasBerletekGomb.isSelected() && lejertberletGomb.isSelected() && ferfiGomb.isSelected()) {
+            tagokTabla.setItems(alkalmasLejartFerfiTagok);
+        }
+    }
+
+    @FXML
+    private void idokorlatosBerletek() {
+        if (idokorlatosBerletekGomb.isSelected() && osszesTagGomb.isSelected() && osszesTagNemGomb.isSelected()) {
+            tagokTabla.setItems(idokorlatosBerletek);
+        } else if (idokorlatosBerletekGomb.isSelected() && aktivberletGomb.isSelected() && osszesTagNemGomb.isSelected()) {
+            tagokTabla.setItems(aktivIdokorlatosTagok);
+        } else if (idokorlatosBerletekGomb.isSelected() && lejertberletGomb.isSelected() && osszesTagNemGomb.isSelected()) {
+            tagokTabla.setItems(lejartIdokorlatosTagok);
+        } else if (idokorlatosBerletekGomb.isSelected() && osszesTagGomb.isSelected() && noGomb.isSelected()) {
+            tagokTabla.setItems(idokorlatosBerletesNok);
+        } else if (idokorlatosBerletekGomb.isSelected() && osszesTagGomb.isSelected() && ferfiGomb.isSelected()) {
+            tagokTabla.setItems(idokorlatosBerletesFerfiak);
+        } else if (idokorlatosBerletekGomb.isSelected() && aktivberletGomb.isSelected() && noGomb.isSelected()) {
+            tagokTabla.setItems(idokorlatosAktivNoiTagok);
+        } else if (idokorlatosBerletekGomb.isSelected() && aktivberletGomb.isSelected() && ferfiGomb.isSelected()) {
+            tagokTabla.setItems(idokorlatosAktivFerfiTagok);
+        } else if (idokorlatosBerletekGomb.isSelected() && lejertberletGomb.isSelected() && noGomb.isSelected()) {
+            tagokTabla.setItems(idokorlatosLejartNoiTagok);
+        } else if (idokorlatosBerletekGomb.isSelected() && lejertberletGomb.isSelected() && ferfiGomb.isSelected()) {
+            tagokTabla.setItems(idokorlatosLejartFerfiTagok);
         }
     }
 
@@ -573,8 +761,6 @@ public class KondiBazisFoAblakKezelo implements Initializable {
 
         berletVasarlasOszlop.setCellValueFactory(celldata -> celldata.getValue().getBerletVasarlasIdejeProperty());
 
-//        berletLejrataOszlop.setCellValueFactory(celldata -> celldata.getValue().getBerletLejaratiIdejeProperty());
-
         berletNeveOszlop.setCellValueFactory(celldata -> celldata.getValue().getVasaroltBerletNeveProperty());
 
         logolo.debug("Összes tag megjelenítése.");
@@ -584,35 +770,92 @@ public class KondiBazisFoAblakKezelo implements Initializable {
 
 
     private void szuresek() {
-        LocalDate a = LocalDate.of(2017, 3, 14);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate maiNap = LocalDate.now();
+        DateTimeFormatter datumFormatum = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
         noiTagok = new FilteredList<>(tagTablazatAdatok, tagok -> true);
         ferfiTagok = new FilteredList<>(tagTablazatAdatok, tagok -> true);
 
-        aktivberletuTagok = new FilteredList<>(tagTablazatAdatok, tagok -> true);
-        aktivberletesNok = new FilteredList<>(aktivberletuTagok, tagok -> true);
-        aktivberletesFerfiak = new FilteredList<>(aktivberletuTagok, tagok -> true);
+        aktivBerletuTagok = new FilteredList<>(tagTablazatAdatok, tagok -> true);
+        aktivBerletesNok = new FilteredList<>(aktivBerletuTagok, tagok -> true);
+        aktivBerletesFerfiak = new FilteredList<>(aktivBerletuTagok, tagok -> true);
 
-        lejartberletuTagok = new FilteredList<>(tagTablazatAdatok, tagok -> true);
-        lejartberletesNok = new FilteredList<>(lejartberletuTagok, tagok -> true);
-        lejartberletesFerfiak = new FilteredList<>(lejartberletuTagok, tagok -> true);
+        lejartBerletuTagok = new FilteredList<>(tagTablazatAdatok, tagok -> true);
+        lejartBerletesNok = new FilteredList<>(lejartBerletuTagok, tagok -> true);
+        lejartBerletesFerfiak = new FilteredList<>(lejartBerletuTagok, tagok -> true);
+
+        alkalmasBerletek = new FilteredList<>(tagTablazatAdatok, tagok -> true);
+
+        idokorlatosBerletek = new FilteredList<>(tagTablazatAdatok, tagok -> true);
+
+        alkalmasBerletesNok = new FilteredList<>(noiTagok, tagok -> true);
+        alkalmasBerletesFerfiak = new FilteredList<>(ferfiTagok, tagok -> true);
+
+        idokorlatosBerletesNok = new FilteredList<>(noiTagok, tagok -> true);
+        idokorlatosBerletesFerfiak = new FilteredList<>(ferfiTagok, tagok -> true);
+
+        lejartAlkalmasTagok = new FilteredList<>(lejartBerletuTagok, tagok -> true);
+        lejartIdokorlatosTagok = new FilteredList<>(lejartBerletuTagok, tagok -> true);
+
+        aktivAlkalmasTagok = new FilteredList<>(aktivBerletuTagok, tagok -> true);
+        aktivIdokorlatosTagok = new FilteredList<>(aktivBerletuTagok, tagok -> true);
+
+        //
+        alkalmasAktivNoiTagok = new FilteredList<>(aktivAlkalmasTagok, tagok -> true);
+        alkalmasLejartNoiTagok = new FilteredList<>(lejartAlkalmasTagok, tagok -> true);
+
+        idokorlatosAktivNoiTagok = new FilteredList<>(aktivIdokorlatosTagok, tagok -> true);
+        idokorlatosLejartNoiTagok = new FilteredList<>(lejartIdokorlatosTagok, tagok -> true);
+
+        //
+        alkalmasAktivFerfiTagok = new FilteredList<>(aktivAlkalmasTagok, tagok -> true);
+        alkalmasLejartFerfiTagok = new FilteredList<>(lejartAlkalmasTagok, tagok -> true);
+
+        idokorlatosAktivFerfiTagok = new FilteredList<>(aktivIdokorlatosTagok, tagok -> true);
+        idokorlatosLejartFerfiTagok = new FilteredList<>(lejartIdokorlatosTagok, tagok -> true);
 
         ferfiTagok.setPredicate(tag -> tag.getTagNeme().toString().contains("Férfi"));
 
         noiTagok.setPredicate(tag -> tag.getTagNeme().toString().contains("Nő"));
 
-        aktivberletuTagok.setPredicate(tag -> LocalDate.parse(tag.getBerletLejaratiIdeje().getValue(), formatter).compareTo(a) == 0 || LocalDate.parse(tag.getBerletLejaratiIdeje().getValue(), formatter).compareTo(a) > 0);
+        alkalmasBerletek.setPredicate(tag -> tag.getVasaroltBerletNeve().toString().contains("Alkalmas"));
 
-        aktivberletesNok.setPredicate(tag -> tag.getTagNeme().toString().contains("Nő"));
+        idokorlatosBerletek.setPredicate(tag -> tag.getVasaroltBerletNeve().toString().contains("Időkorlátos"));
 
-        aktivberletesFerfiak.setPredicate(tag -> tag.getTagNeme().toString().contains("Férfi"));
+        aktivBerletuTagok.setPredicate(tag -> LocalDate.parse(tag.getBerletLejaratiIdeje().getValue(), datumFormatum).compareTo(maiNap) == 0 || LocalDate.parse(tag.getBerletLejaratiIdeje().getValue(), datumFormatum).compareTo(maiNap) > 0);
 
-        lejartberletuTagok.setPredicate(tag -> LocalDate.parse(tag.getBerletLejaratiIdeje().getValue(), formatter).compareTo(a) < 0 || LocalDate.parse(tag.getBerletLejaratiIdeje().getValue(), formatter).compareTo(a) == -1);
+        aktivBerletesNok.setPredicate(tag -> tag.getTagNeme().toString().contains("Nő"));
 
-        lejartberletesNok.setPredicate(tag -> tag.getTagNeme().toString().contains("Nő"));
+        aktivBerletesFerfiak.setPredicate(tag -> tag.getTagNeme().toString().contains("Férfi"));
 
-        lejartberletesFerfiak.setPredicate(tag -> tag.getTagNeme().toString().contains("Férfi"));
+        lejartBerletuTagok.setPredicate(tag -> LocalDate.parse(tag.getBerletLejaratiIdeje().getValue(), datumFormatum).compareTo(maiNap) < 0 || LocalDate.parse(tag.getBerletLejaratiIdeje().getValue(), datumFormatum).compareTo(maiNap) == -1);
+
+        lejartBerletesNok.setPredicate(tag -> tag.getTagNeme().toString().contains("Nő"));
+
+        lejartBerletesFerfiak.setPredicate(tag -> tag.getTagNeme().toString().contains("Férfi"));
+
+        alkalmasBerletesNok.setPredicate(tag -> tag.getVasaroltBerletNeve().toString().contains("Alkalmas"));
+
+        alkalmasBerletesFerfiak.setPredicate(tag -> tag.getVasaroltBerletNeve().toString().contains("Alkalmas"));
+
+        idokorlatosBerletesNok.setPredicate(tag -> tag.getVasaroltBerletNeve().toString().contains("Időkorlátos"));
+        idokorlatosBerletesFerfiak.setPredicate(tag -> tag.getVasaroltBerletNeve().toString().contains("Időkorlátos"));
+
+        lejartAlkalmasTagok.setPredicate(tag -> tag.getVasaroltBerletNeve().toString().contains("Alkalmas"));
+        lejartIdokorlatosTagok.setPredicate(tag -> tag.getVasaroltBerletNeve().toString().contains("Időkorlátos"));
+
+        aktivAlkalmasTagok.setPredicate(tag -> tag.getVasaroltBerletNeve().toString().contains("Alkalmas"));
+        aktivIdokorlatosTagok.setPredicate(tag -> tag.getVasaroltBerletNeve().toString().contains("Időkorlátos"));
+
+        alkalmasAktivNoiTagok.setPredicate(tag -> tag.getTagNeme().toString().contains("Nő"));
+        alkalmasLejartNoiTagok.setPredicate(tag -> tag.getTagNeme().toString().contains("Nő"));
+        idokorlatosAktivNoiTagok.setPredicate(tag -> tag.getTagNeme().toString().contains("Nő"));
+        idokorlatosLejartNoiTagok.setPredicate(tag -> tag.getTagNeme().toString().contains("Nő"));
+
+        alkalmasAktivFerfiTagok.setPredicate(tag -> tag.getTagNeme().toString().contains("Férfi"));
+        alkalmasLejartFerfiTagok.setPredicate(tag -> tag.getTagNeme().toString().contains("Férfi"));
+        idokorlatosAktivFerfiTagok.setPredicate(tag -> tag.getTagNeme().toString().contains("Férfi"));
+        idokorlatosLejartFerfiTagok.setPredicate(tag -> tag.getTagNeme().toString().contains("Férfi"));
     }
 
     private void tagSzerkesztes(TagData tData) throws IOException {

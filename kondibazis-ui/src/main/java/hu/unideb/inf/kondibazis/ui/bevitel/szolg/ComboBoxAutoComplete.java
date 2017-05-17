@@ -25,7 +25,7 @@ public class ComboBoxAutoComplete<T> {
 		cmb.setOnHidden(this::handleOnHiding);
 	}
 
-	public void handleOnKeyPressed(KeyEvent e) {
+	private void handleOnKeyPressed(KeyEvent e) {
 		ObservableList<T> filteredList = FXCollections.observableArrayList();
 		KeyCode code = e.getCode();
 
@@ -56,7 +56,7 @@ public class ComboBoxAutoComplete<T> {
 		cmb.getItems().setAll(filteredList);
 	}
 
-	public void handleOnHiding(Event e) {
+	private void handleOnHiding(Event e) {
 		filter = "";
 		cmb.getTooltip().hide();
 		T s = cmb.getSelectionModel().getSelectedItem();
