@@ -188,7 +188,7 @@ public class KondiBazisFoAblakKezelo implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         tagokTabla.setPlaceholder(new Text("Nem található egy tag sem."));
 
-        lejartBerletStyle = "-fx-background-color: red;";
+        lejartBerletStyle = "-fx-background-color: lightcoral;";
 
         szuresEskereses.setDisable(true);
 
@@ -226,15 +226,17 @@ public class KondiBazisFoAblakKezelo implements Initializable {
             @Override
             protected void updateItem(TagData tag, boolean empty) {
                 super.updateItem(tag, empty);
+
+                TableRow adottSor = getTableRow();
+
                 if (tag == null) {
                     setGraphic(null);
-                    setStyle("");
+                    adottSor.setStyle("");
                     return;
                 }
                 final Button mennyiAlkalomMegGomb = new Button("Még " + tag.getMennyiAlkalom().getValue() + " alkalom van hátra.");
-                TableRow adottSor = getTableRow();
 
-                if (Integer.parseInt(tag.getMennyiAlkalom().getValue()) == 0) {
+                if (Integer.parseInt(tag.getMennyiAlkalom().getValue()) == 0 && tag.getVasaroltBerletNeve().getValue().contains("Alkalmas")) {
                     mennyiAlkalomMegGomb.setText("Nincs több alkalom.");
                     adottSor.setStyle(lejartBerletStyle);
                     mennyiAlkalomMegGomb.setDisable(true);
@@ -257,7 +259,7 @@ public class KondiBazisFoAblakKezelo implements Initializable {
                             konditeremTagVo.setMennyiAlkalomMeg(t);
                             konditeremTagSzolgaltatas.frissitKonditeremTagot(konditeremTagVo);
                             adatFrissites();
-                        } else if (Integer.parseInt(tag.getMennyiAlkalom().getValue()) == 0) {
+                        } else if (Integer.parseInt(tag.getMennyiAlkalom().getValue()) == 0 && tag.getVasaroltBerletNeve().getValue().contains("Alkalmas")) {
                             mennyiAlkalomMegGomb.setText("Nincs több alkalom.");
                             adottSor.setStyle(lejartBerletStyle);
                             mennyiAlkalomMegGomb.setDisable(true);
@@ -268,8 +270,36 @@ public class KondiBazisFoAblakKezelo implements Initializable {
 
         });
 
-        tagokTabla.getColumns().add(alkalmakOszlop);
+        TableColumn<TagData, TagData> berletLejaratiDatuma = new TableColumn<>("Berlet Lejárati Dátuma");
+        berletLejaratiDatuma .setMaxWidth(4800);
+        berletLejaratiDatuma .setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
+        berletLejaratiDatuma.setCellFactory(param -> new TableCell<TagData, TagData>() {
 
+            @Override
+            protected void updateItem(TagData tag, boolean empty) {
+                super.updateItem(tag, empty);
+
+                TableRow adottSor2 = getTableRow();
+
+                if (tag == null) {
+                    setGraphic(null);
+                    adottSor2.setStyle("");
+                    return;
+                }
+
+                final Text testText = new Text(tag.getBerletLejaratiIdeje().getValue());
+
+
+                if (tag.getVasaroltBerletNeve().toString().contains("Időkorlátos")) {
+                    setGraphic(testText);
+                    adottSor2.setStyle("");
+                }
+
+            }
+
+        });
+
+        tagokTabla.getColumns().addAll(berletLejaratiDatuma, alkalmakOszlop);
 
         valaszt.getItems().add("Név");
         valaszt.getItems().add("Bérlet neve");
@@ -543,7 +573,7 @@ public class KondiBazisFoAblakKezelo implements Initializable {
 
         berletVasarlasOszlop.setCellValueFactory(celldata -> celldata.getValue().getBerletVasarlasIdejeProperty());
 
-        berletLejrataOszlop.setCellValueFactory(celldata -> celldata.getValue().getBerletLejaratiIdejeProperty());
+//        berletLejrataOszlop.setCellValueFactory(celldata -> celldata.getValue().getBerletLejaratiIdejeProperty());
 
         berletNeveOszlop.setCellValueFactory(celldata -> celldata.getValue().getVasaroltBerletNeveProperty());
 

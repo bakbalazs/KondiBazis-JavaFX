@@ -77,10 +77,6 @@ public class KonditeremBerletSzolgaltatasImpl implements KonditeremBerletSzolgal
 			// a konditerem x db bérlete van
 		}
 
-		for (KonditeremBerlet konditeremBerlet : konditerem_berletei) {
-			// kondietremberlet id
-		}
-
 		return KonditeremBerletMapper.toVo(konditerem_berletei);
 
 	}

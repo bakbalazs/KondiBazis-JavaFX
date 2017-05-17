@@ -260,7 +260,7 @@ public class KonditeremElerhetosegKezelo implements Initializable {
 
 			ujElerhetoseg.setKonditerem(regisztraltKondi);
 
-			konditeremElerhetosegSzolgaltatas.letrehozElerhetoseget(ujElerhetoseg);
+			konditeremElerhetosegSzolgaltatas.frissitElerhetoseget(ujElerhetoseg);
 
 			setBejelentkezesUzenet(
 					"Kérem jeletkezzen be a felhasználóval: " + regisztraltKondi.getFelhasznalonev() + "\n");

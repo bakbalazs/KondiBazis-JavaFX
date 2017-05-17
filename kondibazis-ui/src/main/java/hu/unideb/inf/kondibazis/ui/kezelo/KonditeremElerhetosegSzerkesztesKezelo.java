@@ -140,7 +140,7 @@ public class KonditeremElerhetosegSzerkesztesKezelo implements Initializable {
 		emeletBevitel.setText(konditeremElerhetosegVo.getEmelet().toString());
 		ajtoBevitel.setText(konditeremElerhetosegVo.getAjto());
 
-		emeletBevitel.setText(konditeremElerhetosegVo.getEmailCim());
+		emailBevitel.setText(konditeremElerhetosegVo.getEmailCim());
 		weboldalBevitel.setText(konditeremElerhetosegVo.getWeboldalLink());
 		facebookBevitel.setText(konditeremElerhetosegVo.getFacebookOldalLink());
 	}

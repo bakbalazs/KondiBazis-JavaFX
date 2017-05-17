@@ -90,7 +90,7 @@ public class KonditeremElerhetoseg extends FoEntitas {
     /**
      *
      */
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "konditeremId")
     private Konditerem konditerem;
 
