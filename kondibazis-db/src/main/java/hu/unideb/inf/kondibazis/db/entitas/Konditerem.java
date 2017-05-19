@@ -59,8 +59,10 @@ public class Konditerem extends FoEntitas {
     private List<KonditeremTag> konditeremTagok;
 
     /**
-     *
-     *
+     * A konditeremhez tartozó bérletek. Minden bérletet külön kezelünk így minden konditerem rendelkezik egy listával, amelyben a bérletei szerepelnek.
+     * A {@link javax.persistence.OneToMany OnToMany} annotáció megmondja hogy egy konditeremhez több bérlet tartozik.
+     * A mappedBy taggal megadjuk hogy hol találja a Hibernate a konfigurációt ehhez az adattaghoz, ezesetben a kapcsolat másik
+     * oldalán a "konditerem" nevű adattagon lesz megadva a konfiguráció.
      */
     @OneToMany(mappedBy = "konditerem", cascade = CascadeType.PERSIST, fetch=FetchType.LAZY)
     private List<KonditeremBerlet> konditeremBerletek;

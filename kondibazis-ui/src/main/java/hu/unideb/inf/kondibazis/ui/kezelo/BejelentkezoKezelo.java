@@ -75,7 +75,7 @@ public class BejelentkezoKezelo implements Initializable {
     @FXML
     public void bejelentkezes(ActionEvent event) throws Exception {
         logolo.debug("Bejeletkezés gomb megnyomva!");
-        KonditeremVo konditerem = konditeremSzolgaltatas.keresFelhasznalonevet(felhasznalonevBevitel.getText());
+        KonditeremVo konditerem = konditeremSzolgaltatas.keresKonditermet(felhasznalonevBevitel.getText());
 
         if (konditerem == null) {
             bejelentkezoUzenet.setFill(Color.RED);

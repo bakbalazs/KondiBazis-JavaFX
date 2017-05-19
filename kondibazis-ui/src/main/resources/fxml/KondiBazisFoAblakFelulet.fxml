@@ -4,7 +4,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckMenuItem?>
 <?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -84,15 +83,14 @@
                                     </rowConstraints>
                                     <children>
                                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Szűrés bérletre:" />
-                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Keresés:" GridPane.rowIndex="4" />
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Névre keresés:" GridPane.rowIndex="4" />
                                         <RadioButton fx:id="osszesTagGomb" mnemonicParsing="false" onAction="#osszesTagBerlet" text="Összes Tag" GridPane.columnIndex="1">
                                             <toggleGroup>
                                                 <ToggleGroup fx:id="berletSzures" />
                                             </toggleGroup></RadioButton>
                                         <RadioButton fx:id="aktivberletGomb" mnemonicParsing="false" onAction="#aktivBerlet" text="Aktív bérletű tagok" toggleGroup="$berletSzures" GridPane.columnIndex="2" />
                                         <RadioButton fx:id="lejertberletGomb" mnemonicParsing="false" onAction="#lejartBerlet" text="Lejárt Bérletű tagok" toggleGroup="$berletSzures" GridPane.columnIndex="3" />
-                                        <TextField fx:id="keresesszovegBevitel" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="123.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                                        <ComboBox fx:id="valaszt" prefHeight="25.0" prefWidth="124.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                        <TextField fx:id="keresesszovegBevitel" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="123.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Szűrés nemre:" GridPane.rowIndex="1" />
                                         <RadioButton fx:id="ferfiGomb" mnemonicParsing="false" onAction="#ferfiTagok" text="Férfiak" GridPane.columnIndex="3" GridPane.rowIndex="1">
                                             <toggleGroup>
@@ -102,8 +100,14 @@
                                         <RadioButton fx:id="noGomb" mnemonicParsing="false" onAction="#noTagok" text="Nők" toggleGroup="$nemSzures" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                         <RadioButton fx:id="osszesTagNemGomb" mnemonicParsing="false" onAction="#osszesTagNem" text="Összes Tag" toggleGroup="$nemSzures" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Szűrés korra:" GridPane.rowIndex="3" />
-                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mettől:" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Meddig:" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mettől:" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                 <GridPane.margin>
+                                    <Insets right="80.0" />
+                                 </GridPane.margin></Text>
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Meddig:" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                 <GridPane.margin>
+                                    <Insets right="80.0" />
+                                 </GridPane.margin></Text>
                                         <RadioButton mnemonicParsing="false" prefHeight="17.0" prefWidth="36.0" text="Be" GridPane.columnIndex="3" GridPane.rowIndex="3">
                                             <opaqueInsets>
                                                 <Insets />
@@ -122,12 +126,12 @@
                                         </RadioButton>
                                         <TextField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="42.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                             <GridPane.margin>
-                                                <Insets left="100.0" />
+                                                <Insets left="20.0" />
                                             </GridPane.margin>
                                         </TextField>
                                         <TextField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="42.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
                                             <GridPane.margin>
-                                                <Insets left="100.0" />
+                                                <Insets left="20.0" />
                                             </GridPane.margin>
                                         </TextField>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Szűrés bérlet típusra:" GridPane.rowIndex="2" />
@@ -170,9 +174,9 @@
                                             <columnConstraints>
                                                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="99.0" minWidth="10.0" prefWidth="84.0" />
                                                 <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="156.0" minWidth="10.0" prefWidth="155.0" />
-                                                <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="98.0" minWidth="10.0" prefWidth="25.0" />
-                                                <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="98.0" minWidth="10.0" prefWidth="70.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="136.0" minWidth="10.0" prefWidth="136.0" />
+                                                <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="98.0" minWidth="10.0" prefWidth="11.0" />
+                                                <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="98.0" minWidth="10.0" prefWidth="66.0" />
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="136.0" minWidth="10.0" prefWidth="136.0" />
                                             </columnConstraints>
                                             <rowConstraints>
                                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -185,13 +189,13 @@
                                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Keresztnév:" GridPane.rowIndex="1" />
                                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nem:" GridPane.rowIndex="2" />
                                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Születési dátum:" GridPane.rowIndex="3" />
-                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bérlet neve:" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bérlet neve:" GridPane.columnIndex="3" GridPane.rowIndex="2" />
                                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Vásárolt bérlet neve és dátuma:" wrappingWidth="89.359375" GridPane.columnIndex="3" GridPane.rowIndex="3" />
                                                 <TextField fx:id="vezeteknevModosit" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="128.0" GridPane.columnIndex="1" />
                                                 <TextField fx:id="keresztnevModosit" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="128.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                 <DatePicker fx:id="szuletesiDatumModosit" prefHeight="25.0" prefWidth="123.0" showWeekNumbers="true" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-                                                <ChoiceBox prefHeight="25.0" prefWidth="116.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="77.0" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                                                <ChoiceBox prefHeight="25.0" prefWidth="116.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
                                                 <RadioButton fx:id="noModosit" mnemonicParsing="false" text="Nő" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2">
                                                     <GridPane.margin>
                                                         <Insets left="20.0" />
@@ -205,6 +209,8 @@
                                                         <Insets right="20.0" />
                                                     </GridPane.margin>
                                                 </RadioButton>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lejárt Bérlet neve:" wrappingWidth="67.013671875" GridPane.columnIndex="3" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="132.13671875" GridPane.columnIndex="4" />
                                             </children>
                                         </GridPane>
                                         <ImageView fx:id="kepModositasa" fitHeight="134.0" fitWidth="149.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" />

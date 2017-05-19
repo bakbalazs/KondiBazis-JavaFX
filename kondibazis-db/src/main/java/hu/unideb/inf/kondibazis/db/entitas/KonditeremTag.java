@@ -91,6 +91,9 @@ public class KonditeremTag extends FoEntitas {
     @Column(name = "mennyiAlkalomMeg")
     private int mennyiAlkalomMeg;
 
+    @Column(name = "lejartBerletNeve")
+    private String lejartBerletNeve;
+
     /**
      * A Tag városa.
      */
@@ -111,6 +114,7 @@ public class KonditeremTag extends FoEntitas {
 
     /**
      * A Tag vezetéknevét adja vissza.
+     *
      * @return A Tag vezetékneve.
      */
     public String getTagVezeteknev() {
@@ -119,6 +123,7 @@ public class KonditeremTag extends FoEntitas {
 
     /**
      * Beállítja a Tag vezetéknevét.
+     *
      * @param tagVezeteknev A beállítandó vezetéknév.
      */
     public void setTagVezeteknev(String tagVezeteknev) {
@@ -127,6 +132,7 @@ public class KonditeremTag extends FoEntitas {
 
     /**
      * A Tag keresztnevét adja vissza.
+     *
      * @return A Tag keresztneve.
      */
     public String getTagKeresztnev() {
@@ -135,6 +141,7 @@ public class KonditeremTag extends FoEntitas {
 
     /**
      * Beállítja a Tag keresztnevét.
+     *
      * @param tagKeresztnev A beállítandó kereszetnév.
      */
     public void setTagKeresztnev(String tagKeresztnev) {
@@ -143,6 +150,7 @@ public class KonditeremTag extends FoEntitas {
 
     /**
      * Visszaadja a Tag teljes nevét.
+     *
      * @return A Tag teljes neve.
      */
     public String getTagNeve() {
@@ -151,6 +159,7 @@ public class KonditeremTag extends FoEntitas {
 
     /**
      * Beállítja a Tag teljes nevét.
+     *
      * @param tagNeve A beállítandó név.
      */
     public void setTagNeve(String tagNeve) {
@@ -159,6 +168,7 @@ public class KonditeremTag extends FoEntitas {
 
     /**
      * Visszaadja a Tag nemét.
+     *
      * @return A Tag neme.
      */
     public String getTagNeme() {
@@ -167,6 +177,7 @@ public class KonditeremTag extends FoEntitas {
 
     /**
      * Beállítja a Tag nemét.
+     *
      * @param tagNeme A beállítandó nem.
      */
     public void setTagNeme(String tagNeme) {
@@ -175,6 +186,7 @@ public class KonditeremTag extends FoEntitas {
 
     /**
      * Visszaadaja a Tag korát.
+     *
      * @return A Tag kora.
      */
     public int getTagKora() {
@@ -183,6 +195,7 @@ public class KonditeremTag extends FoEntitas {
 
     /**
      * Beállítja a Tag korát.
+     *
      * @param tagKora A beállítandó kor.
      */
     public void setTagKora(int tagKora) {
@@ -191,6 +204,7 @@ public class KonditeremTag extends FoEntitas {
 
     /**
      * Visszaadja a Tag születési dátumát.
+     *
      * @return A Tag születési dátuma.
      */
     public LocalDate getTagSzuletesidatuma() {
@@ -199,6 +213,7 @@ public class KonditeremTag extends FoEntitas {
 
     /**
      * Beállítja a Tag születési dátumát.
+     *
      * @param tagSzuletesidatuma A beállítandó dátum.
      */
     public void setTagSzuletesidatuma(LocalDate tagSzuletesidatuma) {
@@ -207,6 +222,7 @@ public class KonditeremTag extends FoEntitas {
 
     /**
      * Visszaadja mikor vásrolta a Tag a bérletet.
+     *
      * @return A bérlet vásárlás ideje.
      */
     public LocalDate getBerletVasarlasideje() {
@@ -215,6 +231,7 @@ public class KonditeremTag extends FoEntitas {
 
     /**
      * Beállítja a bérlet vásárlás idejét.
+     *
      * @param berletVasarlasideje A beállítandó dátum.
      */
     public void setBerletVasarlasideje(LocalDate berletVasarlasideje) {
@@ -223,6 +240,7 @@ public class KonditeremTag extends FoEntitas {
 
     /**
      * Visszaadja a Tag áltál vásrolt bérlet nevét.
+     *
      * @return A vásárolt bérlet neve.
      */
     public String getVasaroltBerletNeve() {
@@ -231,6 +249,7 @@ public class KonditeremTag extends FoEntitas {
 
     /**
      * Beállítja a bérlet nevét.
+     *
      * @param vasaroltBerletNeve A beállítandó név.
      */
     public void setVasaroltBerletNeve(String vasaroltBerletNeve) {
@@ -246,8 +265,18 @@ public class KonditeremTag extends FoEntitas {
         this.mennyiAlkalomMeg = mennyiAlkalomMeg;
     }
 
+//TODO
+    public String getLejartBerletNeve() {
+        return lejartBerletNeve;
+    }
+
+    public void setLejartBerletNeve(String lejartBerletNeve) {
+        this.lejartBerletNeve = lejartBerletNeve;
+    }
+
     /**
      * Visszaadja a Tag áltál vásolt bérlet tipusát.
+     *
      * @return A vásárolt bérlet tipusát.
      */
     public String getVasaroltBerletTipusa() {
@@ -256,6 +285,7 @@ public class KonditeremTag extends FoEntitas {
 
     /**
      * Beállítja a Tag áltál vásrolt bérlet tipusát.
+     *
      * @param vasaroltBerletTipusa A beállítandó típus.
      */
     public void setVasaroltBerletTipusa(String vasaroltBerletTipusa) {
@@ -272,6 +302,7 @@ public class KonditeremTag extends FoEntitas {
 
     /**
      * Visszaadja a Tag városát.
+     *
      * @return A tag városa.
      */
     public String getTagVarosa() {
@@ -280,6 +311,7 @@ public class KonditeremTag extends FoEntitas {
 
     /**
      * Beállítja a Tag városát.
+     *
      * @param tagVarosa A beállítandó szöveg.
      */
     public void setTagVarosa(String tagVarosa) {
@@ -288,6 +320,7 @@ public class KonditeremTag extends FoEntitas {
 
     /**
      * Visszaadja a Tag Megyéjét.
+     *
      * @return A tag megyéje.
      */
     public String getTagMegyeje() {
@@ -296,6 +329,7 @@ public class KonditeremTag extends FoEntitas {
 
     /**
      * Beállítja a Tag megyéjét.
+     *
      * @param tagMegyeje A beállítandó szöveg.
      */
     public void setTagMegyeje(String tagMegyeje) {
@@ -304,6 +338,7 @@ public class KonditeremTag extends FoEntitas {
 
     /**
      * Visszaadja mikor jár le a Tag áltál vásárolt bérlet.
+     *
      * @return A Tag bérletének lejárati ideje.
      */
     public LocalDate getBerletLejaratiIdeje() {
@@ -312,28 +347,11 @@ public class KonditeremTag extends FoEntitas {
 
     /**
      * Beállítja a Tag által vásrolt bérlet lejárati idejét.
+     *
      * @param berletLejaratiIdeje A beállítandó dátum.
      */
     public void setBerletLejaratiIdeje(LocalDate berletLejaratiIdeje) {
         this.berletLejaratiIdeje = berletLejaratiIdeje;
     }
 
-    @Override
-    public String toString() {
-        return "KonditeremTag{" +
-                "tagVezeteknev='" + tagVezeteknev + '\'' +
-                ", tagKeresztnev='" + tagKeresztnev + '\'' +
-                ", tagNeve='" + tagNeve + '\'' +
-                ", tagNeme='" + tagNeme + '\'' +
-                ", tagKora=" + tagKora +
-                ", tagSzuletesidatuma=" + tagSzuletesidatuma +
-                ", berletVasarlasideje=" + berletVasarlasideje +
-                ", berletLejaratiIdeje=" + berletLejaratiIdeje +
-                ", vasaroltBerletNeve='" + vasaroltBerletNeve + '\'' +
-                ", vasaroltBerletTipusa='" + vasaroltBerletTipusa + '\'' +
-                ", tagVarosa='" + tagVarosa + '\'' +
-                ", tagMegyeje='" + tagMegyeje + '\'' +
-                ", konditerem=" + konditerem +
-                '}';
-    }
 }

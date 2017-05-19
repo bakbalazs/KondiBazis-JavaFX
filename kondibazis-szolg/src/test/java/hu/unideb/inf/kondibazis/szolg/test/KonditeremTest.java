@@ -210,10 +210,10 @@ public class KonditeremTest {
 
     @Test
     public void _2keresKonditermetTeszt() {
-        KonditeremVo vanIlyen = konditeremSzolgaltatas.keresFelhasznalonevet("TesztKonditerem");
+        KonditeremVo vanIlyen = konditeremSzolgaltatas.keresKonditermet("TesztKonditerem");
         Assert.assertNotNull(vanIlyen);
 
-        KonditeremVo nincsIlyen = konditeremSzolgaltatas.keresFelhasznalonevet("NincsIlyen");
+        KonditeremVo nincsIlyen = konditeremSzolgaltatas.keresKonditermet("NincsIlyen");
         Assert.assertNull(nincsIlyen);
     }
 

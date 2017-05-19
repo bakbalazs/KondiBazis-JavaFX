@@ -122,7 +122,7 @@ public class RegisztralasKezelo implements Initializable {
 		}
 
 		if (ok) {
-			if (konditeremSzolgaltatas.keresFelhasznalonevet(felhasznalonevBevitel.getText()) != null) {
+			if (konditeremSzolgaltatas.keresKonditermet(felhasznalonevBevitel.getText()) != null) {
 				regisztraciosUzenet.setText(regisztraciosUzenet.getText() + "Ilyen felhazsnáló már létezik");
 				logolo.info("Ilyen felhasználó már regisztrált.");
 				felhasznalonevJoRossz.setImage(FeluletBetoltese.rosszBeirt);
@@ -135,7 +135,7 @@ public class RegisztralasKezelo implements Initializable {
 				uj.setRegisztralasDatuma(LocalDate.now());
 				konditeremSzolgaltatas.konditeremetLetrehoz(uj);
 				KonditeremVo letrehozott = konditeremSzolgaltatas
-						.keresFelhasznalonevet(felhasznalonevBevitel.getText());
+						.keresKonditermet(felhasznalonevBevitel.getText());
 				regisztraltKonditerem = letrehozott;
 				logolo.info("Új felhasználó hozzáadva: " + felhasznalonevBevitel.getText());
 				FeluletBetoltese.KonditeremElerhetosegFelulet(event);
@@ -149,7 +149,7 @@ public class RegisztralasKezelo implements Initializable {
 		FeluletBetoltese.InditasiFelulet(Inditas.primaryStage);
 	}
 
-	public KonditeremVo getRegisztraltKonditerem() {
+	KonditeremVo getRegisztraltKonditerem() {
 		return regisztraltKonditerem;
 	}
 
