@@ -93,9 +93,6 @@ public class KondiBazisFoAblakKezelo implements Initializable {
     private TableColumn<TagData, String> berletVasarlasOszlop;
 
     @FXML
-    private TableColumn<TagData, String> berletLejrataOszlop;
-
-    @FXML
     private Button berletModositasGomb;
 
     @FXML
