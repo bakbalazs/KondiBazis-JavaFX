@@ -155,11 +155,15 @@ public class BerletLetrehozasFoAblakKezelo implements Initializable {
                 ujBerlet.setBerletAra(ar);
                 ujBerlet.setMennyiAlkalom(alkalom);
 
+                KonditeremBerletVo letezo = konditeremBerletSzolgaltatas.letrehozBerletet(ujBerlet);
+
+                bejelentkezettKonditerem.getKonditeremBerletek().add(letezo);
+
                 konditeremSzolgaltatas.frissitKonditermet(bejelentkezettKonditerem);
 
-                ujBerlet.setKonditerem(bejelentkezettKonditerem);
+                letezo.setKonditerem(bejelentkezettKonditerem);
 
-                konditeremBerletSzolgaltatas.frissitKonditeremBerletet(ujBerlet);
+                konditeremBerletSzolgaltatas.frissitKonditeremBerletet(letezo);
 
                 foAblakKezelo.gombFrissites();
 

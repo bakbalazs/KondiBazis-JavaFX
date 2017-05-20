@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="803.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.kondibazis.ui.kezelo.RegisztraltKonditermekKezelo">
+   <center>
+      <TableView fx:id="konditeremAdatokTabla" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="804.0" BorderPane.alignment="CENTER">
+        <columns>
+            <TableColumn maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="736.0" text="Konditerem Adatok">
+               <columns>
+                  <TableColumn fx:id="konditeremNeveOszlop" prefWidth="160.0" text="Neve" />
+                <TableColumn fx:id="konditeremTelefonszamOszlop" prefWidth="157.0" text="Telefonszáma" />
+                  <TableColumn fx:id="konditeremHelyeOszlop" prefWidth="138.0" text="Helye" />
+                <TableColumn fx:id="konditeremCimeOszlop" prefWidth="232.0" text="Címe" />
+                  <TableColumn fx:id="konditeremTagjainakSzamaOszlop" prefWidth="116.0" text="Tagjainak száma" />
+               </columns>
+            </TableColumn>
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+   </center>
+   <top>
+      <HBox prefHeight="0.0" prefWidth="803.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox prefHeight="23.0">
+               <children>
+                  <JFXButton buttonType="RAISED" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#vissza" prefHeight="23.0" prefWidth="23.0" ripplerFill="#ffffff00" text=" " textFill="#ffffff00">
+                     <graphic>
+                        <ImageView fx:id="visszaGombKep" fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </top>
+</BorderPane>

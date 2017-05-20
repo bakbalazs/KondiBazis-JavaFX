@@ -331,6 +331,7 @@ public class TagHozzaadasaKezelo implements Initializable {
                         ujTag.setVasaroltBerletTipusa(berletek.getBerletTipusa());
                         ujTag.setBerletLejaratiIdeje(LocalDate.now());
                         ujTag.setMennyiAlkalomMeg(alkalom);
+                        ujTag.setKonditeremBerlet(berletek);
                     }
                 }
             }
@@ -344,6 +345,8 @@ public class TagHozzaadasaKezelo implements Initializable {
             } else {
                 ujTagKepe.setTagKep(nincsKep());
             }
+
+            bejelentkezettKonditerem.setTagokSzama(bejelentkezettKonditerem.getTagokSzama() + 1);
 
             konditeremSzolgaltatas.frissitKonditermet(bejelentkezettKonditerem);
 

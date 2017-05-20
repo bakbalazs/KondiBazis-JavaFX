@@ -1,6 +1,6 @@
 package hu.unideb.inf.kondibazis.ui.kiegeszito;
 
-import hu.unideb.inf.kondibazis.ui.model.TagData;
+import hu.unideb.inf.kondibazis.ui.model.TagAdatok;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 
@@ -9,59 +9,59 @@ import java.time.format.DateTimeFormatter;
 
 public class TagokSzurese {
 
-    public static FilteredList<TagData> lejartBerletuTagok;
+    public static FilteredList<TagAdatok> lejartBerletuTagok;
 
-    public static FilteredList<TagData> aktivBerletuTagok;
+    public static FilteredList<TagAdatok> aktivBerletuTagok;
 
-    public static FilteredList<TagData> lejartBerletesNok;
+    public static FilteredList<TagAdatok> lejartBerletesNok;
 
-    public static FilteredList<TagData> aktivBerletesNok;
+    public static FilteredList<TagAdatok> aktivBerletesNok;
 
-    public static FilteredList<TagData> noiTagok;
+    public static FilteredList<TagAdatok> noiTagok;
 
-    public static FilteredList<TagData> lejartBerletesFerfiak;
+    public static FilteredList<TagAdatok> lejartBerletesFerfiak;
 
-    public static FilteredList<TagData> aktivBerletesFerfiak;
+    public static FilteredList<TagAdatok> aktivBerletesFerfiak;
 
-    public static FilteredList<TagData> ferfiTagok;
+    public static FilteredList<TagAdatok> ferfiTagok;
 
-    public static FilteredList<TagData> alkalmasBerletek;
+    public static FilteredList<TagAdatok> alkalmasBerletek;
 
-    public static FilteredList<TagData> idokorlatosBerletek;
+    public static FilteredList<TagAdatok> idokorlatosBerletek;
 
-    public static FilteredList<TagData> alkalmasBerletesNok;
+    public static FilteredList<TagAdatok> alkalmasBerletesNok;
 
-    public static FilteredList<TagData> alkalmasBerletesFerfiak;
+    public static FilteredList<TagAdatok> alkalmasBerletesFerfiak;
 
-    public static FilteredList<TagData> idokorlatosBerletesFerfiak;
+    public static FilteredList<TagAdatok> idokorlatosBerletesFerfiak;
 
-    public static FilteredList<TagData> idokorlatosBerletesNok;
+    public static FilteredList<TagAdatok> idokorlatosBerletesNok;
 
-    public static FilteredList<TagData> lejartAlkalmasTagok;
+    public static FilteredList<TagAdatok> lejartAlkalmasTagok;
 
-    public static FilteredList<TagData> lejartIdokorlatosTagok;
+    public static FilteredList<TagAdatok> lejartIdokorlatosTagok;
 
-    public static FilteredList<TagData> aktivAlkalmasTagok;
+    public static FilteredList<TagAdatok> aktivAlkalmasTagok;
 
-    public static FilteredList<TagData> aktivIdokorlatosTagok;
+    public static FilteredList<TagAdatok> aktivIdokorlatosTagok;
 
-    public static FilteredList<TagData> alkalmasAktivNoiTagok;
+    public static FilteredList<TagAdatok> alkalmasAktivNoiTagok;
 
-    public static FilteredList<TagData> alkalmasLejartNoiTagok;
+    public static FilteredList<TagAdatok> alkalmasLejartNoiTagok;
 
-    public static FilteredList<TagData> idokorlatosAktivNoiTagok;
+    public static FilteredList<TagAdatok> idokorlatosAktivNoiTagok;
 
-    public static FilteredList<TagData> idokorlatosLejartNoiTagok;
+    public static FilteredList<TagAdatok> idokorlatosLejartNoiTagok;
 
-    public static FilteredList<TagData> alkalmasAktivFerfiTagok;
+    public static FilteredList<TagAdatok> alkalmasAktivFerfiTagok;
 
-    public static FilteredList<TagData> alkalmasLejartFerfiTagok;
+    public static FilteredList<TagAdatok> alkalmasLejartFerfiTagok;
 
-    public static FilteredList<TagData> idokorlatosAktivFerfiTagok;
+    public static FilteredList<TagAdatok> idokorlatosAktivFerfiTagok;
 
-    public static FilteredList<TagData> idokorlatosLejartFerfiTagok;
+    public static FilteredList<TagAdatok> idokorlatosLejartFerfiTagok;
 
-    public static void szuresek(ObservableList<TagData> tagTablazatAdatok) {
+    public static void szuresek(ObservableList<TagAdatok> tagTablazatAdatok) {
         LocalDate maiNap = LocalDate.now();
         DateTimeFormatter datumFormatum = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
@@ -103,6 +103,8 @@ public class TagokSzurese {
 
         idokorlatosAktivFerfiTagok = new FilteredList<>(aktivIdokorlatosTagok, tagok -> true);
         idokorlatosLejartFerfiTagok = new FilteredList<>(lejartIdokorlatosTagok, tagok -> true);
+
+        // ha null a abérlet akkor a lejárt bérletet nééze ha nem null akkor a vasaroltat
 
         ferfiTagok.setPredicate(tag -> tag.getTagNeme().toString().contains("Férfi"));
 

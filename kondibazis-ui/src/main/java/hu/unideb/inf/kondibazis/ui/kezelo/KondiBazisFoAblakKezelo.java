@@ -14,7 +14,7 @@ import hu.unideb.inf.kondibazis.ui.kiegeszito.KepKonvertalas;
 import hu.unideb.inf.kondibazis.ui.kiegeszito.KiegeszitoFelulet;
 import hu.unideb.inf.kondibazis.ui.kiegeszito.TagokSzurese;
 import hu.unideb.inf.kondibazis.ui.main.Inditas;
-import hu.unideb.inf.kondibazis.ui.model.TagData;
+import hu.unideb.inf.kondibazis.ui.model.TagAdatok;
 import javafx.application.Platform;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
@@ -66,32 +66,32 @@ public class KondiBazisFoAblakKezelo implements Initializable {
     private Text regisztralasDatuma;
 
     @FXML
-    private TableView<TagData> tagokTabla;
+    private TableView<TagAdatok> tagokTabla;
 
     @FXML
-    private TableColumn<TagData, String> nevOszlop;
+    private TableColumn<TagAdatok, String> nevOszlop;
 
     @FXML
-    private TableColumn<TagData, String> vezeteknevOszlop;
+    private TableColumn<TagAdatok, String> vezeteknevOszlop;
 
     @FXML
-    private TableColumn<TagData, String> keresztnevOszlop;
+    private TableColumn<TagAdatok, String> keresztnevOszlop;
 
     @FXML
-    private TableColumn<TagData, String> nemOszlop;
+    private TableColumn<TagAdatok, String> nemOszlop;
 
     @FXML
-    private TableColumn<TagData, String> korOszlop;
+    private TableColumn<TagAdatok, String> korOszlop;
 
     @FXML
-    private TableColumn<TagData, String> berletNeveOszlop;
+    private TableColumn<TagAdatok, String> berletNeveOszlop;
 
     @FXML
-    private TableColumn<TagData, String> berletVasarlasOszlop;
+    private TableColumn<TagAdatok, String> berletVasarlasOszlop;
 
-    private TableColumn<TagData, TagData> berletLejaratiDatuma;
+    private TableColumn<TagAdatok, TagAdatok> berletLejaratiDatuma;
 
-    private TableColumn<TagData, TagData> alkalmakOszlop;
+    private TableColumn<TagAdatok, TagAdatok> alkalmakOszlop;
 
     @FXML
     private Button berletModositasGomb;
@@ -162,9 +162,9 @@ public class KondiBazisFoAblakKezelo implements Initializable {
     @FXML
     private Menu statisztikaMenu;
 
-    private ObservableList<TagData> tagTablazatAdatok;
+    private ObservableList<TagAdatok> tagTablazatAdatok;
 
-    private ObservableList<TagData> kivalasztottSzures;
+    private ObservableList<TagAdatok> kivalasztottSzures;
 
     private static String bejelentkezesUzenet;
 
@@ -173,6 +173,9 @@ public class KondiBazisFoAblakKezelo implements Initializable {
     private static boolean kijelentkezes;
 
     private static String lejartBerletStyle;
+
+    ObservableList<TagAdatok> items ;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -210,16 +213,21 @@ public class KondiBazisFoAblakKezelo implements Initializable {
                         e.printStackTrace();
                     }
                 });
-//            FilteredList<TagData> kereses = new FilteredList<>(kivalasztottSzures, p -> true);
-//
-//            keresesszovegBevitel.textProperty().addListener((observable, oldValue, newValue) -> kereses.setPredicate(tagData -> {
-//                if (newValue == null || newValue.isEmpty()) {
-//                    return true;
-//                }
-//                String lowerCaseFilter = newValue.toLowerCase();
-//                return tagData.getTagNeve().toString().toLowerCase().contains(lowerCaseFilter);
-//            }));
-//            tagokTabla.setItems(kereses);
+
+
+        items = tagokTabla.getItems();
+
+        FilteredList<TagAdatok> kereses = new FilteredList<>(items, p -> true);
+
+            keresesszovegBevitel.textProperty().addListener((observable, oldValue, newValue) -> kereses.setPredicate(tagData -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+                String lowerCaseFilter = newValue.toLowerCase();
+                return tagData.getTagNeve().toString().toLowerCase().contains(lowerCaseFilter);
+            }));
+            tagokTabla.setItems(kereses);
+
 
 
         TagokSzurese.szuresek(tagTablazatAdatok);
@@ -230,31 +238,22 @@ public class KondiBazisFoAblakKezelo implements Initializable {
     private void osszesTagBerlet() {
         if (osszesTagGomb.isSelected() && osszesTagNemGomb.isSelected() && osszesTagBerletTipusGomb.isSelected()) {
             tagokTabla.setItems(tagTablazatAdatok);
-            kivalasztottSzures = tagTablazatAdatok;
         } else if (osszesTagGomb.isSelected() && ferfiGomb.isSelected() && osszesTagBerletTipusGomb.isSelected()) {
             tagokTabla.setItems(ferfiTagok);
-            kivalasztottSzures = ferfiTagok;
         } else if (osszesTagGomb.isSelected() && noGomb.isSelected() && osszesTagBerletTipusGomb.isSelected()) {
             tagokTabla.setItems(noiTagok);
-            kivalasztottSzures = noiTagok;
         } else if (osszesTagGomb.isSelected() && osszesTagNemGomb.isSelected() && alkalmasBerletekGomb.isSelected()) {
             tagokTabla.setItems(alkalmasBerletek);
-            kivalasztottSzures = alkalmasBerletek;
         } else if (osszesTagGomb.isSelected() && osszesTagNemGomb.isSelected() && idokorlatosBerletekGomb.isSelected()) {
             tagokTabla.setItems(idokorlatosBerletek);
-            kivalasztottSzures = idokorlatosBerletek;
         } else if (osszesTagGomb.isSelected() && ferfiGomb.isSelected() && alkalmasBerletekGomb.isSelected()) {
             tagokTabla.setItems(alkalmasBerletesFerfiak);
-            kivalasztottSzures = alkalmasBerletesFerfiak;
         } else if (osszesTagGomb.isSelected() && ferfiGomb.isSelected() && idokorlatosBerletekGomb.isSelected()) {
             tagokTabla.setItems(idokorlatosBerletesFerfiak);
-            kivalasztottSzures = idokorlatosBerletesFerfiak;
         } else if (osszesTagGomb.isSelected() && noGomb.isSelected() && alkalmasBerletekGomb.isSelected()) {
             tagokTabla.setItems(alkalmasBerletesNok);
-            kivalasztottSzures = alkalmasBerletesNok;
         } else if (osszesTagGomb.isSelected() && noGomb.isSelected() && idokorlatosBerletekGomb.isSelected()) {
             tagokTabla.setItems(idokorlatosBerletesNok);
-            kivalasztottSzures = idokorlatosBerletesNok;
         }
     }
 
@@ -646,7 +645,7 @@ public class KondiBazisFoAblakKezelo implements Initializable {
 
         for (KonditeremTagVo konditeremTagVo : konditerem_tagjai) {
 
-            tagTablazatAdatok.add(new TagData(
+            tagTablazatAdatok.add(new TagAdatok(
                             konditeremTagVo.getId(),
                             konditeremTagVo.getTagSzuletesidatuma(),
                             konditeremTagVo.getTagNeve(),
@@ -689,7 +688,7 @@ public class KondiBazisFoAblakKezelo implements Initializable {
     }
 
 
-    private void tagSzerkesztes(TagData tData) throws IOException {
+    private void tagSzerkesztes(TagAdatok tData) throws IOException {
         if (tData != null) {
             KonditeremTagVo kivalasztottTag = konditeremTagSzolgaltatas.keresTagot(tData.getId());
 
@@ -729,10 +728,10 @@ public class KondiBazisFoAblakKezelo implements Initializable {
         alkalmakOszlop = new TableColumn<>("Alkalmak");
         alkalmakOszlop.setMaxWidth(4800);
         alkalmakOszlop.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
-        alkalmakOszlop.setCellFactory(param -> new TableCell<TagData, TagData>() {
+        alkalmakOszlop.setCellFactory(param -> new TableCell<TagAdatok, TagAdatok>() {
 
             @Override
-            protected void updateItem(TagData tag, boolean empty) {
+            protected void updateItem(TagAdatok tag, boolean empty) {
                 super.updateItem(tag, empty);
 
                 TableRow alkalmakSor = getTableRow();
@@ -762,6 +761,7 @@ public class KondiBazisFoAblakKezelo implements Initializable {
                         alkalmakSor.setStyle("");
                         int kevesebbAlkalom = alkalomSzama - 1;
                         konditeremTagVo.setMennyiAlkalomMeg(kevesebbAlkalom);
+                        konditeremTagVo.setKonditeremBerlet(null);
                         konditeremTagSzolgaltatas.frissitKonditeremTagot(konditeremTagVo);
                         adatFrissites();
                     } else if (Integer.parseInt(tag.getMennyiAlkalom().getValue()) == 0 && tag.getVasaroltBerletNeve().getValue().contains("Alkalmas")) {
@@ -777,10 +777,10 @@ public class KondiBazisFoAblakKezelo implements Initializable {
         berletLejaratiDatuma = new TableColumn<>("Berlet Lejárati Dátuma");
         berletLejaratiDatuma.setMaxWidth(4800);
         berletLejaratiDatuma.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
-        berletLejaratiDatuma.setCellFactory(param -> new TableCell<TagData, TagData>() {
+        berletLejaratiDatuma.setCellFactory(param -> new TableCell<TagAdatok, TagAdatok>() {
 
             @Override
-            protected void updateItem(TagData tag, boolean empty) {
+            protected void updateItem(TagAdatok tag, boolean empty) {
                 super.updateItem(tag, empty);
 
                 TableRow idokorlatosSor = getTableRow();

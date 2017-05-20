@@ -2,6 +2,7 @@ package hu.unideb.inf.kondibazis.szolg.interfaces;
 
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremVo;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -55,5 +56,7 @@ public interface KonditeremSzolgaltatas {
 
     //TODO
     Map<String, Long> berlettipusDiagramKonditeremTagokhoz(KonditeremVo konditerem);
+
+    List<KonditeremVo> osszesKonditerem();
 
 }

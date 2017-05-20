@@ -1,5 +1,6 @@
 package hu.unideb.inf.kondibazis.szolg.interfaces;
 
+import hu.unideb.inf.kondibazis.szolg.vo.KonditeremBerletVo;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremTagVo;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremVo;
 
@@ -11,10 +12,10 @@ public interface KonditeremTagSzolgaltatas {
 
 	KonditeremTagVo leterehozTagot(KonditeremTagVo ujTag);
 
-	void modositTagot (KonditeremTagVo modositTag);
-
 	KonditeremTagVo frissitKonditeremTagot(KonditeremTagVo konditeremTag);
 
 	List<KonditeremTagVo> konditeremOsszesTagja(KonditeremVo konditerem);
+
+	KonditeremBerletVo tagBerlete(KonditeremTagVo konditeremTag);
 	
 }

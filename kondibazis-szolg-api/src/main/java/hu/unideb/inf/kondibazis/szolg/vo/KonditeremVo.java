@@ -6,91 +6,98 @@ import java.util.List;
 
 public class KonditeremVo implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	public KonditeremVo() {
-	}
+    public KonditeremVo() {
+    }
 
-	private Long id;
+    private Long id;
 
-	private String felhasznalonev;
+    private String felhasznalonev;
 
-	private String jelszo;
+    private String jelszo;
 
-	private String konditeremNeve;
+    private String konditeremNeve;
 
-	private LocalDate regisztralasDatuma;
+    private LocalDate regisztralasDatuma;
 
-	private List<KonditeremTagVo> konditeremTagok;
+    private Integer tagokSzama;
 
-	private List<KonditeremBerletVo> konditeremBerletek;
+    private List<KonditeremTagVo> konditeremTagok;
 
-	public Long getId() {
-		return id;
-	}
+    private List<KonditeremBerletVo> konditeremBerletek;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    private KonditeremElerhetosegVo konditeremElerhetoseg;
 
-	public String getFelhasznalonev() {
-		return felhasznalonev;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setFelhasznalonev(String felhasznalonev) {
-		this.felhasznalonev = felhasznalonev;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public String getJelszo() {
-		return jelszo;
-	}
+    public String getFelhasznalonev() {
+        return felhasznalonev;
+    }
 
-	public void setJelszo(String jelszo) {
-		this.jelszo = jelszo;
-	}
+    public void setFelhasznalonev(String felhasznalonev) {
+        this.felhasznalonev = felhasznalonev;
+    }
 
-	public String getKonditeremNeve() {
-		return konditeremNeve;
-	}
+    public String getJelszo() {
+        return jelszo;
+    }
 
-	public void setKonditeremNeve(String konditeremNeve) {
-		this.konditeremNeve = konditeremNeve;
-	}
+    public void setJelszo(String jelszo) {
+        this.jelszo = jelszo;
+    }
 
-	public LocalDate getRegisztralasDatuma() {
-		return regisztralasDatuma;
-	}
+    public String getKonditeremNeve() {
+        return konditeremNeve;
+    }
 
-	public void setRegisztralasDatuma(LocalDate regisztralasDatuma) {
-		this.regisztralasDatuma = regisztralasDatuma;
-	}
+    public void setKonditeremNeve(String konditeremNeve) {
+        this.konditeremNeve = konditeremNeve;
+    }
 
-	public List<KonditeremTagVo> getKonditeremTagok() {
-		return konditeremTagok;
-	}
+    public LocalDate getRegisztralasDatuma() {
+        return regisztralasDatuma;
+    }
 
-	public void setKonditeremTagok(List<KonditeremTagVo> konditeremTagok) {
-		this.konditeremTagok = konditeremTagok;
-	}
+    public void setRegisztralasDatuma(LocalDate regisztralasDatuma) {
+        this.regisztralasDatuma = regisztralasDatuma;
+    }
 
-	public List<KonditeremBerletVo> getKonditeremBerletek() {
-		return konditeremBerletek;
-	}
+    public Integer getTagokSzama() {
+        return tagokSzama;
+    }
 
-	public void setKonditeremBerletek(List<KonditeremBerletVo> konditeremBerletek) {
-		this.konditeremBerletek = konditeremBerletek;
-	}
+    public void setTagokSzama(Integer tagokSzama) {
+        this.tagokSzama = tagokSzama;
+    }
 
-	@Override
-	public String toString() {
-		return "KonditeremVo{" +
-				"id=" + id +
-				", felhasznalonev='" + felhasznalonev + '\'' +
-				", jelszo='" + jelszo + '\'' +
-				", konditeremNeve='" + konditeremNeve + '\'' +
-				", regisztralasDatuma=" + regisztralasDatuma +
-				", konditeremTagok=" + konditeremTagok +
-				", konditeremBerletek=" + konditeremBerletek +
-				'}';
-	}
+    public List<KonditeremTagVo> getKonditeremTagok() {
+        return konditeremTagok;
+    }
+
+    public void setKonditeremTagok(List<KonditeremTagVo> konditeremTagok) {
+        this.konditeremTagok = konditeremTagok;
+    }
+
+    public List<KonditeremBerletVo> getKonditeremBerletek() {
+        return konditeremBerletek;
+    }
+
+    public void setKonditeremBerletek(List<KonditeremBerletVo> konditeremBerletek) {
+        this.konditeremBerletek = konditeremBerletek;
+    }
+
+    public KonditeremElerhetosegVo getKonditeremElerhetoseg() {
+        return konditeremElerhetoseg;
+    }
+
+    public void setKonditeremElerhetoseg(KonditeremElerhetosegVo konditeremElerhetoseg) {
+        this.konditeremElerhetoseg = konditeremElerhetoseg;
+    }
 }

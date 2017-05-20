@@ -4,137 +4,125 @@ import java.io.Serializable;
 
 public class KonditeremElerhetosegVo implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	public KonditeremElerhetosegVo() {
-	}
+    public KonditeremElerhetosegVo() {
+    }
 
-	private String megyeNeve;
+    /**
+     * Irányítszám ahol a konditerem található.
+     */
+    private Integer KonditeremVarosanakIranyitoSzama;
 
-	private Integer iranyitoSzam;
+    /**
+     * Város neve ahol a konditerem található.
+     */
+    private String konditeremVarosanakNeve;
 
-	private String varosNeve;
+    /**
+     * Megye neve ahol a konditerem található.
+     */
+    private String konditeremVarosanakMegyeje;
 
-	private String utcaNeve;
+    /**
+     *
+     */
+    private String konditeremCime;
 
-	private Integer hazSzam;
+    /**
+     * A konditerem telefonszáma.
+     */
+    private String konditremTelefonszam;
 
-	private Integer emelet;
+    /**
+     * A konditerem e-mailcíme.
+     */
+    private String konditremEmailCim;
 
-	private String ajto;
+    /**
+     * A konditerem weboldala.
+     */
+    private String konditeremWeboldalLink;
 
-	private String telefonszam;
+    /**
+     * A konditerem facebook oldala.
+     */
+    private String konditeremFacebookOldalLink;
 
-	private String emailCim;
+    /**
+     *
+     */
+    private KonditeremVo konditerem;
 
-	private String weboldalLink;
+    public Integer getKonditeremVarosanakIranyitoSzama() {
+        return KonditeremVarosanakIranyitoSzama;
+    }
 
-	private String facebookOldalLink;
+    public void setKonditeremVarosanakIranyitoSzama(Integer konditeremVarosanakIranyitoSzama) {
+        KonditeremVarosanakIranyitoSzama = konditeremVarosanakIranyitoSzama;
+    }
 
-	private KonditeremVo konditerem;
+    public String getKonditeremVarosanakNeve() {
+        return konditeremVarosanakNeve;
+    }
 
-	public KonditeremVo getKonditerem() {
-		return konditerem;
-	}
+    public void setKonditeremVarosanakNeve(String konditeremVarosanakNeve) {
+        this.konditeremVarosanakNeve = konditeremVarosanakNeve;
+    }
 
-	public void setKonditerem(KonditeremVo konditerem) {
-		this.konditerem = konditerem;
-	}
+    public String getKonditeremVarosanakMegyeje() {
+        return konditeremVarosanakMegyeje;
+    }
 
-	public String getMegyeNeve() {
-		return megyeNeve;
-	}
+    public void setKonditeremVarosanakMegyeje(String konditeremVarosanakMegyeje) {
+        this.konditeremVarosanakMegyeje = konditeremVarosanakMegyeje;
+    }
 
-	public void setMegyeNeve(String megyeNeve) {
-		this.megyeNeve = megyeNeve;
-	}
+    public String getKonditeremCime() {
+        return konditeremCime;
+    }
 
-	public Integer getIranyitoSzam() {
-		return iranyitoSzam;
-	}
+    public void setKonditeremCime(String konditeremCime) {
+        this.konditeremCime = konditeremCime;
+    }
 
-	public void setIranyitoSzam(Integer iranyitoSzam) {
-		this.iranyitoSzam = iranyitoSzam;
-	}
+    public String getKonditremTelefonszam() {
+        return konditremTelefonszam;
+    }
 
-	public String getVarosNeve() {
-		return varosNeve;
-	}
+    public void setKonditremTelefonszam(String konditremTelefonszam) {
+        this.konditremTelefonszam = konditremTelefonszam;
+    }
 
-	public void setVarosNeve(String varosNeve) {
-		this.varosNeve = varosNeve;
-	}
+    public String getKonditremEmailCim() {
+        return konditremEmailCim;
+    }
 
-	public String getUtcaNeve() {
-		return utcaNeve;
-	}
+    public void setKonditremEmailCim(String konditremEmailCim) {
+        this.konditremEmailCim = konditremEmailCim;
+    }
 
-	public void setUtcaNeve(String utcaNeve) {
-		this.utcaNeve = utcaNeve;
-	}
+    public String getKonditeremWeboldalLink() {
+        return konditeremWeboldalLink;
+    }
 
-	public Integer getHazSzam() {
-		return hazSzam;
-	}
+    public void setKonditeremWeboldalLink(String konditeremWeboldalLink) {
+        this.konditeremWeboldalLink = konditeremWeboldalLink;
+    }
 
-	public void setHazSzam(Integer hazSzam) {
-		this.hazSzam = hazSzam;
-	}
+    public String getKonditeremFacebookOldalLink() {
+        return konditeremFacebookOldalLink;
+    }
 
-	public Integer getEmelet() {
-		return emelet;
-	}
+    public void setKonditeremFacebookOldalLink(String konditeremFacebookOldalLink) {
+        this.konditeremFacebookOldalLink = konditeremFacebookOldalLink;
+    }
 
-	public void setEmelet(Integer emelet) {
-		this.emelet = emelet;
-	}
+    public KonditeremVo getKonditerem() {
+        return konditerem;
+    }
 
-	public String getAjto() {
-		return ajto;
-	}
-
-	public void setAjto(String ajto) {
-		this.ajto = ajto;
-	}
-
-	public String getTelefonszam() {
-		return telefonszam;
-	}
-
-	public void setTelefonszam(String telefonszam) {
-		this.telefonszam = telefonszam;
-	}
-
-	public String getEmailCim() {
-		return emailCim;
-	}
-
-	public void setEmailCim(String emailCim) {
-		this.emailCim = emailCim;
-	}
-
-	public String getWeboldalLink() {
-		return weboldalLink;
-	}
-
-	public void setWeboldalLink(String weboldalLink) {
-		this.weboldalLink = weboldalLink;
-	}
-
-	public String getFacebookOldalLink() {
-		return facebookOldalLink;
-	}
-
-	public void setFacebookOldalLink(String facebookOldalLink) {
-		this.facebookOldalLink = facebookOldalLink;
-	}
-
-	@Override
-	public String toString() {
-		return "KonditeremElerhetosegVo [megyeNeve=" + megyeNeve + ", iranyitoSzam=" + iranyitoSzam + ", varosNeve="
-				+ varosNeve + ", utcaNeve=" + utcaNeve + ", hazSzam=" + hazSzam + ", emelet=" + emelet + ", ajto="
-				+ ajto + ", telefonszam=" + telefonszam + ", emailCim=" + emailCim + ", weboldalLink=" + weboldalLink
-				+ ", facebookOldalLink=" + facebookOldalLink + ", konditerem=" + konditerem + "]";
-	}
-
+    public void setKonditerem(KonditeremVo konditerem) {
+        this.konditerem = konditerem;
+    }
 }

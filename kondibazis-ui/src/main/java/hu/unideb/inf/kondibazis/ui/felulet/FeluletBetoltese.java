@@ -70,6 +70,15 @@ public final class FeluletBetoltese {
         stage.centerOnScreen();
     }
 
+    public static void RegisztraltKonditermekFelulet(ActionEvent event) {
+        Parent root = (Parent) loader.load("/fxml/RegisztraltKonditeremekFelulet.fxml");
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setTitle("Regisztralt Konditermek - " + alkalmazasNeve);
+        stage.setScene(scene);
+        stage.centerOnScreen();
+    }
+
     public static void FoAblakFelulet(ActionEvent event) {
         Parent root = (Parent) loader.load("/fxml/KondiBazisFoAblakFelulet.fxml");
         Scene scene = new Scene(root);

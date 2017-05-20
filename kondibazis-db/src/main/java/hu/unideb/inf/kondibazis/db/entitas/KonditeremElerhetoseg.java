@@ -22,70 +22,52 @@ public class KonditeremElerhetoseg extends FoEntitas {
     }
 
     /**
-     * Megye neve ahol a konditerem található.
-     */
-    @Column(name = "megyeNeve")
-    private String megyeNeve;
-
-    /**
      * Irányítszám ahol a konditerem található.
      */
     @Column(name = "iranyitoSzam")
-    private Integer iranyitoSzam;
+    private Integer KonditeremVarosanakIranyitoSzama;
 
     /**
      * Város neve ahol a konditerem található.
      */
     @Column(name = "varosNeve")
-    private String varosNeve;
+    private String konditeremVarosanakNeve;
 
     /**
-     * Utca neve ahol a konditerem található.
+     * Megye neve ahol a konditerem található.
      */
-    @Column(name = "utcaNeve")
-    private String utcaNeve;
+    @Column(name = "megyeNeve")
+    private String konditeremVarosanakMegyeje;
 
     /**
-     * Pontos ház szám ahol a konditerem található.
+     *
      */
-    @Column(name = "hazSzam")
-    private Integer hazSzam;
-
-    /**
-     * Emelet szám ha van ahol a konditerem található.
-     */
-    @Column(name = "emelet")
-    private Integer emelet;
-
-    /**
-     * Ajtó száma ahol a konditerem található.
-     */
-    @Column(name = "ajto")
-    private String ajto;
+    @Column(name = "cim")
+    private String konditeremCime;
 
     /**
      * A konditerem telefonszáma.
      */
     @Column(name = "telefonszam")
-    private String telefonszam;
+    private String konditremTelefonszam;
 
     /**
      * A konditerem e-mailcíme.
      */
     @Column(name = "emailCim")
-    private String emailCim;
+    private String konditremEmailCim;
 
     /**
      * A konditerem weboldala.
      */
     @Column(name = "weboldalLink")
-    private String weboldalLink;
+    private String konditeremWeboldalLink;
 
     /**
      * A konditerem facebook oldala.
      */
     @Column(name = "facebookOldalLink")
-    private String facebookOldalLink;
+    private String konditeremFacebookOldalLink;
 
     /**
      *
@@ -94,204 +76,76 @@ public class KonditeremElerhetoseg extends FoEntitas {
     @JoinColumn(name = "konditeremId")
     private Konditerem konditerem;
 
-    /**
-     * Visszaadja annak a megyének a nevét ahol a konditerem található.
-     * @return A megye neve.
-     */
-    public String getMegyeNeve() {
-        return megyeNeve;
+
+    public Integer getKonditeremVarosanakIranyitoSzama() {
+        return KonditeremVarosanakIranyitoSzama;
     }
 
-    /**
-     * Beállítja annak a megyének a nevét ahol a konditrem található.
-     * @param megyeNeve A beállítandó név.
-     */
-    public void setMegyeNeve(String megyeNeve) {
-        this.megyeNeve = megyeNeve;
+    public void setKonditeremVarosanakIranyitoSzama(Integer konditeremVarosanakIranyitoSzama) {
+        KonditeremVarosanakIranyitoSzama = konditeremVarosanakIranyitoSzama;
     }
 
-    /**
-     * Visszaadja annak a városnak az irányítószámát ahol a konditerem található.
-     * @return Az irányítószám.
-     */
-    public Integer getIranyitoSzam() {
-        return iranyitoSzam;
+    public String getKonditeremVarosanakNeve() {
+        return konditeremVarosanakNeve;
     }
 
-    /**
-     * Beállítja annak a városnak az irányítószámát ahol a konditerem található.
-     * @param iranyitoSzam A megadható szám.
-     */
-    public void setIranyitoSzam(Integer iranyitoSzam) {
-        this.iranyitoSzam = iranyitoSzam;
+    public void setKonditeremVarosanakNeve(String konditeremVarosanakNeve) {
+        this.konditeremVarosanakNeve = konditeremVarosanakNeve;
     }
 
-    /**
-     * Visszaadja annak a városnak a nevét ahol a konditerem található.
-     * @return A város neve.
-     */
-    public String getVarosNeve() {
-        return varosNeve;
+    public String getKonditeremVarosanakMegyeje() {
+        return konditeremVarosanakMegyeje;
     }
 
-    /**
-     * Beállítja annak a városnak a nevét ahol a konditerem található.
-     * @param varosNeve A megadható név.
-     */
-    public void setVarosNeve(String varosNeve) {
-        this.varosNeve = varosNeve;
+    public void setKonditeremVarosanakMegyeje(String konditeremVarosanakMegyeje) {
+        this.konditeremVarosanakMegyeje = konditeremVarosanakMegyeje;
     }
 
-    /**
-     * Visszaadja annak az utcának a nevét ahol a konditerem elhelyezkedik a városban.
-     * @return Az utca neve a városban.
-     */
-    public String getUtcaNeve() {
-        return utcaNeve;
+    public String getKonditeremCime() {
+        return konditeremCime;
     }
 
-    /**
-     * Beállítja annak az utcának a nevét ahol a konditerem elhelyezkedik a városban.
-     * @param utcaNeve A megadható név.
-     */
-    public void setUtcaNeve(String utcaNeve) {
-        this.utcaNeve = utcaNeve;
+    public void setKonditeremCime(String konditeremCime) {
+        this.konditeremCime = konditeremCime;
     }
 
-    /**
-     * Visszaadja annak a helynek a ház számát ahol a konditerem elhelyezkedik az adott utcában.
-     * @return Az utcában a ház szám.
-     */
-    public Integer getHazSzam() {
-        return hazSzam;
+    public String getKonditremTelefonszam() {
+        return konditremTelefonszam;
     }
 
-    /**
-     * Beállítja annak a helynek a ház számát ahol a konditerem elhelyezkedik az adott utcában.
-     * @param hazSzam A megadható szám.
-     */
-    public void setHazSzam(Integer hazSzam) {
-        this.hazSzam = hazSzam;
+    public void setKonditremTelefonszam(String konditremTelefonszam) {
+        this.konditremTelefonszam = konditremTelefonszam;
     }
 
-    /**
-     *
-     * @return
-     */
-    public Integer getEmelet() {
-        return emelet;
+    public String getKonditremEmailCim() {
+        return konditremEmailCim;
     }
 
-    /**
-     *
-     * @param emelet
-     */
-    public void setEmelet(Integer emelet) {
-        this.emelet = emelet;
+    public void setKonditremEmailCim(String konditremEmailCim) {
+        this.konditremEmailCim = konditremEmailCim;
     }
 
-    /**
-     *
-     * @return
-     */
-    public String getAjto() {
-        return ajto;
+    public String getKonditeremWeboldalLink() {
+        return konditeremWeboldalLink;
     }
 
-    /**
-     *
-     * @param ajto
-     */
-    public void setAjto(String ajto) {
-        this.ajto = ajto;
+    public void setKonditeremWeboldalLink(String konditeremWeboldalLink) {
+        this.konditeremWeboldalLink = konditeremWeboldalLink;
     }
 
-    /**
-     *
-     * @return
-     */
-    public String getTelefonszam() {
-        return telefonszam;
+    public String getKonditeremFacebookOldalLink() {
+        return konditeremFacebookOldalLink;
     }
 
-    /**
-     *
-     * @param telefonszam
-     */
-    public void setTelefonszam(String telefonszam) {
-        this.telefonszam = telefonszam;
+    public void setKonditeremFacebookOldalLink(String konditeremFacebookOldalLink) {
+        this.konditeremFacebookOldalLink = konditeremFacebookOldalLink;
     }
 
-    /**
-     *
-     * @return
-     */
-    public String getEmailCim() {
-        return emailCim;
-    }
-
-    /**
-     *
-     * @param emailCim
-     */
-    public void setEmailCim(String emailCim) {
-        this.emailCim = emailCim;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public String getWeboldalLink() {
-        return weboldalLink;
-    }
-
-    /**
-     *
-     * @param weboldalLink
-     */
-    public void setWeboldalLink(String weboldalLink) {
-        this.weboldalLink = weboldalLink;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public String getFacebookOldalLink() {
-        return facebookOldalLink;
-    }
-
-    /**
-     *
-     * @param facebookOldalLink
-     */
-    public void setFacebookOldalLink(String facebookOldalLink) {
-        this.facebookOldalLink = facebookOldalLink;
-    }
-
-    /**
-     *
-     * @return
-     */
     public Konditerem getKonditerem() {
         return konditerem;
     }
 
-    /**
-     *
-     * @param konditerem
-     */
     public void setKonditerem(Konditerem konditerem) {
         this.konditerem = konditerem;
     }
-
-    @Override
-    public String toString() {
-        return "KonditeremElerhetoseg [megyeNeve=" + megyeNeve + ", iranyitoSzam=" + iranyitoSzam + ", varosNeve="
-                + varosNeve + ", utcaNeve=" + utcaNeve + ", hazSzam=" + hazSzam + ", emelet=" + emelet + ", ajto="
-                + ajto + ", telefonszam=" + telefonszam + ", emailCim=" + emailCim + ", weboldalLink=" + weboldalLink
-                + ", facebookOldalLink=" + facebookOldalLink + ", konditerem=" + konditerem + "]";
-    }
-
 }

@@ -7,17 +7,14 @@ import hu.unideb.inf.kondibazis.ui.main.Inditas;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 @Component
-public class InditasiKepernyoKezelo implements Initializable {
+public class InditasiKepernyoKezelo {
 
     private static Logger logolo = LoggerFactory.getLogger(Inditas.class);
 
@@ -36,20 +33,16 @@ public class InditasiKepernyoKezelo implements Initializable {
     }
 
     @FXML
-    public void nevjegy(ActionEvent event) throws IOException {
-        FeluletBetoltese.NevjegyFelulet(event);
-        logolo.debug("Elindult a névjegy felület.");
+    public void regisztraltKonditermeink(ActionEvent event) throws IOException {
+        FeluletBetoltese.RegisztraltKonditermekFelulet(event);
+        logolo.debug("Elindult a regisztralt konditeremek felulet.");
     }
 
     @FXML
     public void kilepes() {
         SpringFxmlLoader.close();
         Platform.exit();
-        logolo.debug("Kilépés gombra kattintva!");
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
+        logolo.debug("Kilepes gombra kattintva!");
     }
 
 }

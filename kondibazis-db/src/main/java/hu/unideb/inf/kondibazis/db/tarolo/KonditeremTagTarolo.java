@@ -1,6 +1,7 @@
 package hu.unideb.inf.kondibazis.db.tarolo;
 
 import hu.unideb.inf.kondibazis.db.entitas.Konditerem;
+import hu.unideb.inf.kondibazis.db.entitas.KonditeremBerlet;
 import hu.unideb.inf.kondibazis.db.entitas.KonditeremTag;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -26,5 +27,7 @@ public interface KonditeremTagTarolo extends JpaRepository<KonditeremTag, Long> 
      * @return Egy lista azokról a tagokról amelyek a metódus paramétereként megadott konditeremhez tartoznak.
      */
     List<KonditeremTag> findByKonditerem(Konditerem konditerem);
+
+    KonditeremBerlet findByKonditeremBerlet(KonditeremTag konditeremTag);
 
 }

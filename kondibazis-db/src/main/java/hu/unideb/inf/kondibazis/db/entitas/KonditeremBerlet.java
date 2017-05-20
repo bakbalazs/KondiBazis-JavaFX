@@ -1,9 +1,7 @@
 package hu.unideb.inf.kondibazis.db.entitas;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 /**
  * Az adatbázisban egy bérletet reprezentáló osztály.
@@ -65,6 +63,9 @@ public class KonditeremBerlet extends FoEntitas {
      */
     @ManyToOne()
     private Konditerem konditerem;
+
+    @OneToMany(mappedBy = "konditeremBerlet", cascade = CascadeType.PERSIST,fetch=FetchType.LAZY)
+    private List<KonditeremTag> konditeremTagok;
 
     /**
      * Visszaadja a bérlet nevét.
@@ -188,4 +189,11 @@ public class KonditeremBerlet extends FoEntitas {
         this.konditerem = konditerem;
     }
 
+    public List<KonditeremTag> getKonditeremTagok() {
+        return konditeremTagok;
+    }
+
+    public void setKonditeremTagok(List<KonditeremTag> konditeremTagok) {
+        this.konditeremTagok = konditeremTagok;
+    }
 }

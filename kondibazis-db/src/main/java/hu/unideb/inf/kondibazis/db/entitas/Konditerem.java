@@ -1,6 +1,7 @@
 package hu.unideb.inf.kondibazis.db.entitas;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -29,18 +30,20 @@ public class Konditerem extends FoEntitas {
      * Ezt a {@link javax.persistence.Column Column} annotáció unique=true tagja biztosítja.
      */
     @Column(name = "felhasznalonev", unique = true)
+    @Size(min = 5)
     private String felhasznalonev;
 
     /**
      * A konditerem jelszava.
      */
-    @Column(name = "jelszo")
+    @Column(name = "jelszo", unique = true)
+    @Size(min = 8)
     private String jelszo;
 
     /**
      * A konditerem neve.
      */
-    @Column(name = "konditeremNeve")
+    @Column(name = "konditeremNeve", unique = true)
     private String konditeremNeve;
 
     /**
@@ -50,12 +53,18 @@ public class Konditerem extends FoEntitas {
     private LocalDate regisztralasDatuma;
 
     /**
+     *
+     */
+    @Column(name = "tagokSzama")
+    private Integer tagokSzama;
+
+    /**
      * A konditeremhez tartozó tagok. Minden tagot külön kezelünk így minden konditerem rendelkezik egy listával, amelyben a tagjai szerepelnek.
      * A {@link javax.persistence.OneToMany OnToMany} annotáció megmondja hogy egy konditeremhez több tag tartozik.
      * A mappedBy taggal megadjuk hogy hol találja a Hibernate a konfigurációt ehhez az adattaghoz, ezesetben a kapcsolat másik
      * oldalán a "konditerem" nevű adattagon lesz megadva a konfiguráció.
      */
-    @OneToMany(mappedBy = "konditerem", cascade = CascadeType.PERSIST,fetch=FetchType.LAZY)
+    @OneToMany(mappedBy = "konditerem", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     private List<KonditeremTag> konditeremTagok;
 
     /**
@@ -64,8 +73,12 @@ public class Konditerem extends FoEntitas {
      * A mappedBy taggal megadjuk hogy hol találja a Hibernate a konfigurációt ehhez az adattaghoz, ezesetben a kapcsolat másik
      * oldalán a "konditerem" nevű adattagon lesz megadva a konfiguráció.
      */
-    @OneToMany(mappedBy = "konditerem", cascade = CascadeType.PERSIST, fetch=FetchType.LAZY)
+    @OneToMany(mappedBy = "konditerem", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     private List<KonditeremBerlet> konditeremBerletek;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "konditeremElerhetosegId", unique = true, nullable = true, insertable = true, updatable = true)
+    private KonditeremElerhetoseg konditeremElerhetoseg;
 
     /**
      * Visszaadja a konditerem felhasználónevét.
@@ -119,6 +132,14 @@ public class Konditerem extends FoEntitas {
      */
     public void setKonditeremNeve(String konditeremNeve) {
         this.konditeremNeve = konditeremNeve;
+    }
+
+    public Integer getTagokSzama() {
+        return tagokSzama;
+    }
+
+    public void setTagokSzama(Integer tagokSzama) {
+        this.tagokSzama = tagokSzama;
     }
 
     /**
@@ -175,4 +196,11 @@ public class Konditerem extends FoEntitas {
         this.konditeremBerletek = konditeremBerletek;
     }
 
+    public KonditeremElerhetoseg getKonditeremElerhetoseg() {
+        return konditeremElerhetoseg;
+    }
+
+    public void setKonditeremElerhetoseg(KonditeremElerhetoseg konditeremElerhetoseg) {
+        this.konditeremElerhetoseg = konditeremElerhetoseg;
+    }
 }

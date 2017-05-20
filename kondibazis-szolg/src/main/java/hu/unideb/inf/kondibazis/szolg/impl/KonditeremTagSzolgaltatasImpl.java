@@ -1,11 +1,15 @@
 package hu.unideb.inf.kondibazis.szolg.impl;
 
+import hu.unideb.inf.kondibazis.db.entitas.Konditerem;
+import hu.unideb.inf.kondibazis.db.entitas.KonditeremBerlet;
 import hu.unideb.inf.kondibazis.db.entitas.KonditeremTag;
 import hu.unideb.inf.kondibazis.db.tarolo.KonditeremTagTarolo;
 import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremSzolgaltatas;
 import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremTagSzolgaltatas;
+import hu.unideb.inf.kondibazis.szolg.mapper.KonditeremBerletMapper;
 import hu.unideb.inf.kondibazis.szolg.mapper.KonditeremMapper;
 import hu.unideb.inf.kondibazis.szolg.mapper.KonditeremTagMapper;
+import hu.unideb.inf.kondibazis.szolg.vo.KonditeremBerletVo;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremTagVo;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,10 +45,6 @@ public class KonditeremTagSzolgaltatasImpl implements KonditeremTagSzolgaltatas 
 
 	}
 
-	@Override
-	public void modositTagot(KonditeremTagVo modositTag) {
-		konditeremTagTarolo.saveAndFlush(KonditeremTagMapper.toDto(modositTag));
-	}
 
 	@Override
 	public KonditeremTagVo keresTagot(Long id) {
@@ -73,6 +73,21 @@ public class KonditeremTagSzolgaltatasImpl implements KonditeremTagSzolgaltatas 
 	}
 
 	@Override
+	public KonditeremBerletVo tagBerlete(KonditeremTagVo konditeremTag) {
+
+		KonditeremBerlet b = konditeremTagTarolo.findByKonditeremBerlet(KonditeremTagMapper.toDto(konditeremTag));
+
+		if( b == null ){
+//			logolo.warn("A " + felhasznalo.getFelhasznalonev() + " felhasznalonevu felhasznalonak nincsenek tranzakcioi!");
+		} else {
+//			logolo.debug("A " + felhasznalo.getFelhasznalonev() + " felhasznalonevu felhasznalonak " + findByFelhasznalo.size() + " db tranzakcioja van.");
+		}
+
+
+		return KonditeremBerletMapper.toVo(b);
+	}
+
+	@Override
 	public KonditeremTagVo frissitKonditeremTagot(KonditeremTagVo konditeremTag) {
 
 		KonditeremTag mentett = konditeremTagTarolo.save(KonditeremTagMapper.toDto(konditeremTag));
@@ -86,6 +101,8 @@ public class KonditeremTagSzolgaltatasImpl implements KonditeremTagSzolgaltatas 
 		return KonditeremTagMapper.toVo(mentett);
 
 	}
+
+
 
 
 }

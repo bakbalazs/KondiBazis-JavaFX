@@ -2,6 +2,7 @@ package hu.unideb.inf.kondibazis.szolg.vo;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
 public class KonditeremTagVo implements Serializable {
 
@@ -39,6 +40,10 @@ public class KonditeremTagVo implements Serializable {
     private int mennyiAlkalomMeg;
 
     private KonditeremVo konditerem;
+
+    private KonditeremBerletVo konditeremBerlet;
+
+    private List<KonditeremTagVo> konditeremTagok;
 
     public Long getId() {
         return id;
@@ -158,6 +163,22 @@ public class KonditeremTagVo implements Serializable {
 
     public void setMennyiAlkalomMeg(int mennyiAlkalomMeg) {
         this.mennyiAlkalomMeg = mennyiAlkalomMeg;
+    }
+
+    public KonditeremBerletVo getKonditeremBerlet() {
+        return konditeremBerlet;
+    }
+
+    public void setKonditeremBerlet(KonditeremBerletVo konditeremBerlet) {
+        this.konditeremBerlet = konditeremBerlet;
+    }
+
+    public List<KonditeremTagVo> getKonditeremTagok() {
+        return konditeremTagok;
+    }
+
+    public void setKonditeremTagok(List<KonditeremTagVo> konditeremTagok) {
+        this.konditeremTagok = konditeremTagok;
     }
 
     @Override

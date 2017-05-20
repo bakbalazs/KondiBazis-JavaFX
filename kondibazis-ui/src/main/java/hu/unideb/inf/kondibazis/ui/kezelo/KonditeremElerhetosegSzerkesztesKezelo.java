@@ -132,17 +132,17 @@ public class KonditeremElerhetosegSzerkesztesKezelo implements Initializable {
 
 		KonditeremElerhetosegVo konditeremElerhetosegVo =konditeremElerhetosegSzolgaltatas.keresElerhetoseget(bejelentkezettKonditerem);
 
-		iranyitoszamBevitel.setText(konditeremElerhetosegVo.getIranyitoSzam().toString());
-		megyeNeveBevitel.setText(konditeremElerhetosegVo.getMegyeNeve());
-		varosNeveBevitel.setText(konditeremElerhetosegVo.getVarosNeve());
-		utcaNeveBevitel.setText(konditeremElerhetosegVo.getUtcaNeve());
-		hazSzamBevitel.setText(konditeremElerhetosegVo.getHazSzam().toString());
-		emeletBevitel.setText(konditeremElerhetosegVo.getEmelet().toString());
-		ajtoBevitel.setText(konditeremElerhetosegVo.getAjto());
-
-		emailBevitel.setText(konditeremElerhetosegVo.getEmailCim());
-		weboldalBevitel.setText(konditeremElerhetosegVo.getWeboldalLink());
-		facebookBevitel.setText(konditeremElerhetosegVo.getFacebookOldalLink());
+//		iranyitoszamBevitel.setText(konditeremElerhetosegVo.getIranyitoSzam().toString());
+//		megyeNeveBevitel.setText(konditeremElerhetosegVo.getMegyeNeve());
+//		varosNeveBevitel.setText(konditeremElerhetosegVo.getVarosNeve());
+//		utcaNeveBevitel.setText(konditeremElerhetosegVo.getUtcaNeve());
+//		hazSzamBevitel.setText(konditeremElerhetosegVo.getHazSzam().toString());
+//		emeletBevitel.setText(konditeremElerhetosegVo.getEmelet().toString());
+//		ajtoBevitel.setText(konditeremElerhetosegVo.getAjto());
+//
+//		emailBevitel.setText(konditeremElerhetosegVo.getEmailCim());
+//		weboldalBevitel.setText(konditeremElerhetosegVo.getWeboldalLink());
+//		facebookBevitel.setText(konditeremElerhetosegVo.getFacebookOldalLink());
 	}
 
 	@FXML
