@@ -23,9 +23,6 @@ public class NemekStatisztikaKezelo implements Initializable {
     @Autowired
     private KonditeremSzolgaltatas konditeremSzolgaltatas;
 
-    @Autowired
-    private BejelentkezoKezelo bejelentkezoKezelo;
-
     private KonditeremVo bejelentkezettKonditerem;
 
     private ObservableList<PieChart.Data> nemek_diagram_Adatok;

@@ -25,6 +25,17 @@ public interface KonditeremSzolgaltatas {
      */
     KonditeremVo keresKonditermet(String felhasznalonev);
 
+    /**
+     * Ez a szolgáltatás végzi a konditermek megtalálását az adatbázisban.
+     * A kapott id-t továbbítja az adatbázis rétegnek a megfelelő metódussal,
+     * ami lekérdezi az adatbázisból azt a konditermet amelyiknek megeggyezik az id-ja
+     * a paraméterben szereplővel.
+     *
+     * @param id A keresendő id
+     * @return Az adatbázisból lekérdezett Konditerem
+     * ami KonditeremVo-vá lett alakítva a KonditeremMapper
+     * segítségével.
+     */
     KonditeremVo keresKonditeremetId(Long id);
 
     /**

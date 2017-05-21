@@ -55,6 +55,12 @@
 
         <dependency>
             <groupId>hu.unideb.inf.kondibazis</groupId>
+            <artifactId>eszkozok</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>hu.unideb.inf.kondibazis</groupId>
             <artifactId>kondibazis-szolg</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>

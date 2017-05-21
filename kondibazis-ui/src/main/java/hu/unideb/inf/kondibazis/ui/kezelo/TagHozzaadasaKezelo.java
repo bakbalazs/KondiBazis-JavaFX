@@ -384,7 +384,8 @@ public class TagHozzaadasaKezelo implements Initializable {
     }
 
     private byte[] nincsKep() throws IOException {
-        File file = new File("src/main/resources/kepek/nincsKep.png");
+        ClassLoader classLoader = getClass().getClassLoader();
+        File file = new File(classLoader.getResource("kepek/nincsKep.png").getFile());
         String absolutePath = file.getAbsolutePath();
         new Image(file.toURI().toString(), 195, 285, false, false);
         byte[] kep = new byte[(int) file.length()];

@@ -83,6 +83,7 @@ public class RegisztraltKonditermekKezelo implements Initializable {
 
         logger.debug("Tablazat feltoltese adatokkal: ");
 
+        /// HA NINCS EGY SEM AKKOR CSAK EGY ABALKA JÖJ BE HOGY NINCS REGISZTRÁLT TEREM TODO
         for (KonditeremVo konditerem : osszesKonditerem) {
             List<KonditeremElerhetosegVo> konditeremElerhetosegek = konditerem.getKonditeremElerhetosegek();
             for (KonditeremElerhetosegVo konditeremElerhetoseg : konditeremElerhetosegek) {

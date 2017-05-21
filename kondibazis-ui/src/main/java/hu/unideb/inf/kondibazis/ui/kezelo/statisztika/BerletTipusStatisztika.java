@@ -24,9 +24,6 @@ public class BerletTipusStatisztika implements Initializable {
     @Autowired
     private KonditeremSzolgaltatas konditeremSzolgaltatas;
 
-    @Autowired
-    private BejelentkezoKezelo bejelentkezoKezelo;
-
     private KonditeremVo bejelentkezettKonditerem;
 
     private ObservableList<PieChart.Data> berlettipus_diagram_Adatok;

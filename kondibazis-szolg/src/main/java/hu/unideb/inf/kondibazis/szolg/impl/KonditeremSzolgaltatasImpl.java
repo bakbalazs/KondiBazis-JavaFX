@@ -53,26 +53,38 @@ public class KonditeremSzolgaltatasImpl implements KonditeremSzolgaltatas {
     @Override
     public KonditeremVo keresKonditermet(String felhasznalonev) {
 
-        Konditerem keresendoKonditerem = konditeremTarolo.findByFelhasznalonev(felhasznalonev);
+        Konditerem talaltKonditerem = konditeremTarolo.findByFelhasznalonev(felhasznalonev);
 
-        if (keresendoKonditerem == null) {
+        if (talaltKonditerem == null) {
             logolo.warn("Nem talalhato a(z) " + felhasznalonev + " felhasznalonevu konditerem!");
         } else {
             logolo.debug("A(z) " + felhasznalonev + " nevu konditerem sikeresen lekerdezve!");
         }
 
-        return KonditeremMapper.toVo(keresendoKonditerem);
+        return KonditeremMapper.toVo(talaltKonditerem);
 
     }
 
+    /**
+     * {@inheritDoc}
+     * <p>
+     * Ebben az implementációban
+     * a metódus az adatbázisból egy paraméterül megadott azonosítójú konditremet keres.
+     * Ezt a műveletet a {@link org.springframework.data.repository.CrudRepository#findOne(java.io.Serializable) }
+     * metódus segítségével hajtja végre, amely egy Long típusú azonosítót vár paraméterül.
+     * A szolgáltatás eredményül a megtalált konditermet adja vissza átmappelve.
+     */
     @Override
     public KonditeremVo keresKonditeremetId(Long id) {
-        Konditerem found = konditeremTarolo.findOne(id);
-        if (found == null) {
+        Konditerem talaltKonditerem = konditeremTarolo.findOne(id);
+
+        if (talaltKonditerem == null) {
+            logolo.warn("Nem talalhato a(z) " + talaltKonditerem + " id-val rendelkezo konditerem!");
         } else {
+            logolo.debug("A(z) " + talaltKonditerem + " id-vak rendelkezo konditerem sikeresen lekerdezve!");
         }
 
-        return KonditeremMapper.toVo(found);
+        return KonditeremMapper.toVo(talaltKonditerem);
     }
 
     /**
@@ -170,15 +182,12 @@ public class KonditeremSzolgaltatasImpl implements KonditeremSzolgaltatas {
     @Override
     public List<KonditeremVo> osszesKonditerem() {
         List<Konditerem> osszesKonditerem = konditeremTarolo.findAll();
-        if (osszesKonditerem == null) {
-//			logolo.warn("A " + felhasznalo.getFelhasznalonev() + " felhasznalonevu felhasznalonak nincsenek tranzakcioi!");
-        } else {
-//			logolo.debug("A " + felhasznalo.getFelhasznalonev() + " felhasznalonevu felhasznalonak " + findByFelhasznalo.size() + " db tranzakcioja van.");
-        }
 
-//        for(KonditeremTag konditeremTag : findByKonditerem) {
-//
-//        }
+        if (osszesKonditerem == null) {
+			logolo.warn("Nincs regisztralt terem!");
+        } else {
+			logolo.debug(osszesKonditerem.size() + " regisztralt konditerem talalhato.");
+        }
 
         return KonditeremMapper.toVo(osszesKonditerem);
     }

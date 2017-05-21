@@ -24,9 +24,6 @@ public class VarosStatisztikaKezelo implements Initializable {
     @Autowired
     private KonditeremSzolgaltatas konditeremSzolgaltatas;
 
-    @Autowired
-    private BejelentkezoKezelo bejelentkezoKezelo;
-
     private KonditeremVo bejelentkezettKonditerem;
 
     private ObservableList<PieChart.Data> varos_diagram_Adatok;

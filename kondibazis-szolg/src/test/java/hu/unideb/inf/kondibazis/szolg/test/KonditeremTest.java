@@ -14,9 +14,7 @@ import org.mockito.*;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Map;
+import java.util.*;
 
 @RunWith(MockitoJUnitRunner.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -30,6 +28,8 @@ public class KonditeremTest {
     private KonditeremSzolgaltatasImpl konditeremSzolgaltatas;
 
     private static Konditerem tesztKonditerem;
+
+    private static List<Konditerem> konditermek = new ArrayList<>();
 
     @BeforeClass
     public static void setUpClass() {
@@ -156,7 +156,7 @@ public class KonditeremTest {
 
         tesztKonditerem.getKonditeremBerletek().addAll(Arrays.asList(ujKonditeremBerlet, ujKonditeremBerlet2));
         tesztKonditerem.getKonditeremTagok().addAll(Arrays.asList(ujTag1, ujTag2, ujTag3, ujTag4, ujTag5, ujTag6));
-
+        konditermek.add(ujKonditerem);
     }
 
     @Before
@@ -173,6 +173,17 @@ public class KonditeremTest {
                     }
                 });
 
+        Mockito.when(konditeremTarolo.findOne(Mockito.any(Long.class)))
+                .thenAnswer(invocation -> {
+                    Object[] args = invocation.getArguments();
+                    switch (((Long) args[0]).intValue()) {
+                        case 7:
+                            return konditermek.get(0);
+                        default:
+                            return null;
+                    }
+                });
+
         Mockito.when(konditeremTarolo.save(Mockito.any(Konditerem.class)))
                 .thenAnswer(invocation -> {
                     Object[] args = invocation.getArguments();
@@ -182,6 +193,8 @@ public class KonditeremTest {
                     return args[0];
                 });
 
+        Mockito.when(konditeremTarolo.findAll())
+                .thenAnswer(invocation -> Collections.singletonList(tesztKonditerem));
     }
 
     @Test
@@ -205,7 +218,7 @@ public class KonditeremTest {
     }
 
     @Test
-    public void _2keresKonditermetTeszt() {
+    public void _2keresKonditermetNevAlapjanTeszt() {
         KonditeremVo vanIlyen = konditeremSzolgaltatas.keresKonditermet("TesztKonditerem");
         Assert.assertNotNull(vanIlyen);
 
@@ -214,7 +227,16 @@ public class KonditeremTest {
     }
 
     @Test
-    public void _3frissítKonditermetTeszt() {
+    public void _3keresKonditermetIDAlapjanTeszt() {
+        KonditeremVo vanIlyen = konditeremSzolgaltatas.keresKonditeremetId(7L);
+        Assert.assertNotNull(vanIlyen);
+
+        KonditeremVo nincsIlyen = konditeremSzolgaltatas.keresKonditeremetId(90L);
+        Assert.assertNull(nincsIlyen);
+    }
+
+    @Test
+    public void _4frissítKonditermetTeszt() {
         KonditeremVo ujKonditerem = new KonditeremVo();
         ujKonditerem.setKonditeremNeve("Nev");
         ujKonditerem.setFelhasznalonev("konditrem");
@@ -230,7 +252,7 @@ public class KonditeremTest {
     }
 
     @Test
-    public void _4varosDiagramAdatokSzamitasaKonditeremhezTeszt() {
+    public void _5varosDiagramAdatokSzamitasaKonditeremhezTeszt() {
 
         Map<String, Long> map = konditeremSzolgaltatas.varosDiagramKonditeremTagokhoz(KonditeremMapper.toVo(tesztKonditerem));
 
@@ -248,7 +270,7 @@ public class KonditeremTest {
     }
 
     @Test
-    public void _5megyeDiagramAdatokSzamolasaKoditeremhezTeszt() {
+    public void _6megyeDiagramAdatokSzamolasaKoditeremhezTeszt() {
 
         Map<String, Long> map = konditeremSzolgaltatas.megyeDiagramKonditeremTagokhoz(KonditeremMapper.toVo(tesztKonditerem));
 
@@ -263,7 +285,7 @@ public class KonditeremTest {
     }
 
     @Test
-    public void _6nemDiagramAdatokSzamolasaKonditeremhezTeszt() {
+    public void _7nemDiagramAdatokSzamolasaKonditeremhezTeszt() {
 
         Map<String, Long> map = konditeremSzolgaltatas.nemekDiagramKonditeremTagokhoz(KonditeremMapper.toVo(tesztKonditerem));
 
@@ -279,7 +301,7 @@ public class KonditeremTest {
     }
 
     @Test
-    public void _7berletTipusDiagramAdatokSzamolasaKonditeremhezTeszt() {
+    public void _8berletTipusDiagramAdatokSzamolasaKonditeremhezTeszt() {
 
         Map<String, Long> map = konditeremSzolgaltatas.berlettipusDiagramKonditeremTagokhoz(KonditeremMapper.toVo(tesztKonditerem));
 
@@ -292,6 +314,13 @@ public class KonditeremTest {
         Assert.assertFalse(map.containsKey("2Napos"));
         Assert.assertFalse(map.containsKey("3Havi"));
 
+    }
+
+    @Test
+    public void _9osszesKonditerem(){
+        List<KonditeremVo> osszesKonditerem = konditeremSzolgaltatas.osszesKonditerem();
+        Assert.assertNotNull(osszesKonditerem.size());
+        Assert.assertEquals(1,osszesKonditerem.size());
     }
 
 }
