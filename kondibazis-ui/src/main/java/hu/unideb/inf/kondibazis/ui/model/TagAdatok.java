@@ -19,12 +19,13 @@ public class TagAdatok {
     private StringProperty berletLejaratiIdeje;
     private StringProperty vasaroltBerletNeve;
     private StringProperty mennyiAlkalom;
+    private StringProperty lejartBerletNeve;
 
     public TagAdatok() {
         super();
     }
 
-    public TagAdatok(long id, LocalDate tagSzuletesiIdeje, String tagNeve, String tagVezetekneve, String tagKeresztneve, String tagNeme, Integer tagKora, String vasaroltBerletNeve, LocalDate berletVasarlasideje, LocalDate berletLejaratiIdeje, Integer mennyiAlkalom) {
+    public TagAdatok(long id, LocalDate tagSzuletesiIdeje, String tagNeve, String tagVezetekneve, String tagKeresztneve, String tagNeme, Integer tagKora, String vasaroltBerletNeve, LocalDate berletVasarlasideje, LocalDate berletLejaratiIdeje, Integer mennyiAlkalom, String lejartBerletNeve) {
         this.setId(id);
         this.setTagSzuletesiIdeje(tagSzuletesiIdeje);
         this.tagNeve = new SimpleStringProperty(tagNeve);
@@ -36,6 +37,7 @@ public class TagAdatok {
         this.berletLejaratiIdeje = new SimpleStringProperty(berletLejaratiIdeje.toString());
         this.vasaroltBerletNeve = new SimpleStringProperty(vasaroltBerletNeve);
         this.mennyiAlkalom = new SimpleStringProperty(mennyiAlkalom.toString());
+        this.lejartBerletNeve = new SimpleStringProperty(lejartBerletNeve);
     }
 
     public StringProperty getTagNeve() {
@@ -164,6 +166,18 @@ public class TagAdatok {
 
     public void setTagSzuletesiIdeje(LocalDate tagSzuletesiIdeje) {
         this.tagSzuletesiIdeje = tagSzuletesiIdeje;
+    }
+
+    public StringProperty getLejartBerletNeve() {
+        return lejartBerletNeve;
+    }
+
+    public void setLejartBerletNeve(String lejartBerletNeve) {
+        this.lejartBerletNeve.set(lejartBerletNeve);
+    }
+
+    public StringProperty getLejartBerletNeveProperty() {
+        return lejartBerletNeve;
     }
 
 }

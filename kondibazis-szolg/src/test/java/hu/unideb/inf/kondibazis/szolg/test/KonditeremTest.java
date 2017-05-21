@@ -12,8 +12,6 @@ import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
 import org.mockito.*;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -23,8 +21,6 @@ import java.util.Map;
 @RunWith(MockitoJUnitRunner.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class KonditeremTest {
-
-    private static final Logger logger = LoggerFactory.getLogger(KonditeremTest.class);
 
     @Mock
     private KonditeremTarolo konditeremTarolo;
@@ -283,12 +279,12 @@ public class KonditeremTest {
     }
 
     @Test
-    public void _7berletTipusDiagramAdatokSzamolasaKonditeremhezTeszt(){
+    public void _7berletTipusDiagramAdatokSzamolasaKonditeremhezTeszt() {
 
         Map<String, Long> map = konditeremSzolgaltatas.berlettipusDiagramKonditeremTagokhoz(KonditeremMapper.toVo(tesztKonditerem));
 
         Assert.assertTrue(map.containsKey("Napos"));
-        Assert.assertEquals(new Long(3L),map.get("Napos"));
+        Assert.assertEquals(new Long(3L), map.get("Napos"));
 
         Assert.assertTrue(map.containsKey("Havi"));
         Assert.assertEquals(new Long(3L), map.get("Havi"));

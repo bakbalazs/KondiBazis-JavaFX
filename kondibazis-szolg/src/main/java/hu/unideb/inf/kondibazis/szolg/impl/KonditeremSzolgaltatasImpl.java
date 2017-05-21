@@ -1,11 +1,9 @@
 package hu.unideb.inf.kondibazis.szolg.impl;
 
 import hu.unideb.inf.kondibazis.db.entitas.Konditerem;
-import hu.unideb.inf.kondibazis.db.entitas.KonditeremTag;
 import hu.unideb.inf.kondibazis.db.tarolo.KonditeremTarolo;
 import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremSzolgaltatas;
 import hu.unideb.inf.kondibazis.szolg.mapper.KonditeremMapper;
-import hu.unideb.inf.kondibazis.szolg.mapper.KonditeremTagMapper;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremTagVo;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremVo;
 import org.slf4j.Logger;
@@ -65,6 +63,16 @@ public class KonditeremSzolgaltatasImpl implements KonditeremSzolgaltatas {
 
         return KonditeremMapper.toVo(keresendoKonditerem);
 
+    }
+
+    @Override
+    public KonditeremVo keresKonditeremetId(Long id) {
+        Konditerem found = konditeremTarolo.findOne(id);
+        if (found == null) {
+        } else {
+        }
+
+        return KonditeremMapper.toVo(found);
     }
 
     /**
@@ -162,7 +170,7 @@ public class KonditeremSzolgaltatasImpl implements KonditeremSzolgaltatas {
     @Override
     public List<KonditeremVo> osszesKonditerem() {
         List<Konditerem> osszesKonditerem = konditeremTarolo.findAll();
-        if( osszesKonditerem == null ){
+        if (osszesKonditerem == null) {
 //			logolo.warn("A " + felhasznalo.getFelhasznalonev() + " felhasznalonevu felhasznalonak nincsenek tranzakcioi!");
         } else {
 //			logolo.debug("A " + felhasznalo.getFelhasznalonev() + " felhasznalonevu felhasznalonak " + findByFelhasznalo.size() + " db tranzakcioja van.");

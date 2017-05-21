@@ -4,6 +4,7 @@ package hu.unideb.inf.kondibazis.ui.kezelo.statisztika;
 import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremSzolgaltatas;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremVo;
 import hu.unideb.inf.kondibazis.ui.kezelo.BejelentkezoKezelo;
+import hu.unideb.inf.kondibazis.ui.kezelo.KondiBazisFoAblakKezelo;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -29,12 +30,17 @@ public class NemekStatisztikaKezelo implements Initializable {
 
     private ObservableList<PieChart.Data> nemek_diagram_Adatok;
 
+    @Autowired
+    private KondiBazisFoAblakKezelo foAblakKezelo;
+
     @FXML
     private PieChart nemek_diagram;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        bejelentkezettKonditerem = bejelentkezoKezelo.getBejelentkezettKonditerem();
+        Long bejeletkezettKonditeremId = foAblakKezelo.getBejelentkezettKonditerem().getId();
+
+        bejelentkezettKonditerem = konditeremSzolgaltatas.keresKonditeremetId(bejeletkezettKonditeremId);
 
         nemek_diagram_Adatok = FXCollections.observableArrayList();
 

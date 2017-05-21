@@ -25,7 +25,7 @@ public class Konditerem extends FoEntitas {
     }
 
     /**
-     * A konditerem felhasználóneve.
+     * A konditerem felhasználóneve, amely legalább kötelezően 5 karakterből áll.
      * Ez egy egyedi felhasználónév, csak egyszer szerepelhet.
      * Ezt a {@link javax.persistence.Column Column} annotáció unique=true tagja biztosítja.
      */
@@ -34,7 +34,7 @@ public class Konditerem extends FoEntitas {
     private String felhasznalonev;
 
     /**
-     * A konditerem jelszava.
+     * A konditerem jelszava, amely legalább kötelezően 8 karakterből áll..
      */
     @Column(name = "jelszo", unique = true)
     @Size(min = 8)

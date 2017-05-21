@@ -1,134 +1,228 @@
 package hu.unideb.inf.kondibazis.szolg.vo;
 
 import java.io.Serializable;
+import java.util.List;
 
+/**
+ * Egyszerű osztály a konditerm bérleteihez tartozó adatok szállítására az egyes rétegek között (POJO).
+ */
 public class KonditeremBerletVo implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+    /**
+     * Alapértelmezett szerializációs azonosító.
+     */
+    private static final long serialVersionUID = 1L;
 
-	public KonditeremBerletVo() {
-	}
+    /**
+     * Üres konstruktor a szerializálhatóság miatt.
+     */
+    public KonditeremBerletVo() {
+    }
 
-	private Long id;
+    /**
+     * A konditerem bérlet id-ja.
+     */
+    private Long id;
 
-	private String berletNeve;
+    /**
+     * A konditerem bérletének a neve.
+     */
+    private String berletNeve;
 
-	private int berletAra;
+    /**
+     * A konditrem bérletének az ára.
+     */
+    private int berletAra;
 
-	private int mennyiAlkalom;
+    /**
+     * A konditerem alaklas bérleteinek alkalom száma.
+     */
+    private int mennyiAlkalom;
 
-	private int mennyiNap;
+    /**
+     * A kondietrem időkorlátos béletinél a napok száma.
+     */
+    private int mennyiNap;
 
-	private int mennyiHonap;
+    /**
+     * A kondietrem időkorlátos béletinél a hónapok száma.
+     */
+    private int mennyiHonap;
 
-	private String berletTipusa;
+    /**
+     * A konditerem bérletének a típusa.
+     */
+    private String berletTipusa;
 
-	private KonditeremVo konditerem;
+    /**
+     * A bérlethez tartozó konditerem.
+     */
+    private KonditeremVo konditerem;
 
-	public Long getId() {
-		return id;
-	}
+    /**
+     * A bérlethez tartozó tagok.
+     */
+    private List<KonditeremTagVo> konditeremTagok;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    /**
+     * Visszaadja a konditerem bérletánek id-ját.
+     *
+     * @return A konditerem bérletének id-ja.
+     */
+    public Long getId() {
+        return id;
+    }
 
-	public String getBerletNeve() {
-		return berletNeve;
-	}
+    /**
+     * Beállítja a konditerem bérletének id-ját.
+     *
+     * @param id A beállítandó id.
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public void setBerletNeve(String berletNeve) {
-		this.berletNeve = berletNeve;
-	}
+    /**
+     * Visszaadja a konditerem bérletének a nevét.
+     *
+     * @return A konditerem bérletének a nevét.
+     */
+    public String getBerletNeve() {
+        return berletNeve;
+    }
 
-	public int getBerletAra() {
-		return berletAra;
-	}
+    /**
+     * Beállítja a konditerem bérletének nevét.
+     *
+     * @param berletNeve A beállítandó név.
+     */
+    public void setBerletNeve(String berletNeve) {
+        this.berletNeve = berletNeve;
+    }
 
-	public void setBerletAra(int berletAra) {
-		this.berletAra = berletAra;
-	}
+    /**
+     * Visszaadja a konditerem bérletének az árát.
+     *
+     * @return A konditerem bérletének a neve.
+     */
+    public int getBerletAra() {
+        return berletAra;
+    }
 
-	public int getMennyiAlkalom() {
-		return mennyiAlkalom;
-	}
+    /**
+     * Beállítja a konditerem bérletének az árát.
+     *
+     * @param berletAra A beállítandó ár.
+     */
+    public void setBerletAra(int berletAra) {
+        this.berletAra = berletAra;
+    }
 
-	public void setMennyiAlkalom(int mennyiAlkalom) {
-		this.mennyiAlkalom = mennyiAlkalom;
-	}
+    /**
+     * Visszaadja a bérlet mennyi alklaommal használható fel.
+     *
+     * @return Mennyi alkalommal használható a bérlet.
+     */
+    public int getMennyiAlkalom() {
+        return mennyiAlkalom;
+    }
 
-	public int getMennyiNap() {
-		return mennyiNap;
-	}
+    /**
+     * Beállítja mennyi alkalommal lehet haasználni a bérletet.
+     *
+     * @param mennyiAlkalom A beállítandó alkalom száma.
+     */
+    public void setMennyiAlkalom(int mennyiAlkalom) {
+        this.mennyiAlkalom = mennyiAlkalom;
+    }
 
-	public void setMennyiNap(int mennyiNap) {
-		this.mennyiNap = mennyiNap;
-	}
+    /**
+     * Visszaadja mennyi napig hazsnálható a bérlet.
+     *
+     * @return Mennyi napig hazsnálható a bérlet.
+     */
+    public int getMennyiNap() {
+        return mennyiNap;
+    }
 
-	public int getMennyiHonap() {
-		return mennyiHonap;
-	}
+    /**
+     * Beállítja mennyi napig hazsnálható a bérlet.
+     *
+     * @param mennyiNap A beállítandó nap száma.
+     */
+    public void setMennyiNap(int mennyiNap) {
+        this.mennyiNap = mennyiNap;
+    }
 
-	public void setMennyiHonap(int mennyiHonap) {
-		this.mennyiHonap = mennyiHonap;
-	}
+    /**
+     * Visszaadja mennyi hónapig lehet használni a bérletet.
+     *
+     * @return Mennyi hónapig használható a bérlet.
+     */
+    public int getMennyiHonap() {
+        return mennyiHonap;
+    }
 
-	public String getBerletTipusa() {
-		return berletTipusa;
-	}
+    /**
+     * Beállítja mennyi hónapig használható a bérlet.
+     *
+     * @param mennyiHonap A beállítandó hónap száma.
+     */
+    public void setMennyiHonap(int mennyiHonap) {
+        this.mennyiHonap = mennyiHonap;
+    }
 
-	public void setBerletTipusa(String berletTipusa) {
-		this.berletTipusa = berletTipusa;
-	}
+    /**
+     * Visszaadja a bérlet tipusát.
+     *
+     * @return A bérlet típusa.
+     */
+    public String getBerletTipusa() {
+        return berletTipusa;
+    }
 
-	public KonditeremVo getKonditerem() {
-		return konditerem;
-	}
+    /**
+     * Beállítja a bérlet típusát.
+     *
+     * @param berletTipusa A beállítandó típus neve.
+     */
+    public void setBerletTipusa(String berletTipusa) {
+        this.berletTipusa = berletTipusa;
+    }
 
-	public void setKonditerem(KonditeremVo konditerem) {
-		this.konditerem = konditerem;
-	}
+    /**
+     * Visszaadja a bérlet konditermét.
+     *
+     * @return A bérlet konditerme.
+     */
+    public KonditeremVo getKonditerem() {
+        return konditerem;
+    }
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
+    /**
+     * Beállítja a bérlet konditermét.
+     *
+     * @param konditerem A beállítandó konditerem a bérlethez.
+     */
+    public void setKonditerem(KonditeremVo konditerem) {
+        this.konditerem = konditerem;
+    }
 
-		KonditeremBerletVo that = (KonditeremBerletVo) o;
+    /**
+     * Visszaadja a tagok bérleteit.
+     *
+     * @return Egy {@link java.util.List List} amiben a bérletekhez tartozó tagok szerepelnek.
+     */
+    public List<KonditeremTagVo> getKonditeremTagok() {
+        return konditeremTagok;
+    }
 
-		if (berletAra != that.berletAra) return false;
-		if (mennyiAlkalom != that.mennyiAlkalom) return false;
-		if (mennyiNap != that.mennyiNap) return false;
-		if (mennyiHonap != that.mennyiHonap) return false;
-		if (id != null ? !id.equals(that.id) : that.id != null) return false;
-		if (berletNeve != null ? !berletNeve.equals(that.berletNeve) : that.berletNeve != null) return false;
-		if (berletTipusa != null ? !berletTipusa.equals(that.berletTipusa) : that.berletTipusa != null) return false;
-		return konditerem != null ? konditerem.equals(that.konditerem) : that.konditerem == null;
-	}
-
-	@Override
-	public int hashCode() {
-		int result = id != null ? id.hashCode() : 0;
-		result = 31 * result + (berletNeve != null ? berletNeve.hashCode() : 0);
-		result = 31 * result + berletAra;
-		result = 31 * result + mennyiAlkalom;
-		result = 31 * result + mennyiNap;
-		result = 31 * result + mennyiHonap;
-		result = 31 * result + (berletTipusa != null ? berletTipusa.hashCode() : 0);
-		result = 31 * result + (konditerem != null ? konditerem.hashCode() : 0);
-		return result;
-	}
-
-	@Override
-	public String toString() {
-		return "KonditeremBerletVo{" +
-				"id=" + id +
-				", berletNeve='" + berletNeve + '\'' +
-				", berletAra=" + berletAra +
-				", mennyiAlkalom=" + mennyiAlkalom +
-				", mennyiNap=" + mennyiNap +
-				", mennyiHonap=" + mennyiHonap +
-				", berletTipusa='" + berletTipusa + '\'' +
-				'}';
-	}
+    /**
+     * Beállítja a tagok bérleteit.
+     *
+     * @param konditeremTagok A {@link java.util.List List} amiben a bérletekhez tartozó tagok $vannak.
+     */
+    public void setKonditeremTagok(List<KonditeremTagVo> konditeremTagok) {
+        this.konditeremTagok = konditeremTagok;
+    }
 }

@@ -40,7 +40,7 @@ public class KonditeremElerhetoseg extends FoEntitas {
     private String konditeremVarosanakMegyeje;
 
     /**
-     *
+     * A konditerem címe.
      */
     @Column(name = "cim")
     private String konditeremCime;
@@ -69,6 +69,9 @@ public class KonditeremElerhetoseg extends FoEntitas {
     @Column(name = "facebookOldalLink")
     private String konditeremFacebookOldalLink;
 
+    /**
+     * Az adott konditerem akihez tartozik az elérhetőség.
+     */
     @ManyToOne
     private Konditerem konditerem;
 

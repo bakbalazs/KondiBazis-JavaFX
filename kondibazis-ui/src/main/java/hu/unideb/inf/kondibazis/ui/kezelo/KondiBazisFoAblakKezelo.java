@@ -20,6 +20,7 @@ import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -157,10 +158,21 @@ public class KondiBazisFoAblakKezelo implements Initializable {
     private RadioButton ferfiModosit;
 
     @FXML
+    private Text lejartBerletNeve;
+
+    @FXML
     private ImageView kepModositasa;
 
     @FXML
     private Menu statisztikaMenu;
+
+    @FXML
+    private ChoiceBox<String> ujBerletValasztas;
+
+    @FXML
+    private Button tagModositasaGomb;
+
+    private KonditeremTagVo kivalasztottTag;
 
     private ObservableList<TagAdatok> tagTablazatAdatok;
 
@@ -174,8 +186,9 @@ public class KondiBazisFoAblakKezelo implements Initializable {
 
     private static String lejartBerletStyle;
 
-    ObservableList<TagAdatok> items ;
+    private ObservableList<TagAdatok> items;
 
+    private static String lejart = "Lejárt a bérlet!";
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -214,20 +227,18 @@ public class KondiBazisFoAblakKezelo implements Initializable {
                     }
                 });
 
-
         items = tagokTabla.getItems();
 
         FilteredList<TagAdatok> kereses = new FilteredList<>(items, p -> true);
 
-            keresesszovegBevitel.textProperty().addListener((observable, oldValue, newValue) -> kereses.setPredicate(tagData -> {
-                if (newValue == null || newValue.isEmpty()) {
-                    return true;
-                }
-                String lowerCaseFilter = newValue.toLowerCase();
-                return tagData.getTagNeve().toString().toLowerCase().contains(lowerCaseFilter);
-            }));
-            tagokTabla.setItems(kereses);
-
+        keresesszovegBevitel.textProperty().addListener((observable, oldValue, newValue) -> kereses.setPredicate(tagData -> {
+            if (newValue == null || newValue.isEmpty()) {
+                return true;
+            }
+            String lowerCaseFilter = newValue.toLowerCase();
+            return tagData.getTagNeve().toString().toLowerCase().contains(lowerCaseFilter);
+        }));
+        tagokTabla.setItems(kereses);
 
 
         TagokSzurese.szuresek(tagTablazatAdatok);
@@ -560,6 +571,14 @@ public class KondiBazisFoAblakKezelo implements Initializable {
 
         bejelentkezettKonditerem = bejelentkezoKezelo.getBejelentkezettKonditerem();
 
+        List<KonditeremBerletVo> konditeremBerletek = konditeremBerletSzolgaltatas
+                .konditeremOsszesBerlete(bejelentkezettKonditerem);
+        logolo.info("Bejelentkezett koditeremhez lekérjük a bérleteket!");
+        ujBerletValasztas.getItems().clear();
+        for (KonditeremBerletVo berletek : konditeremBerletek) {
+            ujBerletValasztas.getItems().add(berletek.getBerletNeve());
+        }
+
         List<KonditeremTagVo> konditerem_tagjai = konditeremTagSzolgaltatas
                 .konditeremOsszesTagja(bejelentkezettKonditerem);
 
@@ -584,7 +603,8 @@ public class KondiBazisFoAblakKezelo implements Initializable {
                             konditeremTagVo.getVasaroltBerletNeve(),
                             konditeremTagVo.getBerletVasarlasideje(),
                             konditeremTagVo.getBerletLejaratiIdeje(),
-                            konditeremTagVo.getMennyiAlkalomMeg()
+                            konditeremTagVo.getMennyiAlkalomMeg(),
+                            konditeremTagVo.getLejartBerletNeve()
                     )
             );
             logolo.debug("Adat: " + tagTablazatAdatok.get(tagTablazatAdatok.size() - 1));
@@ -618,7 +638,7 @@ public class KondiBazisFoAblakKezelo implements Initializable {
 
     private void tagSzerkesztes(TagAdatok tData) throws IOException {
         if (tData != null) {
-            KonditeremTagVo kivalasztottTag = konditeremTagSzolgaltatas.keresTagot(tData.getId());
+            kivalasztottTag = konditeremTagSzolgaltatas.keresTagot(tData.getId());
 
             tagModositas.setDisable(false);
             tabPane.getSelectionModel().select(tagModositas);
@@ -629,11 +649,9 @@ public class KondiBazisFoAblakKezelo implements Initializable {
 //            adatFrissites();
 
 //HIBAAAAAA
-
-
             vezeteknevModosit.setText(tData.getTagVezetekneve().getValue());
             keresztnevModosit.setText(tData.getTagKeresztneve().getValue());
-            tData.getTagNeve().getValue();
+            lejartBerletNeve.setText(tData.getLejartBerletNeve().getValue());
 
             if (tData.getTagNeme().getValue().equals("Nő")) {
                 noModosit.setSelected(true);
@@ -650,6 +668,12 @@ public class KondiBazisFoAblakKezelo implements Initializable {
                 }
             }
         }
+    }
+
+    @FXML
+    public void tagModositasa(ActionEvent event) {
+        //TODO
+//            kivalasztottTag.s
     }
 
     private void oszlopokBerlet() {
@@ -691,17 +715,10 @@ public class KondiBazisFoAblakKezelo implements Initializable {
                         konditeremTagVo.setMennyiAlkalomMeg(kevesebbAlkalom);
                         konditeremTagSzolgaltatas.frissitKonditeremTagot(konditeremTagVo);
                         adatFrissites();
-                            if(kevesebbAlkalom == 0) {
-                                String lejart = "lejárt";
-                                konditeremTagVo.setLejartBerletNeve(konditeremTagVo.getVasaroltBerletNeve());
-                                konditeremTagVo.setKonditeremBerlet(null);
-                                konditeremTagVo.setBerletVasarlasideje(null);
-                                konditeremTagVo.setBerletLejaratiIdeje(null);
-                                konditeremTagVo.setVasaroltBerletNeve(lejart);
-                                konditeremTagVo.setVasaroltBerletTipusa(lejart);
-                                konditeremTagSzolgaltatas.frissitKonditeremTagot(konditeremTagVo);
-                                adatFrissites();
-                            }
+                        if (kevesebbAlkalom == 0) {
+                            konditeremTagVo.setLejartBerletNeve(konditeremTagVo.getVasaroltBerletNeve());
+                            konditeremTagSzolgaltatas.frissitKonditeremTagot(konditeremTagVo);
+                        }
                     } else if (Integer.parseInt(tag.getMennyiAlkalom().getValue()) == 0 && tag.getVasaroltBerletNeve().getValue().contains("Alkalmas")) {
                         mennyiAlkalomMegGomb.setText("Nincs több alkalom.");
                         alkalmakSor.setStyle(lejartBerletStyle);

@@ -25,6 +25,8 @@ public interface KonditeremSzolgaltatas {
      */
     KonditeremVo keresKonditermet(String felhasznalonev);
 
+    KonditeremVo keresKonditeremetId(Long id);
+
     /**
      * Ez a szolgáltatás létrehozza a paraméterül kapott konditeremet az adatbázisban.
      * Mivel új konditeremről van szó beállítunk neki alapértelmezetten egy

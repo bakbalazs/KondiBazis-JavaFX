@@ -167,6 +167,7 @@ public class BerletLetrehozasFoAblakKezelo implements Initializable {
                 logolo.debug("Uj alkalmas berlet letrehozva!");
 
                 foAblakKezelo.gombFrissites();
+                foAblakKezelo.adatFrissites();
 
                 ((Stage) megseGomb.getScene().getWindow()).close();
                 KiegeszitoFelulet.ertesites("Bérlet Létrehozása", "A bérlet sikeresen létrehozva!", "A bérlet sikeresen létrehozva : " + berletnevBevitel.getText() + " névvel.", "Bérlet létrehozása után.");
@@ -221,6 +222,7 @@ public class BerletLetrehozasFoAblakKezelo implements Initializable {
                 logolo.debug("Uj idokorlatos berlet letrehozva!");
 
                 foAblakKezelo.gombFrissites();
+                foAblakKezelo.adatFrissites();
 
                 ((Stage) megseGomb.getScene().getWindow()).close();
                 KiegeszitoFelulet.ertesites("Bérlet Létrehozása", "A bérlet sikeresen létrehozva!", "A bérlet sikeresen létrehozva : " + berletnevBevitel.getText() + " névvel.", "Bérlet létrehozása után.");

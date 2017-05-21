@@ -64,7 +64,9 @@ public class KonditeremBerlet extends FoEntitas {
     @ManyToOne
     private Konditerem konditerem;
 
-
+    /**
+     * A bérlethez tartozó tagok.
+     */
     @OneToMany(mappedBy = "konditeremBerlet", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     private List<KonditeremTag> konditeremTagok;
 
