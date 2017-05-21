@@ -1,128 +1,98 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane alignment="CENTER" hgap="10.0" prefHeight="339.0" prefWidth="349.0" vgap="10.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.kondibazis.ui.kezelo.RegisztralasKezelo">
+<GridPane alignment="CENTER" hgap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="396.0" prefWidth="325.0" vgap="10.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.kondibazis.ui.kezelo.RegisztralasKezelo">
   <columnConstraints>
-    <ColumnConstraints />
+    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
   <rowConstraints>
-    <RowConstraints valignment="CENTER" />
-      <RowConstraints />
-    <RowConstraints />
-      <RowConstraints maxHeight="95.0" minHeight="30.0" prefHeight="30.0" />
-      <RowConstraints maxHeight="148.0" minHeight="30.0" prefHeight="30.0" />
-      <RowConstraints maxHeight="193.0" minHeight="30.0" prefHeight="31.0" />
-      <RowConstraints maxHeight="154.0" minHeight="0.0" prefHeight="0.0" />
-      <RowConstraints maxHeight="233.0" minHeight="10.0" prefHeight="11.0" />
-      <RowConstraints maxHeight="233.0" minHeight="0.0" prefHeight="58.0" />
-      <RowConstraints maxHeight="233.0" minHeight="0.0" prefHeight="0.0" />
-      <RowConstraints maxHeight="233.0" minHeight="0.0" prefHeight="26.0" />
-      <RowConstraints maxHeight="233.0" minHeight="0.0" prefHeight="0.0" />
+      <RowConstraints maxHeight="120.0" minHeight="10.0" prefHeight="120.0" valignment="CENTER" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="105.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="105.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="105.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="109.0" minHeight="10.0" prefHeight="16.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="109.0" minHeight="10.0" prefHeight="82.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="108.0" minHeight="10.0" prefHeight="80.0" valignment="CENTER" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Text fill="#b80000" strokeType="OUTSIDE" strokeWidth="0.0" text="  KondiBázis" GridPane.halignment="CENTER">
+      <Text fill="#b80000" strokeType="OUTSIDE" strokeWidth="0.0" text="KondiBázis" textAlignment="CENTER" wrappingWidth="274.13671875" GridPane.halignment="CENTER" GridPane.valignment="TOP">
          <font>
             <Font size="18.0" />
          </font>
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
       </Text>
-      <Text fill="#b80000" strokeType="OUTSIDE" strokeWidth="0.0" text="  Terem Regisztráció" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+      <JFXButton buttonType="RAISED" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#vissza" prefHeight="23.0" prefWidth="23.0" ripplerFill="#ffffff00" text=" " textFill="#ffffff00" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+         <GridPane.margin>
+            <Insets right="200.0" top="4.0" />
+         </GridPane.margin>
+         <graphic>
+            <ImageView fx:id="visszaGombKep" fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true" />
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></JFXButton>
+      <Text fill="#b80000" strokeType="OUTSIDE" strokeWidth="0.0" text="Terem Regisztráció" textAlignment="CENTER" wrappingWidth="276.13671875" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
          <font>
             <Font size="17.0" />
          </font>
+         <GridPane.margin>
+            <Insets bottom="10.0" />
+         </GridPane.margin>
       </Text>
-      <JFXButton buttonType="RAISED" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#vissza" prefHeight="23.0" prefWidth="23.0" ripplerFill="#ffffff00" text=" " textFill="#ffffff00">
-         <graphic>
-            <ImageView fx:id="visszaGombKep" fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-               <cursor>
-                  <Cursor fx:constant="DEFAULT" />
-               </cursor></ImageView>
-         </graphic>
+      <Text fx:id="regisztraciosUzenet" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="323.0" GridPane.rowIndex="5" />
+      <ImageView fx:id="konditeremneveJoRossz" fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+         <GridPane.margin>
+            <Insets left="240.0" />
+         </GridPane.margin>
+      </ImageView>
+      <ImageView fx:id="felhasznalonevJoRossz" fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+         <GridPane.margin>
+            <Insets left="240.0" />
+         </GridPane.margin>
+      </ImageView>
+      <JFXTextField fx:id="konditeremnevBevitel" alignment="CENTER" focusColor="#b80000" labelFloat="true" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="224.0" promptText="Konditerem neve:*" unFocusColor="BLACK" GridPane.rowIndex="1">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField fx:id="felhasznalonevBevitel" alignment="CENTER" focusColor="#b80000" labelFloat="true" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="224.0" promptText="Felhasználónév:*" unFocusColor="BLACK" GridPane.rowIndex="2">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </JFXTextField>
+      <JFXPasswordField fx:id="jelszoBevitel" alignment="CENTER" focusColor="#b80000" labelFloat="true" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="224.0" promptText="Jelszó:*" unFocusColor="BLACK" GridPane.rowIndex="3">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </JFXPasswordField>
+      <JFXButton onAction="#regisztralas" ripplerFill="WHITE" style="-fx-background-color: #b80000;" text="Regisztrálás" textFill="WHITE" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+         <GridPane.margin>
+            <Insets top="10.0" />
+         </GridPane.margin>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
-         <children>
-            <VBox alignment="CENTER_LEFT" prefHeight="32.0" prefWidth="121.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Konditerem neve:*" />
-               </children>
-            </VBox>
-            <VBox alignment="CENTER" prefHeight="32.0" prefWidth="141.0">
-               <children>
-                  <TextField fx:id="konditeremnevBevitel" prefHeight="25.0" prefWidth="129.0" />
-               </children>
-            </VBox>
-            <VBox alignment="CENTER" prefHeight="30.0" prefWidth="25.0">
-               <children>
-                  <ImageView fx:id="konditeremneveJoRossz" fitHeight="24.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" />
-               </children>
-            </VBox>
-         </children>
-      </HBox>
-      <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="4">
-         <children>
-            <VBox alignment="CENTER_LEFT" prefHeight="32.0" prefWidth="121.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Felhasználónév:*" />
-               </children>
-            </VBox>
-            <VBox alignment="CENTER" prefHeight="32.0" prefWidth="141.0">
-               <children>
-                  <TextField fx:id="felhasznalonevBevitel" prefHeight="25.0" prefWidth="149.0" />
-               </children>
-            </VBox>
-            <VBox alignment="CENTER" prefHeight="30.0" prefWidth="25.0">
-               <children>
-                  <ImageView fx:id="felhasznalonevJoRossz" fitHeight="24.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" />
-               </children>
-            </VBox>
-         </children>
-      </HBox>
-      <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="5">
-         <children>
-            <VBox alignment="CENTER_LEFT" prefHeight="32.0" prefWidth="121.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Jelszó:*" />
-               </children>
-            </VBox>
-            <VBox alignment="CENTER" prefHeight="52.0" prefWidth="141.0">
-               <children>
-                  <PasswordField fx:id="jelszoBevitel" prefHeight="25.0" prefWidth="147.0" />
-               </children>
-            </VBox>
-            <VBox alignment="CENTER" prefHeight="30.0" prefWidth="25.0">
-               <children>
-                  <ImageView fx:id="jelszoJoRossz" fitHeight="24.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" />
-               </children>
-            </VBox>
-         </children>
-      </HBox>
-      <HBox alignment="CENTER" prefHeight="30.0" prefWidth="298.0" GridPane.rowIndex="10">
-         <children>
-            <JFXButton onAction="#regisztralas" style="-fx-background-color: #b80000;" text="Regisztrálás" textFill="WHITE" />
-         </children>
-      </HBox>
-      <Text fx:id="regisztraciosUzenet" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="298.13671875" GridPane.rowIndex="8">
-         <font>
-            <Font size="13.0" />
-         </font>
-      </Text>
+      <ImageView fx:id="jelszoJoRossz" fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+         <GridPane.margin>
+            <Insets left="240.0" />
+         </GridPane.margin>
+      </ImageView>
    </children>
    <padding>
-      <Insets bottom="10.0" left="25.0" right="25.0" top="25.0" />
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
    </padding>
 </GridPane>

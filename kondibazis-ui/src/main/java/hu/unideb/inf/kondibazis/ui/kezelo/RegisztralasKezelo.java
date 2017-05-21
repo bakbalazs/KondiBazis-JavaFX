@@ -1,6 +1,8 @@
 // CHECKSTYLE:OFF
 package hu.unideb.inf.kondibazis.ui.kezelo;
 
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
 import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremSzolgaltatas;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremVo;
 import hu.unideb.inf.kondibazis.ui.felulet.FeluletBetoltese;
@@ -34,13 +36,13 @@ public class RegisztralasKezelo implements Initializable {
     private KonditeremVo regisztraltKonditerem;
 
     @FXML
-    private TextField konditeremnevBevitel;
+    private JFXTextField konditeremnevBevitel;
 
     @FXML
-    private TextField felhasznalonevBevitel;
+    private JFXTextField felhasznalonevBevitel;
 
     @FXML
-    private PasswordField jelszoBevitel;
+    private JFXPasswordField jelszoBevitel;
 
     @FXML
     private Text regisztraciosUzenet;
