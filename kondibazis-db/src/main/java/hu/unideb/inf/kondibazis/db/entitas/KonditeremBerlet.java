@@ -59,12 +59,13 @@ public class KonditeremBerlet extends FoEntitas {
     private String berletTipusa;
 
     /**
-     *
+     * A bérlethez tartozó konditerem.
      */
-    @ManyToOne()
+    @ManyToOne
     private Konditerem konditerem;
 
-    @OneToMany(mappedBy = "konditeremBerlet", cascade = CascadeType.PERSIST,fetch=FetchType.LAZY)
+
+    @OneToMany(mappedBy = "konditeremBerlet", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     private List<KonditeremTag> konditeremTagok;
 
     /**
@@ -176,23 +177,37 @@ public class KonditeremBerlet extends FoEntitas {
     }
 
     /**
-     * @return
+     * Visszaadja a bérlet konditermét.
+     *
+     * @return A bérlet konditerme.
      */
     public Konditerem getKonditerem() {
         return konditerem;
     }
 
     /**
-     * @param konditerem
+     * Beállítja a bérlet konditermét.
+     *
+     * @param konditerem A beállítandó konditerem a bérlethez.
      */
     public void setKonditerem(Konditerem konditerem) {
         this.konditerem = konditerem;
     }
 
+    /**
+     * Visszaadja a tagok bérleteit.
+     *
+     * @return Egy {@link java.util.List List} amiben a bérletekhez tartozó tagok szerepelnek.
+     */
     public List<KonditeremTag> getKonditeremTagok() {
         return konditeremTagok;
     }
 
+    /**
+     * Beállítja a tagok bérleteit.
+     *
+     * @param konditeremTagok A {@link java.util.List List} amiben a bérletekhez tartozó tagok $vannak.
+     */
     public void setKonditeremTagok(List<KonditeremTag> konditeremTagok) {
         this.konditeremTagok = konditeremTagok;
     }

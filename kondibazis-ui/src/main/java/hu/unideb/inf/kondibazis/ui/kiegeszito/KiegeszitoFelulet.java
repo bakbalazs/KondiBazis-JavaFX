@@ -1,3 +1,4 @@
+// CHECKSTYLE:OFF
 package hu.unideb.inf.kondibazis.ui.kiegeszito;
 
 import hu.unideb.inf.kondibazis.ui.felulet.FeluletBetoltese;

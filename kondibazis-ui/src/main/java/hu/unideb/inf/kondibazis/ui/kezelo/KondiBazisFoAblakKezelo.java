@@ -261,31 +261,22 @@ public class KondiBazisFoAblakKezelo implements Initializable {
     private void osszesTagNem() {
         if (osszesTagNemGomb.isSelected() && osszesTagGomb.isSelected() && osszesTagBerletTipusGomb.isSelected()) {
             tagokTabla.setItems(tagTablazatAdatok);
-            kivalasztottSzures = tagTablazatAdatok;
         } else if (osszesTagNemGomb.isSelected() && aktivberletGomb.isSelected() && osszesTagBerletTipusGomb.isSelected()) {
             tagokTabla.setItems(aktivBerletuTagok);
-            kivalasztottSzures = aktivBerletuTagok;
         } else if (osszesTagNemGomb.isSelected() && lejertberletGomb.isSelected() && osszesTagBerletTipusGomb.isSelected()) {
             tagokTabla.setItems(lejartBerletuTagok);
-            kivalasztottSzures = lejartBerletuTagok;
         } else if (osszesTagNemGomb.isSelected() && osszesTagGomb.isSelected() && alkalmasBerletekGomb.isSelected()) {
             tagokTabla.setItems(alkalmasBerletek);
-            kivalasztottSzures = alkalmasBerletek;
         } else if (osszesTagNemGomb.isSelected() && osszesTagGomb.isSelected() && idokorlatosBerletekGomb.isSelected()) {
             tagokTabla.setItems(idokorlatosBerletek);
-            kivalasztottSzures = idokorlatosBerletek;
         } else if (osszesTagNemGomb.isSelected() && aktivberletGomb.isSelected() && alkalmasBerletekGomb.isSelected()) {
             tagokTabla.setItems(aktivAlkalmasTagok);
-            kivalasztottSzures = aktivAlkalmasTagok;
         } else if (osszesTagNemGomb.isSelected() && lejertberletGomb.isSelected() && alkalmasBerletekGomb.isSelected()) {
             tagokTabla.setItems(lejartAlkalmasTagok);
-            kivalasztottSzures = lejartAlkalmasTagok;
         } else if (osszesTagNemGomb.isSelected() && aktivberletGomb.isSelected() && idokorlatosBerletekGomb.isSelected()) {
             tagokTabla.setItems(aktivIdokorlatosTagok);
-            kivalasztottSzures = aktivIdokorlatosTagok;
         } else if (osszesTagNemGomb.isSelected() && lejertberletGomb.isSelected() && idokorlatosBerletekGomb.isSelected()) {
             tagokTabla.setItems(lejartIdokorlatosTagok);
-            kivalasztottSzures = lejartIdokorlatosTagok;
         }
     }
 
@@ -293,31 +284,22 @@ public class KondiBazisFoAblakKezelo implements Initializable {
     private void osszesTagBerletTipus() {
         if (osszesTagBerletTipusGomb.isSelected() && osszesTagNemGomb.isSelected() && osszesTagGomb.isSelected()) {
             tagokTabla.setItems(tagTablazatAdatok);
-            kivalasztottSzures = tagTablazatAdatok;
         } else if (osszesTagBerletTipusGomb.isSelected() && noGomb.isSelected() && osszesTagGomb.isSelected()) {
             tagokTabla.setItems(noiTagok);
-            kivalasztottSzures = noiTagok;
         } else if (osszesTagBerletTipusGomb.isSelected() && ferfiGomb.isSelected() && osszesTagGomb.isSelected()) {
             tagokTabla.setItems(ferfiTagok);
-            kivalasztottSzures = ferfiTagok;
         } else if (osszesTagBerletTipusGomb.isSelected() && osszesTagNemGomb.isSelected() && aktivberletGomb.isSelected()) {
             tagokTabla.setItems(aktivBerletuTagok);
-            kivalasztottSzures = aktivBerletuTagok;
         } else if (osszesTagBerletTipusGomb.isSelected() && osszesTagNemGomb.isSelected() && lejertberletGomb.isSelected()) {
             tagokTabla.setItems(lejartBerletuTagok);
-            kivalasztottSzures = lejartBerletuTagok;
         } else if (osszesTagBerletTipusGomb.isSelected() && noGomb.isSelected() && aktivberletGomb.isSelected()) {
             tagokTabla.setItems(aktivBerletesNok);
-            kivalasztottSzures = aktivBerletesNok;
         } else if (osszesTagBerletTipusGomb.isSelected() && ferfiGomb.isSelected() && aktivberletGomb.isSelected()) {
             tagokTabla.setItems(aktivBerletesFerfiak);
-            kivalasztottSzures = aktivBerletesFerfiak;
         } else if (osszesTagBerletTipusGomb.isSelected() && noGomb.isSelected() && lejertberletGomb.isSelected()) {
             tagokTabla.setItems(lejartBerletesNok);
-            kivalasztottSzures = lejartBerletesNok;
         } else if (osszesTagBerletTipusGomb.isSelected() && ferfiGomb.isSelected() && lejertberletGomb.isSelected()) {
             tagokTabla.setItems(lejartBerletesFerfiak);
-            kivalasztottSzures = lejartBerletesNok;
         }
     }
 
@@ -325,31 +307,22 @@ public class KondiBazisFoAblakKezelo implements Initializable {
     private void aktivBerlet() {
         if (aktivberletGomb.isSelected() && osszesTagNemGomb.isSelected() && osszesTagBerletTipusGomb.isSelected()) {
             tagokTabla.setItems(aktivBerletuTagok);
-            kivalasztottSzures = aktivBerletuTagok;
         } else if (aktivberletGomb.isSelected() && ferfiGomb.isSelected() && osszesTagBerletTipusGomb.isSelected()) {
             tagokTabla.setItems(aktivBerletesFerfiak);
-            kivalasztottSzures = aktivBerletesFerfiak;
         } else if (aktivberletGomb.isSelected() && noGomb.isSelected() && osszesTagBerletTipusGomb.isSelected()) {
             tagokTabla.setItems(aktivBerletesNok);
-            kivalasztottSzures = aktivBerletesNok;
         } else if (aktivberletGomb.isSelected() && osszesTagNemGomb.isSelected() && alkalmasBerletekGomb.isSelected()) {
             tagokTabla.setItems(aktivAlkalmasTagok);
-            kivalasztottSzures = aktivAlkalmasTagok;
         } else if (aktivberletGomb.isSelected() && osszesTagNemGomb.isSelected() && idokorlatosBerletekGomb.isSelected()) {
             tagokTabla.setItems(aktivIdokorlatosTagok);
-            kivalasztottSzures = aktivIdokorlatosTagok;
         } else if (aktivberletGomb.isSelected() && noGomb.isSelected() && alkalmasBerletekGomb.isSelected()) {
             tagokTabla.setItems(alkalmasAktivNoiTagok);
-            kivalasztottSzures = alkalmasAktivNoiTagok;
         } else if (aktivberletGomb.isSelected() && noGomb.isSelected() && idokorlatosBerletekGomb.isSelected()) {
             tagokTabla.setItems(idokorlatosAktivNoiTagok);
-            kivalasztottSzures = idokorlatosAktivNoiTagok;
         } else if (aktivberletGomb.isSelected() && ferfiGomb.isSelected() && alkalmasBerletekGomb.isSelected()) {
             tagokTabla.setItems(alkalmasAktivFerfiTagok);
-            kivalasztottSzures = alkalmasAktivFerfiTagok;
         } else if (aktivberletGomb.isSelected() && ferfiGomb.isSelected() && idokorlatosBerletekGomb.isSelected()) {
             tagokTabla.setItems(idokorlatosAktivFerfiTagok);
-            kivalasztottSzures = idokorlatosAktivFerfiTagok;
         }
 
     }
@@ -358,31 +331,22 @@ public class KondiBazisFoAblakKezelo implements Initializable {
     private void lejartBerlet() {
         if (lejertberletGomb.isSelected() && osszesTagNemGomb.isSelected() && osszesTagBerletTipusGomb.isSelected()) {
             tagokTabla.setItems(lejartBerletuTagok);
-            kivalasztottSzures = lejartBerletuTagok;
         } else if (lejertberletGomb.isSelected() && ferfiGomb.isSelected() && osszesTagBerletTipusGomb.isSelected()) {
             tagokTabla.setItems(lejartBerletesFerfiak);
-            kivalasztottSzures = lejartBerletesFerfiak;
         } else if (lejertberletGomb.isSelected() && noGomb.isSelected() && osszesTagBerletTipusGomb.isSelected()) {
             tagokTabla.setItems(lejartBerletesNok);
-            kivalasztottSzures = lejartBerletesNok;
         } else if (lejertberletGomb.isSelected() && osszesTagNemGomb.isSelected() && alkalmasBerletekGomb.isSelected()) {
             tagokTabla.setItems(lejartAlkalmasTagok);
-            kivalasztottSzures = lejartAlkalmasTagok;
         } else if (lejertberletGomb.isSelected() && osszesTagNemGomb.isSelected() && idokorlatosBerletekGomb.isSelected()) {
             tagokTabla.setItems(lejartIdokorlatosTagok);
-            kivalasztottSzures = lejartIdokorlatosTagok;
         } else if (lejertberletGomb.isSelected() && noGomb.isSelected() && alkalmasBerletekGomb.isSelected()) {
             tagokTabla.setItems(alkalmasLejartNoiTagok);
-            kivalasztottSzures = alkalmasLejartNoiTagok;
         } else if (lejertberletGomb.isSelected() && noGomb.isSelected() && idokorlatosBerletekGomb.isSelected()) {
             tagokTabla.setItems(idokorlatosLejartNoiTagok);
-            kivalasztottSzures = idokorlatosLejartNoiTagok;
         } else if (lejertberletGomb.isSelected() && ferfiGomb.isSelected() && alkalmasBerletekGomb.isSelected()) {
             tagokTabla.setItems(alkalmasLejartFerfiTagok);
-            kivalasztottSzures = alkalmasLejartFerfiTagok;
         } else if (lejertberletGomb.isSelected() && ferfiGomb.isSelected() && idokorlatosBerletekGomb.isSelected()) {
             tagokTabla.setItems(idokorlatosLejartFerfiTagok);
-            kivalasztottSzures = idokorlatosLejartFerfiTagok;
         }
     }
 
@@ -390,31 +354,22 @@ public class KondiBazisFoAblakKezelo implements Initializable {
     private void noTagok() {
         if (noGomb.isSelected() && osszesTagGomb.isSelected() && osszesTagBerletTipusGomb.isSelected()) {
             tagokTabla.setItems(noiTagok);
-            kivalasztottSzures = noiTagok;
         } else if (noGomb.isSelected() && aktivberletGomb.isSelected() && osszesTagBerletTipusGomb.isSelected()) {
             tagokTabla.setItems(aktivBerletesNok);
-            kivalasztottSzures = aktivBerletesNok;
         } else if (noGomb.isSelected() && lejertberletGomb.isSelected() && osszesTagBerletTipusGomb.isSelected()) {
             tagokTabla.setItems(lejartBerletesNok);
-            kivalasztottSzures = lejartBerletesNok;
         } else if (noGomb.isSelected() && osszesTagGomb.isSelected() && alkalmasBerletekGomb.isSelected()) {
             tagokTabla.setItems(alkalmasBerletesNok);
-            kivalasztottSzures = alkalmasBerletesNok;
         } else if (noGomb.isSelected() && osszesTagGomb.isSelected() && idokorlatosBerletekGomb.isSelected()) {
             tagokTabla.setItems(idokorlatosBerletesNok);
-            kivalasztottSzures = idokorlatosBerletesNok;
         } else if (noGomb.isSelected() && aktivberletGomb.isSelected() && alkalmasBerletekGomb.isSelected()) {
             tagokTabla.setItems(alkalmasAktivNoiTagok);
-            kivalasztottSzures = alkalmasAktivNoiTagok;
         } else if (noGomb.isSelected() && lejertberletGomb.isSelected() && idokorlatosBerletekGomb.isSelected()) {
             tagokTabla.setItems(idokorlatosLejartNoiTagok);
-            kivalasztottSzures = idokorlatosLejartNoiTagok;
         } else if (noGomb.isSelected() && aktivberletGomb.isSelected() && idokorlatosBerletekGomb.isSelected()) {
             tagokTabla.setItems(idokorlatosAktivNoiTagok);
-            kivalasztottSzures = idokorlatosAktivNoiTagok;
         } else if (noGomb.isSelected() && lejertberletGomb.isSelected() && alkalmasBerletekGomb.isSelected()) {
             tagokTabla.setItems(alkalmasLejartNoiTagok);
-            kivalasztottSzures = alkalmasLejartNoiTagok;
         }
     }
 
@@ -422,31 +377,22 @@ public class KondiBazisFoAblakKezelo implements Initializable {
     private void ferfiTagok() {
         if (ferfiGomb.isSelected() && osszesTagGomb.isSelected() && osszesTagBerletTipusGomb.isSelected()) {
             tagokTabla.setItems(ferfiTagok);
-            kivalasztottSzures = ferfiTagok;
         } else if (ferfiGomb.isSelected() && aktivberletGomb.isSelected() && osszesTagBerletTipusGomb.isSelected()) {
             tagokTabla.setItems(aktivBerletesFerfiak);
-            kivalasztottSzures = aktivBerletesFerfiak;
         } else if (ferfiGomb.isSelected() && lejertberletGomb.isSelected() && osszesTagBerletTipusGomb.isSelected()) {
             tagokTabla.setItems(lejartBerletesFerfiak);
-            kivalasztottSzures = lejartBerletesFerfiak;
         } else if (ferfiGomb.isSelected() && osszesTagGomb.isSelected() && alkalmasBerletekGomb.isSelected()) {
             tagokTabla.setItems(alkalmasBerletesFerfiak);
-            kivalasztottSzures = alkalmasBerletesFerfiak;
         } else if (ferfiGomb.isSelected() && osszesTagGomb.isSelected() && idokorlatosBerletekGomb.isSelected()) {
             tagokTabla.setItems(idokorlatosBerletesFerfiak);
-            kivalasztottSzures = idokorlatosBerletesFerfiak;
         } else if (ferfiGomb.isSelected() && aktivberletGomb.isSelected() && alkalmasBerletekGomb.isSelected()) {
             tagokTabla.setItems(alkalmasAktivFerfiTagok);
-            kivalasztottSzures = alkalmasAktivFerfiTagok;
         } else if (ferfiGomb.isSelected() && lejertberletGomb.isSelected() && idokorlatosBerletekGomb.isSelected()) {
             tagokTabla.setItems(idokorlatosLejartFerfiTagok);
-            kivalasztottSzures = idokorlatosLejartFerfiTagok;
         } else if (ferfiGomb.isSelected() && aktivberletGomb.isSelected() && idokorlatosBerletekGomb.isSelected()) {
             tagokTabla.setItems(idokorlatosAktivFerfiTagok);
-            kivalasztottSzures = idokorlatosAktivFerfiTagok;
         } else if (ferfiGomb.isSelected() && lejertberletGomb.isSelected() && alkalmasBerletekGomb.isSelected()) {
             tagokTabla.setItems(alkalmasLejartFerfiTagok);
-            kivalasztottSzures = alkalmasLejartFerfiTagok;
         }
     }
 
@@ -454,31 +400,22 @@ public class KondiBazisFoAblakKezelo implements Initializable {
     private void alkalmasBerletek() {
         if (alkalmasBerletekGomb.isSelected() && osszesTagGomb.isSelected() && osszesTagNemGomb.isSelected()) {
             tagokTabla.setItems(alkalmasBerletek);
-            kivalasztottSzures = alkalmasBerletek;
         } else if (alkalmasBerletekGomb.isSelected() && aktivberletGomb.isSelected() && osszesTagNemGomb.isSelected()) {
             tagokTabla.setItems(aktivAlkalmasTagok);
-            kivalasztottSzures = aktivAlkalmasTagok;
         } else if (alkalmasBerletekGomb.isSelected() && lejertberletGomb.isSelected() && osszesTagNemGomb.isSelected()) {
             tagokTabla.setItems(lejartAlkalmasTagok);
-            kivalasztottSzures = lejartAlkalmasTagok;
         } else if (alkalmasBerletekGomb.isSelected() && osszesTagGomb.isSelected() && noGomb.isSelected()) {
             tagokTabla.setItems(alkalmasBerletesNok);
-            kivalasztottSzures = alkalmasBerletesNok;
         } else if (alkalmasBerletekGomb.isSelected() && osszesTagGomb.isSelected() && ferfiGomb.isSelected()) {
             tagokTabla.setItems(alkalmasBerletesFerfiak);
-            kivalasztottSzures = alkalmasBerletesFerfiak;
         } else if (alkalmasBerletekGomb.isSelected() && aktivberletGomb.isSelected() && noGomb.isSelected()) {
             tagokTabla.setItems(alkalmasAktivNoiTagok);
-            kivalasztottSzures = alkalmasAktivNoiTagok;
         } else if (alkalmasBerletekGomb.isSelected() && aktivberletGomb.isSelected() && ferfiGomb.isSelected()) {
             tagokTabla.setItems(alkalmasAktivFerfiTagok);
-            kivalasztottSzures = alkalmasAktivFerfiTagok;
         } else if (alkalmasBerletekGomb.isSelected() && lejertberletGomb.isSelected() && noGomb.isSelected()) {
             tagokTabla.setItems(alkalmasLejartNoiTagok);
-            kivalasztottSzures = alkalmasLejartNoiTagok;
         } else if (alkalmasBerletekGomb.isSelected() && lejertberletGomb.isSelected() && ferfiGomb.isSelected()) {
             tagokTabla.setItems(alkalmasLejartFerfiTagok);
-            kivalasztottSzures = alkalmasLejartFerfiTagok;
         }
     }
 
@@ -486,31 +423,22 @@ public class KondiBazisFoAblakKezelo implements Initializable {
     private void idokorlatosBerletek() {
         if (idokorlatosBerletekGomb.isSelected() && osszesTagGomb.isSelected() && osszesTagNemGomb.isSelected()) {
             tagokTabla.setItems(idokorlatosBerletek);
-            kivalasztottSzures = idokorlatosBerletek;
         } else if (idokorlatosBerletekGomb.isSelected() && aktivberletGomb.isSelected() && osszesTagNemGomb.isSelected()) {
             tagokTabla.setItems(aktivIdokorlatosTagok);
-            kivalasztottSzures = aktivIdokorlatosTagok;
         } else if (idokorlatosBerletekGomb.isSelected() && lejertberletGomb.isSelected() && osszesTagNemGomb.isSelected()) {
             tagokTabla.setItems(lejartIdokorlatosTagok);
-            kivalasztottSzures = lejartIdokorlatosTagok;
         } else if (idokorlatosBerletekGomb.isSelected() && osszesTagGomb.isSelected() && noGomb.isSelected()) {
             tagokTabla.setItems(idokorlatosBerletesNok);
-            kivalasztottSzures = idokorlatosBerletesNok;
         } else if (idokorlatosBerletekGomb.isSelected() && osszesTagGomb.isSelected() && ferfiGomb.isSelected()) {
             tagokTabla.setItems(idokorlatosBerletesFerfiak);
-            kivalasztottSzures = idokorlatosBerletesFerfiak;
         } else if (idokorlatosBerletekGomb.isSelected() && aktivberletGomb.isSelected() && noGomb.isSelected()) {
             tagokTabla.setItems(idokorlatosAktivNoiTagok);
-            kivalasztottSzures = idokorlatosAktivNoiTagok;
         } else if (idokorlatosBerletekGomb.isSelected() && aktivberletGomb.isSelected() && ferfiGomb.isSelected()) {
             tagokTabla.setItems(idokorlatosAktivFerfiTagok);
-            kivalasztottSzures = idokorlatosAktivFerfiTagok;
         } else if (idokorlatosBerletekGomb.isSelected() && lejertberletGomb.isSelected() && noGomb.isSelected()) {
             tagokTabla.setItems(idokorlatosLejartNoiTagok);
-            kivalasztottSzures = idokorlatosLejartNoiTagok;
         } else if (idokorlatosBerletekGomb.isSelected() && lejertberletGomb.isSelected() && ferfiGomb.isSelected()) {
             tagokTabla.setItems(idokorlatosLejartFerfiTagok);
-            kivalasztottSzures = idokorlatosLejartFerfiTagok;
         }
     }
 
@@ -609,7 +537,7 @@ public class KondiBazisFoAblakKezelo implements Initializable {
 
     void gombFrissites() {
 
-        logolo.debug("Gomgok frissítése ha törtét bérlet létrehozás.");
+        logolo.debug("Gomgok frissítese ha tortet berlet letrehozas.");
 
         List<KonditeremBerletVo> konditeremBerletek = konditeremBerletSzolgaltatas
                 .konditeremOsszesBerlete(bejelentkezettKonditerem);
@@ -628,7 +556,7 @@ public class KondiBazisFoAblakKezelo implements Initializable {
 
     void adatFrissites() {
 
-        logolo.debug("Adatfrissítés.");
+        logolo.debug("Adatfrissites.");
 
         bejelentkezettKonditerem = bejelentkezoKezelo.getBejelentkezettKonditerem();
 
@@ -682,7 +610,7 @@ public class KondiBazisFoAblakKezelo implements Initializable {
 
         berletNeveOszlop.setCellValueFactory(celldata -> celldata.getValue().getVasaroltBerletNeveProperty());
 
-        logolo.debug("Összes tag megjelenítése.");
+        logolo.debug("Összes tag megjelenítese.");
 
         tagokTabla.setItems(tagTablazatAdatok);
     }
@@ -761,9 +689,19 @@ public class KondiBazisFoAblakKezelo implements Initializable {
                         alkalmakSor.setStyle("");
                         int kevesebbAlkalom = alkalomSzama - 1;
                         konditeremTagVo.setMennyiAlkalomMeg(kevesebbAlkalom);
-                        konditeremTagVo.setKonditeremBerlet(null);
                         konditeremTagSzolgaltatas.frissitKonditeremTagot(konditeremTagVo);
                         adatFrissites();
+                            if(kevesebbAlkalom == 0) {
+                                String lejart = "lejárt";
+                                konditeremTagVo.setLejartBerletNeve(konditeremTagVo.getVasaroltBerletNeve());
+                                konditeremTagVo.setKonditeremBerlet(null);
+                                konditeremTagVo.setBerletVasarlasideje(null);
+                                konditeremTagVo.setBerletLejaratiIdeje(null);
+                                konditeremTagVo.setVasaroltBerletNeve(lejart);
+                                konditeremTagVo.setVasaroltBerletTipusa(lejart);
+                                konditeremTagSzolgaltatas.frissitKonditeremTagot(konditeremTagVo);
+                                adatFrissites();
+                            }
                     } else if (Integer.parseInt(tag.getMennyiAlkalom().getValue()) == 0 && tag.getVasaroltBerletNeve().getValue().contains("Alkalmas")) {
                         mennyiAlkalomMegGomb.setText("Nincs több alkalom.");
                         alkalmakSor.setStyle(lejartBerletStyle);

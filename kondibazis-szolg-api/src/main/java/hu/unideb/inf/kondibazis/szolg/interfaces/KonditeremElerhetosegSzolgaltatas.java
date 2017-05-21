@@ -7,7 +7,7 @@ public interface KonditeremElerhetosegSzolgaltatas {
 
 	KonditeremElerhetosegVo keresElerhetoseget(KonditeremVo konditerem);
 
-	public void letrehozElerhetoseget(KonditeremElerhetosegVo ujElerhetoseg) throws Exception;
+	KonditeremElerhetosegVo letrehozElerhetoseget(KonditeremElerhetosegVo ujElerhetoseg);
 
 	KonditeremElerhetosegVo frissitElerhetoseget(KonditeremElerhetosegVo konditeremElerhetoseg);
 

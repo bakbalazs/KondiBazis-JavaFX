@@ -53,7 +53,7 @@ public class Konditerem extends FoEntitas {
     private LocalDate regisztralasDatuma;
 
     /**
-     *
+     * A konditrem tagjainak a száma.
      */
     @Column(name = "tagokSzama")
     private Integer tagokSzama;
@@ -62,7 +62,8 @@ public class Konditerem extends FoEntitas {
      * A konditeremhez tartozó tagok. Minden tagot külön kezelünk így minden konditerem rendelkezik egy listával, amelyben a tagjai szerepelnek.
      * A {@link javax.persistence.OneToMany OnToMany} annotáció megmondja hogy egy konditeremhez több tag tartozik.
      * A mappedBy taggal megadjuk hogy hol találja a Hibernate a konfigurációt ehhez az adattaghoz, ezesetben a kapcsolat másik
-     * oldalán a "konditerem" nevű adattagon lesz megadva a konfiguráció.
+     * oldalán a "konditerem" nevű adattagon lesz megadva a konfiguráció. A fetch=FetchType.LAZY konfigurációval megmondjuk hogy az adatbázisból a konditeremhez
+     * a tagokat csak akkor kérdezze le, ha ténylegesen használja a kód.
      */
     @OneToMany(mappedBy = "konditerem", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     private List<KonditeremTag> konditeremTagok;
@@ -71,14 +72,21 @@ public class Konditerem extends FoEntitas {
      * A konditeremhez tartozó bérletek. Minden bérletet külön kezelünk így minden konditerem rendelkezik egy listával, amelyben a bérletei szerepelnek.
      * A {@link javax.persistence.OneToMany OnToMany} annotáció megmondja hogy egy konditeremhez több bérlet tartozik.
      * A mappedBy taggal megadjuk hogy hol találja a Hibernate a konfigurációt ehhez az adattaghoz, ezesetben a kapcsolat másik
-     * oldalán a "konditerem" nevű adattagon lesz megadva a konfiguráció.
+     * oldalán a "konditerem" nevű adattagon lesz megadva a konfiguráció. A fetch=FetchType.LAZY konfigurációval megmondjuk hogy az adatbázisból a konditeremhez
+     * a bérleteket csak akkor kérdezze le, ha ténylegesen használja a kód.
      */
     @OneToMany(mappedBy = "konditerem", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     private List<KonditeremBerlet> konditeremBerletek;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "konditeremElerhetosegId", unique = true, nullable = true, insertable = true, updatable = true)
-    private KonditeremElerhetoseg konditeremElerhetoseg;
+    /**
+     * A konditeremhez tartozó elérhetőségek. Minden elérhetőséget külön kezelünk így minden konditerem rendelkezik egy listával, amelyben az elérhetőségek szerepelnek.
+     * A {@link javax.persistence.OneToMany OnToMany} annotáció megmondja hogy egy konditeremhez több elérhetőség tartozik.
+     * A mappedBy taggal megadjuk hogy hol találja a Hibernate a konfigurációt ehhez az adattaghoz, ezesetben a kapcsolat másik
+     * oldalán a "konditerem" nevű adattagon lesz megadva a konfiguráció. A fetch=FetchType.LAZY konfigurációval megmondjuk hogy az adatbázisból a konditeremhez
+     * az elérhetőséget csak akkor kérdezze le, ha ténylegesen használja a kód.
+     */
+    @OneToMany(mappedBy = "konditerem", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    private List<KonditeremElerhetoseg> konditeremElerhetosegek;
 
     /**
      * Visszaadja a konditerem felhasználónevét.
@@ -134,10 +142,20 @@ public class Konditerem extends FoEntitas {
         this.konditeremNeve = konditeremNeve;
     }
 
+    /**
+     * Visszaadja a konditerem tagjainak a számát.
+     *
+     * @return A konditerem tagjainak a száma.
+     */
     public Integer getTagokSzama() {
         return tagokSzama;
     }
 
+    /**
+     * Beállítja a konditerem tagjainak a számát.
+     *
+     * @param tagokSzama A beállítandó szám.
+     */
     public void setTagokSzama(Integer tagokSzama) {
         this.tagokSzama = tagokSzama;
     }
@@ -196,11 +214,21 @@ public class Konditerem extends FoEntitas {
         this.konditeremBerletek = konditeremBerletek;
     }
 
-    public KonditeremElerhetoseg getKonditeremElerhetoseg() {
-        return konditeremElerhetoseg;
+    /**
+     * Visszaadja a konditerem elérhetőségeit.
+     *
+     * @return Egy {@link java.util.List List} amiben a konditerem elérhetőségei szerepelnek.
+     */
+    public List<KonditeremElerhetoseg> getKonditeremElerhetosegek() {
+        return konditeremElerhetosegek;
     }
 
-    public void setKonditeremElerhetoseg(KonditeremElerhetoseg konditeremElerhetoseg) {
-        this.konditeremElerhetoseg = konditeremElerhetoseg;
+    /**
+     * Beállítja a konditerem elérhetőségeit.
+     *
+     * @param konditeremElerhetosegek A {@link java.util.List List} amiben a konditerem elérhetőségei vannak.
+     */
+    public void setKonditeremElerhetosegek(List<KonditeremElerhetoseg> konditeremElerhetosegek) {
+        this.konditeremElerhetosegek = konditeremElerhetosegek;
     }
 }

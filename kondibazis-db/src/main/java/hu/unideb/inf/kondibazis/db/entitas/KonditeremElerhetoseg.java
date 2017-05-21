@@ -69,13 +69,8 @@ public class KonditeremElerhetoseg extends FoEntitas {
     @Column(name = "facebookOldalLink")
     private String konditeremFacebookOldalLink;
 
-    /**
-     *
-     */
-    @OneToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "konditeremId")
+    @ManyToOne
     private Konditerem konditerem;
-
 
     public Integer getKonditeremVarosanakIranyitoSzama() {
         return KonditeremVarosanakIranyitoSzama;

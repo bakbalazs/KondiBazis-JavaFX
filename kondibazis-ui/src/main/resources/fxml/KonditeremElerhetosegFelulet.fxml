@@ -255,11 +255,6 @@
                         <TextField fx:id="facebookBevitel" />
                      </children>
                   </VBox>
-                  <VBox alignment="CENTER" prefHeight="35.0" prefWidth="29.0">
-                     <children>
-                        <ImageView fx:id="facebookJoRossz" fitHeight="35.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true" />
-                     </children>
-                  </VBox>
                </children></HBox>
          </children>
       </GridPane>

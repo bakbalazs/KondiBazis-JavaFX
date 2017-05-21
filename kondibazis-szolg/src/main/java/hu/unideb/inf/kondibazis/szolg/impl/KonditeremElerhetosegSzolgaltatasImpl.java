@@ -40,12 +40,19 @@ public class KonditeremElerhetosegSzolgaltatasImpl implements KonditeremElerheto
 	}
 
 	@Override
-	public void letrehozElerhetoseget(KonditeremElerhetosegVo ujElerhetoseg) throws Exception {
-		try {
-			konditeremElerhetosegTarolo.save(KonditeremElerhetosegMapper.toDto(ujElerhetoseg));
-		} catch (Exception e) {
-			throw e;
+	public KonditeremElerhetosegVo letrehozElerhetoseget(KonditeremElerhetosegVo ujElerhetoseg) {
+		KonditeremElerhetoseg uj = KonditeremElerhetosegMapper.toDto(ujElerhetoseg);
+
+		KonditeremElerhetoseg mentett = konditeremElerhetosegTarolo.save(uj);
+
+		if (mentett == null) {
+
+		} else {
+
 		}
+
+		return KonditeremElerhetosegMapper.toVo(mentett);
+
 	}
 
 	@Override

@@ -1,3 +1,4 @@
+// CHECKSTYLE:OFF
 package hu.unideb.inf.kondibazis.ui.model;
 
 import javafx.beans.property.SimpleStringProperty;

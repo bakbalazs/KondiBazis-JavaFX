@@ -324,6 +324,8 @@ public class TagHozzaadasaKezelo implements Initializable {
                     } else if (honap > 0) {
                         ujTag.setBerletLejaratiIdeje(maiNap.plusMonths(honap));
                     }
+                    ujTag.setKonditeremBerlet(berletek);
+                    break;
                 }
                 if (berletValasztas.getValue().contains("Alkalmas")) {
                     int alkalom = berletek.getMennyiAlkalom();
@@ -331,9 +333,11 @@ public class TagHozzaadasaKezelo implements Initializable {
                         ujTag.setVasaroltBerletTipusa(berletek.getBerletTipusa());
                         ujTag.setBerletLejaratiIdeje(LocalDate.now());
                         ujTag.setMennyiAlkalomMeg(alkalom);
-                        ujTag.setKonditeremBerlet(berletek);
                     }
+                    ujTag.setKonditeremBerlet(berletek);
+                    break;
                 }
+
             }
 
             ujTag.setTagVarosa(varosNevBevitel.getText());

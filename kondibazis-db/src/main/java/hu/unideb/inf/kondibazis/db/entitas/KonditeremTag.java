@@ -1,8 +1,10 @@
 package hu.unideb.inf.kondibazis.db.entitas;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import java.time.LocalDate;
-import java.util.List;
 
 /**
  * Az adatbázisban egy konditerem tagot reprezentáló osztály.
@@ -84,11 +86,15 @@ public class KonditeremTag extends FoEntitas {
     private String vasaroltBerletTipusa;
 
     /**
-     * A Tag által vásrolt bérlet mennyi alkalomig jó.(Ha alkalmas bérlet vásárolt)
+     * A Tag által vásrolt bérlet mennyi alkalomig jó.
+     * Ha alkalmas bérlet vásárolt.
      */
     @Column(name = "mennyiAlkalomMeg")
     private int mennyiAlkalomMeg;
 
+    /**
+     * A Tag lejárt bérletáánek a neve.
+     */
     @Column(name = "lejartBerletNeve")
     private String lejartBerletNeve;
 
@@ -105,11 +111,14 @@ public class KonditeremTag extends FoEntitas {
     private String tagMegyeje;
 
     /**
-     *
+     * A Taghoz tartozó konditerem.
      */
-    @ManyToOne()
+    @ManyToOne
     private Konditerem konditerem;
 
+    /**
+     * A Tgahoz tartozó bérlet.
+     */
     @ManyToOne
     private KonditeremBerlet konditeremBerlet;
 
@@ -257,20 +266,38 @@ public class KonditeremTag extends FoEntitas {
         this.vasaroltBerletNeve = vasaroltBerletNeve;
     }
 
-    //TODO
+    /**
+     * Visszaadja hogyha a Tag alkalmas bérletet vásol, mennyi alkalom van még hátra.
+     *
+     * @return Visszaadja alkalmas bérlet esetén a Tag mennyi alkalommal mehet még.
+     */
     public int getMennyiAlkalomMeg() {
         return mennyiAlkalomMeg;
     }
 
+    /**
+     * Beállítja hogy alkalmas bérlet esetén a Tagnak mennyi alkalma van.
+     *
+     * @param mennyiAlkalomMeg Az alkalmas bérlet vásárlása esetén beállítandó szám.
+     */
     public void setMennyiAlkalomMeg(int mennyiAlkalomMeg) {
         this.mennyiAlkalomMeg = mennyiAlkalomMeg;
     }
 
-//TODO
+    /**
+     * Visszaadja a Tag lejárt bérletének a nevét.
+     *
+     * @return A Tag lejárt bérletének a neve.
+     */
     public String getLejartBerletNeve() {
         return lejartBerletNeve;
     }
 
+    /**
+     * Beállítja a Tag lejárt bérletének a nevét.
+     *
+     * @param lejartBerletNeve A beállítandó név.
+     */
     public void setLejartBerletNeve(String lejartBerletNeve) {
         this.lejartBerletNeve = lejartBerletNeve;
     }
@@ -293,10 +320,20 @@ public class KonditeremTag extends FoEntitas {
         this.vasaroltBerletTipusa = vasaroltBerletTipusa;
     }
 
+    /**
+     * Visszaadja a Tag konditermét.
+     *
+     * @return A Tag konditerme.
+     */
     public Konditerem getKonditerem() {
         return konditerem;
     }
 
+    /**
+     * Beállítja a tag konditermét.
+     *
+     * @param konditerem A beállítandó konditerem.
+     */
     public void setKonditerem(Konditerem konditerem) {
         this.konditerem = konditerem;
     }
@@ -355,10 +392,20 @@ public class KonditeremTag extends FoEntitas {
         this.berletLejaratiIdeje = berletLejaratiIdeje;
     }
 
+    /**
+     * Visszaadja a tag bérletét.
+     *
+     * @return A Tag bérlete.
+     */
     public KonditeremBerlet getKonditeremBerlet() {
         return konditeremBerlet;
     }
 
+    /**
+     * Beállítja a Tag által vásárol bérletet.
+     *
+     * @param konditeremBerlet A beállítandó bérlet.
+     */
     public void setKonditeremBerlet(KonditeremBerlet konditeremBerlet) {
         this.konditeremBerlet = konditeremBerlet;
     }

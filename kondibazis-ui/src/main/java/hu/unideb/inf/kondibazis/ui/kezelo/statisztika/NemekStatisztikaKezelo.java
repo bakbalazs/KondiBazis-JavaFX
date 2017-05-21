@@ -1,3 +1,4 @@
+// CHECKSTYLE:OFF
 package hu.unideb.inf.kondibazis.ui.kezelo.statisztika;
 
 import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremSzolgaltatas;

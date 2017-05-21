@@ -99,19 +99,10 @@ public class KonditeremElerhetosegKezelo implements Initializable {
     private ImageView hazSzamJoRossz;
 
     @FXML
-    private ImageView emeletJoRossz;
-
-    @FXML
-    private ImageView ajtoJoRossz;
-
-    @FXML
     private ImageView teloszamJoRossz;
 
     @FXML
     private ImageView emailJoRossz;
-
-    @FXML
-    private ImageView facebookJoRossz;
 
     private static String bejelentkezesUzenet;
 
@@ -250,7 +241,7 @@ public class KonditeremElerhetosegKezelo implements Initializable {
             facebookBevitel.setText(nincsMegadva);
         }
 
-        if(emailBevitel.getText().isEmpty()){
+        if (emailBevitel.getText().isEmpty()) {
             emailBevitel.setText(nincsMegadva);
         }
 
@@ -264,12 +255,9 @@ public class KonditeremElerhetosegKezelo implements Initializable {
             ujElerhetoseg.setKonditremEmailCim(emailBevitel.getText());
             ujElerhetoseg.setKonditeremWeboldalLink(weboldalBevitel.getText());
             ujElerhetoseg.setKonditeremFacebookOldalLink(facebookBevitel.getText());
-
             ujElerhetoseg.setKonditerem(regisztraltKondi);
 
-            regisztraltKondi.setKonditeremElerhetoseg(ujElerhetoseg);
-
-            konditeremSzolgaltatas.frissitKonditermet(regisztraltKondi);
+            konditeremElerhetosegSzolgaltatas.letrehozElerhetoseget(ujElerhetoseg);
 
             setBejelentkezesUzenet(
                     "Kérem jeletkezzen be a felhasználóval: " + regisztraltKondi.getFelhasznalonev() + "\n");
@@ -291,12 +279,9 @@ public class KonditeremElerhetosegKezelo implements Initializable {
         ujElerhetoseg.setKonditremEmailCim(nincsMegadva);
         ujElerhetoseg.setKonditeremWeboldalLink(nincsMegadva);
         ujElerhetoseg.setKonditeremFacebookOldalLink(nincsMegadva);
-
         ujElerhetoseg.setKonditerem(regisztraltKondi);
 
-        regisztraltKondi.setKonditeremElerhetoseg(ujElerhetoseg);
-
-        konditeremSzolgaltatas.frissitKonditermet(regisztraltKondi);
+        konditeremElerhetosegSzolgaltatas.letrehozElerhetoseget(ujElerhetoseg);
 
         setBejelentkezesUzenet(
                 "Kérem jeletkezzen be a felhasználóval: " + regisztraltKondi.getFelhasznalonev() + "\n");

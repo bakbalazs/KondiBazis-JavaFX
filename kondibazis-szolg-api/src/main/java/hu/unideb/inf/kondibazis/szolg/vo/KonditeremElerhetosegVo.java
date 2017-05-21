@@ -49,9 +49,9 @@ public class KonditeremElerhetosegVo implements Serializable {
      */
     private String konditeremFacebookOldalLink;
 
-    /**
-     *
-     */
+//    /**
+//     *
+//     */
     private KonditeremVo konditerem;
 
     public Integer getKonditeremVarosanakIranyitoSzama() {

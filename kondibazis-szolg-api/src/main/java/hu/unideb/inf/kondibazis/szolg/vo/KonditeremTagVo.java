@@ -39,6 +39,8 @@ public class KonditeremTagVo implements Serializable {
 
     private int mennyiAlkalomMeg;
 
+    private String lejartBerletNeve;
+
     private KonditeremVo konditerem;
 
     private KonditeremBerletVo konditeremBerlet;
@@ -163,6 +165,14 @@ public class KonditeremTagVo implements Serializable {
 
     public void setMennyiAlkalomMeg(int mennyiAlkalomMeg) {
         this.mennyiAlkalomMeg = mennyiAlkalomMeg;
+    }
+
+    public String getLejartBerletNeve() {
+        return lejartBerletNeve;
+    }
+
+    public void setLejartBerletNeve(String lejartBerletNeve) {
+        this.lejartBerletNeve = lejartBerletNeve;
     }
 
     public KonditeremBerletVo getKonditeremBerlet() {

@@ -1,3 +1,4 @@
+// CHECKSTYLE:OFF
 package hu.unideb.inf.kondibazis.ui.kezelo.statisztika;
 
 import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremSzolgaltatas;
@@ -19,21 +20,21 @@ import java.util.ResourceBundle;
 @Component
 public class VarosStatisztikaKezelo implements Initializable {
 
-@Autowired
-private KonditeremSzolgaltatas konditeremSzolgaltatas;
+    @Autowired
+    private KonditeremSzolgaltatas konditeremSzolgaltatas;
 
-@Autowired
-private BejelentkezoKezelo bejelentkezoKezelo;
+    @Autowired
+    private BejelentkezoKezelo bejelentkezoKezelo;
 
-private KonditeremVo bejelentkezettKonditerem;
+    private KonditeremVo bejelentkezettKonditerem;
 
-private ObservableList<PieChart.Data> varos_diagram_Adatok;
+    private ObservableList<PieChart.Data> varos_diagram_Adatok;
 
-@FXML
-private PieChart varos_diagram;
+    @FXML
+    private PieChart varos_diagram;
 
-@Override
-public void initialize(URL location, ResourceBundle resources) {
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
         bejelentkezettKonditerem = bejelentkezoKezelo.getBejelentkezettKonditerem();
 
         varos_diagram_Adatok = FXCollections.observableArrayList();
@@ -41,20 +42,20 @@ public void initialize(URL location, ResourceBundle resources) {
         Map<String, Long> varos_diagrama = konditeremSzolgaltatas.varosDiagramKonditeremTagokhoz(bejelentkezettKonditerem);
 
         for (Map.Entry<String, Long> elem : varos_diagrama.entrySet()) {
-        varos_diagram_Adatok.add(new PieChart.Data(elem.getKey(), elem.getValue()));
+            varos_diagram_Adatok.add(new PieChart.Data(elem.getKey(), elem.getValue()));
         }
 
         varos_diagram_Adatok.forEach(data ->
-        data.nameProperty().bind(
-        Bindings.concat(
-        data.getName(), " : ", data.pieValueProperty().intValue()
-        )
-        )
+                data.nameProperty().bind(
+                        Bindings.concat(
+                                data.getName(), " : ", data.pieValueProperty().intValue()
+                        )
+                )
         );
 
         varos_diagram.setData(varos_diagram_Adatok);
 
-        }
+    }
 
 
-        }
+}

@@ -1,3 +1,4 @@
+// CHECKSTYLE:OFF
 package hu.unideb.inf.kondibazis.ui.kezelo;
 
 import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremBerletSzolgaltatas;
@@ -13,6 +14,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -22,6 +25,8 @@ import java.util.ResourceBundle;
 
 @Component
 public class BerletLetrehozasFoAblakKezelo implements Initializable {
+
+    private static final Logger logolo = LoggerFactory.getLogger(BerletLetrehozasFoAblakKezelo.class);
 
     @Autowired
     private KonditeremSzolgaltatas konditeremSzolgaltatas;
@@ -89,6 +94,7 @@ public class BerletLetrehozasFoAblakKezelo implements Initializable {
         alapertek(false);
         berlettipusValasztasa.getItems().add("Alkalmas bérlet");
         berlettipusValasztasa.getItems().add("Időkorlátos bérlet");
+        logolo.info("Berlet tipusok valasztashoz feltöltve!");
         bejelentkezettKonditerem = foAblakKezelo.getBejelentkezettKonditerem();
         bejelentkezett_Konditerem.setText(bejelentkezettKonditerem.getKonditeremNeve());
         berletaraBevitel.setText("0");
@@ -96,16 +102,17 @@ public class BerletLetrehozasFoAblakKezelo implements Initializable {
         honapBevitel.setText("0");
         alakomBevitel.setText("0");
 
-
         berlettipusValasztasa.valueProperty().addListener((observableValue, regiErtek, ujErtek) -> {
             if (ujErtek.equals("Alkalmas bérlet")) {
                 alapertek(true);
                 idokorlatosBerlet(false);
                 alkalmasBerlet(true);
+                logolo.debug("Alkalmas berlet kivalasztva es alap ertekkel feltoltve!");
             } else if (ujErtek.equals("Időkorlátos bérlet")) {
                 alapertek(true);
                 idokorlatosBerlet(true);
                 alkalmasBerlet(false);
+                logolo.debug("Idokorlatos berlet kivalasztva es alap ertekkel feltoltve!");
             }
         });
 
@@ -123,11 +130,11 @@ public class BerletLetrehozasFoAblakKezelo implements Initializable {
             ar = Integer.parseInt(berletaraBevitel.getText());
             int alkalom = Integer.parseInt(alakomBevitel.getText());
 
-            if (berletnevBevitel.getText().equals("")) {
+            if (berletnevBevitel.getText().isEmpty()) {
                 mehetAlkalmas = false;
             }
 
-            if (berletaraBevitel.getText().equals("")) {
+            if (berletaraBevitel.getText().isEmpty()) {
                 mehetAlkalmas = false;
             }
 
@@ -143,7 +150,7 @@ public class BerletLetrehozasFoAblakKezelo implements Initializable {
                 mehetAlkalmas = true;
             }
 
-            if (berletaraBevitel.getText().equals("") || alakomBevitel.getText().equals("")) {
+            if (berletaraBevitel.getText().isEmpty() || alakomBevitel.getText().isEmpty()) {
                 mehetAlkalmas = false;
             }
 
@@ -154,16 +161,10 @@ public class BerletLetrehozasFoAblakKezelo implements Initializable {
                 ujBerlet.setBerletTipusa(berlettipusValasztasa.getValue());
                 ujBerlet.setBerletAra(ar);
                 ujBerlet.setMennyiAlkalom(alkalom);
+                ujBerlet.setKonditerem(bejelentkezettKonditerem);
 
-                KonditeremBerletVo letezo = konditeremBerletSzolgaltatas.letrehozBerletet(ujBerlet);
-
-                bejelentkezettKonditerem.getKonditeremBerletek().add(letezo);
-
-                konditeremSzolgaltatas.frissitKonditermet(bejelentkezettKonditerem);
-
-                letezo.setKonditerem(bejelentkezettKonditerem);
-
-                konditeremBerletSzolgaltatas.frissitKonditeremBerletet(letezo);
+                konditeremBerletSzolgaltatas.letrehozBerletet(ujBerlet);
+                logolo.debug("Uj alkalmas berlet letrehozva!");
 
                 foAblakKezelo.gombFrissites();
 
@@ -204,7 +205,7 @@ public class BerletLetrehozasFoAblakKezelo implements Initializable {
 
             if (!mehetIdokorlatos) {
                 berletletrehozasUzenet.setFill(Color.RED);
-                berletletrehozasUzenet.setText("A csilaggal megjelölt adatok megadása kötelező!");
+                berletletrehozasUzenet.setText("A csilaggal megjelolt adatok megadasa kotelezo!");
 
             } else {
 
@@ -214,17 +215,10 @@ public class BerletLetrehozasFoAblakKezelo implements Initializable {
                 ujBerlet.setBerletAra(ar);
                 ujBerlet.setMennyiNap(nap);
                 ujBerlet.setMennyiHonap(honap);
+                ujBerlet.setKonditerem(bejelentkezettKonditerem);
 
-
-                KonditeremBerletVo letezo = konditeremBerletSzolgaltatas.letrehozBerletet(ujBerlet);
-
-                bejelentkezettKonditerem.getKonditeremBerletek().add(letezo);
-
-                konditeremSzolgaltatas.frissitKonditermet(bejelentkezettKonditerem);
-
-                letezo.setKonditerem(bejelentkezettKonditerem);
-
-                konditeremBerletSzolgaltatas.frissitKonditeremBerletet(letezo);
+                konditeremBerletSzolgaltatas.letrehozBerletet(ujBerlet);
+                logolo.debug("Uj idokorlatos berlet letrehozva!");
 
                 foAblakKezelo.gombFrissites();
 
@@ -238,6 +232,7 @@ public class BerletLetrehozasFoAblakKezelo implements Initializable {
     @FXML
     public void megse() throws IOException {
         ((Stage) megseGomb.getScene().getWindow()).close();
+        logolo.debug("Megse gombra kattintva!");
     }
 
 

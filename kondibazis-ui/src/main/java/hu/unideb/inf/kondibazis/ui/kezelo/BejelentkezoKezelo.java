@@ -90,14 +90,14 @@ public class BejelentkezoKezelo implements Initializable {
                 bejelentkezettKonditerem = konditerem;
                 setKonditeremNeve(konditerem.getKonditeremNeve());
                 FeluletBetoltese.FoAblakFelulet(event);
-                logolo.debug("A felhasználó sikeresen bejelentkezett: " + felhasznalonevBevitel.getText());
+                logolo.debug("A felhasznalo sikeresen bejelentkezett: " + felhasznalonevBevitel.getText());
             } else {
                 bejelentkezoUzenet.setFill(Color.RED);
                 bejelentkezoUzenet.setText("Helytelen jelszó!");
                 felhasznalonevJoRossz.setImage(FeluletBetoltese.joBeirt);
                 jelszoJoRossz.setImage(FeluletBetoltese.rosszBeirt);
                 jelszoBevitel.clear();
-                logolo.debug("Helytelen jelszó!" + " " + jelszoBevitel.getText());
+                logolo.debug("Helytelen jelszo!" + " " + jelszoBevitel.getText());
             }
         }
 

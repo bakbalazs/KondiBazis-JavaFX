@@ -2,6 +2,7 @@
 package hu.unideb.inf.kondibazis.ui.kezelo;
 
 import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremSzolgaltatas;
+import hu.unideb.inf.kondibazis.szolg.vo.KonditeremElerhetosegVo;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremVo;
 import hu.unideb.inf.kondibazis.ui.felulet.FeluletBetoltese;
 import hu.unideb.inf.kondibazis.ui.main.Inditas;
@@ -57,7 +58,7 @@ public class RegisztraltKonditermekKezelo implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        konditeremAdatokTabla.setPlaceholder(new Text("Nincs regisztrált konditerem."));
+        konditeremAdatokTabla.setPlaceholder(new Text("Nincs regisztralt konditerem."));
         visszaGombKep.setImage(FeluletBetoltese.visszaGomb);
         konditeremAdatokTablaAdatok = FXCollections.observableArrayList();
         adatFrissites();
@@ -65,7 +66,7 @@ public class RegisztraltKonditermekKezelo implements Initializable {
 
     @FXML
     public void vissza() throws IOException {
-        logger.debug("Indítása felület indul.");
+        logger.debug("Indítása felulet indul.");
         FeluletBetoltese.InditasiFelulet(Inditas.primaryStage);
     }
 
@@ -79,20 +80,21 @@ public class RegisztraltKonditermekKezelo implements Initializable {
             konditeremAdatokTablaAdatok.clear();
         }
 
+
         logger.debug("Tablazat feltoltese adatokkal: ");
 
         for (KonditeremVo konditerem : osszesKonditerem) {
-            if(konditerem.getKonditeremElerhetoseg() != null) {
+            List<KonditeremElerhetosegVo> konditeremElerhetosegek = konditerem.getKonditeremElerhetosegek();
+            for (KonditeremElerhetosegVo konditeremElerhetoseg : konditeremElerhetosegek) {
                 konditeremAdatokTablaAdatok.add(new KonditeremAdatok(
                         konditerem.getId(),
                         konditerem.getKonditeremNeve(),
-                        konditerem.getKonditeremElerhetoseg().getKonditremTelefonszam(),
-                        konditerem.getKonditeremElerhetoseg().getKonditeremVarosanakNeve(),
-                        konditerem.getKonditeremElerhetoseg().getKonditeremCime(),
+                        konditeremElerhetoseg.getKonditremTelefonszam(),
+                        konditeremElerhetoseg.getKonditeremVarosanakNeve(),
+                        konditeremElerhetoseg.getKonditeremCime(),
                         konditerem.getTagokSzama().toString()
                 ));
             }
-
             logger.debug("Adat: " + konditeremAdatokTablaAdatok.get(konditeremAdatokTablaAdatok.size() - 1));
         }
 
