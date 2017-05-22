@@ -9,6 +9,10 @@
     <artifactId>kondibazis-ui</artifactId>
     <name>KondiBazis felhasznaloi felulet</name>
 
+    <description>
+        Ez a modul felelős a felhasználói felület megfelelő működéséért.
+    </description>
+
     <build>
         <plugins>
             <plugin>

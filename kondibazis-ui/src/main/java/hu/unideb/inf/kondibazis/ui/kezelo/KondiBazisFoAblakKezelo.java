@@ -1,6 +1,7 @@
 // CHECKSTYLE:OFF
 package hu.unideb.inf.kondibazis.ui.kezelo;
 
+import hu.unideb.inf.kondibazis.db.entitas.KonditeremBerlet;
 import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremBerletSzolgaltatas;
 import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremTagKepeSzolgaltatas;
 import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremTagSzolgaltatas;
@@ -20,9 +21,9 @@ import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
@@ -33,6 +34,8 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -494,7 +497,7 @@ public class KondiBazisFoAblakKezelo implements Initializable {
 
         logolo.info("Kijeletkezés gomb megnyomva.");
 
-        if (KiegeszitoFelulet.kijeletkezesMegerositesFelulet("Kijeletkezés megerősítő ablak", "Kijeletkezés megerősítés.", "Biztosan ki akar jelentkeztni?", Alert.AlertType.CONFIRMATION)) {
+        if (KiegeszitoFelulet.megerositesFelulet("Kijeletkezés megerősítő ablak", "Kijeletkezés megerősítés.", "Biztosan ki akar jelentkeztni?", "Kijelentkezés", "Mégsem", Alert.AlertType.CONFIRMATION)) {
             logolo.info("Sikeres kijeletkezés.");
             bejelentkezettKonditerem = null;
             tagokTabla = null;
@@ -502,7 +505,7 @@ public class KondiBazisFoAblakKezelo implements Initializable {
             setBejelentkezesUzenet("");
             setFelhasznalo("");
             FeluletBetoltese.InditasiFelulet(Inditas.primaryStage);
-            KiegeszitoFelulet.ertesites("Kijeletkezés", "Sikeres kijeletkezés.", "Sikeres kijeletkezés.", "Sikeres kijeletkezés után");
+            KiegeszitoFelulet.ertesites("Kijeletkezés", "Sikeres kijeletkezés.", "Sikeres kijeletkezés.", "Sikeres kijeletkezés után", Pos.BOTTOM_RIGHT, 5);
 
         } else {
             logolo.info("Nem történt kijeletkezés.");
@@ -642,8 +645,8 @@ public class KondiBazisFoAblakKezelo implements Initializable {
 
             tagModositas.setDisable(false);
             tabPane.getSelectionModel().select(tagModositas);
-            szuresEskereses.setDisable(true);
-            szures.setSelected(false);
+//            szuresEskereses.setDisable(true);
+//            szures.setSelected(false);
 //            osszesTagGomb.setSelected(true);
 //            osszesTagNemGomb.setSelected(true);
 //            adatFrissites();
@@ -670,10 +673,84 @@ public class KondiBazisFoAblakKezelo implements Initializable {
         }
     }
 
+    private int korSzamolas(LocalDate szuletesiDatum) {
+        return (int) ChronoUnit.YEARS.between(szuletesiDatum, LocalDate.now());
+    }
+
+    private String nemValasztas() {
+        String tagNeme = null;
+        if (ferfiModosit.isSelected()) {
+            tagNeme = "Férfi";
+        } else if (noModosit.isSelected()) {
+            tagNeme = "Nő";
+        }
+
+        return tagNeme;
+
+    }
+
     @FXML
-    public void tagModositasa(ActionEvent event) {
+    public void tagModositasa() {
+        logolo.debug("Tag módosítása gombra kattintva!");
+
+//        this.berletVasarlasideje = berletVasarlasideje;
+//        this.berletLejaratiIdeje = berletLejaratiIdeje;
+//        this.vasaroltBerletNeve = vasaroltBerletNeve;
+//        this.vasaroltBerletTipusa = vasaroltBerletTipusa;
+//        this.tagVarosa = tagVarosa;
+//        this.tagMegyeje = tagMegyeje;
+//        this.mennyiAlkalomMeg = mennyiAlkalomMeg;
+//        this.lejartBerletNeve = lejartBerletNeve;
         //TODO
-//            kivalasztottTag.s
+
+        KonditeremTagVo tag = konditeremTagSzolgaltatas.keresTagot(kivalasztottTag.getId());
+
+        boolean mehet = false;
+
+
+        if (!tag.getTagVezeteknev().equals(vezeteknevModosit.getText()) || !tag.getTagKeresztnev().equals(keresztnevModosit.getText()) || !tag.getTagNeme().equals(nemValasztas()) || !tag.getTagSzuletesidatuma().equals(szuletesiDatumModosit.getValue())) {
+            if (KiegeszitoFelulet.megerositesFelulet("Tag módosítása megerősítő ablak", "Tag módosítás megerősítése.", "Biztosan módosítani szeretné?", "Módosítás", "Mégsem", Alert.AlertType.WARNING)) {
+
+                kivalasztottTag.setTagVezeteknev(vezeteknevModosit.getText());
+                kivalasztottTag.setTagKeresztnev(keresztnevModosit.getText());
+                kivalasztottTag.setTagNeve(vezeteknevModosit.getText() + " " + keresztnevModosit.getText());
+                kivalasztottTag.setTagSzuletesidatuma(szuletesiDatumModosit.getValue());
+                kivalasztottTag.setTagKora(korSzamolas(szuletesiDatumModosit.getValue()));
+                kivalasztottTag.setTagNeme(nemValasztas());
+                //csak akkor módosuljon ha válaszottak neki ki bérletet TODO
+                if (ujBerletValasztas.getValue() !=null) {
+//                    for(KonditeremBerletVo berlet: konditer)
+                    kivalasztottTag.setBerletLejaratiIdeje(LocalDate.now());
+                    kivalasztottTag.setVasaroltBerletNeve("a");
+                    kivalasztottTag.setVasaroltBerletTipusa("b");
+                    //csak alkalmas bérletnél módosul
+                    kivalasztottTag.setMennyiAlkalomMeg(0);
+
+                }
+
+                // le kell kérni a tag képt és ha nem módusl a kép akkor a kép az maradjon ami volt TODO
+
+                konditeremTagSzolgaltatas.frissitKonditeremTagot(kivalasztottTag);
+                logolo.debug("A " + kivalasztottTag.getId() + " id-val rendelkező tag megváltozott!");
+                KiegeszitoFelulet.ertesites("Tag módosítása", "Sikeres módosítás.", "Sikeres módosítás.", "Fő ablakban a tag módodosítása tabon.", Pos.BOTTOM_RIGHT, 5);
+
+                adatFrissites();
+                logolo.info("Sikeres tag módosítás!");
+
+            } else {
+                KiegeszitoFelulet.ertesites("Tag módosítása", "Nem történt módosítás.", "Nem történt módosítása.", "Fő ablakban a tag módodosítása tabon.", Pos.BOTTOM_RIGHT, 5);
+                logolo.info("Nem történt tag módosítása.");
+            }
+        } else {
+            //TODO
+            // gomb letiltása
+//            KiegeszitoFelulet.ertesites("Tag módosítása", "Sikeres módosítás.", "Sikeres módosítás.", "Fő ablakban a tag módodosítása tabon.", Pos.TOP_CENTER, 2);
+
+            logolo.info("Nem volt változás a tag adataiban!");
+
+        }
+
+
     }
 
     private void oszlopokBerlet() {
@@ -729,7 +806,7 @@ public class KondiBazisFoAblakKezelo implements Initializable {
 
         });
 
-        berletLejaratiDatuma = new TableColumn<>("Berlet Lejárati Dátuma");
+        berletLejaratiDatuma = new TableColumn<>("Bérlet Lejárati Dátuma");
         berletLejaratiDatuma.setMaxWidth(4800);
         berletLejaratiDatuma.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
         berletLejaratiDatuma.setCellFactory(param -> new TableCell<TagAdatok, TagAdatok>() {

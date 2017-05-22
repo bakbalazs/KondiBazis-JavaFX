@@ -1,6 +1,7 @@
 package hu.unideb.inf.kondibazis.szolg.impl;
 
 import hu.unideb.inf.kondibazis.db.entitas.Konditerem;
+import hu.unideb.inf.kondibazis.db.tarolo.KonditeremBerletTarolo;
 import hu.unideb.inf.kondibazis.db.tarolo.KonditeremTarolo;
 import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremSzolgaltatas;
 import hu.unideb.inf.kondibazis.szolg.mapper.KonditeremMapper;
@@ -179,14 +180,23 @@ public class KonditeremSzolgaltatasImpl implements KonditeremSzolgaltatas {
         return berletTipusDiagramAdatok;
     }
 
+    /**
+     * {@inheritDoc}
+     * <p>
+     * Ebben az implementációban
+     * a metódus megkeresi az adatbázisban az összes konditermet, majd visszaadja egy listában.
+     * A műveletet a {@link KonditeremBerletTarolo#findAll()}  KonditeremBerletTarolo.findAll()}
+     * metódus segítségével hajtja végre. Ennek eredményeképp kapunk egy listát amely tartalmazza az összes adatbázisban szereplő
+     * bérletet. A szolgáltatás ezen lista elemeit átmappelve egy listában adja vissza eredményül.
+     */
     @Override
     public List<KonditeremVo> osszesKonditerem() {
         List<Konditerem> osszesKonditerem = konditeremTarolo.findAll();
 
         if (osszesKonditerem == null) {
-			logolo.warn("Nincs regisztralt terem!");
+            logolo.warn("Nincs regisztralt terem!");
         } else {
-			logolo.debug(osszesKonditerem.size() + " regisztralt konditerem talalhato.");
+            logolo.debug(osszesKonditerem.size() + " regisztralt konditerem talalhato.");
         }
 
         return KonditeremMapper.toVo(osszesKonditerem);

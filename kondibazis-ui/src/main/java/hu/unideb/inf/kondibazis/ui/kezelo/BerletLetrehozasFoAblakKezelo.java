@@ -8,6 +8,7 @@ import hu.unideb.inf.kondibazis.szolg.vo.KonditeremVo;
 import hu.unideb.inf.kondibazis.ui.kiegeszito.KiegeszitoFelulet;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
@@ -122,6 +123,9 @@ public class BerletLetrehozasFoAblakKezelo implements Initializable {
     @FXML
     public void letrehozas() {
 
+        // TODO
+        // ha már létezik egy bérlet nével akkor ne leheseen létrehozni még1 et
+
         boolean mehetAlkalmas = true;
         boolean mehetIdokorlatos = true;
 
@@ -170,7 +174,7 @@ public class BerletLetrehozasFoAblakKezelo implements Initializable {
                 foAblakKezelo.adatFrissites();
 
                 ((Stage) megseGomb.getScene().getWindow()).close();
-                KiegeszitoFelulet.ertesites("Bérlet Létrehozása", "A bérlet sikeresen létrehozva!", "A bérlet sikeresen létrehozva : " + berletnevBevitel.getText() + " névvel.", "Bérlet létrehozása után.");
+                KiegeszitoFelulet.ertesites("Bérlet Létrehozása", "A bérlet sikeresen létrehozva!", "A bérlet sikeresen létrehozva : " + berletnevBevitel.getText() + " névvel.", "Bérlet létrehozása után.", Pos.BOTTOM_RIGHT, 5);
             }
 
         } else if (berlettipusValasztasa.getValue().equals("Időkorlátos bérlet")) {
@@ -225,7 +229,7 @@ public class BerletLetrehozasFoAblakKezelo implements Initializable {
                 foAblakKezelo.adatFrissites();
 
                 ((Stage) megseGomb.getScene().getWindow()).close();
-                KiegeszitoFelulet.ertesites("Bérlet Létrehozása", "A bérlet sikeresen létrehozva!", "A bérlet sikeresen létrehozva : " + berletnevBevitel.getText() + " névvel.", "Bérlet létrehozása után.");
+                KiegeszitoFelulet.ertesites("Bérlet Létrehozása", "A bérlet sikeresen létrehozva!", "A bérlet sikeresen létrehozva : " + berletnevBevitel.getText() + " névvel.", "Bérlet létrehozása után.", Pos.BOTTOM_RIGHT, 5);
             }
         }
 

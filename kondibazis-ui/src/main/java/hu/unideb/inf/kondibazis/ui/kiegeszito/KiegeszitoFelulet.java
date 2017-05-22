@@ -20,17 +20,17 @@ public class KiegeszitoFelulet {
 
     private static Logger logolo = LoggerFactory.getLogger(KiegeszitoFelulet.class);
 
-    public static void ertesites(String cim, String megjelenoSzoveg, String logoloSzoveg, String feluletNeve) {
+    public static void ertesites(String cim, String megjelenoSzoveg, String logoloSzoveg, String feluletNeve, Pos helyzet, int mennyiIdeig) {
         Image pipa = new Image("/kepek/pipaErtesites.png", 85.0, 85.0, true, true);
         Notifications ertesites = Notifications.create().title(cim).text(megjelenoSzoveg)
-                .graphic(new ImageView(pipa)).hideAfter(Duration.seconds(5)).position(Pos.BOTTOM_RIGHT)
+                .graphic(new ImageView(pipa)).hideAfter(Duration.seconds(mennyiIdeig)).position(helyzet)
                 .onAction(event -> logolo.info("Az értesítésre kattintottak: " + feluletNeve));
         logolo.info(logoloSzoveg);
         ertesites.show();
     }
 
-    public static boolean kijeletkezesMegerositesFelulet(String cim, String fejlec, String tartalom, Alert.AlertType alertType) {
-        logolo.info("Kijeletkezés megerősítrése ablak.");
+    public static boolean megerositesFelulet(String cim, String fejlec, String tartalom, String igenGombNev, String nemGombNev,  Alert.AlertType alertType) {
+        logolo.info(cim);
         final Alert alert = new Alert(alertType);
         alert.setTitle(cim);
         alert.setHeaderText(fejlec);
@@ -41,13 +41,13 @@ public class KiegeszitoFelulet {
         alert.getButtonTypes().clear();
         alert.getButtonTypes().addAll(ButtonType.YES, ButtonType.NO);
 
-        Button yesButton = (Button) alert.getDialogPane().lookupButton(ButtonType.YES);
-        yesButton.setText("Kijeletkezés");
-        yesButton.setDefaultButton(false);
+        Button igenGomb = (Button) alert.getDialogPane().lookupButton(ButtonType.YES);
+        igenGomb.setText(igenGombNev);
+        igenGomb.setDefaultButton(false);
 
-        Button noButton = (Button) alert.getDialogPane().lookupButton(ButtonType.NO);
-        noButton.setText("Mégsem");
-        noButton.setDefaultButton(true);
+        Button nemGomb = (Button) alert.getDialogPane().lookupButton(ButtonType.NO);
+        nemGomb.setText(nemGombNev);
+        nemGomb.setDefaultButton(false);
 
         final Optional<ButtonType> result = alert.showAndWait();
         return result.get() == ButtonType.YES;

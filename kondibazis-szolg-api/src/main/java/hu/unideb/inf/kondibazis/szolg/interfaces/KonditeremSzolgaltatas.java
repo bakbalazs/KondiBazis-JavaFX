@@ -53,6 +53,7 @@ public interface KonditeremSzolgaltatas {
     /**
      * Ez a szolgáltatás egy adatbázsiban már szereplő konditerem adatait frissíti, azaz
      * módosítja az adatbázisban úgy, hogy az megfeleljen a paraméterül kapott konditerem adataival.
+     *
      * @param konditerem Az a módosított adatokkal rendelkező konditerem, amelyet szeretnénk perzisztálni.
      * @return A frissített konditerem amely már szerepel az adatbázisban.
      */
@@ -70,6 +71,10 @@ public interface KonditeremSzolgaltatas {
     //TODO
     Map<String, Long> berlettipusDiagramKonditeremTagokhoz(KonditeremVo konditerem);
 
+    /**
+     * Visszaadja az adatbázisban szereplő összes konditermet egy listában.
+     *
+     * @return Egy lista az adatbázisban lévő összes konditeremről.
+     */
     List<KonditeremVo> osszesKonditerem();
-
 }

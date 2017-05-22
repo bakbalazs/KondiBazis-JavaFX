@@ -39,6 +39,4 @@ public interface TelepulesekTarolo extends JpaRepository<Telepulesek, Long> {
      */
     Telepulesek findBytelepulesnev(String telepulesnev);
 
-    Telepulesek findBymegye(String megyeNeve);
-
 }

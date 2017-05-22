@@ -1,3 +1,4 @@
+// CHECKSTYLE:OFF
 package hu.unideb.inf.kondibazis.szolg.mapper;
 
 import hu.unideb.inf.kondibazis.db.entitas.Konditerem;

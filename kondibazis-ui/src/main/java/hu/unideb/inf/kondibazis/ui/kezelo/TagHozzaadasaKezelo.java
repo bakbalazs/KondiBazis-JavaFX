@@ -7,6 +7,7 @@ import hu.unideb.inf.kondibazis.ui.felulet.FeluletBetoltese;
 import hu.unideb.inf.kondibazis.ui.kiegeszito.KiegeszitoFelulet;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -146,14 +147,15 @@ public class TagHozzaadasaKezelo implements Initializable {
 
         List<KonditeremBerletVo> konditeremBerletek = konditeremBerletSzolgaltatas
                 .konditeremOsszesBerlete(bejelentkezettKonditerem);
+        logolo.debug("A bejelentkezett konditrem bérletei: " + konditeremBerletek);
         for (KonditeremBerletVo berletek : konditeremBerletek) {
             berletValasztas.getItems().add(berletek.getBerletNeve());
         }
+        logolo.info("A berletek neveinek betöltese kesz a választo listaba.");
 
         List<TelepulesekVo> telepulesek = telepulesekSzolgaltatas.osszesTelepules();
 
         ArrayList<String> telepulesNevek = new ArrayList<>();
-
 
         for (TelepulesekVo telep : telepulesek) {
             telepulesNevek.add(telep.getTelepulesnev());
@@ -184,7 +186,7 @@ public class TagHozzaadasaKezelo implements Initializable {
 
             kepMegjelenites.setImage(image);
             vanKep = true;
-            logolo.debug("A kiválasztott kép beállítva.");
+            logolo.debug("A kiválasztott kep beallítva.");
             tallozasGomb.setText("Módosítás");
 
         } else {
@@ -218,13 +220,13 @@ public class TagHozzaadasaKezelo implements Initializable {
             vanKep = false;
             kepMegjelenites.setImage(nincsKep);
             tallozasGomb.setText("Tallózás");
-            logolo.debug("Nincs kép kiválasztva, a NincsKep kép lesz berakva");
+            logolo.debug("Nincs kep kivalasztva, a NincsKep kep lesz berakva!");
         }
     }
 
     @FXML
     public void kepTorlese() {
-        logolo.debug("Kép törlésére kattintva.\n Nincs kép kép berakva.");
+        logolo.debug("Kep torlesere kattintva.\n Nincs kep kep berakva.");
         kepMegjelenites.setImage(nincsKep);
         tallozasGomb.setText("Tallózás");
         vanKep = false;
@@ -241,64 +243,75 @@ public class TagHozzaadasaKezelo implements Initializable {
             vezeteknevEllenoriz.setImage(FeluletBetoltese.rosszBeirt);
             mehet = false;
             kotelezo = true;
+            logolo.debug("Nincs megadva vezeteknev!");
         } else {
             vezeteknevEllenoriz.setImage(FeluletBetoltese.joBeirt);
             mehet = true;
+            logolo.debug("Vezeteknev megadva!");
         }
 
         if (keresztnevBevitel.getText().isEmpty()) {
             keresztnevEllenoriz.setImage(FeluletBetoltese.rosszBeirt);
             mehet = false;
             kotelezo = true;
+            logolo.debug("Nincs megadva keresztnev!");
         } else {
             keresztnevEllenoriz.setImage(FeluletBetoltese.joBeirt);
             mehet = true;
+            logolo.debug("Keresztnev megadva!");
         }
 
         if (!ferfiValasztasGomb.isSelected() && !noValasztasGomb.isSelected()) {
             nemEllenoriz.setImage(FeluletBetoltese.rosszBeirt);
             mehet = false;
             kotelezo = true;
+            logolo.debug("Nincs kivalasztva sem a no sem a ferfi");
         } else if (ferfiValasztasGomb.isSelected() || noValasztasGomb.isSelected()) {
             nemEllenoriz.setImage(FeluletBetoltese.joBeirt);
             mehet = true;
-
+            logolo.debug("No vagy ferfi kiválasztva");
         }
 
         if (szuldatumBevitel.getValue() == null) {
             szuldatumEllenoriz.setImage(FeluletBetoltese.rosszBeirt);
             mehet = false;
             kotelezo = true;
+            logolo.debug("Nincs megadva szuletesi datum!");
         } else {
             tagKora = korSzamolas(szuldatumBevitel.getValue());
             szuldatumEllenoriz.setImage(FeluletBetoltese.joBeirt);
             mehet = true;
+            logolo.debug("Szuletesi datum megadva!");
         }
 
         if (varosNevBevitel.getText().isEmpty()) {
             varosEllenoriz.setImage(FeluletBetoltese.rosszBeirt);
             mehet = false;
             kotelezo = true;
+            logolo.debug("Nincs megadva a tag varosanak a neve!");
         } else {
             varosEllenoriz.setImage(FeluletBetoltese.joBeirt);
             mehet = true;
+            logolo.debug("Tag varosanak a neve megadva!");
         }
 
         if (berletValasztas.getValue() == null) {
             berletvalasztasEllenoriz.setImage(FeluletBetoltese.rosszBeirt);
             mehet = false;
             kotelezo = true;
+            logolo.debug("Nem tortent berlet kivalasztas!");
         } else {
             berletvalasztasEllenoriz.setImage(FeluletBetoltese.joBeirt);
             mehet = true;
+            logolo.debug("Berlet kivalasztva!");
         }
 
         if (kotelezo) {
             tagHozzaadasUzenet.setFill(Color.RED);
             tagHozzaadasUzenet.setText("A csilaggal megjelölt adatok megadása kötelező!");
+            logolo.debug("A csilaggal megjelölt dolgok nem lettek megadva!");
             mehet = false;
         } else if (mehet) {
-
             KonditeremTagVo ujTag = new KonditeremTagVo();
             KonditeremTagKepeVo ujTagKepe = new KonditeremTagKepeVo();
             ujTag.setTagNeve(vezeteknevBevitel.getText() + " " + keresztnevBevitel.getText());
@@ -312,10 +325,10 @@ public class TagHozzaadasaKezelo implements Initializable {
 
             List<KonditeremBerletVo> konditeremBerletek = konditeremBerletSzolgaltatas
                     .konditeremOsszesBerlete(bejelentkezettKonditerem);
+
             for (KonditeremBerletVo berletek : konditeremBerletek) {
-                System.out.println(berletek.getBerletNeve());
-                /// ha tarlmaza hogy időkorlátos akkor a napot hónapot ha tatlamaz hogy alkalmas akkor a menyi alkalommal dolgot mentse
-                if (berletValasztas.getValue().contains("Időkorlátos")) {
+
+                if (berletValasztas.getValue().equals(berletek.getBerletNeve()) && berletValasztas.getValue().contains("Időkorlátos")) {
                     int nap = berletek.getMennyiNap();
                     int honap = berletek.getMennyiHonap();
                     ujTag.setVasaroltBerletTipusa(berletek.getBerletTipusa());
@@ -327,7 +340,8 @@ public class TagHozzaadasaKezelo implements Initializable {
                     ujTag.setKonditeremBerlet(berletek);
                     break;
                 }
-                if (berletValasztas.getValue().contains("Alkalmas")) {
+
+                if (berletValasztas.getValue().equals(berletek.getBerletNeve()) && berletValasztas.getValue().contains("Alkalmas")) {
                     int alkalom = berletek.getMennyiAlkalom();
                     if (alkalom > 0) {
                         ujTag.setVasaroltBerletTipusa(berletek.getBerletTipusa());
@@ -340,6 +354,7 @@ public class TagHozzaadasaKezelo implements Initializable {
 
             }
 
+            ujTag.setLejartBerletNeve("Nem volt még bérlete!");
             ujTag.setTagVarosa(varosNevBevitel.getText());
             ujTag.setTagMegyeje(megyeNev);
 
@@ -363,7 +378,7 @@ public class TagHozzaadasaKezelo implements Initializable {
             foAblakKezelo.adatFrissites();
 
             ((Stage) megseGomb.getScene().getWindow()).close();
-            KiegeszitoFelulet.ertesites("Tag Hozzáadása", "A tag sikeresen hozzáadva!", "Tag sikeresen hozzáadava : " + vezeteknevBevitel.getText() + " " + keresztnevBevitel.getText() + "névvel.", "Tag létrehozása után.");
+            KiegeszitoFelulet.ertesites("Tag Hozzáadása", "A tag sikeresen hozzáadva!", "Tag sikeresen hozzáadava : " + vezeteknevBevitel.getText() + " " + keresztnevBevitel.getText() + "névvel.", "Tag létrehozása után.", Pos.BOTTOM_RIGHT, 5);
         }
     }
 
@@ -374,9 +389,11 @@ public class TagHozzaadasaKezelo implements Initializable {
     private String nemValasztas() {
         String tagNeme = null;
         if (ferfiValasztasGomb.isSelected()) {
+            logolo.debug("Ferfi gombra kattintva!");
             tagNeme = "Férfi";
         } else if (noValasztasGomb.isSelected()) {
             tagNeme = "Nő";
+            logolo.debug("No gombra kattintva!");
         }
 
         return tagNeme;

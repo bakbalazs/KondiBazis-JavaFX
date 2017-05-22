@@ -28,6 +28,15 @@ public interface KonditeremTagTarolo extends JpaRepository<KonditeremTag, Long> 
      */
     List<KonditeremTag> findByKonditerem(Konditerem konditerem);
 
+    /**
+     * Olyan bérletet keres az adatbázsiban, amelyek egy bizonyos konditerem taghoz tartoznak.
+     * A metódushoz tartozó lekérdezést a spring készíti el a metódus neve alapján, ezért a
+     * findBy használata szükséges a metódus nevében, valamint ezt követően az a mező, ami a {@code where}
+     * feltételben szerepelni fog.
+     *
+     * @param konditeremTag Az a konditerem tag aminek meg kell egyeznie a talált taghoz tartozó bérlettel.
+     * @return Egy bérletet ad vissza amely a metódus paraméterként megadott konditerem taghoz tartozik.
+     */
     KonditeremBerlet findByKonditeremBerlet(KonditeremTag konditeremTag);
 
 }

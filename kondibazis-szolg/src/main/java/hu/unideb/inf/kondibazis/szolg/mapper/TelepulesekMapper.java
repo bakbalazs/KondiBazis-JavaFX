@@ -1,3 +1,4 @@
+// CHECKSTYLE:OFF
 package hu.unideb.inf.kondibazis.szolg.mapper;
 
 import hu.unideb.inf.kondibazis.db.entitas.Telepulesek;
@@ -9,39 +10,39 @@ import java.util.List;
 
 public class TelepulesekMapper {
 
-	private static ModelMapper mapper = new ModelMapper();
+    private static ModelMapper mapper = new ModelMapper();
 
-	public static TelepulesekVo toVo(Telepulesek telepulesekDto) {
-		if (telepulesekDto == null) {
+    public static TelepulesekVo toVo(Telepulesek telepulesekDto) {
+        if (telepulesekDto == null) {
 
-			return null;
+            return null;
 
-		}
-		return mapper.map(telepulesekDto, TelepulesekVo.class);
-	}
+        }
+        return mapper.map(telepulesekDto, TelepulesekVo.class);
+    }
 
-	public static Telepulesek toDto(TelepulesekVo telepulesekVo) {
-		if (telepulesekVo == null) {
+    public static Telepulesek toDto(TelepulesekVo telepulesekVo) {
+        if (telepulesekVo == null) {
 
-			return null;
-		}
-		return mapper.map(telepulesekVo, Telepulesek.class);
-	}
+            return null;
+        }
+        return mapper.map(telepulesekVo, Telepulesek.class);
+    }
 
-	public static List<TelepulesekVo> toVo(List<Telepulesek> telepulesekDtos) {
-		List<TelepulesekVo> telepulesekVos = new ArrayList<>();
-		for (Telepulesek telepulesekDto : telepulesekDtos) {
-			telepulesekVos.add(toVo(telepulesekDto));
-		}
-		return telepulesekVos;
-	}
+    public static List<TelepulesekVo> toVo(List<Telepulesek> telepulesekDtos) {
+        List<TelepulesekVo> telepulesekVos = new ArrayList<>();
+        for (Telepulesek telepulesekDto : telepulesekDtos) {
+            telepulesekVos.add(toVo(telepulesekDto));
+        }
+        return telepulesekVos;
+    }
 
-	public static List<Telepulesek> toDto(List<TelepulesekVo> telepulesekVos) {
-		List<Telepulesek> telepulesekDtos = new ArrayList<>();
-		for (TelepulesekVo telepulesekVo : telepulesekVos) {
-			telepulesekDtos.add(toDto(telepulesekVo));
-		}
-		return telepulesekDtos;
-	}
+    public static List<Telepulesek> toDto(List<TelepulesekVo> telepulesekVos) {
+        List<Telepulesek> telepulesekDtos = new ArrayList<>();
+        for (TelepulesekVo telepulesekVo : telepulesekVos) {
+            telepulesekDtos.add(toDto(telepulesekVo));
+        }
+        return telepulesekDtos;
+    }
 
 }

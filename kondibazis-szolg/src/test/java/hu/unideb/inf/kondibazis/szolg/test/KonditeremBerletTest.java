@@ -6,7 +6,6 @@ import hu.unideb.inf.kondibazis.db.tarolo.KonditeremBerletTarolo;
 import hu.unideb.inf.kondibazis.db.tarolo.KonditeremTarolo;
 import hu.unideb.inf.kondibazis.szolg.impl.KonditeremBerletSzolgaltatasImpl;
 import hu.unideb.inf.kondibazis.szolg.impl.KonditeremSzolgaltatasImpl;
-import hu.unideb.inf.kondibazis.szolg.mapper.KonditeremBerletMapper;
 import hu.unideb.inf.kondibazis.szolg.mapper.KonditeremMapper;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremBerletVo;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremVo;
@@ -14,9 +13,7 @@ import org.junit.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
 import org.mockito.*;
-import org.mockito.invocation.InvocationOnMock;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.mockito.stubbing.Answer;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -231,21 +228,6 @@ public class KonditeremBerletTest {
 
         Assert.assertNotNull(konditeremBerletei);
         Assert.assertEquals(3, konditeremBerletei.size());
-    }
-
-    @Test(expected=NullPointerException.class)
-    public void _5torolKonditeremBerletTeszt(){
-
-        try {
-            konditeremBerletSzolgaltatas.torolKonditeremBerletet(KonditeremBerletMapper.toVo(tesztKonditeremABerletei.get(0)));
-        } catch (NullPointerException npe) {
-            Assert.fail();
-        }
-
-        KonditeremBerletVo berlet = new KonditeremBerletVo();
-
-        konditeremBerletSzolgaltatas.torolKonditeremBerletet(berlet);
-
     }
 
 }

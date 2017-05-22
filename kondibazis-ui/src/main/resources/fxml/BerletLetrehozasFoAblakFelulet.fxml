@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-          prefHeight="456.0" prefWidth="383.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-          fx:controller="hu.unideb.inf.kondibazis.ui.kezelo.BerletLetrehozasFoAblakKezelo">
+
+<GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="456.0" prefWidth="383.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.kondibazis.ui.kezelo.BerletLetrehozasFoAblakKezelo">
     <columnConstraints>
-        <ColumnConstraints/>
+        <ColumnConstraints />
     </columnConstraints>
     <rowConstraints>
-        <RowConstraints/>
-        <RowConstraints/>
-        <RowConstraints maxHeight="78.0" minHeight="45.0" prefHeight="45.0"/>
-        <RowConstraints maxHeight="106.0" minHeight="54.0" prefHeight="60.0"/>
-        <RowConstraints maxHeight="63.0" minHeight="37.0" prefHeight="46.0"/>
-        <RowConstraints maxHeight="284.0" minHeight="219.0" prefHeight="219.0"/>
-        <RowConstraints maxHeight="96.0" minHeight="39.0" prefHeight="39.0"/>
-        <RowConstraints maxHeight="90.0" minHeight="21.0" prefHeight="67.0"/>
+        <RowConstraints />
+        <RowConstraints />
+        <RowConstraints maxHeight="78.0" minHeight="45.0" prefHeight="45.0" />
+        <RowConstraints maxHeight="106.0" minHeight="54.0" prefHeight="60.0" />
+        <RowConstraints maxHeight="63.0" minHeight="37.0" prefHeight="46.0" />
+        <RowConstraints maxHeight="284.0" minHeight="219.0" prefHeight="219.0" />
+        <RowConstraints maxHeight="96.0" minHeight="39.0" prefHeight="39.0" />
+        <RowConstraints maxHeight="90.0" minHeight="21.0" prefHeight="67.0" />
     </rowConstraints>
     <children>
         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
@@ -27,7 +27,7 @@
                     <children>
                         <Text fill="#b80000" strokeType="OUTSIDE" strokeWidth="0.0" text="KondiBázis">
                             <font>
-                                <Font size="18.0"/>
+                                <Font size="18.0" />
                             </font>
                         </Text>
                     </children>
@@ -40,7 +40,7 @@
                     <children>
                         <Text fill="#b80000" strokeType="OUTSIDE" strokeWidth="0.0" text="Bérlettípus Létrehozása">
                             <font>
-                                <Font size="18.0"/>
+                                <Font size="18.0" />
                             </font>
                         </Text>
                     </children>
@@ -51,107 +51,93 @@
             <children>
                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="383.0">
                     <children>
-                        <Text fx:id="bejelentkezett_Konditerem" strokeType="OUTSIDE" strokeWidth="0.0"/>
+                        <Text fx:id="bejelentkezett_Konditerem" strokeType="OUTSIDE" strokeWidth="0.0" />
                     </children>
                 </VBox>
             </children>
         </HBox>
         <GridPane prefHeight="309.0" prefWidth="383.0" GridPane.rowIndex="5">
             <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints maxHeight="151.0" minHeight="10.0" prefHeight="52.0" vgrow="SOMETIMES"/>
-                <RowConstraints maxHeight="151.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES"/>
-                <RowConstraints maxHeight="183.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES"/>
-                <RowConstraints maxHeight="107.0" minHeight="0.0" prefHeight="40.0" vgrow="SOMETIMES"/>
-                <RowConstraints maxHeight="118.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES"/>
-                <RowConstraints maxHeight="54.0" minHeight="0.0" prefHeight="7.0" vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="151.0" minHeight="10.0" prefHeight="52.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="151.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="183.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="107.0" minHeight="0.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="118.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="54.0" minHeight="0.0" prefHeight="7.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
                 <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                     <children>
                         <VBox alignment="CENTER" prefHeight="53.0" prefWidth="191.0">
                             <children>
-                                <Text strokeType="OUTSIDE" strokeWidth="2.0"
-                                      text="Milyen tipusú bérletet akar létrehozni?" wrappingWidth="157.76953125"/>
+                                <Text strokeType="OUTSIDE" strokeWidth="2.0" text="Milyen tipusú bérletet akar létrehozni?" wrappingWidth="157.76953125" />
                             </children>
                         </VBox>
                     </children>
                 </HBox>
-                <Text fx:id="berletnapSzoveg" strokeType="OUTSIDE" strokeWidth="0.0" text="Mennyi napig használható:*"
-                      GridPane.rowIndex="3">
+                <Text fx:id="berletnapSzoveg" strokeType="OUTSIDE" strokeWidth="0.0" text="Mennyi napig használható:*" GridPane.rowIndex="3">
                     <GridPane.margin>
-                        <Insets left="18.0"/>
+                        <Insets left="18.0" />
                     </GridPane.margin>
                 </Text>
-                <Text fx:id="alkalomSzoveg" strokeType="OUTSIDE" strokeWidth="0.0"
-                      text="Mennyi alkalommal használható:*" GridPane.rowIndex="3">
+                <Text fx:id="alkalomSzoveg" strokeType="OUTSIDE" strokeWidth="0.0" text="Mennyi alkalommal használható:*" GridPane.rowIndex="3">
                     <GridPane.margin>
-                        <Insets left="18.0"/>
+                        <Insets left="18.0" />
                     </GridPane.margin>
                 </Text>
-                <TextField fx:id="napBevitel" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0"
-                           prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="22.0" prefWidth="25.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+                <Text fx:id="berletnevSzoveg" strokeType="OUTSIDE" strokeWidth="0.0" text="Bérlet neve:*" GridPane.rowIndex="1">
                     <GridPane.margin>
-                        <Insets left="5.0"/>
+                        <Insets left="18.0" />
+                    </GridPane.margin>
+                </Text>
+                <TextField fx:id="berletnevBevitel" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <GridPane.margin>
+                        <Insets left="5.0" />
                     </GridPane.margin>
                 </TextField>
-                <TextField fx:id="alakomBevitel" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0"
-                           prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                <TextField fx:id="berletaraBevitel" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                     <GridPane.margin>
-                        <Insets left="5.0"/>
+                        <Insets left="5.0" />
                     </GridPane.margin>
                 </TextField>
-                <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="22.0" prefWidth="25.0"
-                      GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3"/>
-                <Text fx:id="berletnevSzoveg" strokeType="OUTSIDE" strokeWidth="0.0" text="Bérlet neve:*"
-                      GridPane.rowIndex="1">
+                <TextField fx:id="alakomBevitel" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                     <GridPane.margin>
-                        <Insets left="18.0"/>
-                    </GridPane.margin>
-                </Text>
-                <TextField fx:id="berletnevBevitel" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0"
-                           prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                    <GridPane.margin>
-                        <Insets left="5.0"/>
+                        <Insets left="5.0" />
                     </GridPane.margin>
                 </TextField>
-                <TextField fx:id="berletaraBevitel" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0"
-                           prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                <TextField fx:id="napBevitel" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                     <GridPane.margin>
-                        <Insets left="5.0"/>
+                        <Insets left="5.0" />
                     </GridPane.margin>
                 </TextField>
-                <Text fx:id="ftJel" strokeType="OUTSIDE" strokeWidth="0.0" text="Ft" wrappingWidth="13.92578125"
-                      GridPane.columnIndex="1" GridPane.rowIndex="2">
+                <TextField fx:id="honapBevitel" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                     <GridPane.margin>
-                        <Insets left="155.0"/>
-                    </GridPane.margin>
-                </Text>
-                <Text fx:id="berletaraSzoveg" strokeType="OUTSIDE" strokeWidth="0.0" text="Bérlet ára:*"
-                      GridPane.rowIndex="2">
-                    <GridPane.margin>
-                        <Insets left="18.0"/>
-                    </GridPane.margin>
-                </Text>
-                <TextField fx:id="honapBevitel" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0"
-                           prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
-                    <GridPane.margin>
-                        <Insets left="5.0"/>
+                        <Insets left="5.0" />
                     </GridPane.margin>
                 </TextField>
-                <Text fx:id="berlethonapSzoveg" strokeType="OUTSIDE" strokeWidth="0.0"
-                      text="Mennyi hónapig használható:*" GridPane.rowIndex="4">
+                <Text fx:id="ftJel" strokeType="OUTSIDE" strokeWidth="0.0" text="Ft" wrappingWidth="13.92578125" GridPane.columnIndex="1" GridPane.rowIndex="2">
                     <GridPane.margin>
-                        <Insets left="18.0"/>
+                        <Insets left="155.0" />
                     </GridPane.margin>
                 </Text>
-                <ChoiceBox fx:id="berlettipusValasztasa" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0"
-                           prefWidth="150.0" GridPane.columnIndex="1">
+                <Text fx:id="berletaraSzoveg" strokeType="OUTSIDE" strokeWidth="0.0" text="Bérlet ára:*" GridPane.rowIndex="2">
                     <GridPane.margin>
-                        <Insets left="5.0"/>
+                        <Insets left="18.0" />
+                    </GridPane.margin>
+                </Text>
+                <Text fx:id="berlethonapSzoveg" strokeType="OUTSIDE" strokeWidth="0.0" text="Mennyi hónapig használható:*" GridPane.rowIndex="4">
+                    <GridPane.margin>
+                        <Insets left="18.0" />
+                    </GridPane.margin>
+                </Text>
+                <ChoiceBox fx:id="berlettipusValasztasa" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="150.0" GridPane.columnIndex="1">
+                    <GridPane.margin>
+                        <Insets left="5.0" />
                     </GridPane.margin>
                 </ChoiceBox>
             </children>
@@ -160,19 +146,16 @@
             <children>
                 <VBox alignment="CENTER" prefHeight="31.0" prefWidth="192.0">
                     <children>
-                        <Button fx:id="letrehozasGomb" onAction="#letrehozas" text="Létrehozás"/>
+                        <Button fx:id="letrehozasGomb" onAction="#letrehozas" text="Létrehozás" />
                     </children>
                 </VBox>
                 <VBox alignment="CENTER" prefHeight="31.0" prefWidth="192.0">
                     <children>
-                        <Button fx:id="megseGomb" mnemonicParsing="false" onAction="#megse" text="Mégse"/>
+                        <Button fx:id="megseGomb" mnemonicParsing="false" onAction="#megse" text="Mégse" />
                     </children>
                 </VBox>
             </children>
         </HBox>
-        <Text fx:id="berletletrehozasUzenet" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER"
-              wrappingWidth="383.0" GridPane.rowIndex="7"/>
+        <Text fx:id="berletletrehozasUzenet" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="383.0" GridPane.rowIndex="7" />
     </children>
 </GridPane>
-
-
