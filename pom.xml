@@ -26,7 +26,7 @@
             </roles>
         </developer>
     </developers>
-
+    
     <scm>
         <url>https://github.com/bakbalazs/KondiBazis-JavaFx.git</url>
         <connection>scm:git:git://github.com/bakbalazs/KondiBazis-JavaFx.git</connection>
@@ -37,13 +37,6 @@
     <organization>
         <name>Debreceni Egyetem Informatika Kar</name>
     </organization>
-
-    <licenses>
-        <license>
-            <name>GNU GPL V3</name>
-            <url>http://www.gnu.org/licenses/gpl.html</url>
-        </license>
-    </licenses>
 
     <modules>
         <module>kondibazis-db</module>
@@ -153,9 +146,9 @@
                 <reportSets>
                     <reportSet>
                         <id>aggregate</id>
-                        <inherited>false</inherited>
                         <reports>
                             <report>aggregate</report>
+                            <report>test-aggregate</report>
                         </reports>
                     </reportSet>
                 </reportSets>

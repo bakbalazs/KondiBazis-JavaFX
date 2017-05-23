@@ -40,118 +40,6 @@ public class TagAdatok {
         this.lejartBerletNeve = new SimpleStringProperty(lejartBerletNeve);
     }
 
-    public StringProperty getTagNeve() {
-        return tagNeve;
-    }
-
-    public void setTagNeve(String tagNeve) {
-        this.tagNeve.set(tagNeve);
-    }
-
-    public StringProperty getTagNeveProperty() {
-        return tagNeve;
-    }
-
-    public StringProperty getTagVezetekneve() {
-        return tagVezetekneve;
-    }
-
-    public void setTagVezetekneve(String tagVezetekneve) {
-        this.tagVezetekneve.set(tagVezetekneve);
-    }
-
-    public StringProperty getTagVezetekneveProperty() {
-        return tagVezetekneve;
-    }
-
-    public StringProperty getTagKeresztneve() {
-        return tagKeresztneve;
-    }
-
-    public void setTagKeresztneve(String tagKeresztneve) {
-        this.tagKeresztneve.set(tagKeresztneve);
-    }
-
-    public StringProperty getTagKeresztneveProperty() {
-        return tagKeresztneve;
-    }
-
-
-    public StringProperty getTagKora() {
-        return tagKora;
-    }
-
-    public void setTagKora(String tagKora) {
-        this.tagKora.set(tagKora);
-    }
-
-    public StringProperty getTagKoraProperty() {
-        return tagKora;
-    }
-
-
-    public StringProperty getBerletVasarlasIdeje() {
-        return berletVasarlasIdeje;
-    }
-
-    public void setBerletVasarlasIdeje(String berletVasarlasIdeje) {
-        this.berletVasarlasIdeje.set(berletVasarlasIdeje);
-    }
-
-    public StringProperty getBerletVasarlasIdejeProperty() {
-        return berletVasarlasIdeje;
-    }
-
-    public StringProperty getBerletLejaratiIdeje() {
-        return berletLejaratiIdeje;
-    }
-
-    public void setBerletLejaratiIdeje(String BerletLejaratiIdeje) {
-        this.berletLejaratiIdeje.set(BerletLejaratiIdeje);
-    }
-
-    public StringProperty getBerletLejaratiIdejeProperty() {
-        return berletLejaratiIdeje;
-    }
-
-
-    public StringProperty getTagNeme() {
-        return tagNeme;
-    }
-
-    public void setTagNeme(String tagNeme) {
-        this.tagNeme.set(tagNeme);
-    }
-
-    public StringProperty getTagNemeProperty() {
-        return tagNeme;
-    }
-
-    public StringProperty getMennyiAlkalom() {
-        return mennyiAlkalom;
-    }
-
-    public void setmennyiAlkalom(String mennyiAlkalom) {
-        this.mennyiAlkalom.set(mennyiAlkalom);
-    }
-
-    public StringProperty getMennyiAlkalomProperty() {
-        return mennyiAlkalom;
-    }
-
-
-    public StringProperty getVasaroltBerletNeve() {
-        return vasaroltBerletNeve;
-    }
-
-    public void setVasaroltBerletNeve(String vasaroltBerletNeve) {
-        this.vasaroltBerletNeve.set(vasaroltBerletNeve);
-    }
-
-    public StringProperty getVasaroltBerletNeveProperty() {
-        return vasaroltBerletNeve;
-    }
-
     public long getId() {
         return id;
     }
@@ -168,16 +56,123 @@ public class TagAdatok {
         this.tagSzuletesiIdeje = tagSzuletesiIdeje;
     }
 
-    public StringProperty getLejartBerletNeve() {
+    public String getTagNeve() {
+        return tagNeve.get();
+    }
+
+    public StringProperty tagNeveProperty() {
+        return tagNeve;
+    }
+
+    public void setTagNeve(String tagNeve) {
+        this.tagNeve.set(tagNeve);
+    }
+
+    public String getTagVezetekneve() {
+        return tagVezetekneve.get();
+    }
+
+    public StringProperty tagVezetekneveProperty() {
+        return tagVezetekneve;
+    }
+
+    public void setTagVezetekneve(String tagVezetekneve) {
+        this.tagVezetekneve.set(tagVezetekneve);
+    }
+
+    public String getTagKeresztneve() {
+        return tagKeresztneve.get();
+    }
+
+    public StringProperty tagKeresztneveProperty() {
+        return tagKeresztneve;
+    }
+
+    public void setTagKeresztneve(String tagKeresztneve) {
+        this.tagKeresztneve.set(tagKeresztneve);
+    }
+
+    public String getTagNeme() {
+        return tagNeme.get();
+    }
+
+    public StringProperty tagNemeProperty() {
+        return tagNeme;
+    }
+
+    public void setTagNeme(String tagNeme) {
+        this.tagNeme.set(tagNeme);
+    }
+
+    public String getTagKora() {
+        return tagKora.get();
+    }
+
+    public StringProperty tagKoraProperty() {
+        return tagKora;
+    }
+
+    public void setTagKora(String tagKora) {
+        this.tagKora.set(tagKora);
+    }
+
+    public String getBerletVasarlasIdeje() {
+        return berletVasarlasIdeje.get();
+    }
+
+    public StringProperty berletVasarlasIdejeProperty() {
+        return berletVasarlasIdeje;
+    }
+
+    public void setBerletVasarlasIdeje(String berletVasarlasIdeje) {
+        this.berletVasarlasIdeje.set(berletVasarlasIdeje);
+    }
+
+    public String getBerletLejaratiIdeje() {
+        return berletLejaratiIdeje.get();
+    }
+
+    public StringProperty berletLejaratiIdejeProperty() {
+        return berletLejaratiIdeje;
+    }
+
+    public void setBerletLejaratiIdeje(String berletLejaratiIdeje) {
+        this.berletLejaratiIdeje.set(berletLejaratiIdeje);
+    }
+
+    public String getVasaroltBerletNeve() {
+        return vasaroltBerletNeve.get();
+    }
+
+    public StringProperty vasaroltBerletNeveProperty() {
+        return vasaroltBerletNeve;
+    }
+
+    public void setVasaroltBerletNeve(String vasaroltBerletNeve) {
+        this.vasaroltBerletNeve.set(vasaroltBerletNeve);
+    }
+
+    public String getMennyiAlkalom() {
+        return mennyiAlkalom.get();
+    }
+
+    public StringProperty mennyiAlkalomProperty() {
+        return mennyiAlkalom;
+    }
+
+    public void setMennyiAlkalom(String mennyiAlkalom) {
+        this.mennyiAlkalom.set(mennyiAlkalom);
+    }
+
+    public String getLejartBerletNeve() {
+        return lejartBerletNeve.get();
+    }
+
+    public StringProperty lejartBerletNeveProperty() {
         return lejartBerletNeve;
     }
 
     public void setLejartBerletNeve(String lejartBerletNeve) {
         this.lejartBerletNeve.set(lejartBerletNeve);
     }
-
-    public StringProperty getLejartBerletNeveProperty() {
-        return lejartBerletNeve;
-    }
-
 }

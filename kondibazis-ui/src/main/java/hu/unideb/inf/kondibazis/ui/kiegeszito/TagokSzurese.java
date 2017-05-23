@@ -62,6 +62,8 @@ public class TagokSzurese {
 
     public static FilteredList<TagAdatok> idokorlatosLejartFerfiTagok;
 
+    public static FilteredList<TagAdatok> lejartIdokorlatosBerletek;
+
     public static void szuresek(ObservableList<TagAdatok> tagTablazatAdatok) {
         LocalDate maiNap = LocalDate.now();
         DateTimeFormatter datumFormatum = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -105,7 +107,13 @@ public class TagokSzurese {
         idokorlatosAktivFerfiTagok = new FilteredList<>(aktivIdokorlatosTagok, tagok -> true);
         idokorlatosLejartFerfiTagok = new FilteredList<>(lejartIdokorlatosTagok, tagok -> true);
 
+        lejartIdokorlatosBerletek = new FilteredList<>(tagTablazatAdatok, tagok -> true);
+
         // ha null a abérlet akkor a lejárt bérletet nééze ha nem null akkor a vasaroltat
+
+        //TODO
+        //legyen lejárt alkalmas
+        //lejárt időkorlátos és együtt a sima lejárt
 
         ferfiTagok.setPredicate(tag -> tag.getTagNeme().toString().contains("Férfi"));
 
@@ -115,13 +123,15 @@ public class TagokSzurese {
 
         idokorlatosBerletek.setPredicate(tag -> tag.getVasaroltBerletNeve().toString().contains("Időkorlátos"));
 
-        aktivBerletuTagok.setPredicate(tag -> Integer.parseInt(tag.getMennyiAlkalom().getValue()) > 0 || LocalDate.parse(tag.getBerletLejaratiIdeje().getValue(), datumFormatum).compareTo(maiNap) == 0 || LocalDate.parse(tag.getBerletLejaratiIdeje().getValue(), datumFormatum).compareTo(maiNap) > 0);
+        aktivBerletuTagok.setPredicate(tag -> Integer.parseInt(tag.getMennyiAlkalom()) > 0);
+//                || LocalDate.parse(tag.getBerletLejaratiIdeje().getValue(), datumFormatum).compareTo(maiNap) == 0 || LocalDate.parse(tag.getBerletLejaratiIdeje().getValue(), datumFormatum).compareTo(maiNap) > 0);
 
         aktivBerletesNok.setPredicate(tag -> tag.getTagNeme().toString().contains("Nő"));
 
         aktivBerletesFerfiak.setPredicate(tag -> tag.getTagNeme().toString().contains("Férfi"));
 
-        lejartBerletuTagok.setPredicate(tag -> LocalDate.parse(tag.getBerletLejaratiIdeje().getValue(), datumFormatum).compareTo(maiNap) < 0 || LocalDate.parse(tag.getBerletLejaratiIdeje().getValue(), datumFormatum).compareTo(maiNap) == -1 || Integer.parseInt(tag.getMennyiAlkalom().getValue()) == 0);
+        lejartBerletuTagok.setPredicate(tag -> Integer.parseInt(tag.getMennyiAlkalom()) == 0);
+        lejartIdokorlatosBerletek.setPredicate(tag -> LocalDate.parse(tag.getBerletLejaratiIdeje(), datumFormatum).compareTo(maiNap) < 0 || LocalDate.parse(tag.getBerletLejaratiIdeje(), datumFormatum).compareTo(maiNap) == -1);
 
         lejartBerletesNok.setPredicate(tag -> tag.getTagNeme().toString().contains("Nő"));
 
