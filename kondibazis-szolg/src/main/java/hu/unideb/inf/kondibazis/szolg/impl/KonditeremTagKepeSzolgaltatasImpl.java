@@ -46,10 +46,6 @@ public class KonditeremTagKepeSzolgaltatasImpl implements KonditeremTagKepeSzolg
 
         }
 
-        for (KonditeremTagKepe konditeremTagKepe1 : konditeremTagKepe) {
-
-        }
-
         return KonditeremTagKepeMapper.toVo(konditeremTagKepe);
     }
 

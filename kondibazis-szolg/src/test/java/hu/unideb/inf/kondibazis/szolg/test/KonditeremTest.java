@@ -81,7 +81,6 @@ public class KonditeremTest {
         ujTag1.setKonditeremBerlet(ujKonditeremBerlet);
         ujTag1.setKonditerem(tesztKonditerem);
 
-
         KonditeremTag ujTag2 = new KonditeremTag();
         ujTag2.setId(8L);
         ujTag2.setTagVezeteknev("Ujtag2Vezeteknev");
@@ -212,7 +211,7 @@ public class KonditeremTest {
     }
 
     @Test
-    public void _1letrehozKonditeremetTeszt() {
+    public void letrehozKonditeremetTeszt() {
 
         KonditeremVo ujKonditerem = new KonditeremVo();
         ujKonditerem.setKonditeremNeve("Nev");
@@ -232,7 +231,8 @@ public class KonditeremTest {
     }
 
     @Test
-    public void _2keresKonditermetNevAlapjanTeszt() {
+    public void keresKonditermetNevAlapjanTeszt() {
+
         KonditeremVo vanIlyen = konditeremSzolgaltatas.keresKonditermet("TesztKonditerem");
         Assert.assertNotNull(vanIlyen);
 
@@ -241,7 +241,8 @@ public class KonditeremTest {
     }
 
     @Test
-    public void _3keresKonditermetIDAlapjanTeszt() {
+    public void keresKonditermetIDAlapjanTeszt() {
+
         KonditeremVo vanIlyen = konditeremSzolgaltatas.keresKonditeremetId(7L);
         Assert.assertNotNull(vanIlyen);
 
@@ -250,7 +251,8 @@ public class KonditeremTest {
     }
 
     @Test
-    public void _4frissítKonditermetTeszt() {
+    public void frissítKonditermetTeszt() {
+
         KonditeremVo ujKonditerem = new KonditeremVo();
         ujKonditerem.setKonditeremNeve("Nev");
         ujKonditerem.setFelhasznalonev("konditrem");
@@ -266,7 +268,7 @@ public class KonditeremTest {
     }
 
     @Test
-    public void _5varosDiagramAdatokSzamitasaKonditeremhezTeszt() {
+    public void varosDiagramAdatokSzamitasaKonditeremhezTeszt() {
 
         Map<String, Long> map = konditeremSzolgaltatas.varosDiagramKonditeremTagokhoz(KonditeremMapper.toVo(tesztKonditerem));
 
@@ -284,7 +286,7 @@ public class KonditeremTest {
     }
 
     @Test
-    public void _6megyeDiagramAdatokSzamolasaKoditeremhezTeszt() {
+    public void megyeDiagramAdatokSzamolasaKoditeremhezTeszt() {
 
         Map<String, Long> map = konditeremSzolgaltatas.megyeDiagramKonditeremTagokhoz(KonditeremMapper.toVo(tesztKonditerem));
 
@@ -299,7 +301,7 @@ public class KonditeremTest {
     }
 
     @Test
-    public void _7nemDiagramAdatokSzamolasaKonditeremhezTeszt() {
+    public void nemDiagramAdatokSzamolasaKonditeremhezTeszt() {
 
         Map<String, Long> map = konditeremSzolgaltatas.nemekDiagramKonditeremTagokhoz(KonditeremMapper.toVo(tesztKonditerem));
 
@@ -315,7 +317,7 @@ public class KonditeremTest {
     }
 
     @Test
-    public void _8berletTipusDiagramAdatokSzamolasaKonditeremhezTeszt() {
+    public void berletTipusDiagramAdatokSzamolasaKonditeremhezTeszt() {
 
         Map<String, Long> map = konditeremSzolgaltatas.berlettipusDiagramKonditeremTagokhoz(KonditeremMapper.toVo(tesztKonditerem));
 
@@ -331,7 +333,8 @@ public class KonditeremTest {
     }
 
     @Test
-    public void _9osszesKonditerem(){
+    public void osszesKonditerem(){
+
         List<KonditeremVo> osszesKonditerem = konditeremSzolgaltatas.osszesKonditerem();
         Assert.assertNotNull(osszesKonditerem.size());
         Assert.assertEquals(1,osszesKonditerem.size());

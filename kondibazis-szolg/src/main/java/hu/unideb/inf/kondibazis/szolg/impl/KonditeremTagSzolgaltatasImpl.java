@@ -1,5 +1,6 @@
 package hu.unideb.inf.kondibazis.szolg.impl;
 
+
 import hu.unideb.inf.kondibazis.db.entitas.Konditerem;
 import hu.unideb.inf.kondibazis.db.entitas.KonditeremTag;
 import hu.unideb.inf.kondibazis.db.tarolo.KonditeremTagTarolo;
