@@ -1,13 +1,11 @@
 package hu.unideb.inf.kondibazis.szolg.impl;
 
-import hu.unideb.inf.kondibazis.db.entitas.KonditeremBerlet;
+import hu.unideb.inf.kondibazis.db.entitas.Konditerem;
 import hu.unideb.inf.kondibazis.db.entitas.KonditeremTag;
 import hu.unideb.inf.kondibazis.db.tarolo.KonditeremTagTarolo;
 import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremTagSzolgaltatas;
-import hu.unideb.inf.kondibazis.szolg.mapper.KonditeremBerletMapper;
 import hu.unideb.inf.kondibazis.szolg.mapper.KonditeremMapper;
 import hu.unideb.inf.kondibazis.szolg.mapper.KonditeremTagMapper;
-import hu.unideb.inf.kondibazis.szolg.vo.KonditeremBerletVo;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremTagVo;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremVo;
 import org.slf4j.Logger;
@@ -117,7 +115,15 @@ public class KonditeremTagSzolgaltatasImpl implements KonditeremTagSzolgaltatas 
 
     }
 
-
+    /**
+     * {@inheritDoc}
+     * <p>
+     * Ebben az implementációban
+     * a metódus megkeresi az összes adatbázisban található összes (a paraméterül kapott konditeremhez tartozó) tagot.
+     * Ezt a {@link hu.unideb.inf.kondibazis.db.tarolo.KonditeremTagTarolo#findByKonditerem(Konditerem)}  {@link KonditeremTagTarolo}.findByKonditeremIn}
+     * metódus segítségével hajtja végre. A konditeremet átmappelve adjuk a metódusnak, amely eredményül egy listát ad a konditeremhez
+     * tartozó tagokat. A szolgáltatás ezt a listát átmappelve adja eredményül vissza.
+     */
     @Override
     public List<KonditeremTagVo> konditeremOsszesTagja(KonditeremVo konditerem) {
         List<KonditeremTag> findByKonditerem = konditeremTagTarolo.findByKonditerem(KonditeremMapper.toDto(konditerem));
@@ -128,21 +134,6 @@ public class KonditeremTagSzolgaltatasImpl implements KonditeremTagSzolgaltatas 
         }
 
         return KonditeremTagMapper.toVo(findByKonditerem);
-    }
-
-    @Override
-    public KonditeremBerletVo tagBerlete(KonditeremTagVo konditeremTag) {
-
-        KonditeremBerlet b = konditeremTagTarolo.findByKonditeremBerlet(KonditeremTagMapper.toDto(konditeremTag));
-
-        if (b == null) {
-//			logolo.warn("A " + felhasznalo.getFelhasznalonev() + " felhasznalonevu felhasznalonak nincsenek tranzakcioi!");
-        } else {
-//			logolo.debug("A " + felhasznalo.getFelhasznalonev() + " felhasznalonevu felhasznalonak " + findByFelhasznalo.size() + " db tranzakcioja van.");
-        }
-
-
-        return KonditeremBerletMapper.toVo(b);
     }
 
     @Override

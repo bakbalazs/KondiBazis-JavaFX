@@ -54,8 +54,6 @@ public interface KonditeremTagSzolgaltatas {
      */
     List<KonditeremTagVo> konditeremOsszesTagja(KonditeremVo konditerem);
 
-    KonditeremBerletVo tagBerlete(KonditeremTagVo konditeremTag);
-
     List<KonditeremTagVo> lejartBerletuTagok(KonditeremVo konditerem);
 
     List<KonditeremTagVo> alkalmasBerletuTagok(KonditeremVo konditerem);
