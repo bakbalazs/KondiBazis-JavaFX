@@ -9,13 +9,6 @@ matrix:
       jdk: oraclejdk8
       install: true
       env: FAILURES_ALLOWED=false
-    - os: linux
-      sudo: false
-      jdk: oraclejdk8
-      env: FAILURES_ALLOWED=true
-    - os: osx
-      osx_image: xcode8
-      env: FAILURES_ALLOWED=false
   allow_failures:
     - env: FAILURES_ALLOWED=true
 
