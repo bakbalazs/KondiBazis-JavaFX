@@ -65,94 +65,107 @@ public class KonditeremTest {
         ujKonditeremBerlet2.setKonditerem(tesztKonditerem);
 
         KonditeremTag ujTag1 = new KonditeremTag();
-        ujTag1.setId(4L);
+        ujTag1.setId(7L);
         ujTag1.setTagVezeteknev("Ujtag1Vezeteknev");
         ujTag1.setTagKeresztnev("Ujtag1Keresztnev");
         ujTag1.setTagNeve(ujTag1.getTagVezeteknev() + " " + ujTag1.getTagKeresztnev());
         ujTag1.setTagNeme("Férfi");
-//        ujTag1.setTagSzuletesidatuma();
-//        ujTag1.setTagKora();
-//        ujTag1.setVasaroltBerletNeve();
+        ujTag1.setTagSzuletesidatuma(LocalDate.now().minusMonths(12));
+        ujTag1.setTagKora(20);
+        ujTag1.setVasaroltBerletNeve("BerletNeve1");
         ujTag1.setVasaroltBerletTipusa("Havi");
-//        ujTag1.setBerletVasarlasideje();
-//        ujTag1.setBerletVasarlasideje();
+        ujTag1.setBerletVasarlasideje(LocalDate.now().minusWeeks(4));
+        ujTag1.setBerletLejaratiIdeje(LocalDate.now().minusWeeks(2));
         ujTag1.setTagVarosa("Varos1");
         ujTag1.setTagMegyeje("Megye1");
+        ujTag1.setKonditeremBerlet(ujKonditeremBerlet);
+        ujTag1.setKonditerem(tesztKonditerem);
 
         KonditeremTag ujTag2 = new KonditeremTag();
-        ujTag2.setId(5L);
-//        ujTag2.setTagVezeteknev();
-//        ujTag2.setTagKeresztnev();
-//        ujTag2.setTagNeve();
+        ujTag2.setId(8L);
+        ujTag2.setTagVezeteknev("Ujtag2Vezeteknev");
+        ujTag2.setTagKeresztnev("Ujtag2Keresztnev");
+        ujTag2.setTagNeve(ujTag1.getTagVezeteknev() + " " + ujTag1.getTagKeresztnev());
         ujTag2.setTagNeme("Férfi");
-//        ujTag2.setTagSzuletesidatuma();
-//        ujTag2.setTagKora();
-//        ujTag2.setVasaroltBerletNeve();
+        ujTag2.setTagSzuletesidatuma(LocalDate.now().minusMonths(12));
+        ujTag2.setTagKora(20);
+        ujTag2.setVasaroltBerletNeve("BerletNeve2");
         ujTag2.setVasaroltBerletTipusa("Havi");
-//        ujTag2.setBerletVasarlasideje();
-//        ujTag2.setBerletVasarlasideje();
+        ujTag2.setBerletVasarlasideje(LocalDate.now().minusWeeks(4));
+        ujTag2.setBerletLejaratiIdeje(LocalDate.now().minusWeeks(2));
         ujTag2.setTagVarosa("Varos1");
-        ujTag2.setTagMegyeje("Megye2");
+        ujTag2.setTagMegyeje("Megye1");
+        ujTag2.setKonditeremBerlet(ujKonditeremBerlet);
+        ujTag2.setKonditerem(tesztKonditerem);
 
         KonditeremTag ujTag3 = new KonditeremTag();
-        ujTag3.setId(6L);
-//        ujTag3.setTagVezeteknev();
-//        ujTag3.setTagKeresztnev();
-//        ujTag3.setTagNeve();
+        ujTag3.setId(9L);
+        ujTag3.setTagVezeteknev("Ujtag3Vezeteknev");
+        ujTag3.setTagKeresztnev("Ujtag3Keresztnev");
+        ujTag3.setTagNeve(ujTag1.getTagVezeteknev() + " " + ujTag1.getTagKeresztnev());
         ujTag3.setTagNeme("Férfi");
-//        ujTag3.setTagSzuletesidatuma();
-//        ujTag3.setTagKora();
-//        ujTag3.setVasaroltBerletNeve();
-        ujTag3.setVasaroltBerletTipusa("Napos");
-//        ujTag3.setBerletVasarlasideje();
-//        ujTag3.setBerletVasarlasideje();
-        ujTag3.setTagVarosa("Varos2");
-        ujTag3.setTagMegyeje("Megye2");
+        ujTag3.setTagSzuletesidatuma(LocalDate.now().minusMonths(12));
+        ujTag3.setTagKora(20);
+        ujTag3.setVasaroltBerletNeve("BerletNeve3");
+        ujTag3.setVasaroltBerletTipusa("Havi");
+        ujTag3.setBerletVasarlasideje(LocalDate.now().minusWeeks(4));
+        ujTag3.setBerletLejaratiIdeje(LocalDate.now().minusWeeks(2));
+        ujTag3.setTagVarosa("Varos3");
+        ujTag3.setTagMegyeje("Megye1");
+        ujTag3.setKonditeremBerlet(ujKonditeremBerlet);
+        ujTag3.setKonditerem(tesztKonditerem);
 
         KonditeremTag ujTag4 = new KonditeremTag();
-        ujTag4.setId(7L);
-//        ujTag4.setTagVezeteknev();
-//        ujTag4.setTagKeresztnev();
-//        ujTag4.setTagNeve();
+        ujTag4.setId(10L);
+        ujTag4.setTagVezeteknev("Ujtag4Vezeteknev");
+        ujTag4.setTagKeresztnev("Ujtag4Keresztnev");
+        ujTag4.setTagNeve(ujTag1.getTagVezeteknev() + " " + ujTag1.getTagKeresztnev());
         ujTag4.setTagNeme("Nő");
-//        ujTag4.setTagSzuletesidatuma();
-//        ujTag4.setTagKora();
-//        ujTag4.setVasaroltBerletNeve();
+        ujTag4.setTagSzuletesidatuma(LocalDate.now().minusMonths(12));
+        ujTag4.setTagKora(20);
+        ujTag4.setVasaroltBerletNeve("BerletNeve4");
         ujTag4.setVasaroltBerletTipusa("Napos");
-//        ujTag4.setBerletVasarlasideje();
-//        ujTag4.setBerletVasarlasideje();
+        ujTag4.setBerletVasarlasideje(LocalDate.now().minusWeeks(4));
+        ujTag4.setBerletLejaratiIdeje(LocalDate.now().minusWeeks(2));
         ujTag4.setTagVarosa("Varos2");
-        ujTag4.setTagMegyeje("Megye1");
+        ujTag4.setTagMegyeje("Megye2");
+        ujTag4.setKonditeremBerlet(ujKonditeremBerlet2);
+        ujTag4.setKonditerem(tesztKonditerem);
 
         KonditeremTag ujTag5 = new KonditeremTag();
-        ujTag5.setId(8L);
-//        ujTag5.setTagVezeteknev();
-//        ujTag5.setTagKeresztnev();
-//        ujTag5.setTagNeve();
+        ujTag5.setId(11L);
+        ujTag5.setTagVezeteknev("Ujtag5Vezeteknev");
+        ujTag5.setTagKeresztnev("Ujtag5Keresztnev");
+        ujTag5.setTagNeve(ujTag1.getTagVezeteknev() + " " + ujTag1.getTagKeresztnev());
         ujTag5.setTagNeme("Férfi");
-//        ujTag5.setTagSzuletesidatuma();
-//        ujTag5.setTagKora();
-//        ujTag5.setVasaroltBerletNeve();
+        ujTag5.setTagSzuletesidatuma(LocalDate.now().minusMonths(12));
+        ujTag5.setTagKora(20);
+        ujTag5.setVasaroltBerletNeve("BerletNeve5");
         ujTag5.setVasaroltBerletTipusa("Napos");
-//        ujTag5.setBerletVasarlasideje();
-//        ujTag5.setBerletVasarlasideje();
-        ujTag5.setTagVarosa("Varos3");
-        ujTag5.setTagMegyeje("Megye1");
+        ujTag5.setBerletVasarlasideje(LocalDate.now().minusWeeks(4));
+        ujTag5.setBerletLejaratiIdeje(LocalDate.now().minusWeeks(2));
+        ujTag5.setTagVarosa("Varos2");
+        ujTag5.setTagMegyeje("Megye2");
+        ujTag5.setKonditeremBerlet(ujKonditeremBerlet2);
+        ujTag5.setKonditerem(tesztKonditerem);
 
         KonditeremTag ujTag6 = new KonditeremTag();
-        ujTag6.setId(9L);
-//        ujTag6.setTagVezeteknev();
-//        ujTag6.setTagKeresztnev();
-//        ujTag6.setTagNeve();
+        ujTag6.setId(12L);
+        ujTag6.setTagVezeteknev("Ujtag6Vezeteknev");
+        ujTag6.setTagKeresztnev("Ujtag6Keresztnev");
+        ujTag6.setTagNeve(ujTag1.getTagVezeteknev() + " " + ujTag1.getTagKeresztnev());
         ujTag6.setTagNeme("Nő");
-//        ujTag6.setTagSzuletesidatuma();
-//        ujTag6.setTagKora();
-//        ujTag6.setVasaroltBerletNeve();
-        ujTag6.setVasaroltBerletTipusa("Havi");
-//        ujTag6.setBerletVasarlasideje();
-//        ujTag6.setBerletVasarlasideje();
+        ujTag6.setTagSzuletesidatuma(LocalDate.now().minusMonths(12));
+        ujTag6.setTagKora(20);
+        ujTag6.setVasaroltBerletNeve("BerletNeve6");
+        ujTag6.setVasaroltBerletTipusa("Napos");
+        ujTag6.setBerletVasarlasideje(LocalDate.now().minusWeeks(4));
+        ujTag6.setBerletLejaratiIdeje(LocalDate.now().minusWeeks(2));
         ujTag6.setTagVarosa("Varos3");
         ujTag6.setTagMegyeje("Megye2");
+        ujTag6.setKonditeremBerlet(ujKonditeremBerlet2);
+        ujTag6.setKonditerem(tesztKonditerem);
+
 
         tesztKonditerem.getKonditeremBerletek().addAll(Arrays.asList(ujKonditeremBerlet, ujKonditeremBerlet2));
         tesztKonditerem.getKonditeremTagok().addAll(Arrays.asList(ujTag1, ujTag2, ujTag3, ujTag4, ujTag5, ujTag6));
@@ -198,7 +211,7 @@ public class KonditeremTest {
     }
 
     @Test
-    public void _1letrehozKonditeremetTeszt() {
+    public void letrehozKonditeremetTeszt() {
 
         KonditeremVo ujKonditerem = new KonditeremVo();
         ujKonditerem.setKonditeremNeve("Nev");
@@ -218,7 +231,8 @@ public class KonditeremTest {
     }
 
     @Test
-    public void _2keresKonditermetNevAlapjanTeszt() {
+    public void keresKonditermetNevAlapjanTeszt() {
+
         KonditeremVo vanIlyen = konditeremSzolgaltatas.keresKonditermet("TesztKonditerem");
         Assert.assertNotNull(vanIlyen);
 
@@ -227,7 +241,8 @@ public class KonditeremTest {
     }
 
     @Test
-    public void _3keresKonditermetIDAlapjanTeszt() {
+    public void keresKonditermetIDAlapjanTeszt() {
+
         KonditeremVo vanIlyen = konditeremSzolgaltatas.keresKonditeremetId(7L);
         Assert.assertNotNull(vanIlyen);
 
@@ -236,7 +251,8 @@ public class KonditeremTest {
     }
 
     @Test
-    public void _4frissítKonditermetTeszt() {
+    public void frissítKonditermetTeszt() {
+
         KonditeremVo ujKonditerem = new KonditeremVo();
         ujKonditerem.setKonditeremNeve("Nev");
         ujKonditerem.setFelhasznalonev("konditrem");
@@ -252,7 +268,7 @@ public class KonditeremTest {
     }
 
     @Test
-    public void _5varosDiagramAdatokSzamitasaKonditeremhezTeszt() {
+    public void varosDiagramAdatokSzamitasaKonditeremhezTeszt() {
 
         Map<String, Long> map = konditeremSzolgaltatas.varosDiagramKonditeremTagokhoz(KonditeremMapper.toVo(tesztKonditerem));
 
@@ -270,7 +286,7 @@ public class KonditeremTest {
     }
 
     @Test
-    public void _6megyeDiagramAdatokSzamolasaKoditeremhezTeszt() {
+    public void megyeDiagramAdatokSzamolasaKoditeremhezTeszt() {
 
         Map<String, Long> map = konditeremSzolgaltatas.megyeDiagramKonditeremTagokhoz(KonditeremMapper.toVo(tesztKonditerem));
 
@@ -285,7 +301,7 @@ public class KonditeremTest {
     }
 
     @Test
-    public void _7nemDiagramAdatokSzamolasaKonditeremhezTeszt() {
+    public void nemDiagramAdatokSzamolasaKonditeremhezTeszt() {
 
         Map<String, Long> map = konditeremSzolgaltatas.nemekDiagramKonditeremTagokhoz(KonditeremMapper.toVo(tesztKonditerem));
 
@@ -301,7 +317,7 @@ public class KonditeremTest {
     }
 
     @Test
-    public void _8berletTipusDiagramAdatokSzamolasaKonditeremhezTeszt() {
+    public void berletTipusDiagramAdatokSzamolasaKonditeremhezTeszt() {
 
         Map<String, Long> map = konditeremSzolgaltatas.berlettipusDiagramKonditeremTagokhoz(KonditeremMapper.toVo(tesztKonditerem));
 
@@ -317,7 +333,8 @@ public class KonditeremTest {
     }
 
     @Test
-    public void _9osszesKonditerem(){
+    public void osszesKonditerem(){
+
         List<KonditeremVo> osszesKonditerem = konditeremSzolgaltatas.osszesKonditerem();
         Assert.assertNotNull(osszesKonditerem.size());
         Assert.assertEquals(1,osszesKonditerem.size());

@@ -220,7 +220,7 @@ public class KondiBazisFoAblakKezelo implements Initializable {
                 .addListener((observable, oldValue, newValue) -> {
                     try {
                         tagSzerkesztes(newValue);
-                        tagModositasaGomb.setDisable(true);
+//                        tagModositasaGomb.setDisable(true);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -699,8 +699,8 @@ public class KondiBazisFoAblakKezelo implements Initializable {
         logolo.debug("A kivalasztott tag id-ja: " + kivalasztottTag.getId());
 
         //TODO initbe és utánna mikor true akkor disable false
-        if (!tag.getTagVezeteknev().equals(vezeteknevModosit.getText()) || !tag.getTagKeresztnev().equals(keresztnevModosit.getText()) || !tag.getTagNeme().equals(nemValasztas()) || !tag.getTagSzuletesidatuma().equals(szuletesiDatumModosit.getValue()) || ujBerletValasztas.getValue() != null) {
-            tagModositasaGomb.setDisable(false);
+        if (!tag.getTagVezeteknev().equals(vezeteknevModosit.getText()) || !tag.getTagKeresztnev().equals(keresztnevModosit.getText()) || !tag.getTagNeme().equals(nemValasztas()) || !tag.getTagSzuletesidatuma().equals(szuletesiDatumModosit.getValue()) || tag.getKonditeremBerlet() == null) {
+//            tagModositasaGomb.setDisable(false);
             if (KiegeszitoFelulet.megerositesFelulet("Tag módosítása megerősítő ablak", "Tag módosítás megerősítése.", "Biztosan módosítani szeretné?", "Módosítás", "Mégsem", Alert.AlertType.WARNING)) {
 
                 kivalasztottTag.setTagVezeteknev(vezeteknevModosit.getText());
@@ -748,7 +748,8 @@ public class KondiBazisFoAblakKezelo implements Initializable {
                 konditeremTagSzolgaltatas.frissitKonditeremTagot(kivalasztottTag);
                 logolo.debug("A " + kivalasztottTag.getId() + " id-val rendelkező tag megváltozott!");
                 KiegeszitoFelulet.ertesites("Tag módosítása", "Sikeres módosítás.", "Sikeres módosítás.", "Fő ablakban a tag módodosítása tabon.", Pos.BOTTOM_RIGHT, 5);
-
+//                Platform.runLater(() -> tagokTabla.getSelectionModel().clearSelection());
+//                tagModositas.setDisable(true);
                 adatFrissites();
                 logolo.info("Sikeres tag módosítás!");
 
