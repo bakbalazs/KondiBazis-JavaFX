@@ -2,49 +2,88 @@ package hu.unideb.inf.kondibazis.szolg.vo;
 
 import java.io.Serializable;
 
+/**
+ * Egyszerű osztály a településekhez tartozó adatok szállítására az egyes rétegek között (POJO).
+ */
 public class TelepulesekVo implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+    /**
+     * Alapértelmezett szerializációs azonosító.
+     */
+    private static final long serialVersionUID = 1L;
 
-	public TelepulesekVo() {
-	}
+    /**
+     * Üres konstruktor a szerializálhatóság miatt.
+     */
+    public TelepulesekVo() {
+    }
 
-	private Integer iranyitoszam;
+    /**
+     * A település irányítószáma.
+     */
+    private Integer iranyitoszam;
 
-	private String megye;
+    /**
+     * A megye neve ahol a település található.
+     */
+    private String megye;
 
-	private String telepulesnev;
+    /**
+     * A település neve.
+     */
+    private String telepulesnev;
 
-	public Integer getIranyitoszam() {
-		return iranyitoszam;
-	}
+    /**
+     * Visszaadja a település irányítószámát.
+     *
+     * @return A település irányítószáma.
+     */
+    public Integer getIranyitoszam() {
+        return iranyitoszam;
+    }
 
-	public void setIranyitoszam(Integer iranyitoszam) {
-		this.iranyitoszam = iranyitoszam;
-	}
+    /**
+     * Beállítja a település irányítószámát.
+     *
+     * @param iranyitoszam A beállítandó irányítószám.
+     */
+    public void setIranyitoszam(Integer iranyitoszam) {
+        this.iranyitoszam = iranyitoszam;
+    }
 
-	public String getMegye() {
-		return megye;
-	}
+    /**
+     * Visszaadja a település megyéjének a nevét.
+     *
+     * @return A település megyéjének a nevét.
+     */
+    public String getMegye() {
+        return megye;
+    }
 
-	public void setMegye(String megye) {
-		this.megye = megye;
-	}
+    /**
+     * Beállítja a település megyéjének a nevét.
+     *
+     * @param megye A beállítandó megye neve.
+     */
+    public void setMegye(String megye) {
+        this.megye = megye;
+    }
 
-	public String getTelepulesnev() {
-		return telepulesnev;
-	}
+    /**
+     * Visszaadja a település nevét.
+     *
+     * @return A település neve.
+     */
+    public String getTelepulesnev() {
+        return telepulesnev;
+    }
 
-	public void setTelepulesnev(String telepulesnev) {
-		this.telepulesnev = telepulesnev;
-	}
-
-	@Override
-	public String toString() {
-		return "TelepulesekVo [iranyitoszam=" + iranyitoszam + ", megye=" + megye + ", telepulesnev=" + telepulesnev
-				+ "]";
-	}
-
-	
-	
+    /**
+     * Beállítja a település nevét.
+     *
+     * @param telepulesnev A beállítandó név.
+     */
+    public void setTelepulesnev(String telepulesnev) {
+        this.telepulesnev = telepulesnev;
+    }
 }

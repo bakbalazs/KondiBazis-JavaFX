@@ -5,6 +5,8 @@ import hu.unideb.inf.kondibazis.db.entitas.KonditeremElerhetoseg;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * A konditerem elérhetőséghez tartozó DAO aminek segítségével műveleteket hajthatunk végre az elérhetőségeken.
  * Ez az osztály egy DAO amit a {@link org.springframework.stereotype.Repository Repository} annotációval jelzünk.
@@ -21,8 +23,8 @@ public interface KonditeremElerhetosegTarolo extends JpaRepository<KonditeremEle
      * feltételben szerepelni fog.
      *
      * @param konditerem Az a konditerem aminek meg kell egyeznie a talált elérhetőséghez tartozó konditeremmel.
-     * @return Egy elérhetőség ahoz a konditeremhez amely a metódusban paraméterként megadott konditeremhez tartozik.
+     * @return Egy lista azokról az elérhetőségekről amelyek a metódus paramétereként megadott konditeremhez tartoznak.
      */
-    KonditeremElerhetoseg findByKonditerem(Konditerem konditerem);
+    List<KonditeremElerhetoseg> findByKonditerem(Konditerem konditerem);
 
 }

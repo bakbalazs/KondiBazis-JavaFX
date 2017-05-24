@@ -4,7 +4,6 @@ import hu.unideb.inf.kondibazis.db.entitas.Konditerem;
 import hu.unideb.inf.kondibazis.db.entitas.KonditeremBerlet;
 import hu.unideb.inf.kondibazis.db.tarolo.KonditeremBerletTarolo;
 import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremBerletSzolgaltatas;
-import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremSzolgaltatas;
 import hu.unideb.inf.kondibazis.szolg.mapper.KonditeremBerletMapper;
 import hu.unideb.inf.kondibazis.szolg.mapper.KonditeremMapper;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremBerletVo;
@@ -43,9 +42,6 @@ public class KonditeremBerletSzolgaltatasImpl implements KonditeremBerletSzolgal
      */
     @Autowired
     private KonditeremBerletTarolo konditeremBerletTarolo;
-
-    @Autowired
-    private KonditeremSzolgaltatas konditeremSzolgaltatas;
 
     /**
      * {@inheritDoc}
@@ -127,7 +123,7 @@ public class KonditeremBerletSzolgaltatasImpl implements KonditeremBerletSzolgal
      * a metódus megkeresi az összes adatbázisban található összes (a paraméterül kapott konditeremhez tartozó) bérletet.
      * Ezt a {@link hu.unideb.inf.kondibazis.db.tarolo.KonditeremBerletTarolo#findByKonditerem(Konditerem)}  {@link KonditeremBerletTarolo}.findByKonditeremIn}
      * metódus segítségével hajtja végre. A konditeremet átmappelve adjuk a metódusnak, amely eredményül egy listát ad a konditeremhez
-     * tartozó bérletekkel benne. A szolgáltatás ezt a listát átmappelve adja eredményül vissza.
+     * tartozó bérletekkel. A szolgáltatás ezt a listát átmappelve adja eredményül vissza.
      */
     @Override
     public List<KonditeremBerletVo> konditeremOsszesBerlete(KonditeremVo konditerem) {

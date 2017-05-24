@@ -130,7 +130,7 @@ public class KonditeremElerhetosegSzerkesztesKezelo implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		bejelentkezettKonditerem = foAblakKezelo.getBejelentkezettKonditerem();
 
-		KonditeremElerhetosegVo konditeremElerhetosegVo =konditeremElerhetosegSzolgaltatas.keresElerhetoseget(bejelentkezettKonditerem);
+//		KonditeremElerhetosegVo konditeremElerhetosegVo =konditeremElerhetosegSzolgaltatas.keresElerhetoseget(bejelentkezettKonditerem);
 
 //		iranyitoszamBevitel.setText(konditeremElerhetosegVo.getIranyitoSzam().toString());
 //		megyeNeveBevitel.setText(konditeremElerhetosegVo.getMegyeNeve());

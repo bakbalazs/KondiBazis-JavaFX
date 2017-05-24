@@ -3,7 +3,6 @@ package hu.unideb.inf.kondibazis.szolg.impl;
 import hu.unideb.inf.kondibazis.db.entitas.KonditeremBerlet;
 import hu.unideb.inf.kondibazis.db.entitas.KonditeremTag;
 import hu.unideb.inf.kondibazis.db.tarolo.KonditeremTagTarolo;
-import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremSzolgaltatas;
 import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremTagSzolgaltatas;
 import hu.unideb.inf.kondibazis.szolg.mapper.KonditeremBerletMapper;
 import hu.unideb.inf.kondibazis.szolg.mapper.KonditeremMapper;
@@ -20,6 +19,14 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+/**
+ * A konditermek tagjainak kezelését támogató osztály.
+ * Ez az osztály a {@link org.springframework.stereotype.Service Service} annotációval van ellátva,
+ * azaz ez egy {@link org.springframework.stereotype.Component Component} csak specifikáltabb.
+ * A {@link org.springframework.transaction.annotation.Transactional Transactional} annotáció révén
+ * az itt végzett tranzakciók bekapcsolódnak a meglévő tranzakcióba, vagy létrehoznak egyet ha
+ * nincs még.
+ */
 @Service
 @Transactional(propagation = Propagation.REQUIRED)
 public class KonditeremTagSzolgaltatasImpl implements KonditeremTagSzolgaltatas {
@@ -29,11 +36,14 @@ public class KonditeremTagSzolgaltatasImpl implements KonditeremTagSzolgaltatas 
      */
     private static Logger logolo = LoggerFactory.getLogger(KonditeremTagSzolgaltatasImpl.class);
 
+    /**
+     * A kondibazis-db modulból származó {@link hu.unideb.inf.kondibazis.db.tarolo.KonditeremTagTarolo KonditeremTagTarolo}.
+     * Ezt az adattagot az {@link org.springframework.beans.factory.annotation.Autowired} annotáció
+     * segítségével a spring DI injektálja be. Ezen az adattagon keresztül érhetőek el egy konditerem elérhetőségeihez
+     * szükséges adatbázis műveletek.
+     */
     @Autowired
     private KonditeremTagTarolo konditeremTagTarolo;
-
-    @Autowired
-    private KonditeremSzolgaltatas konditeremSzolgaltatas;
 
     /**
      * {@inheritDoc}

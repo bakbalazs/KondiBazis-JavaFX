@@ -1,6 +1,9 @@
 package hu.unideb.inf.kondibazis.db.entitas;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  * Az adatbázisban egy konditerem elérhetőségét reprezentáló osztály.
@@ -76,144 +79,162 @@ public class KonditeremElerhetoseg extends FoEntitas {
     private Konditerem konditerem;
 
     /**
+     * Visszaadja a konditerem városának az irányítószámát.
      *
-     * @return
+     * @return A konditerem városának irányítószámát.
      */
     public Integer getKonditeremVarosanakIranyitoSzama() {
         return KonditeremVarosanakIranyitoSzama;
     }
 
     /**
+     * Beállítja a konditerem városának az irányítószámát.
      *
-     * @param konditeremVarosanakIranyitoSzama
+     * @param konditeremVarosanakIranyitoSzama A beállítandó irányítószám.
      */
     public void setKonditeremVarosanakIranyitoSzama(Integer konditeremVarosanakIranyitoSzama) {
         KonditeremVarosanakIranyitoSzama = konditeremVarosanakIranyitoSzama;
     }
 
     /**
+     * Visszaadja a konditerem városánaka a nevét.
      *
-     * @return
+     * @return A konditerem városának nevét.
      */
     public String getKonditeremVarosanakNeve() {
         return konditeremVarosanakNeve;
     }
 
     /**
+     * Beállítja a konditerem városának nevét.
      *
-     * @param konditeremVarosanakNeve
+     * @param konditeremVarosanakNeve A beállítandó város név.
      */
     public void setKonditeremVarosanakNeve(String konditeremVarosanakNeve) {
         this.konditeremVarosanakNeve = konditeremVarosanakNeve;
     }
 
     /**
+     * Visszaadja a konditerem városának megyéjének a nevét.
      *
-     * @return
+     * @return A konditerem városának megyeéje.
      */
     public String getKonditeremVarosanakMegyeje() {
         return konditeremVarosanakMegyeje;
     }
 
     /**
+     * Beállítja a konditerem városának a megyéjét.
      *
-     * @param konditeremVarosanakMegyeje
+     * @param konditeremVarosanakMegyeje A beállítandó megye név.
      */
     public void setKonditeremVarosanakMegyeje(String konditeremVarosanakMegyeje) {
         this.konditeremVarosanakMegyeje = konditeremVarosanakMegyeje;
     }
 
     /**
+     * Visszaadja a konditerem címét.
      *
-     * @return
+     * @return A konditerem címe.
      */
     public String getKonditeremCime() {
         return konditeremCime;
     }
 
     /**
+     * Bellítja a konditerem címét.
      *
-     * @param konditeremCime
+     * @param konditeremCime A beállítandó cím.
      */
     public void setKonditeremCime(String konditeremCime) {
         this.konditeremCime = konditeremCime;
     }
 
     /**
+     * Visszaadja a konditerem telefonszámát.
      *
-     * @return
+     * @return A konditerem telefonszáma.
      */
     public String getKonditremTelefonszam() {
         return konditremTelefonszam;
     }
 
     /**
+     * Beállítja a konditerem telefonszámát.
      *
-     * @param konditremTelefonszam
+     * @param konditremTelefonszam A beállítandó telefonszám.
      */
     public void setKonditremTelefonszam(String konditremTelefonszam) {
         this.konditremTelefonszam = konditremTelefonszam;
     }
 
     /**
+     * Visszaadja a konditerem e-mail címét.
      *
-     * @return
+     * @return A konditerem e-mail címe.
      */
     public String getKonditremEmailCim() {
         return konditremEmailCim;
     }
 
     /**
+     * Beállítja a konditerem e-mail címét.
      *
-     * @param konditremEmailCim
+     * @param konditremEmailCim A beállítandó e-mail cím.
      */
     public void setKonditremEmailCim(String konditremEmailCim) {
         this.konditremEmailCim = konditremEmailCim;
     }
 
     /**
+     * Visszaadja a konditerem weboldalának linkjét.
      *
-     * @return
+     * @return A konditerem weboldalának a linkje.
      */
     public String getKonditeremWeboldalLink() {
         return konditeremWeboldalLink;
     }
 
     /**
+     * Beállítja a konditerem weboldalának a linkjét.
      *
-     * @param konditeremWeboldalLink
+     * @param konditeremWeboldalLink A beállítandó weboldal link.
      */
     public void setKonditeremWeboldalLink(String konditeremWeboldalLink) {
         this.konditeremWeboldalLink = konditeremWeboldalLink;
     }
 
     /**
+     * Visszaadja a konditerem facebook oldalának a linkjét.
      *
-     * @return
+     * @return A konditerem facebook oldalának a linkje.
      */
     public String getKonditeremFacebookOldalLink() {
         return konditeremFacebookOldalLink;
     }
 
     /**
+     * Beállítja a konditerem facebook oldalát.
      *
-     * @param konditeremFacebookOldalLink
+     * @param konditeremFacebookOldalLink A beállítandó facebook oldal link.
      */
     public void setKonditeremFacebookOldalLink(String konditeremFacebookOldalLink) {
         this.konditeremFacebookOldalLink = konditeremFacebookOldalLink;
     }
 
     /**
+     * Visszaadja a konditermet.
      *
-     * @return
+     * @return Az elérhetőséghez tartozó konditerem.
      */
     public Konditerem getKonditerem() {
         return konditerem;
     }
 
     /**
+     * Beállítja az elérhetőség konditermét.
      *
-     * @param konditerem
+     * @param konditerem A beállítandó konditerem.
      */
     public void setKonditerem(Konditerem konditerem) {
         this.konditerem = konditerem;

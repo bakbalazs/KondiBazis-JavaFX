@@ -2,73 +2,118 @@ package hu.unideb.inf.kondibazis.szolg.impl;
 
 import hu.unideb.inf.kondibazis.db.entitas.Konditerem;
 import hu.unideb.inf.kondibazis.db.entitas.KonditeremElerhetoseg;
+import hu.unideb.inf.kondibazis.db.tarolo.KonditeremBerletTarolo;
 import hu.unideb.inf.kondibazis.db.tarolo.KonditeremElerhetosegTarolo;
 import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremElerhetosegSzolgaltatas;
-import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremSzolgaltatas;
 import hu.unideb.inf.kondibazis.szolg.mapper.KonditeremElerhetosegMapper;
 import hu.unideb.inf.kondibazis.szolg.mapper.KonditeremMapper;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremElerhetosegVo;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremVo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
+/**
+ * A konditermek elérhetőségének kezelését támogató osztály.
+ * Ez az osztály a {@link org.springframework.stereotype.Service Service} annotációval van ellátva,
+ * azaz ez egy {@link org.springframework.stereotype.Component Component} csak specifikáltabb.
+ * A {@link org.springframework.transaction.annotation.Transactional Transactional} annotáció révén
+ * az itt végzett tranzakciók bekapcsolódnak a meglévő tranzakcióba, vagy létrehoznak egyet ha
+ * nincs még.
+ */
 @Service
 @Transactional(propagation = Propagation.REQUIRED)
 public class KonditeremElerhetosegSzolgaltatasImpl implements KonditeremElerhetosegSzolgaltatas {
-	@Autowired
-	private KonditeremElerhetosegTarolo konditeremElerhetosegTarolo;
 
-	@Autowired
-	private KonditeremSzolgaltatas konditeremSzolgaltatas;
+    /**
+     * A logoláshoz szükséges {@link org.slf4j.Logger Logger}.
+     */
+    private static Logger logolo = LoggerFactory.getLogger(KonditeremElerhetosegSzolgaltatasImpl.class);
 
-	@Override
-	public KonditeremElerhetosegVo keresElerhetoseget(KonditeremVo konditerem) {
+    /**
+     * A kondibazis-db modulból származó {@link hu.unideb.inf.kondibazis.db.tarolo.KonditeremElerhetosegTarolo KonditeremElerhetosegTarolo}.
+     * Ezt az adattagot az {@link org.springframework.beans.factory.annotation.Autowired} annotáció
+     * segítségével a spring DI injektálja be. Ezen az adattagon keresztül érhetőek el egy konditerem elérhetőségéhez
+     * szükséges adatbázis műveletek.
+     */
+    @Autowired
+    private KonditeremElerhetosegTarolo konditeremElerhetosegTarolo;
 
-		Konditerem konditerem1 = KonditeremMapper.toDto(konditerem);
+    /**
+     * {@inheritDoc}
+     * <p>
+     * Ebben az implementációban
+     * a metódusban a {@link org.springframework.data.repository.CrudRepository#save(Object) }
+     * metódusának segítségével eltároljuk az adatbázisban a DTO-vá mappelt elérhetőség, ami ezáltal egy generált azonosítót is kap.
+     * A metódus visszatérési értékként visszaadja az adatbázisban jelen lévő már ID-vel rendelkező elérhetőséget,
+     * amelyet a szolgáltatás eredményül visszaad átmappelve.
+     */
+    @Override
+    public KonditeremElerhetosegVo letrehozElerhetoseget(KonditeremElerhetosegVo konditeremElerhetoseg) {
+        KonditeremElerhetoseg ujElerhetoseg = KonditeremElerhetosegMapper.toDto(konditeremElerhetoseg);
 
-		KonditeremElerhetoseg elerhetoseg = konditeremElerhetosegTarolo.findByKonditerem(konditerem1	);
-		if(elerhetoseg == null) {
+        KonditeremElerhetoseg mentettElerhetoseg = konditeremElerhetosegTarolo.save(ujElerhetoseg);
 
-		} else {
+        if (mentettElerhetoseg == null) {
+            logolo.warn("Nem sikerult menteni a(z) " + mentettElerhetoseg.getKonditeremCime() + " címu elerhetoseg");
+        } else {
+            logolo.debug("Sikeresen elmentesre kerult a(z) " + mentettElerhetoseg.getKonditeremCime() + " címu elerhetoseg");
+        }
 
-		}
+        return KonditeremElerhetosegMapper.toVo(mentettElerhetoseg);
 
-		return KonditeremElerhetosegMapper.toVo(elerhetoseg);
+    }
 
-	}
+    /**
+     * {@inheritDoc}
+     * <p>
+     * Ebben az implementációban
+     * a metódus a {@link org.springframework.data.repository.CrudRepository#save(Object) }
+     * metódussal elmentjük az adatbázisba az elérhetőséget, ami mivel már rendelkezik generált azonosítóval, így nem hoz
+     * létre új példányt az adatbázisban, hanem a meglévő ID-val megegyező elérhetőséget fogja frissíteni.
+     */
+    @Override
+    public KonditeremElerhetosegVo frissitElerhetoseget(KonditeremElerhetosegVo konditeremElerhetoseg) {
+        KonditeremElerhetoseg ujElerhetoseg = KonditeremElerhetosegMapper.toDto(konditeremElerhetoseg);
 
-	@Override
-	public KonditeremElerhetosegVo letrehozElerhetoseget(KonditeremElerhetosegVo ujElerhetoseg) {
-		KonditeremElerhetoseg uj = KonditeremElerhetosegMapper.toDto(ujElerhetoseg);
+        KonditeremElerhetoseg mentettElerhetoseg = konditeremElerhetosegTarolo.save(ujElerhetoseg);
 
-		KonditeremElerhetoseg mentett = konditeremElerhetosegTarolo.save(uj);
+        if (mentettElerhetoseg == null) {
+            logolo.warn("Nem sikerult frissiteni a(z) " + mentettElerhetoseg.getKonditeremCime() + " címu elerhetoseget!");
+        } else {
+            logolo.debug("Sikeresen frissult a(z) " + mentettElerhetoseg.getKonditeremCime() + " címu elerhetoseget!");
+        }
 
-		if (mentett == null) {
+        return KonditeremElerhetosegMapper.toVo(mentettElerhetoseg);
 
-		} else {
+    }
 
-		}
+    /**
+     * {@inheritDoc}
+     * <p>
+     * Ebben az implementációban
+     * a metódus megkeresi az összes adatbázisban található összes (a paraméterül kapott konditeremhez tartozó) bérletet.
+     * Ezt a {@link hu.unideb.inf.kondibazis.db.tarolo.KonditeremBerletTarolo#findByKonditerem(Konditerem)}  {@link KonditeremBerletTarolo}.findByKonditeremIn}
+     * metódus segítségével hajtja végre. A konditeremet átmappelve adjuk a metódusnak, amely eredményül egy listát ad a konditeremhez
+     * tartozó bérletekkel. A szolgáltatás ezt a listát átmappelve adja eredményül vissza.
+     */
+    @Override
+    public List<KonditeremElerhetosegVo> konditremElerhetosegei(KonditeremVo konditerem) {
 
-		return KonditeremElerhetosegMapper.toVo(mentett);
+        List<KonditeremElerhetoseg> konditerem_elerhetosegei = konditeremElerhetosegTarolo.findByKonditerem(KonditeremMapper.toDto(konditerem));
 
-	}
+        if (konditerem_elerhetosegei == null) {
+            logolo.warn("Nem talalhato elerhetoseg a kovetkezo konditeremhez: " + konditerem.getFelhasznalonev());
+        } else {
+            logolo.debug(konditerem_elerhetosegei.size() + " db elérhetőség talhato a kovetkezo konditeremhez: " + konditerem.getFelhasznalonev());
+        }
 
-	@Override
-	public KonditeremElerhetosegVo frissitElerhetoseget(KonditeremElerhetosegVo konditeremElerhetoseg) {
-		KonditeremElerhetoseg uj = KonditeremElerhetosegMapper.toDto(konditeremElerhetoseg);
-
-		KonditeremElerhetoseg mentett = konditeremElerhetosegTarolo.save(uj);
-
-		if (mentett == null) {
-
-		} else {
-
-		}
-
-		return KonditeremElerhetosegMapper.toVo(mentett);
-
-	}
+        return KonditeremElerhetosegMapper.toVo(konditerem_elerhetosegei);
+    }
 
 }

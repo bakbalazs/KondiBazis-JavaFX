@@ -145,7 +145,7 @@ public class KonditeremSzolgaltatasImpl implements KonditeremSzolgaltatas {
 
         Map<String, Long> varosDiagramAdatok = konditeremTagLisa.stream().collect(Collectors.groupingBy(KonditeremTagVo::getTagVarosa, Collectors.counting()));
 
-        logolo.debug("Konditerem tagjai városonként: " + varosDiagramAdatok);
+        logolo.debug("Konditerem tagjai varosonkent: " + varosDiagramAdatok);
 
         return varosDiagramAdatok;
     }
@@ -157,6 +157,8 @@ public class KonditeremSzolgaltatasImpl implements KonditeremSzolgaltatas {
 
         Map<String, Long> megyeDiagramAdatok = konditeremTagLisa.stream().collect(Collectors.groupingBy(KonditeremTagVo::getTagMegyeje, Collectors.counting()));
 
+        logolo.debug("Konditrem tagjai megyenkent: " + megyeDiagramAdatok);
+
         return megyeDiagramAdatok;
     }
 
@@ -167,6 +169,8 @@ public class KonditeremSzolgaltatasImpl implements KonditeremSzolgaltatas {
 
         Map<String, Long> nemekDiagramAdatok = konditeremTagLisa.stream().collect(Collectors.groupingBy(KonditeremTagVo::getTagNeme, Collectors.counting()));
 
+        logolo.debug("Konditrem tagjai nemenkent: " + nemekDiagramAdatok);
+
         return nemekDiagramAdatok;
     }
 
@@ -176,6 +180,8 @@ public class KonditeremSzolgaltatasImpl implements KonditeremSzolgaltatas {
         List<KonditeremTagVo> konditeremTagLisa = konditerem.getKonditeremTagok();
 
         Map<String, Long> berletTipusDiagramAdatok = konditeremTagLisa.stream().collect(Collectors.groupingBy(KonditeremTagVo::getVasaroltBerletTipusa, Collectors.counting()));
+
+        logolo.debug("Kondirtem tagjai berlettípusonkent : " + berletTipusDiagramAdatok);
 
         return berletTipusDiagramAdatok;
     }

@@ -4,46 +4,95 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+/**
+ * Az adatbázisban egy települést reprezentáló osztály.
+ * Ez egy entitás amit az adatbázisba leképezve egy település nevű táblát kapunk a megfelelő oszlopokkal.
+ */
 @Entity
 @Table(name = "telepulesek")
 public class Telepulesek extends FoEntitas {
 
-	private static final long serialVersionUID = 1L;
+    /**
+     * Alapértelmezett szerializációs azonosító.
+     */
+    private static final long serialVersionUID = 1L;
 
-	public Telepulesek() {
-	}
+    /**
+     * Üres konstruktor a szerializálhatóság miatt.
+     */
+    public Telepulesek() {
+    }
 
-	@Column(name = "iranyitoszam")
-	private Integer iranyitoszam;
+    /**
+     * A település irányítószáma.
+     */
+    @Column(name = "iranyitoszam")
+    private Integer iranyitoszam;
 
-	@Column(name = "megye")
-	private String megye;
+    /**
+     * A megye neve ahol a település található.
+     */
+    @Column(name = "megye")
+    private String megye;
 
-	@Column(name = "telepulesnev")
-	private String telepulesnev;
+    /**
+     * A település neve.
+     */
+    @Column(name = "telepulesnev")
+    private String telepulesnev;
 
-	public Integer getIranyitoszam() {
-		return iranyitoszam;
-	}
+    /**
+     * Visszaadja a település irányítószámát.
+     *
+     * @return A település irányítószáma.
+     */
+    public Integer getIranyitoszam() {
+        return iranyitoszam;
+    }
 
-	public void setIranyitoszam(Integer iranyitoszam) {
-		this.iranyitoszam = iranyitoszam;
-	}
+    /**
+     * Beállítja a település irányítószámát.
+     *
+     * @param iranyitoszam A beállítandó irányítószám.
+     */
+    public void setIranyitoszam(Integer iranyitoszam) {
+        this.iranyitoszam = iranyitoszam;
+    }
 
-	public String getMegye() {
-		return megye;
-	}
+    /**
+     * Visszaadja a település megyéjének a nevét.
+     *
+     * @return A település megyéjének a nevét.
+     */
+    public String getMegye() {
+        return megye;
+    }
 
-	public void setMegye(String megye) {
-		this.megye = megye;
-	}
+    /**
+     * Beállítja a település megyéjének a nevét.
+     *
+     * @param megye A beállítandó megye neve.
+     */
+    public void setMegye(String megye) {
+        this.megye = megye;
+    }
 
-	public String getTelepulesnev() {
-		return telepulesnev;
-	}
+    /**
+     * Visszaadja a település nevét.
+     *
+     * @return A település neve.
+     */
+    public String getTelepulesnev() {
+        return telepulesnev;
+    }
 
-	public void setTelepulesnev(String telepulesnev) {
-		this.telepulesnev = telepulesnev;
-	}
+    /**
+     * Beállítja a település nevét.
+     *
+     * @param telepulesnev A beállítandó név.
+     */
+    public void setTelepulesnev(String telepulesnev) {
+        this.telepulesnev = telepulesnev;
+    }
 
 }

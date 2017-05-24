@@ -59,7 +59,14 @@ public interface KonditeremSzolgaltatas {
      */
     KonditeremVo frissitKonditermet(KonditeremVo konditerem);
 
-    //TODO
+    /**
+     * Meghatározza a konditrem tagjait városonként számolja meg, majd visszaadja
+     * csoportosítva.
+     *
+     * @param konditerem A konditrem akinek a tagjainak a városaira kíváncsiak vagyunk.
+     * @return Egy {@link java.util.Map Map} amiben a kulcsok a városok nevei, az értékek
+     * pedig hogy a tagok száma a városokhoz.
+     */
     Map<String, Long> varosDiagramKonditeremTagokhoz(KonditeremVo konditerem);
 
     //TODO

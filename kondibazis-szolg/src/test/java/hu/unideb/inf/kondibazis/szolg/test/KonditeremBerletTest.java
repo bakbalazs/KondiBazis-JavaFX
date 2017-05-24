@@ -3,9 +3,7 @@ package hu.unideb.inf.kondibazis.szolg.test;
 import hu.unideb.inf.kondibazis.db.entitas.Konditerem;
 import hu.unideb.inf.kondibazis.db.entitas.KonditeremBerlet;
 import hu.unideb.inf.kondibazis.db.tarolo.KonditeremBerletTarolo;
-import hu.unideb.inf.kondibazis.db.tarolo.KonditeremTarolo;
 import hu.unideb.inf.kondibazis.szolg.impl.KonditeremBerletSzolgaltatasImpl;
-import hu.unideb.inf.kondibazis.szolg.impl.KonditeremSzolgaltatasImpl;
 import hu.unideb.inf.kondibazis.szolg.mapper.KonditeremMapper;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremBerletVo;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremVo;
@@ -27,16 +25,9 @@ public class KonditeremBerletTest {
     @Mock
     private KonditeremBerletTarolo konditeremBerletTarolo;
 
-    @Mock
-    private KonditeremTarolo konditeremTarolo;
-
     @Spy
     @InjectMocks
     private KonditeremBerletSzolgaltatasImpl konditeremBerletSzolgaltatas;
-
-    @Spy
-    @InjectMocks
-    private KonditeremSzolgaltatasImpl konditeremSzolgaltatas;
 
     private static Konditerem tesztKonditeremA;
 
