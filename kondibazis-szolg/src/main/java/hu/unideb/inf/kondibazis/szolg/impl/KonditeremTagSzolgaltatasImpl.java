@@ -1,5 +1,6 @@
 package hu.unideb.inf.kondibazis.szolg.impl;
 
+
 import hu.unideb.inf.kondibazis.db.entitas.Konditerem;
 import hu.unideb.inf.kondibazis.db.entitas.KonditeremTag;
 import hu.unideb.inf.kondibazis.db.tarolo.KonditeremTagTarolo;
@@ -15,6 +16,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -126,28 +129,148 @@ public class KonditeremTagSzolgaltatasImpl implements KonditeremTagSzolgaltatas 
      */
     @Override
     public List<KonditeremTagVo> konditeremOsszesTagja(KonditeremVo konditerem) {
-        List<KonditeremTag> findByKonditerem = konditeremTagTarolo.findByKonditerem(KonditeremMapper.toDto(konditerem));
-        if (findByKonditerem == null) {
-//			logolo.warn("A " + felhasznalo.getFelhasznalonev() + " felhasznalonevu felhasznalonak nincsenek tranzakcioi!");
+
+        List<KonditeremTag> konditeremTagjai = konditeremTagTarolo.findByKonditerem(KonditeremMapper.toDto(konditerem));
+
+        if (konditeremTagjai == null) {
+            logolo.warn("A " + konditerem.getFelhasznalonev() + " felhasznalonevu konditeremnek nincsenek tagjai!");
         } else {
-//			logolo.debug("A " + felhasznalo.getFelhasznalonev() + " felhasznalonevu felhasznalonak " + findByFelhasznalo.size() + " db tranzakcioja van.");
+            logolo.debug("A " + konditerem.getFelhasznalonev() + " felhasznalonevu konditeremnek " + konditeremTagjai.size() + " db tagja van.");
         }
 
-        return KonditeremTagMapper.toVo(findByKonditerem);
+        return KonditeremTagMapper.toVo(konditeremTagjai);
     }
 
     @Override
-    public List<KonditeremTagVo> lejartBerletuTagok(KonditeremVo konditerem) {
-        return null;
+    public List<KonditeremTagVo> noiTagok(KonditeremVo konditerem) {
+
+        List<KonditeremTag> noiTagok = new ArrayList<>();
+
+        List<KonditeremTag> konditeremTagok = KonditeremTagMapper.toDto(konditeremOsszesTagja(konditerem));
+
+        if (konditeremTagok == null) {
+            logolo.warn("A " + konditerem.getFelhasznalonev() + " felhasznalonevu konditeremnek nincsenek tagjai!");
+        } else {
+            for (KonditeremTag t : konditeremTagok) {
+                if (t.getTagNeme().equals("Nő")) {
+                    noiTagok.add(t);
+                }
+            }
+            logolo.debug("A " + konditerem.getFelhasznalonev() + " felhasznalonevu konditeremnek " + noiTagok.size() + " db női tagja van.");
+        }
+
+        return KonditeremTagMapper.toVo(noiTagok);
+    }
+
+    @Override
+    public List<KonditeremTagVo> ferfiTagok(KonditeremVo konditerem) {
+        List<KonditeremTag> ferfiTagok = new ArrayList<>();
+
+        List<KonditeremTag> konditeremTagok = KonditeremTagMapper.toDto(konditeremOsszesTagja(konditerem));
+
+        if (konditeremTagok == null) {
+            logolo.warn("A " + konditerem.getFelhasznalonev() + " felhasznalonevu konditeremnek nincsenek tagjai!");
+        } else {
+            for (KonditeremTag tag : konditeremTagok) {
+                if (tag.getTagNeme().equals("Férfi")) {
+                    ferfiTagok.add(tag);
+                }
+            }
+            logolo.debug("A " + konditerem.getFelhasznalonev() + " felhasznalonevu konditeremnek " + ferfiTagok.size() + " db férfi tagja van.");
+        }
+
+        return KonditeremTagMapper.toVo(ferfiTagok);
     }
 
     @Override
     public List<KonditeremTagVo> alkalmasBerletuTagok(KonditeremVo konditerem) {
-        return null;
+        List<KonditeremTag> alkalmasBerletuTagok = new ArrayList<>();
+
+        List<KonditeremTag> konditeremTagok = KonditeremTagMapper.toDto(konditeremOsszesTagja(konditerem));
+
+        if (konditeremTagok == null) {
+            logolo.warn("A " + konditerem.getFelhasznalonev() + " felhasznalonevu konditeremnek nincsenek tagjai!");
+        } else {
+            for (KonditeremTag tag : konditeremTagok) {
+                if (tag.getVasaroltBerletTipusa().contains("Alkalmas")) {
+                    alkalmasBerletuTagok.add(tag);
+                }
+            }
+            logolo.debug("A " + konditerem.getFelhasznalonev() + " felhasznalonevu konditeremnek " + alkalmasBerletuTagok.size() + " db alkalmas bérletű tagja van.");
+        }
+        return KonditeremTagMapper.toVo(alkalmasBerletuTagok);
     }
 
     @Override
     public List<KonditeremTagVo> idokorlatosBerletuTagok(KonditeremVo konditerem) {
-        return null;
+        List<KonditeremTag> idokorlatosBerletuTagok = new ArrayList<>();
+
+        List<KonditeremTag> konditeremTagok = KonditeremTagMapper.toDto(konditeremOsszesTagja(konditerem));
+
+        if (konditeremTagok == null) {
+            logolo.warn("A " + konditerem.getFelhasznalonev() + " felhasznalonevu konditeremnek nincsenek tagjai!");
+        } else {
+            for (KonditeremTag tag : konditeremTagok) {
+                if (tag.getVasaroltBerletTipusa().contains("Időkorlátos")) {
+                    idokorlatosBerletuTagok.add(tag);
+                }
+            }
+            logolo.debug("A " + konditerem.getFelhasznalonev() + " felhasznalonevu konditeremnek " + idokorlatosBerletuTagok.size() + " db időkorlátos bérletű tagja van.");
+        }
+        return KonditeremTagMapper.toVo(idokorlatosBerletuTagok);
     }
+
+    @Override
+    public List<KonditeremTagVo> lejartAlkalmasBerletuTagok(KonditeremVo konditerem) {
+        LocalDate maiNap = LocalDate.now();
+        List<KonditeremTag> lejartAlkalmasBerletuTagok = new ArrayList<>();
+
+        List<KonditeremTag> konditeremTagok = KonditeremTagMapper.toDto(konditeremOsszesTagja(konditerem));
+
+        if (konditeremTagok == null) {
+            logolo.warn("A " + konditerem.getFelhasznalonev() + " felhasznalonevu konditeremnek nincsenek tagjai!");
+        } else {
+            for (KonditeremTag tag : konditeremTagok) {
+
+                if (tag.getVasaroltBerletTipusa().contains("Alkalmas") && ((tag.getMennyiAlkalomMeg() == 0) || tag.getBerletLejaratiIdeje().compareTo(maiNap) == -1 || tag.getBerletLejaratiIdeje().compareTo(maiNap) < -1)) {
+                    lejartAlkalmasBerletuTagok.add(tag);
+                }
+            }
+            logolo.debug("A " + konditerem.getFelhasznalonev() + " felhasznalonevu konditeremnek " + lejartAlkalmasBerletuTagok.size() + " db alkalmas bérletű tagja van.");
+        }
+        return KonditeremTagMapper.toVo(lejartAlkalmasBerletuTagok);
+    }
+
+    @Override
+    public List<KonditeremTagVo> lejartIdokorlatosBerletuTagok(KonditeremVo konditerem) {
+        LocalDate maiNap = LocalDate.now();
+        List<KonditeremTag> lejartIdokorlatosBerletuTagok = new ArrayList<>();
+
+        List<KonditeremTag> konditeremTagok = KonditeremTagMapper.toDto(konditeremOsszesTagja(konditerem));
+
+        if (konditeremTagok == null) {
+            logolo.warn("A " + konditerem.getFelhasznalonev() + " felhasznalonevu konditeremnek nincsenek tagjai!");
+        } else {
+            for (KonditeremTag tag : konditeremTagok) {
+
+                if (tag.getVasaroltBerletTipusa().contains("Időkorlátos") && (tag.getBerletLejaratiIdeje().compareTo(maiNap) == -1 || tag.getBerletLejaratiIdeje().compareTo(maiNap) < -1)) {
+                    lejartIdokorlatosBerletuTagok.add(tag);
+                }
+            }
+            logolo.debug("A " + konditerem.getFelhasznalonev() + " felhasznalonevu konditeremnek " + lejartIdokorlatosBerletuTagok.size() + " db idokorlatos bérletű tagja van.");
+        }
+        return KonditeremTagMapper.toVo(lejartIdokorlatosBerletuTagok);
+    }
+
+    @Override
+    public List<KonditeremTagVo> lejartBerletuTagok(KonditeremVo konditerem) {
+
+        List<KonditeremTag> ad = new ArrayList<>();
+        ad.addAll(KonditeremTagMapper.toDto(lejartIdokorlatosBerletuTagok(konditerem)));
+        ad.addAll(KonditeremTagMapper.toDto(lejartAlkalmasBerletuTagok(konditerem)));
+
+        return KonditeremTagMapper.toVo(ad);
+    }
+
+
 }

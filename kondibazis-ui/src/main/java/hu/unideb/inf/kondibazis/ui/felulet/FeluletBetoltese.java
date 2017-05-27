@@ -89,7 +89,7 @@ public final class FeluletBetoltese {
     }
 
     public static void BerletLetrehozasaFelulet() {
-        Parent root = (Parent) loader.load("/fxml/BerletLetrehozasFoAblakFelulet.fxml");
+        Parent root = (Parent) loader.load("/fxml/BerletLetrehozasaFelulet.fxml");
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setTitle("Bérlet Létrehozása - " + alkalmazasNeve);
@@ -100,7 +100,7 @@ public final class FeluletBetoltese {
     }
 
     public static void BerletekModositasaFelulet() {
-        Parent root = (Parent) loader.load("/fxml/BerletekModositasaFelulet.fxml");
+        Parent root = (Parent) loader.load("/fxml/BerletModositasaFelulet.fxml");
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setTitle("Bérletek Módosítása - " + alkalmazasNeve);
@@ -111,7 +111,7 @@ public final class FeluletBetoltese {
     }
 
     public static void TagHozzaadasaFelulet() {
-        Parent root = (Parent) loader.load("/fxml/TaghozzaadasaFelulet.fxml");
+        Parent root = (Parent) loader.load("/fxml/TagHozzaadasaFelulet.fxml");
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setTitle("Tag Hozzáadása -" + alkalmazasNeve);

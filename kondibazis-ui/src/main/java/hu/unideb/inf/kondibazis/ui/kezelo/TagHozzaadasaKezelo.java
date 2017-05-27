@@ -345,7 +345,7 @@ public class TagHozzaadasaKezelo implements Initializable {
                     int alkalom = berletek.getMennyiAlkalom();
                     if (alkalom > 0) {
                         ujTag.setVasaroltBerletTipusa(berletek.getBerletTipusa());
-                        ujTag.setBerletLejaratiIdeje(LocalDate.now());
+                        ujTag.setBerletLejaratiIdeje(maiNap.plusMonths(berletek.getMennyiHonap()));
                         ujTag.setMennyiAlkalomMeg(alkalom);
                     }
                     ujTag.setKonditeremBerlet(berletek);

@@ -14,11 +14,11 @@ public class SpringFxmlLoader {
 
 	private static final ApplicationContext applicationContext = new ClassPathXmlApplicationContext("/spring-ui.xml");
 
-	public Object load(String url) {
+	Object load(String url) {
 		try (InputStream fxmlStream = SpringFxmlLoader.class.getResourceAsStream(url)) {
 
 			FXMLLoader loader = new FXMLLoader();
-			loader.setControllerFactory(clazz -> applicationContext.getBean(clazz));
+			loader.setControllerFactory(applicationContext::getBean);
 			return loader.load(fxmlStream);
 
 		} catch (IOException ex) {

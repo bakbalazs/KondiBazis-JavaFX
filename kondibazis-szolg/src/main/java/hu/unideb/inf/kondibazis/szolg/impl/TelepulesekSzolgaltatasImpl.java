@@ -1,7 +1,6 @@
 package hu.unideb.inf.kondibazis.szolg.impl;
 
 import hu.unideb.inf.kondibazis.db.entitas.Telepulesek;
-import hu.unideb.inf.kondibazis.db.tarolo.KonditeremBerletTarolo;
 import hu.unideb.inf.kondibazis.db.tarolo.TelepulesekTarolo;
 import hu.unideb.inf.kondibazis.szolg.interfaces.TelepulesekSzolgaltatas;
 import hu.unideb.inf.kondibazis.szolg.mapper.TelepulesekMapper;

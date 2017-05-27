@@ -1,17 +1,16 @@
 // CHECKSTYLE:OFF
 package hu.unideb.inf.kondibazis.ui.kezelo;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextField;
 import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremBerletSzolgaltatas;
-import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremSzolgaltatas;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremBerletVo;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremVo;
 import hu.unideb.inf.kondibazis.ui.kiegeszito.KiegeszitoFelulet;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -25,12 +24,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 @Component
-public class BerletLetrehozasFoAblakKezelo implements Initializable {
+public class BerletLetrehozasKezelo implements Initializable {
 
-    private static final Logger logolo = LoggerFactory.getLogger(BerletLetrehozasFoAblakKezelo.class);
-
-    @Autowired
-    private KonditeremSzolgaltatas konditeremSzolgaltatas;
+    private static final Logger logolo = LoggerFactory.getLogger(BerletLetrehozasKezelo.class);
 
     @Autowired
     private KonditeremBerletSzolgaltatas konditeremBerletSzolgaltatas;
@@ -41,19 +37,22 @@ public class BerletLetrehozasFoAblakKezelo implements Initializable {
     private KonditeremVo bejelentkezettKonditerem;
 
     @FXML
-    private Button megseGomb;
+    private JFXButton letrehozasGomb;
 
     @FXML
-    private TextField berletnevBevitel;
+    private JFXButton megseGomb;
 
     @FXML
-    private TextField berletaraBevitel;
+    private JFXTextField berletnevBevitel;
 
     @FXML
-    private TextField napBevitel;
+    private JFXTextField berletaraBevitel;
 
     @FXML
-    private TextField honapBevitel;
+    private JFXTextField napBevitel;
+
+    @FXML
+    private JFXTextField honapBevitel;
 
     @FXML
     private Text berletletrehozasUzenet;
@@ -65,28 +64,14 @@ public class BerletLetrehozasFoAblakKezelo implements Initializable {
     private ChoiceBox<String> berlettipusValasztasa;
 
     @FXML
-    private Text berletnevSzoveg;
-
-    @FXML
-    private Text berletaraSzoveg;
-
-    @FXML
-    private Text berletnapSzoveg;
-
-    @FXML
-    private Text berlethonapSzoveg;
-
-    @FXML
     private Text ftJel;
 
     @FXML
-    private TextField alakomBevitel;
+    private JFXTextField alakomBevitel;
 
     @FXML
     private Text alkalomSzoveg;
 
-    @FXML
-    private Button letrehozasGomb;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -159,12 +144,13 @@ public class BerletLetrehozasFoAblakKezelo implements Initializable {
             }
 
             if (mehetAlkalmas) {
-
+                int honap = Integer.parseInt(honapBevitel.getText());
                 KonditeremBerletVo ujBerlet = new KonditeremBerletVo();
                 ujBerlet.setBerletNeve(berletnevBevitel.getText() + " (" + berlettipusValasztasa.getValue() + ")");
                 ujBerlet.setBerletTipusa(berlettipusValasztasa.getValue());
                 ujBerlet.setBerletAra(ar);
                 ujBerlet.setMennyiAlkalom(alkalom);
+                ujBerlet.setMennyiHonap(honap);
                 ujBerlet.setKonditerem(bejelentkezettKonditerem);
 
                 konditeremBerletSzolgaltatas.letrehozBerletet(ujBerlet);
@@ -243,25 +229,24 @@ public class BerletLetrehozasFoAblakKezelo implements Initializable {
 
 
     private void alapertek(boolean megjelenes) {
-        berletnevSzoveg.setVisible(megjelenes);
+//        berletnevSzoveg.setVisible(megjelenes);
         berletnevBevitel.setVisible(megjelenes);
-        berletaraSzoveg.setVisible(megjelenes);
+//        berletaraSzoveg.setVisible(megjelenes);
         berletaraBevitel.setVisible(megjelenes);
-        ftJel.setVisible(megjelenes);
+//        ftJel.setVisible(megjelenes);
         letrehozasGomb.setVisible(megjelenes);
-
+//        berlethonapSzoveg.setVisible(megjelenes);
+        honapBevitel.setVisible(megjelenes);
     }
 
     private void idokorlatosBerlet(boolean megjelenes) {
-        berletnapSzoveg.setVisible(megjelenes);
+//        berletnapSzoveg.setVisible(megjelenes);
         napBevitel.setVisible(megjelenes);
-        berlethonapSzoveg.setVisible(megjelenes);
-        honapBevitel.setVisible(megjelenes);
     }
 
     private void alkalmasBerlet(boolean megjelenes) {
         alakomBevitel.setVisible(megjelenes);
-        alkalomSzoveg.setVisible(megjelenes);
+//        alkalomSzoveg.setVisible(megjelenes);
     }
 
 }

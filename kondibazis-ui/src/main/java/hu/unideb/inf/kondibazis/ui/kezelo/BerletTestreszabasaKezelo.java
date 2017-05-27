@@ -2,12 +2,9 @@
 package hu.unideb.inf.kondibazis.ui.kezelo;
 
 import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremBerletSzolgaltatas;
-import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremSzolgaltatas;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremBerletVo;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremVo;
 import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -27,18 +24,12 @@ import java.util.ResourceBundle;
 public class BerletTestreszabasaKezelo implements Initializable {
 
     @Autowired
-    private KonditeremSzolgaltatas konditeremSzolgaltatas;
-
-    @Autowired
     private KonditeremBerletSzolgaltatas konditeremBerletSzolgaltatas;
 
     @Autowired
     private KondiBazisFoAblakKezelo foAblakKezelo;
 
     private KonditeremVo bejelentkezettKonditerem;
-
-    @FXML
-    private Button letrehozasGomb;
 
     @FXML
     private Button megseGomb;
@@ -56,18 +47,10 @@ public class BerletTestreszabasaKezelo implements Initializable {
     private TextField honapBevitel;
 
     @FXML
-    private Text letrehozasUzenet;
-
-    @FXML
-    private Text regisztraltKonditerem;
-
-    @FXML
     private Text berletletrehozasUzenet;
 
     @FXML
     private Text bejelentkezett_Konditerem;
-
-    private Long kivalasztottBerletId;
 
     @FXML
     private Text napSzoveg;
@@ -89,6 +72,8 @@ public class BerletTestreszabasaKezelo implements Initializable {
 
     @FXML
     private Text ftJel;
+
+    private Long kivalasztottBerletId;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

@@ -168,7 +168,7 @@
                                         <RowConstraints maxHeight="87.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
                                     </rowConstraints>
                                     <children>
-                                        <Button fx:id="tagModositasaGomb" mnemonicParsing="false" onAction="#tagModositasa" text="Tag módosítása" GridPane.rowIndex="1">
+                                        <Button mnemonicParsing="false" onAction="#tagModositasa" text="Tag módosítása" GridPane.rowIndex="1">
                                             <GridPane.margin>
                                                 <Insets left="60.0" />
                                             </GridPane.margin>
@@ -280,7 +280,7 @@
             </menus>
         </MenuBar>
     </top>
-    <bottom>
+   <bottom>
         <TableView fx:id="tagokTabla" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="403.0" prefWidth="1200.0" tableMenuButtonVisible="true" BorderPane.alignment="CENTER">
             <columns>
                 <TableColumn fx:id="nevOszlop" prefWidth="90.0" text="Név" visible="false" />
@@ -295,5 +295,5 @@
                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
             </columnResizePolicy>
         </TableView>
-    </bottom>
+   </bottom>
 </BorderPane>

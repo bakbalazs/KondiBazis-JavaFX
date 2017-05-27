@@ -2,7 +2,6 @@
 package hu.unideb.inf.kondibazis.ui.kezelo;
 
 import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremElerhetosegSzolgaltatas;
-import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremSzolgaltatas;
 import hu.unideb.inf.kondibazis.szolg.interfaces.TelepulesekSzolgaltatas;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremElerhetosegVo;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremVo;
@@ -29,9 +28,6 @@ import java.util.ResourceBundle;
 public class KonditeremElerhetosegKezelo implements Initializable {
 
     private static final Logger logolo = LoggerFactory.getLogger(KonditeremElerhetosegKezelo.class);
-
-    @Autowired
-    private KonditeremSzolgaltatas konditeremSzolgaltatas;
 
     @Autowired
     private KonditeremElerhetosegSzolgaltatas konditeremElerhetosegSzolgaltatas;

@@ -160,7 +160,7 @@ public class KonditeremBerletTest {
     }
 
     @Test
-    public void _1letrehozKonditeremBerletetTeszt() {
+    public void letrehozKonditeremBerletetTeszt() {
         KonditeremBerletVo ujKonditeremBerlet = new KonditeremBerletVo();
 
         ujKonditeremBerlet.setBerletNeve("Új bérlet");
@@ -178,7 +178,7 @@ public class KonditeremBerletTest {
     }
 
     @Test
-    public void _2frissitKonditeremBerletTeszt() {
+    public void frissitKonditeremBerletTeszt() {
         KonditeremBerletVo ujKonditeremBerlet = new KonditeremBerletVo();
 
         ujKonditeremBerlet.setBerletNeve("Új bérlet");
@@ -199,7 +199,7 @@ public class KonditeremBerletTest {
     }
 
     @Test
-    public void _3keresKonditeremBerletTeszt() {
+    public void keresKonditeremBerletTeszt() {
 
         KonditeremBerletVo leszIlyenBerlet = konditeremBerletSzolgaltatas.keresBerletet(7L);
 
@@ -211,7 +211,7 @@ public class KonditeremBerletTest {
     }
 
     @Test
-    public void _4keresKonditeremOsszesBerelete() {
+    public void keresKonditeremOsszesBerelete() {
 
         KonditeremVo konditerem = KonditeremMapper.toVo(tesztKonditeremA);
 

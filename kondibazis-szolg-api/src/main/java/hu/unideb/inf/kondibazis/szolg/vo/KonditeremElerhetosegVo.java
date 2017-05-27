@@ -19,7 +19,7 @@ public class KonditeremElerhetosegVo implements Serializable {
     }
 
     /**
-     * A konditerem bérlet id-ja.
+     * A konditerem elérhetőség id-ja.
      */
     private Long id;
 

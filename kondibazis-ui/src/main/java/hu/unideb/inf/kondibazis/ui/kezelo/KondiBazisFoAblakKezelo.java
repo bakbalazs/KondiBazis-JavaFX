@@ -25,6 +25,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -171,9 +172,6 @@ public class KondiBazisFoAblakKezelo implements Initializable {
     @FXML
     private ChoiceBox<String> ujBerletValasztas;
 
-    @FXML
-    private Button tagModositasaGomb;
-
     private KonditeremTagVo kivalasztottTag;
 
     private ObservableList<TagAdatok> tagTablazatAdatok;
@@ -190,7 +188,8 @@ public class KondiBazisFoAblakKezelo implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        tagokTabla.setPlaceholder(new Text("Nem található egy tag sem."));
+
+        kinezetBeallitasa();
 
         bejelentkezettKonditerem = bejelentkezoKezelo.getBejelentkezettKonditerem();
         tagTablazatAdatok = FXCollections.observableArrayList();
@@ -200,8 +199,6 @@ public class KondiBazisFoAblakKezelo implements Initializable {
 
         oszlopokBerlet();
         tagokTabla.getColumns().addAll(berletLejaratiDatuma, alkalmakOszlop);
-
-        lejartBerletStyle = "-fx-background-color: lightcoral;";
 
         szuresEskereses.setDisable(true);
 
@@ -226,7 +223,18 @@ public class KondiBazisFoAblakKezelo implements Initializable {
                     }
                 });
 
+
         TagokSzurese.szuresek(tagTablazatAdatok);
+
+        konditeremTagSzolgaltatas.noiTagok(bejelentkezettKonditerem);
+
+        konditeremTagSzolgaltatas.alkalmasBerletuTagok(bejelentkezettKonditerem);
+
+        konditeremTagSzolgaltatas.lejartAlkalmasBerletuTagok(bejelentkezettKonditerem);
+
+        konditeremTagSzolgaltatas.lejartIdokorlatosBerletuTagok(bejelentkezettKonditerem);
+
+        konditeremTagSzolgaltatas.lejartBerletuTagok(bejelentkezettKonditerem);
 
         FilteredList<TagAdatok> filteredData = new FilteredList<>(tagTablazatAdatok, p -> true);
 
@@ -252,21 +260,21 @@ public class KondiBazisFoAblakKezelo implements Initializable {
         if (osszesTagGomb.isSelected() && osszesTagNemGomb.isSelected() && osszesTagBerletTipusGomb.isSelected()) {
             tagokTabla.setItems(tagTablazatAdatok);
         } else if (osszesTagGomb.isSelected() && ferfiGomb.isSelected() && osszesTagBerletTipusGomb.isSelected()) {
-            tagokTabla.setItems(ferfiTagok);
+            tagokTabla.setItems(ferfiak);
         } else if (osszesTagGomb.isSelected() && noGomb.isSelected() && osszesTagBerletTipusGomb.isSelected()) {
-            tagokTabla.setItems(noiTagok);
+            tagokTabla.setItems(nok);
         } else if (osszesTagGomb.isSelected() && osszesTagNemGomb.isSelected() && alkalmasBerletekGomb.isSelected()) {
-            tagokTabla.setItems(alkalmasBerletek);
+            tagokTabla.setItems(alkalmasBerletuek);
         } else if (osszesTagGomb.isSelected() && osszesTagNemGomb.isSelected() && idokorlatosBerletekGomb.isSelected()) {
-            tagokTabla.setItems(idokorlatosBerletek);
+            tagokTabla.setItems(idokorlatosBerletuek);
         } else if (osszesTagGomb.isSelected() && ferfiGomb.isSelected() && alkalmasBerletekGomb.isSelected()) {
-            tagokTabla.setItems(alkalmasBerletesFerfiak);
+            tagokTabla.setItems(alkalmasFerfiBerletuek);
         } else if (osszesTagGomb.isSelected() && ferfiGomb.isSelected() && idokorlatosBerletekGomb.isSelected()) {
-            tagokTabla.setItems(idokorlatosBerletesFerfiak);
+            tagokTabla.setItems(idokorlatosFerfiBerletuek);
         } else if (osszesTagGomb.isSelected() && noGomb.isSelected() && alkalmasBerletekGomb.isSelected()) {
-            tagokTabla.setItems(alkalmasBerletesNok);
+            tagokTabla.setItems(alkalmasNoBerletuek);
         } else if (osszesTagGomb.isSelected() && noGomb.isSelected() && idokorlatosBerletekGomb.isSelected()) {
-            tagokTabla.setItems(idokorlatosBerletesNok);
+            tagokTabla.setItems(idokorlatosNoBerletuek);
         }
     }
 
@@ -275,21 +283,21 @@ public class KondiBazisFoAblakKezelo implements Initializable {
         if (osszesTagNemGomb.isSelected() && osszesTagGomb.isSelected() && osszesTagBerletTipusGomb.isSelected()) {
             tagokTabla.setItems(tagTablazatAdatok);
         } else if (osszesTagNemGomb.isSelected() && aktivberletGomb.isSelected() && osszesTagBerletTipusGomb.isSelected()) {
-            tagokTabla.setItems(aktivBerletuTagok);
+            tagokTabla.setItems(aktivBerletuek);
         } else if (osszesTagNemGomb.isSelected() && lejertberletGomb.isSelected() && osszesTagBerletTipusGomb.isSelected()) {
-            tagokTabla.setItems(lejartBerletuTagok);
+            tagokTabla.setItems(lejartBerletuek);
         } else if (osszesTagNemGomb.isSelected() && osszesTagGomb.isSelected() && alkalmasBerletekGomb.isSelected()) {
-            tagokTabla.setItems(alkalmasBerletek);
+            tagokTabla.setItems(alkalmasBerletuek);
         } else if (osszesTagNemGomb.isSelected() && osszesTagGomb.isSelected() && idokorlatosBerletekGomb.isSelected()) {
-            tagokTabla.setItems(idokorlatosBerletek);
+            tagokTabla.setItems(idokorlatosBerletuek);
         } else if (osszesTagNemGomb.isSelected() && aktivberletGomb.isSelected() && alkalmasBerletekGomb.isSelected()) {
-            tagokTabla.setItems(aktivAlkalmasTagok);
+            tagokTabla.setItems(aktivAlkalmasBerletuek);
         } else if (osszesTagNemGomb.isSelected() && lejertberletGomb.isSelected() && alkalmasBerletekGomb.isSelected()) {
-            tagokTabla.setItems(lejartAlkalmasTagok);
+            tagokTabla.setItems(lejartAlkalmasBerletuek);
         } else if (osszesTagNemGomb.isSelected() && aktivberletGomb.isSelected() && idokorlatosBerletekGomb.isSelected()) {
-            tagokTabla.setItems(aktivIdokorlatosTagok);
+            tagokTabla.setItems(aktivIdokorlatosBerletuek);
         } else if (osszesTagNemGomb.isSelected() && lejertberletGomb.isSelected() && idokorlatosBerletekGomb.isSelected()) {
-            tagokTabla.setItems(lejartIdokorlatosTagok);
+            tagokTabla.setItems(lejartIdokorlatosBerletuek);
         }
     }
 
@@ -298,44 +306,44 @@ public class KondiBazisFoAblakKezelo implements Initializable {
         if (osszesTagBerletTipusGomb.isSelected() && osszesTagNemGomb.isSelected() && osszesTagGomb.isSelected()) {
             tagokTabla.setItems(tagTablazatAdatok);
         } else if (osszesTagBerletTipusGomb.isSelected() && noGomb.isSelected() && osszesTagGomb.isSelected()) {
-            tagokTabla.setItems(noiTagok);
+            tagokTabla.setItems(nok);
         } else if (osszesTagBerletTipusGomb.isSelected() && ferfiGomb.isSelected() && osszesTagGomb.isSelected()) {
-            tagokTabla.setItems(ferfiTagok);
+            tagokTabla.setItems(ferfiak);
         } else if (osszesTagBerletTipusGomb.isSelected() && osszesTagNemGomb.isSelected() && aktivberletGomb.isSelected()) {
-            tagokTabla.setItems(aktivBerletuTagok);
+            tagokTabla.setItems(aktivBerletuek);
         } else if (osszesTagBerletTipusGomb.isSelected() && osszesTagNemGomb.isSelected() && lejertberletGomb.isSelected()) {
-            tagokTabla.setItems(lejartBerletuTagok);
+            tagokTabla.setItems(lejartBerletuek);
         } else if (osszesTagBerletTipusGomb.isSelected() && noGomb.isSelected() && aktivberletGomb.isSelected()) {
-            tagokTabla.setItems(aktivBerletesNok);
+            tagokTabla.setItems(nokAktiv);
         } else if (osszesTagBerletTipusGomb.isSelected() && ferfiGomb.isSelected() && aktivberletGomb.isSelected()) {
-            tagokTabla.setItems(aktivBerletesFerfiak);
+            tagokTabla.setItems(ferfiakAktiv);
         } else if (osszesTagBerletTipusGomb.isSelected() && noGomb.isSelected() && lejertberletGomb.isSelected()) {
-            tagokTabla.setItems(lejartBerletesNok);
+            tagokTabla.setItems(nokLejart);
         } else if (osszesTagBerletTipusGomb.isSelected() && ferfiGomb.isSelected() && lejertberletGomb.isSelected()) {
-            tagokTabla.setItems(lejartBerletesFerfiak);
+            tagokTabla.setItems(ferfiakLejart);
         }
     }
 
     @FXML
     private void aktivBerlet() {
         if (aktivberletGomb.isSelected() && osszesTagNemGomb.isSelected() && osszesTagBerletTipusGomb.isSelected()) {
-            tagokTabla.setItems(aktivBerletuTagok);
+            tagokTabla.setItems(aktivBerletuek);
         } else if (aktivberletGomb.isSelected() && ferfiGomb.isSelected() && osszesTagBerletTipusGomb.isSelected()) {
-            tagokTabla.setItems(aktivBerletesFerfiak);
+            tagokTabla.setItems(ferfiakAktiv);
         } else if (aktivberletGomb.isSelected() && noGomb.isSelected() && osszesTagBerletTipusGomb.isSelected()) {
-            tagokTabla.setItems(aktivBerletesNok);
+            tagokTabla.setItems(nokAktiv);
         } else if (aktivberletGomb.isSelected() && osszesTagNemGomb.isSelected() && alkalmasBerletekGomb.isSelected()) {
-            tagokTabla.setItems(aktivAlkalmasTagok);
+            tagokTabla.setItems(aktivAlkalmasBerletuek);
         } else if (aktivberletGomb.isSelected() && osszesTagNemGomb.isSelected() && idokorlatosBerletekGomb.isSelected()) {
-            tagokTabla.setItems(aktivIdokorlatosTagok);
+            tagokTabla.setItems(aktivIdokorlatosBerletuek);
         } else if (aktivberletGomb.isSelected() && noGomb.isSelected() && alkalmasBerletekGomb.isSelected()) {
-            tagokTabla.setItems(alkalmasAktivNoiTagok);
+            tagokTabla.setItems(alkalmasNokAktiv);
         } else if (aktivberletGomb.isSelected() && noGomb.isSelected() && idokorlatosBerletekGomb.isSelected()) {
-            tagokTabla.setItems(idokorlatosAktivNoiTagok);
+            tagokTabla.setItems(idokorlatosNokAktiv);
         } else if (aktivberletGomb.isSelected() && ferfiGomb.isSelected() && alkalmasBerletekGomb.isSelected()) {
-            tagokTabla.setItems(alkalmasAktivFerfiTagok);
+            tagokTabla.setItems(alkalmasFerfiAktiv);
         } else if (aktivberletGomb.isSelected() && ferfiGomb.isSelected() && idokorlatosBerletekGomb.isSelected()) {
-            tagokTabla.setItems(idokorlatosAktivFerfiTagok);
+            tagokTabla.setItems(idokorlatosFerfiAktiv);
         }
 
     }
@@ -343,115 +351,115 @@ public class KondiBazisFoAblakKezelo implements Initializable {
     @FXML
     private void lejartBerlet() {
         if (lejertberletGomb.isSelected() && osszesTagNemGomb.isSelected() && osszesTagBerletTipusGomb.isSelected()) {
-            tagokTabla.setItems(lejartBerletuTagok);
+            tagokTabla.setItems(lejartBerletuek);
         } else if (lejertberletGomb.isSelected() && ferfiGomb.isSelected() && osszesTagBerletTipusGomb.isSelected()) {
-            tagokTabla.setItems(lejartBerletesFerfiak);
+            tagokTabla.setItems(ferfiakLejart);
         } else if (lejertberletGomb.isSelected() && noGomb.isSelected() && osszesTagBerletTipusGomb.isSelected()) {
-            tagokTabla.setItems(lejartBerletesNok);
+            tagokTabla.setItems(nokLejart);
         } else if (lejertberletGomb.isSelected() && osszesTagNemGomb.isSelected() && alkalmasBerletekGomb.isSelected()) {
-            tagokTabla.setItems(lejartAlkalmasTagok);
+            tagokTabla.setItems(lejartAlkalmasBerletuek);
         } else if (lejertberletGomb.isSelected() && osszesTagNemGomb.isSelected() && idokorlatosBerletekGomb.isSelected()) {
-            tagokTabla.setItems(lejartIdokorlatosTagok);
+            tagokTabla.setItems(lejartIdokorlatosBerletuek);
         } else if (lejertberletGomb.isSelected() && noGomb.isSelected() && alkalmasBerletekGomb.isSelected()) {
-            tagokTabla.setItems(alkalmasLejartNoiTagok);
+            tagokTabla.setItems(alkalmasNokLejart);
         } else if (lejertberletGomb.isSelected() && noGomb.isSelected() && idokorlatosBerletekGomb.isSelected()) {
-            tagokTabla.setItems(idokorlatosLejartNoiTagok);
+            tagokTabla.setItems(idokorlatosNokLejart);
         } else if (lejertberletGomb.isSelected() && ferfiGomb.isSelected() && alkalmasBerletekGomb.isSelected()) {
-            tagokTabla.setItems(alkalmasLejartFerfiTagok);
+            tagokTabla.setItems(alkalmasFerfiLejart);
         } else if (lejertberletGomb.isSelected() && ferfiGomb.isSelected() && idokorlatosBerletekGomb.isSelected()) {
-            tagokTabla.setItems(idokorlatosLejartFerfiTagok);
+            tagokTabla.setItems(idokorlatosFerfiLejart);
         }
     }
 
     @FXML
     private void noTagok() {
         if (noGomb.isSelected() && osszesTagGomb.isSelected() && osszesTagBerletTipusGomb.isSelected()) {
-            tagokTabla.setItems(noiTagok);
+            tagokTabla.setItems(nok);
         } else if (noGomb.isSelected() && aktivberletGomb.isSelected() && osszesTagBerletTipusGomb.isSelected()) {
-            tagokTabla.setItems(aktivBerletesNok);
+            tagokTabla.setItems(nokAktiv);
         } else if (noGomb.isSelected() && lejertberletGomb.isSelected() && osszesTagBerletTipusGomb.isSelected()) {
-            tagokTabla.setItems(lejartBerletesNok);
+            tagokTabla.setItems(nokLejart);
         } else if (noGomb.isSelected() && osszesTagGomb.isSelected() && alkalmasBerletekGomb.isSelected()) {
-            tagokTabla.setItems(alkalmasBerletesNok);
+            tagokTabla.setItems(alkalmasNoBerletuek);
         } else if (noGomb.isSelected() && osszesTagGomb.isSelected() && idokorlatosBerletekGomb.isSelected()) {
-            tagokTabla.setItems(idokorlatosBerletesNok);
+            tagokTabla.setItems(idokorlatosNoBerletuek);
         } else if (noGomb.isSelected() && aktivberletGomb.isSelected() && alkalmasBerletekGomb.isSelected()) {
-            tagokTabla.setItems(alkalmasAktivNoiTagok);
+            tagokTabla.setItems(alkalmasNokAktiv);
         } else if (noGomb.isSelected() && lejertberletGomb.isSelected() && idokorlatosBerletekGomb.isSelected()) {
-            tagokTabla.setItems(idokorlatosLejartNoiTagok);
+            tagokTabla.setItems(idokorlatosNokLejart);
         } else if (noGomb.isSelected() && aktivberletGomb.isSelected() && idokorlatosBerletekGomb.isSelected()) {
-            tagokTabla.setItems(idokorlatosAktivNoiTagok);
+            tagokTabla.setItems(idokorlatosNokAktiv);
         } else if (noGomb.isSelected() && lejertberletGomb.isSelected() && alkalmasBerletekGomb.isSelected()) {
-            tagokTabla.setItems(alkalmasLejartNoiTagok);
+            tagokTabla.setItems(alkalmasNokLejart);
         }
     }
 
     @FXML
     private void ferfiTagok() {
         if (ferfiGomb.isSelected() && osszesTagGomb.isSelected() && osszesTagBerletTipusGomb.isSelected()) {
-            tagokTabla.setItems(ferfiTagok);
+            tagokTabla.setItems(ferfiak);
         } else if (ferfiGomb.isSelected() && aktivberletGomb.isSelected() && osszesTagBerletTipusGomb.isSelected()) {
-            tagokTabla.setItems(aktivBerletesFerfiak);
+            tagokTabla.setItems(ferfiakAktiv);
         } else if (ferfiGomb.isSelected() && lejertberletGomb.isSelected() && osszesTagBerletTipusGomb.isSelected()) {
-            tagokTabla.setItems(lejartBerletesFerfiak);
+            tagokTabla.setItems(ferfiakLejart);
         } else if (ferfiGomb.isSelected() && osszesTagGomb.isSelected() && alkalmasBerletekGomb.isSelected()) {
-            tagokTabla.setItems(alkalmasBerletesFerfiak);
+            tagokTabla.setItems(alkalmasFerfiBerletuek);
         } else if (ferfiGomb.isSelected() && osszesTagGomb.isSelected() && idokorlatosBerletekGomb.isSelected()) {
-            tagokTabla.setItems(idokorlatosBerletesFerfiak);
+            tagokTabla.setItems(idokorlatosFerfiBerletuek);
         } else if (ferfiGomb.isSelected() && aktivberletGomb.isSelected() && alkalmasBerletekGomb.isSelected()) {
-            tagokTabla.setItems(alkalmasAktivFerfiTagok);
+            tagokTabla.setItems(alkalmasFerfiAktiv);
         } else if (ferfiGomb.isSelected() && lejertberletGomb.isSelected() && idokorlatosBerletekGomb.isSelected()) {
-            tagokTabla.setItems(idokorlatosLejartFerfiTagok);
+            tagokTabla.setItems(idokorlatosFerfiLejart);
         } else if (ferfiGomb.isSelected() && aktivberletGomb.isSelected() && idokorlatosBerletekGomb.isSelected()) {
-            tagokTabla.setItems(idokorlatosAktivFerfiTagok);
+            tagokTabla.setItems(idokorlatosFerfiAktiv);
         } else if (ferfiGomb.isSelected() && lejertberletGomb.isSelected() && alkalmasBerletekGomb.isSelected()) {
-            tagokTabla.setItems(alkalmasLejartFerfiTagok);
+            tagokTabla.setItems(alkalmasFerfiLejart);
         }
     }
 
     @FXML
     private void alkalmasBerletek() {
         if (alkalmasBerletekGomb.isSelected() && osszesTagGomb.isSelected() && osszesTagNemGomb.isSelected()) {
-            tagokTabla.setItems(alkalmasBerletek);
+            tagokTabla.setItems(alkalmasBerletuek);
         } else if (alkalmasBerletekGomb.isSelected() && aktivberletGomb.isSelected() && osszesTagNemGomb.isSelected()) {
-            tagokTabla.setItems(aktivAlkalmasTagok);
+            tagokTabla.setItems(aktivAlkalmasBerletuek);
         } else if (alkalmasBerletekGomb.isSelected() && lejertberletGomb.isSelected() && osszesTagNemGomb.isSelected()) {
-            tagokTabla.setItems(lejartAlkalmasTagok);
+            tagokTabla.setItems(lejartAlkalmasBerletuek);
         } else if (alkalmasBerletekGomb.isSelected() && osszesTagGomb.isSelected() && noGomb.isSelected()) {
-            tagokTabla.setItems(alkalmasBerletesNok);
+            tagokTabla.setItems(alkalmasNoBerletuek);
         } else if (alkalmasBerletekGomb.isSelected() && osszesTagGomb.isSelected() && ferfiGomb.isSelected()) {
-            tagokTabla.setItems(alkalmasBerletesFerfiak);
+            tagokTabla.setItems(alkalmasFerfiBerletuek);
         } else if (alkalmasBerletekGomb.isSelected() && aktivberletGomb.isSelected() && noGomb.isSelected()) {
-            tagokTabla.setItems(alkalmasAktivNoiTagok);
+            tagokTabla.setItems(alkalmasNokAktiv);
         } else if (alkalmasBerletekGomb.isSelected() && aktivberletGomb.isSelected() && ferfiGomb.isSelected()) {
-            tagokTabla.setItems(alkalmasAktivFerfiTagok);
+            tagokTabla.setItems(alkalmasFerfiAktiv);
         } else if (alkalmasBerletekGomb.isSelected() && lejertberletGomb.isSelected() && noGomb.isSelected()) {
-            tagokTabla.setItems(alkalmasLejartNoiTagok);
+            tagokTabla.setItems(alkalmasNokLejart);
         } else if (alkalmasBerletekGomb.isSelected() && lejertberletGomb.isSelected() && ferfiGomb.isSelected()) {
-            tagokTabla.setItems(alkalmasLejartFerfiTagok);
+            tagokTabla.setItems(alkalmasFerfiLejart);
         }
     }
 
     @FXML
     private void idokorlatosBerletek() {
         if (idokorlatosBerletekGomb.isSelected() && osszesTagGomb.isSelected() && osszesTagNemGomb.isSelected()) {
-            tagokTabla.setItems(idokorlatosBerletek);
+            tagokTabla.setItems(idokorlatosBerletuek);
         } else if (idokorlatosBerletekGomb.isSelected() && aktivberletGomb.isSelected() && osszesTagNemGomb.isSelected()) {
-            tagokTabla.setItems(aktivIdokorlatosTagok);
+            tagokTabla.setItems(aktivIdokorlatosBerletuek);
         } else if (idokorlatosBerletekGomb.isSelected() && lejertberletGomb.isSelected() && osszesTagNemGomb.isSelected()) {
-            tagokTabla.setItems(lejartIdokorlatosTagok);
+            tagokTabla.setItems(lejartIdokorlatosBerletuek);
         } else if (idokorlatosBerletekGomb.isSelected() && osszesTagGomb.isSelected() && noGomb.isSelected()) {
-            tagokTabla.setItems(idokorlatosBerletesNok);
+            tagokTabla.setItems(idokorlatosNoBerletuek);
         } else if (idokorlatosBerletekGomb.isSelected() && osszesTagGomb.isSelected() && ferfiGomb.isSelected()) {
-            tagokTabla.setItems(idokorlatosBerletesFerfiak);
+            tagokTabla.setItems(idokorlatosFerfiBerletuek);
         } else if (idokorlatosBerletekGomb.isSelected() && aktivberletGomb.isSelected() && noGomb.isSelected()) {
-            tagokTabla.setItems(idokorlatosAktivNoiTagok);
+            tagokTabla.setItems(idokorlatosNokAktiv);
         } else if (idokorlatosBerletekGomb.isSelected() && aktivberletGomb.isSelected() && ferfiGomb.isSelected()) {
-            tagokTabla.setItems(idokorlatosAktivFerfiTagok);
+            tagokTabla.setItems(idokorlatosFerfiAktiv);
         } else if (idokorlatosBerletekGomb.isSelected() && lejertberletGomb.isSelected() && noGomb.isSelected()) {
-            tagokTabla.setItems(idokorlatosLejartNoiTagok);
+            tagokTabla.setItems(idokorlatosNokLejart);
         } else if (idokorlatosBerletekGomb.isSelected() && lejertberletGomb.isSelected() && ferfiGomb.isSelected()) {
-            tagokTabla.setItems(idokorlatosLejartFerfiTagok);
+            tagokTabla.setItems(idokorlatosFerfiLejart);
         }
     }
 
@@ -578,7 +586,7 @@ public class KondiBazisFoAblakKezelo implements Initializable {
 
         konditeremBerletek = konditeremBerletSzolgaltatas
                 .konditeremOsszesBerlete(bejelentkezettKonditerem);
-        logolo.info("Bejelentkezett koditeremhez lekérjük a bérleteket!");
+        logolo.info("Bejelentkezett koditeremhez lekérjük lejartBerletuTagok bérleteket!");
         ujBerletValasztas.getItems().clear();
         for (KonditeremBerletVo berletek : konditeremBerletek) {
             ujBerletValasztas.getItems().add(berletek.getBerletNeve());
@@ -698,9 +706,7 @@ public class KondiBazisFoAblakKezelo implements Initializable {
         KonditeremTagVo tag = konditeremTagSzolgaltatas.keresTagot(kivalasztottTag.getId());
         logolo.debug("A kivalasztott tag id-ja: " + kivalasztottTag.getId());
 
-        //TODO initbe és utánna mikor true akkor disable false
-        if (!tag.getTagVezeteknev().equals(vezeteknevModosit.getText()) || !tag.getTagKeresztnev().equals(keresztnevModosit.getText()) || !tag.getTagNeme().equals(nemValasztas()) || !tag.getTagSzuletesidatuma().equals(szuletesiDatumModosit.getValue()) || tag.getKonditeremBerlet() == null) {
-//            tagModositasaGomb.setDisable(false);
+        if (!tag.getTagVezeteknev().equals(vezeteknevModosit.getText()) || !tag.getTagKeresztnev().equals(keresztnevModosit.getText()) || !tag.getTagNeme().equals(nemValasztas()) || !tag.getTagSzuletesidatuma().equals(szuletesiDatumModosit.getValue()) || ujBerletValasztas.getValue() != null) {
             if (KiegeszitoFelulet.megerositesFelulet("Tag módosítása megerősítő ablak", "Tag módosítás megerősítése.", "Biztosan módosítani szeretné?", "Módosítás", "Mégsem", Alert.AlertType.WARNING)) {
 
                 kivalasztottTag.setTagVezeteknev(vezeteknevModosit.getText());
@@ -718,6 +724,8 @@ public class KondiBazisFoAblakKezelo implements Initializable {
                             int nap = berlet.getMennyiNap();
                             int honap = berlet.getMennyiHonap();
                             kivalasztottTag.setVasaroltBerletTipusa(berlet.getBerletTipusa());
+                            kivalasztottTag.setVasaroltBerletNeve(berlet.getBerletNeve());
+                            kivalasztottTag.setMennyiAlkalomMeg(0);
                             if (nap > 0) {
                                 kivalasztottTag.setBerletLejaratiIdeje(LocalDate.now().plusDays(nap).minusDays(1));
                             } else if (honap > 0) {
@@ -743,25 +751,23 @@ public class KondiBazisFoAblakKezelo implements Initializable {
                     }
                 }
 
-                // le kell kérni a tag képt és ha nem módusl a kép akkor a kép az maradjon ami volt TODO
+                // le kell kérni lejartBerletuTagok tag képt és ha nem módusl lejartBerletuTagok kép akkor lejartBerletuTagok kép az maradjon ami volt TODO
 
                 konditeremTagSzolgaltatas.frissitKonditeremTagot(kivalasztottTag);
                 logolo.debug("A " + kivalasztottTag.getId() + " id-val rendelkező tag megváltozott!");
-                KiegeszitoFelulet.ertesites("Tag módosítása", "Sikeres módosítás.", "Sikeres módosítás.", "Fő ablakban a tag módodosítása tabon.", Pos.BOTTOM_RIGHT, 5);
+                KiegeszitoFelulet.ertesites("Tag módosítása", "Sikeres módosítás.", "Sikeres módosítás.", "Fő ablakban lejartBerletuTagok tag módodosítása tabon.", Pos.BOTTOM_RIGHT, 5);
 //                Platform.runLater(() -> tagokTabla.getSelectionModel().clearSelection());
 //                tagModositas.setDisable(true);
                 adatFrissites();
                 logolo.info("Sikeres tag módosítás!");
 
             } else {
-                KiegeszitoFelulet.ertesites("Tag módosítása", "Nem történt módosítás.", "Nem történt módosítása.", "Fő ablakban a tag módodosítása tabon.", Pos.BOTTOM_RIGHT, 5);
+                KiegeszitoFelulet.ertesites("Tag módosítása", "Nem történt módosítás.", "Nem történt módosítása.", "Fő ablakban lejartBerletuTagok tag módodosítása tabon.", Pos.BOTTOM_RIGHT, 5);
                 logolo.info("Nem történt tag módosítása.");
             }
         } else {
-            //TODO
-            // gomb letiltása
-//            KiegeszitoFelulet.ertesites("Tag módosítása", "Sikeres módosítás.", "Sikeres módosítás.", "Fő ablakban a tag módodosítása tabon.", Pos.TOP_CENTER, 2);
-            logolo.info("Nem volt változás a tag adataiban!");
+            KiegeszitoFelulet.ertesites("Nem történt válrozás", "Nem módosult.", "Nincs módosítás.", "Fő ablakban lejartBerletuTagok tag módodosítása tabon.", Pos.TOP_CENTER, 2);
+            logolo.info("Nem volt valtozas lejartBerletuTagok tag adataiban!");
 
         }
 
@@ -784,11 +790,15 @@ public class KondiBazisFoAblakKezelo implements Initializable {
                     alkalmakSor.setStyle("");
                     return;
                 }
-                final Button mennyiAlkalomMegGomb = new Button("Még " + tag.getMennyiAlkalom() + " alkalom van hátra.");
 
+                //TODO
+                // itt is legyen dáum lekérdezés +  lejartBerletuTagok másidknál is legyne dátum lekérdezés és szinezze át lejartBerletuTagok text szöveget + lejartBerletuTagok gombot tiltsa le
+
+                final Button mennyiAlkalomMegGomb = new Button("Még " + tag.getMennyiAlkalom() + " alkalom van hátra.");
+                mennyiAlkalomMegGomb.setStyle("-fx-border-color: #00FF7F; -fx-border-width: 2px;");
                 if (Integer.parseInt(tag.getMennyiAlkalom()) == 0 && tag.getVasaroltBerletNeve().contains("Alkalmas")) {
                     mennyiAlkalomMegGomb.setText("Nincs több alkalom.");
-                    alkalmakSor.setStyle(lejartBerletStyle);
+//                    alkalmakSor.setStyle(lejartBerletStyle);
                     mennyiAlkalomMegGomb.setDisable(true);
                 } else {
                     alkalmakSor.setStyle("");
@@ -815,7 +825,7 @@ public class KondiBazisFoAblakKezelo implements Initializable {
                         }
                     } else if (Integer.parseInt(tag.getMennyiAlkalom()) == 0 && tag.getVasaroltBerletNeve().contains("Alkalmas")) {
                         mennyiAlkalomMegGomb.setText("Nincs több alkalom.");
-                        alkalmakSor.setStyle(lejartBerletStyle);
+//                        alkalmakSor.setStyle(lejartBerletStyle);
                         mennyiAlkalomMegGomb.setDisable(true);
                     }
                 });
@@ -826,6 +836,7 @@ public class KondiBazisFoAblakKezelo implements Initializable {
         berletLejaratiDatuma = new TableColumn<>("Bérlet Lejárati Dátuma");
         berletLejaratiDatuma.setMaxWidth(4800);
         berletLejaratiDatuma.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
+        berletLejaratiDatuma.setStyle("-fx-alignment: CENTER;");
         berletLejaratiDatuma.setCellFactory(param -> new TableCell<TagAdatok, TagAdatok>() {
 
             @Override
@@ -841,16 +852,37 @@ public class KondiBazisFoAblakKezelo implements Initializable {
                 }
 
                 final Text testText = new Text(tag.getBerletLejaratiIdeje());
+                testText.setFill(Color.SPRINGGREEN);
 
-
-                if (tag.getVasaroltBerletNeve().contains("Időkorlátos")) {
-                    setGraphic(testText);
-                    idokorlatosSor.setStyle("");
-                }
-
+                setGraphic(testText);
+                idokorlatosSor.setStyle("");
+//                if (tag.getVasaroltBerletNeve().contains("Időkorlátos")) {
+//
+//                }
             }
 
         });
+    }
+
+    private void kinezetBeallitasa() {
+        nevOszlop.setStyle("-fx-alignment: CENTER-LEFT;");
+
+        vezeteknevOszlop.setStyle("-fx-alignment: CENTER-LEFT;");
+
+        keresztnevOszlop.setStyle("-fx-alignment: CENTER-LEFT;");
+
+        nemOszlop.setStyle("-fx-alignment: CENTER-LEFT;");
+
+        korOszlop.setStyle("-fx-alignment: CENTER-LEFT;");
+
+        berletNeveOszlop.setStyle("-fx-alignment: CENTER-LEFT;");
+
+        berletVasarlasOszlop.setStyle("-fx-alignment: CENTER-LEFT;");
+
+        tagokTabla.setPlaceholder(new Text("Nem található egy tag sem."));
+
+        lejartBerletStyle = "-fx-background-color: lightcoral;";
+
     }
 
     private void tagModositasElrejtes() {

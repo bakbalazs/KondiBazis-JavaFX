@@ -165,7 +165,7 @@ public class KonditeremElerhetosegTest {
     }
 
     @Test
-    public void _1letrehozKonditeremElerhetoseget() {
+    public void letrehozKonditeremElerhetoseget() {
 
         KonditeremElerhetosegVo ujKonditeremElerhetoseg = new KonditeremElerhetosegVo();
         ujKonditeremElerhetoseg.setKonditeremVarosanakIranyitoSzama(2010);
@@ -186,7 +186,7 @@ public class KonditeremElerhetosegTest {
     }
 
     @Test
-    public void _2frissitKonditeremElerhetoseget() {
+    public void frissitKonditeremElerhetoseget() {
 
         KonditeremElerhetosegVo ujKonditeremElerhetoseg = new KonditeremElerhetosegVo();
         ujKonditeremElerhetoseg.setKonditeremVarosanakIranyitoSzama(2010);
@@ -209,7 +209,7 @@ public class KonditeremElerhetosegTest {
     }
 
     @Test
-    public void _3keresKonditeremOsszesElerhetosege() {
+    public void keresKonditeremOsszesElerhetosege() {
 
         KonditeremVo konditerem = KonditeremMapper.toVo(tesztKonditeremA);
 

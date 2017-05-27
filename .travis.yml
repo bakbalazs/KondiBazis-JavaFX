@@ -1,0 +1,20 @@
+language: java
+
+
+matrix:
+  include:
+    - os: linux
+      sudo: required
+      dist: trusty
+      jdk: oraclejdk8
+      install: true
+      env: FAILURES_ALLOWED=false
+  allow_failures:
+    - env: FAILURES_ALLOWED=true
+
+script:
+  - mvn install -B
+
+branches:
+  only:
+  - master

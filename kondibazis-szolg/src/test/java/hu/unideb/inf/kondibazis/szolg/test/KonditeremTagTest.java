@@ -4,8 +4,6 @@ import hu.unideb.inf.kondibazis.db.entitas.Konditerem;
 import hu.unideb.inf.kondibazis.db.entitas.KonditeremBerlet;
 import hu.unideb.inf.kondibazis.db.entitas.KonditeremTag;
 import hu.unideb.inf.kondibazis.db.tarolo.KonditeremTagTarolo;
-import hu.unideb.inf.kondibazis.szolg.impl.KonditeremBerletSzolgaltatasImpl;
-import hu.unideb.inf.kondibazis.szolg.impl.KonditeremSzolgaltatasImpl;
 import hu.unideb.inf.kondibazis.szolg.impl.KonditeremTagSzolgaltatasImpl;
 import hu.unideb.inf.kondibazis.szolg.mapper.KonditeremMapper;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremBerletVo;
@@ -33,37 +31,9 @@ public class KonditeremTagTest {
     @InjectMocks
     private KonditeremTagSzolgaltatasImpl konditeremTagSzolgaltatas;
 
-    @Spy
-    @InjectMocks
-    private KonditeremSzolgaltatasImpl konditeremSzolgaltatas;
-
-    @Spy
-    @InjectMocks
-    private KonditeremBerletSzolgaltatasImpl konditeremBerletSzolgaltatas;
-
     private static Konditerem tesztKonditeremA;
 
     private static Konditerem tesztKonditeremB;
-
-    private static KonditeremBerlet tesztBerlet1;
-
-    private static KonditeremBerlet tesztBerlet2;
-
-    private static KonditeremBerlet tesztBerlet3;
-
-    private static KonditeremBerlet tesztBerlet4;
-
-    private static KonditeremTag tesztTag1;
-
-    private static KonditeremTag tesztTag2;
-
-    private static KonditeremTag tesztTag3;
-
-    private static KonditeremTag tesztTag4;
-
-    private static KonditeremTag tesztTag5;
-
-    private static KonditeremTag tesztTag6;
 
     private static List<KonditeremBerlet> tesztKonditeremABerletei = new ArrayList<>();
 
@@ -101,7 +71,7 @@ public class KonditeremTagTest {
         tesztKonditeremB = ujKonditerem2;
 
         KonditeremBerlet ujKonditeremBerlet1 = new KonditeremBerlet();
-        ujKonditeremBerlet1.setId(3L);
+        ujKonditeremBerlet1.setId(4L);
         ujKonditeremBerlet1.setBerletNeve("TesztHavi");
         ujKonditeremBerlet1.setBerletAra(10000);
         ujKonditeremBerlet1.setBerletTipusa("Havi");
@@ -110,10 +80,8 @@ public class KonditeremTagTest {
         ujKonditeremBerlet1.setMennyiNap(0);
         ujKonditeremBerlet1.setKonditerem(tesztKonditeremA);
 
-        tesztBerlet1 = ujKonditeremBerlet1;
-
         KonditeremBerlet ujKonditeremBerlet2 = new KonditeremBerlet();
-        ujKonditeremBerlet2.setId(4L);
+        ujKonditeremBerlet2.setId(5L);
         ujKonditeremBerlet2.setBerletNeve("Teszt2Napos");
         ujKonditeremBerlet2.setBerletAra(10000);
         ujKonditeremBerlet2.setBerletTipusa("2 napos");
@@ -122,10 +90,8 @@ public class KonditeremTagTest {
         ujKonditeremBerlet2.setMennyiNap(0);
         ujKonditeremBerlet2.setKonditerem(tesztKonditeremA);
 
-        tesztBerlet2 = ujKonditeremBerlet2;
-
         KonditeremBerlet ujKonditeremBerlet3 = new KonditeremBerlet();
-        ujKonditeremBerlet3.setId(5L);
+        ujKonditeremBerlet3.setId(6L);
         ujKonditeremBerlet3.setBerletNeve("TesztHavi");
         ujKonditeremBerlet3.setBerletAra(10000);
         ujKonditeremBerlet3.setBerletTipusa("Havi");
@@ -134,10 +100,8 @@ public class KonditeremTagTest {
         ujKonditeremBerlet3.setMennyiNap(0);
         ujKonditeremBerlet3.setKonditerem(tesztKonditeremB);
 
-        tesztBerlet3 = ujKonditeremBerlet3;
-
         KonditeremBerlet ujKonditeremBerlet4 = new KonditeremBerlet();
-        ujKonditeremBerlet2.setId(6L);
+        ujKonditeremBerlet2.setId(7L);
         ujKonditeremBerlet2.setBerletNeve("Teszt2Napos");
         ujKonditeremBerlet2.setBerletAra(10000);
         ujKonditeremBerlet2.setBerletTipusa("2 napos");
@@ -146,18 +110,16 @@ public class KonditeremTagTest {
         ujKonditeremBerlet2.setMennyiNap(0);
         ujKonditeremBerlet2.setKonditerem(tesztKonditeremB);
 
-        tesztBerlet4 = ujKonditeremBerlet4;
-
         KonditeremTag ujTag1 = new KonditeremTag();
-        ujTag1.setId(7L);
+        ujTag1.setId(8L);
         ujTag1.setTagVezeteknev("Ujtag1Vezeteknev");
         ujTag1.setTagKeresztnev("Ujtag1Keresztnev");
         ujTag1.setTagNeve(ujTag1.getTagVezeteknev() + " " + ujTag1.getTagKeresztnev());
-        ujTag1.setTagNeme("Férfi");
+        ujTag1.setTagNeme("Nő");
         ujTag1.setTagSzuletesidatuma(LocalDate.now().minusMonths(12));
         ujTag1.setTagKora(20);
         ujTag1.setVasaroltBerletNeve("BerletNeve1");
-        ujTag1.setVasaroltBerletTipusa("Havi1");
+        ujTag1.setVasaroltBerletTipusa("Időkorlátos bérlet");
         ujTag1.setBerletVasarlasideje(LocalDate.now().minusWeeks(4));
         ujTag1.setBerletLejaratiIdeje(LocalDate.now().minusWeeks(2));
         ujTag1.setTagVarosa("Varos1");
@@ -165,10 +127,8 @@ public class KonditeremTagTest {
         ujTag1.setKonditeremBerlet(ujKonditeremBerlet1);
         ujTag1.setKonditerem(tesztKonditeremA);
 
-        tesztTag1 = ujTag1;
-
         KonditeremTag ujTag2 = new KonditeremTag();
-        ujTag2.setId(8L);
+        ujTag2.setId(9L);
         ujTag2.setTagVezeteknev("Ujtag2Vezeteknev");
         ujTag2.setTagKeresztnev("Ujtag2Keresztnev");
         ujTag2.setTagNeve(ujTag1.getTagVezeteknev() + " " + ujTag1.getTagKeresztnev());
@@ -176,7 +136,7 @@ public class KonditeremTagTest {
         ujTag2.setTagSzuletesidatuma(LocalDate.now().minusMonths(12));
         ujTag2.setTagKora(20);
         ujTag2.setVasaroltBerletNeve("BerletNeve2");
-        ujTag2.setVasaroltBerletTipusa("Havi2");
+        ujTag2.setVasaroltBerletTipusa("Alkalmas bérlet");
         ujTag2.setBerletVasarlasideje(LocalDate.now().minusWeeks(4));
         ujTag2.setBerletLejaratiIdeje(LocalDate.now().minusWeeks(2));
         ujTag2.setTagVarosa("Varos2");
@@ -184,10 +144,8 @@ public class KonditeremTagTest {
         ujTag2.setKonditeremBerlet(ujKonditeremBerlet2);
         ujTag2.setKonditerem(tesztKonditeremA);
 
-        tesztTag2 = ujTag2;
-
         KonditeremTag ujTag3 = new KonditeremTag();
-        ujTag3.setId(9L);
+        ujTag3.setId(10L);
         ujTag3.setTagVezeteknev("Ujtag3Vezeteknev");
         ujTag3.setTagKeresztnev("Ujtag3Keresztnev");
         ujTag3.setTagNeve(ujTag1.getTagVezeteknev() + " " + ujTag1.getTagKeresztnev());
@@ -195,7 +153,7 @@ public class KonditeremTagTest {
         ujTag3.setTagSzuletesidatuma(LocalDate.now().minusMonths(12));
         ujTag3.setTagKora(20);
         ujTag3.setVasaroltBerletNeve("BerletNeve3");
-        ujTag3.setVasaroltBerletTipusa("Havi3");
+        ujTag3.setVasaroltBerletTipusa("Iődkorlátos bérlet");
         ujTag3.setBerletVasarlasideje(LocalDate.now().minusWeeks(4));
         ujTag3.setBerletLejaratiIdeje(LocalDate.now().minusWeeks(2));
         ujTag3.setTagVarosa("Varos3");
@@ -203,10 +161,8 @@ public class KonditeremTagTest {
         ujTag3.setKonditeremBerlet(ujKonditeremBerlet3);
         ujTag3.setKonditerem(tesztKonditeremA);
 
-        tesztTag3 = ujTag3;
-
         KonditeremTag ujTag4 = new KonditeremTag();
-        ujTag4.setId(10L);
+        ujTag4.setId(11L);
         ujTag4.setTagVezeteknev("Ujtag4Vezeteknev");
         ujTag4.setTagKeresztnev("Ujtag4Keresztnev");
         ujTag4.setTagNeve(ujTag1.getTagVezeteknev() + " " + ujTag1.getTagKeresztnev());
@@ -214,7 +170,7 @@ public class KonditeremTagTest {
         ujTag4.setTagSzuletesidatuma(LocalDate.now().minusMonths(12));
         ujTag4.setTagKora(20);
         ujTag4.setVasaroltBerletNeve("BerletNeve4");
-        ujTag4.setVasaroltBerletTipusa("Havi4");
+        ujTag4.setVasaroltBerletTipusa("Időkorlátos bérlet");
         ujTag4.setBerletVasarlasideje(LocalDate.now().minusWeeks(4));
         ujTag4.setBerletLejaratiIdeje(LocalDate.now().minusWeeks(2));
         ujTag4.setTagVarosa("Varos4");
@@ -222,10 +178,8 @@ public class KonditeremTagTest {
         ujTag4.setKonditeremBerlet(ujKonditeremBerlet4);
         ujTag4.setKonditerem(tesztKonditeremB);
 
-        tesztTag4 = ujTag4;
-
         KonditeremTag ujTag5 = new KonditeremTag();
-        ujTag5.setId(11L);
+        ujTag5.setId(12L);
         ujTag5.setTagVezeteknev("Ujtag5Vezeteknev");
         ujTag5.setTagKeresztnev("Ujtag5Keresztnev");
         ujTag5.setTagNeve(ujTag1.getTagVezeteknev() + " " + ujTag1.getTagKeresztnev());
@@ -233,7 +187,7 @@ public class KonditeremTagTest {
         ujTag5.setTagSzuletesidatuma(LocalDate.now().minusMonths(12));
         ujTag5.setTagKora(20);
         ujTag5.setVasaroltBerletNeve("BerletNeve5");
-        ujTag5.setVasaroltBerletTipusa("Havi5");
+        ujTag5.setVasaroltBerletTipusa("Időkorlátos bérlet");
         ujTag5.setBerletVasarlasideje(LocalDate.now().minusWeeks(4));
         ujTag5.setBerletLejaratiIdeje(LocalDate.now().minusWeeks(2));
         ujTag5.setTagVarosa("Varos5");
@@ -241,10 +195,8 @@ public class KonditeremTagTest {
         ujTag5.setKonditeremBerlet(ujKonditeremBerlet3);
         ujTag5.setKonditerem(tesztKonditeremB);
 
-        tesztTag5 = ujTag5;
-
         KonditeremTag ujTag6 = new KonditeremTag();
-        ujTag6.setId(12L);
+        ujTag6.setId(13L);
         ujTag6.setTagVezeteknev("Ujtag6Vezeteknev");
         ujTag6.setTagKeresztnev("Ujtag6Keresztnev");
         ujTag6.setTagNeve(ujTag1.getTagVezeteknev() + " " + ujTag1.getTagKeresztnev());
@@ -252,15 +204,13 @@ public class KonditeremTagTest {
         ujTag6.setTagSzuletesidatuma(LocalDate.now().minusMonths(12));
         ujTag6.setTagKora(20);
         ujTag6.setVasaroltBerletNeve("BerletNeve6");
-        ujTag6.setVasaroltBerletTipusa("Havi6");
+        ujTag6.setVasaroltBerletTipusa("Alkalmas bérlet");
         ujTag6.setBerletVasarlasideje(LocalDate.now().minusWeeks(4));
         ujTag6.setBerletLejaratiIdeje(LocalDate.now().minusWeeks(2));
         ujTag6.setTagVarosa("Varos6");
         ujTag6.setTagMegyeje("Megye6");
         ujTag6.setKonditeremBerlet(ujKonditeremBerlet3);
         ujTag6.setKonditerem(tesztKonditeremB);
-
-        tesztTag6 = ujTag6;
 
         tesztKonditeremA.getKonditeremBerletek().addAll(Arrays.asList(ujKonditeremBerlet1, ujKonditeremBerlet2));
         tesztKonditeremA.getKonditeremTagok().addAll(Arrays.asList(ujTag1, ujTag2, ujTag3));
@@ -269,11 +219,10 @@ public class KonditeremTagTest {
         tesztKonditeremB.getKonditeremTagok().addAll(Arrays.asList(ujTag4, ujTag5, ujTag6));
 
         tesztKonditeremABerletei.addAll(Arrays.asList(ujKonditeremBerlet1, ujKonditeremBerlet2));
-        tesztKonditeremBBerletei.addAll(Arrays.asList(ujKonditeremBerlet3, ujKonditeremBerlet4));
+        tesztKonditeremBBerletei.add(ujKonditeremBerlet4);
 
         tesztKonditeremATagjai.addAll(Arrays.asList(ujTag1, ujTag2, ujTag3));
         tesztKonditeremBTagjai.addAll(Arrays.asList(ujTag4, ujTag5, ujTag6));
-
     }
 
     @Before
@@ -318,7 +267,7 @@ public class KonditeremTagTest {
     }
 
     @Test
-    public void _1letrehozKonditeremTagotTeszt() {
+    public void letrehozKonditeremTagotTeszt() {
         KonditeremTagVo ujTag = new KonditeremTagVo();
         ujTag.setTagVezeteknev("Ujtag1Vezeteknev");
         ujTag.setTagKeresztnev("Ujtag1Keresztnev");
@@ -343,7 +292,7 @@ public class KonditeremTagTest {
     }
 
     @Test
-    public void _2keresKonditeremTagokTeszt() {
+    public void keresKonditeremTagokTeszt() {
         KonditeremTagVo leszIlyenTag = konditeremTagSzolgaltatas.keresTagot(7L);
 
         Assert.assertNotNull(leszIlyenTag);
@@ -354,7 +303,7 @@ public class KonditeremTagTest {
     }
 
     @Test
-    public void _3frissitKonditeremTagotTeszt() {
+    public void frissitKonditeremTagotTeszt() {
         KonditeremTagVo ujTag = new KonditeremTagVo();
         ujTag.setTagVezeteknev("Ujtag1Vezeteknev");
         ujTag.setTagKeresztnev("Ujtag1Keresztnev");
@@ -384,13 +333,53 @@ public class KonditeremTagTest {
     }
 
     @Test
-    public void _4konditeremOsszesTagjaTeszt() {
+    public void konditeremOsszesTagjaTeszt() {
         KonditeremVo konditerem = KonditeremMapper.toVo(tesztKonditeremA);
 
         List<KonditeremTagVo> konditeremTagjai = konditeremTagSzolgaltatas.konditeremOsszesTagja(konditerem);
 
         Assert.assertNotNull(konditeremTagjai);
         Assert.assertEquals(3, konditeremTagjai.size());
+    }
+
+    @Test
+    public void konditeremNoiTagjaiTeszt() {
+        KonditeremVo konditerem = KonditeremMapper.toVo(tesztKonditeremA);
+
+        List<KonditeremTagVo> konditeremNoiTagjai = konditeremTagSzolgaltatas.noiTagok(konditerem);
+
+        Assert.assertNotNull(konditeremNoiTagjai);
+        Assert.assertEquals(1, konditeremNoiTagjai.size());
+    }
+
+    @Test
+    public void konditeremFerfiTagjaiTeszt() {
+        KonditeremVo konditerem = KonditeremMapper.toVo(tesztKonditeremB);
+
+        List<KonditeremTagVo> konditeremFerfiTagjai = konditeremTagSzolgaltatas.ferfiTagok(konditerem);
+
+        Assert.assertNotNull(konditeremFerfiTagjai);
+        Assert.assertEquals(1, konditeremFerfiTagjai.size());
+    }
+
+    @Test
+    public void konditeremAlkalmasBerletuTagjaiTeszt() {
+        KonditeremVo konditerem = KonditeremMapper.toVo(tesztKonditeremA);
+
+        List<KonditeremTagVo> konditeremAlkalmasBerletuTagjai = konditeremTagSzolgaltatas.alkalmasBerletuTagok(konditerem);
+
+        Assert.assertNotNull(konditeremAlkalmasBerletuTagjai);
+        Assert.assertEquals(1, konditeremAlkalmasBerletuTagjai.size());
+    }
+
+    @Test
+    public void konditeremIdokorlatosBerletuTagjaiTeszt() {
+        KonditeremVo konditerem = KonditeremMapper.toVo(tesztKonditeremB);
+
+        List<KonditeremTagVo> konditeremIdokorlatosBerletuTagjai = konditeremTagSzolgaltatas.idokorlatosBerletuTagok(konditerem);
+
+        Assert.assertNotNull(konditeremIdokorlatosBerletuTagjai);
+        Assert.assertEquals(2, konditeremIdokorlatosBerletuTagjai.size());
     }
 
 }

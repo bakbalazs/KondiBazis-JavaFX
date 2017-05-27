@@ -2,162 +2,274 @@
 package hu.unideb.inf.kondibazis.ui.kiegeszito;
 
 import hu.unideb.inf.kondibazis.ui.model.TagAdatok;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TagokSzurese {
 
-    public static FilteredList<TagAdatok> lejartBerletuTagok;
+    public static FilteredList<TagAdatok> lejartBerletuek;
+    public static FilteredList<TagAdatok> lejartAlkalmasBerletuek;
+    public static FilteredList<TagAdatok> lejartIdokorlatosBerletuek;
 
-    public static FilteredList<TagAdatok> aktivBerletuTagok;
+    public static FilteredList<TagAdatok> aktivBerletuek;
+    public static FilteredList<TagAdatok> aktivAlkalmasBerletuek;
+    public static FilteredList<TagAdatok> aktivIdokorlatosBerletuek;
 
-    public static FilteredList<TagAdatok> lejartBerletesNok;
+    public static FilteredList<TagAdatok> nok;
+    public static FilteredList<TagAdatok> ferfiak;
 
-    public static FilteredList<TagAdatok> aktivBerletesNok;
+    public static FilteredList<TagAdatok> alkalmasBerletuek;
+    public static FilteredList<TagAdatok> idokorlatosBerletuek;
 
-    public static FilteredList<TagAdatok> noiTagok;
+    public static FilteredList<TagAdatok> alkalmasNoBerletuek;
+    public static FilteredList<TagAdatok> idokorlatosNoBerletuek;
+    public static FilteredList<TagAdatok> alkalmasFerfiBerletuek;
+    public static FilteredList<TagAdatok> idokorlatosFerfiBerletuek;
 
-    public static FilteredList<TagAdatok> lejartBerletesFerfiak;
+    public static FilteredList<TagAdatok> alkalmasNokLejart;
+    public static FilteredList<TagAdatok> idokorlatosNokLejart;
 
-    public static FilteredList<TagAdatok> aktivBerletesFerfiak;
+    public static FilteredList<TagAdatok> alkalmasFerfiLejart;
+    public static FilteredList<TagAdatok> idokorlatosFerfiLejart;
 
-    public static FilteredList<TagAdatok> ferfiTagok;
+    public static FilteredList<TagAdatok> ferfiakLejart;
+    public static FilteredList<TagAdatok> nokLejart;
 
-    public static FilteredList<TagAdatok> alkalmasBerletek;
+    public static FilteredList<TagAdatok> alkalmasNokAktiv;
+    public static FilteredList<TagAdatok> idokorlatosNokAktiv;
 
-    public static FilteredList<TagAdatok> idokorlatosBerletek;
+    public static FilteredList<TagAdatok> alkalmasFerfiAktiv;
+    public static FilteredList<TagAdatok> idokorlatosFerfiAktiv;
 
-    public static FilteredList<TagAdatok> alkalmasBerletesNok;
+    public static FilteredList<TagAdatok> ferfiakAktiv;
+    public static FilteredList<TagAdatok> nokAktiv;
 
-    public static FilteredList<TagAdatok> alkalmasBerletesFerfiak;
+    private static ObservableList<TagAdatok> lejartBerletuTagok = FXCollections.observableArrayList();
+    private static ObservableList<TagAdatok> alkalmasBerletuLejartTagok = FXCollections.observableArrayList();
+    private static ObservableList<TagAdatok> idokorlatosBerletuLejartTagok = FXCollections.observableArrayList();
+    private static ObservableList<TagAdatok> aktivBerletuTagok = FXCollections.observableArrayList();
+    private static ObservableList<TagAdatok> alkalmasBerletuAktivTagok = FXCollections.observableArrayList();
+    private static ObservableList<TagAdatok> idokorlatosBerletuAktivTagok = FXCollections.observableArrayList();
+    private static ObservableList<TagAdatok> noiTagok = FXCollections.observableArrayList();
+    private static ObservableList<TagAdatok> ferfiTagok = FXCollections.observableArrayList();
+    private static ObservableList<TagAdatok> alkalmasBerletesTagok = FXCollections.observableArrayList();
+    private static ObservableList<TagAdatok> idokorlatosBerletesTagok = FXCollections.observableArrayList();
+    private static ObservableList<TagAdatok> alkalmasNoiBerletuTagok = FXCollections.observableArrayList();
+    private static ObservableList<TagAdatok> alkalmasFerfiBerletuTagok = FXCollections.observableArrayList();
+    private static ObservableList<TagAdatok> idokorlatosNoiBerletuTagok = FXCollections.observableArrayList();
+    private static ObservableList<TagAdatok> idokorlatosFerfiBerletuTagok = FXCollections.observableArrayList();
+    private static ObservableList<TagAdatok> lejartAlkalmasNoiBerletuTagok = FXCollections.observableArrayList();
+    private static ObservableList<TagAdatok> lejartIdokorlatosNoiBerletuTagok = FXCollections.observableArrayList();
+    private static ObservableList<TagAdatok> lejartAlkalmasFerfiBerletuTagok = FXCollections.observableArrayList();
+    private static ObservableList<TagAdatok> lejartIdokorlatosFerfiBerletuTagok = FXCollections.observableArrayList();
+    private static ObservableList<TagAdatok> lejartFerfiBerletuTagok = FXCollections.observableArrayList();
+    private static ObservableList<TagAdatok> lejartNoiBerletuTagok = FXCollections.observableArrayList();
 
-    public static FilteredList<TagAdatok> idokorlatosBerletesFerfiak;
-
-    public static FilteredList<TagAdatok> idokorlatosBerletesNok;
-
-    public static FilteredList<TagAdatok> lejartAlkalmasTagok;
-
-    public static FilteredList<TagAdatok> lejartIdokorlatosTagok;
-
-    public static FilteredList<TagAdatok> aktivAlkalmasTagok;
-
-    public static FilteredList<TagAdatok> aktivIdokorlatosTagok;
-
-    public static FilteredList<TagAdatok> alkalmasAktivNoiTagok;
-
-    public static FilteredList<TagAdatok> alkalmasLejartNoiTagok;
-
-    public static FilteredList<TagAdatok> idokorlatosAktivNoiTagok;
-
-    public static FilteredList<TagAdatok> idokorlatosLejartNoiTagok;
-
-    public static FilteredList<TagAdatok> alkalmasAktivFerfiTagok;
-
-    public static FilteredList<TagAdatok> alkalmasLejartFerfiTagok;
-
-    public static FilteredList<TagAdatok> idokorlatosAktivFerfiTagok;
-
-    public static FilteredList<TagAdatok> idokorlatosLejartFerfiTagok;
-
-    public static FilteredList<TagAdatok> lejartIdokorlatosBerletek;
+    private static ObservableList<TagAdatok> aktivAlkalmasNoiBerletuTagok = FXCollections.observableArrayList();
+    private static ObservableList<TagAdatok> aktivIdokorlatosNoiBerletuTagok = FXCollections.observableArrayList();
+    private static ObservableList<TagAdatok> aktivAlkalmasFerfiBerletuTagok = FXCollections.observableArrayList();
+    private static ObservableList<TagAdatok> aktivIdokorlatosFerfiBerletuTagok = FXCollections.observableArrayList();
+    private static ObservableList<TagAdatok> aktivFerfiBerletuTagok = FXCollections.observableArrayList();
+    private static ObservableList<TagAdatok> aktivNoiBerletuTagok = FXCollections.observableArrayList();
 
     public static void szuresek(ObservableList<TagAdatok> tagTablazatAdatok) {
         LocalDate maiNap = LocalDate.now();
         DateTimeFormatter datumFormatum = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-        noiTagok = new FilteredList<>(tagTablazatAdatok, tagok -> true);
-        ferfiTagok = new FilteredList<>(tagTablazatAdatok, tagok -> true);
+        List<TagAdatok> alkalmasLejartLista = new ArrayList<>();
+        List<TagAdatok> idokorlatosLejartLista = new ArrayList<>();
 
-        aktivBerletuTagok = new FilteredList<>(tagTablazatAdatok, tagok -> true);
-        aktivBerletesNok = new FilteredList<>(aktivBerletuTagok, tagok -> true);
-        aktivBerletesFerfiak = new FilteredList<>(aktivBerletuTagok, tagok -> true);
+        List<TagAdatok> alkalmasAktivLista = new ArrayList<>();
+        List<TagAdatok> idokorlatosAktivLista = new ArrayList<>();
 
-        lejartBerletuTagok = new FilteredList<>(tagTablazatAdatok, tagok -> true);
-        lejartBerletesNok = new FilteredList<>(lejartBerletuTagok, tagok -> true);
-        lejartBerletesFerfiak = new FilteredList<>(lejartBerletuTagok, tagok -> true);
+        List<TagAdatok> noiTagokLista = new ArrayList<>();
+        List<TagAdatok> ferfiTagokLista = new ArrayList<>();
 
-        alkalmasBerletek = new FilteredList<>(tagTablazatAdatok, tagok -> true);
+        List<TagAdatok> alkalmasBerletuLista = new ArrayList<>();
+        List<TagAdatok> idokorlatosBerletuLista = new ArrayList<>();
 
-        idokorlatosBerletek = new FilteredList<>(tagTablazatAdatok, tagok -> true);
+        List<TagAdatok> alkalmasNoiBerletuLista = new ArrayList<>();
+        List<TagAdatok> idokorlatosNoiBerletuLista = new ArrayList<>();
 
-        alkalmasBerletesNok = new FilteredList<>(noiTagok, tagok -> true);
-        alkalmasBerletesFerfiak = new FilteredList<>(ferfiTagok, tagok -> true);
+        List<TagAdatok> alkalmasFerfiBerletuLista = new ArrayList<>();
+        List<TagAdatok> idokorlatosFerfiBerletuLista = new ArrayList<>();
 
-        idokorlatosBerletesNok = new FilteredList<>(noiTagok, tagok -> true);
-        idokorlatosBerletesFerfiak = new FilteredList<>(ferfiTagok, tagok -> true);
+        List<TagAdatok> alkalmasLejartNoiBerletuLista = new ArrayList<>();
+        List<TagAdatok> idokorlatosLejartNoiBerletuLista = new ArrayList<>();
 
-        lejartAlkalmasTagok = new FilteredList<>(lejartBerletuTagok, tagok -> true);
-        lejartIdokorlatosTagok = new FilteredList<>(lejartBerletuTagok, tagok -> true);
+        List<TagAdatok> alkalmasLejartFerfiBerletuLista = new ArrayList<>();
+        List<TagAdatok> idokorlatosLejartFerfiBerletuLista = new ArrayList<>();
 
-        aktivAlkalmasTagok = new FilteredList<>(aktivBerletuTagok, tagok -> true);
-        aktivIdokorlatosTagok = new FilteredList<>(aktivBerletuTagok, tagok -> true);
+        List<TagAdatok> lejartFerfiBerletesLista = new ArrayList<>();
+        List<TagAdatok> lejartNoiBerletesLista = new ArrayList<>();
 
-        alkalmasAktivNoiTagok = new FilteredList<>(aktivAlkalmasTagok, tagok -> true);
-        alkalmasLejartNoiTagok = new FilteredList<>(lejartAlkalmasTagok, tagok -> true);
+        List<TagAdatok> aktivNoiBerletesLista = new ArrayList<>();
+        List<TagAdatok> aktivFerfiBerletesLista = new ArrayList<>();
+        List<TagAdatok> idokorlatosAktivFerfiBerletuLista = new ArrayList<>();
+        List<TagAdatok> alkalmasAktivFerfiBerletuLista = new ArrayList<>();
+        List<TagAdatok> idokorlatosAktivNoiBerletuLista = new ArrayList<>();
+        List<TagAdatok> alkalmasAktivNoiBerletuLista = new ArrayList<>();
 
-        idokorlatosAktivNoiTagok = new FilteredList<>(aktivIdokorlatosTagok, tagok -> true);
-        idokorlatosLejartNoiTagok = new FilteredList<>(lejartIdokorlatosTagok, tagok -> true);
 
-        alkalmasAktivFerfiTagok = new FilteredList<>(aktivAlkalmasTagok, tagok -> true);
-        alkalmasLejartFerfiTagok = new FilteredList<>(lejartAlkalmasTagok, tagok -> true);
+        for (TagAdatok tag : tagTablazatAdatok) {
+            if (tag.getVasaroltBerletNeve().contains("Alkalmas") && (Integer.parseInt(tag.getMennyiAlkalom()) == 0 || LocalDate.parse(tag.getBerletLejaratiIdeje(), datumFormatum).compareTo(maiNap) < 0 || LocalDate.parse(tag.getBerletLejaratiIdeje(), datumFormatum).compareTo(maiNap) == -1)) {
+                alkalmasLejartLista.add(tag);
+            }
+            if (tag.getVasaroltBerletNeve().contains("Időkorlátos") && (LocalDate.parse(tag.getBerletLejaratiIdeje(), datumFormatum).compareTo(maiNap) < 0 || LocalDate.parse(tag.getBerletLejaratiIdeje(), datumFormatum).compareTo(maiNap) == -1)) {
+                idokorlatosLejartLista.add(tag);
+            }
+            if (tag.getVasaroltBerletNeve().contains("Alkalmas") && (Integer.parseInt(tag.getMennyiAlkalom()) > 0 || LocalDate.parse(tag.getBerletLejaratiIdeje(), datumFormatum).compareTo(maiNap) == 0 || LocalDate.parse(tag.getBerletLejaratiIdeje(), datumFormatum).compareTo(maiNap) > 0)) {
+                alkalmasAktivLista.add(tag);
+            }
+            if (tag.getVasaroltBerletNeve().contains("Időkorlátos") && (LocalDate.parse(tag.getBerletLejaratiIdeje(), datumFormatum).compareTo(maiNap) == 0 || LocalDate.parse(tag.getBerletLejaratiIdeje(), datumFormatum).compareTo(maiNap) > 0)) {
+                idokorlatosAktivLista.add(tag);
+            }
+            if (tag.getTagNeme().equals("Nő")) {
+                noiTagokLista.add(tag);
+            }
+            if (tag.getTagNeme().equals("Férfi")) {
+                ferfiTagokLista.add(tag);
+            }
+            if (tag.getVasaroltBerletNeve().contains("Alkalmas")) {
+                alkalmasBerletuLista.add(tag);
+            }
+            if (tag.getVasaroltBerletNeve().contains("Időkorlátos")) {
+                idokorlatosBerletuLista.add(tag);
+            }
+            if (tag.getVasaroltBerletNeve().contains("Alkalmas") && tag.getTagNeme().equals("Nő")) {
+                alkalmasNoiBerletuLista.add(tag);
+            }
+            if (tag.getVasaroltBerletNeve().contains("Időkorlátos") && tag.getTagNeme().equals("Nő")) {
+                idokorlatosNoiBerletuLista.add(tag);
+            }
+            if (tag.getVasaroltBerletNeve().contains("Alkalmas") && tag.getTagNeme().equals("Férfi")) {
+                alkalmasFerfiBerletuLista.add(tag);
+            }
+            if (tag.getVasaroltBerletNeve().contains("Időkorlátos") && tag.getTagNeme().equals("Férfi")) {
+                idokorlatosFerfiBerletuLista.add(tag);
+            }
+            if (tag.getTagNeme().equals("Nő") && tag.getVasaroltBerletNeve().contains("Alkalmas") && (Integer.parseInt(tag.getMennyiAlkalom()) == 0 || LocalDate.parse(tag.getBerletLejaratiIdeje(), datumFormatum).compareTo(maiNap) < 0 || LocalDate.parse(tag.getBerletLejaratiIdeje(), datumFormatum).compareTo(maiNap) == -1)) {
+                alkalmasLejartNoiBerletuLista.add(tag);
+            }
+            if (tag.getTagNeme().equals("Nő") && tag.getVasaroltBerletNeve().contains("Időkorlátos") && (LocalDate.parse(tag.getBerletLejaratiIdeje(), datumFormatum).compareTo(maiNap) < 0 || LocalDate.parse(tag.getBerletLejaratiIdeje(), datumFormatum).compareTo(maiNap) == -1)) {
+                idokorlatosLejartNoiBerletuLista.add(tag);
+            }
+            if (tag.getTagNeme().equals("Férfi") && tag.getVasaroltBerletNeve().contains("Alkalmas") && (Integer.parseInt(tag.getMennyiAlkalom()) == 0 || LocalDate.parse(tag.getBerletLejaratiIdeje(), datumFormatum).compareTo(maiNap) < 0 || LocalDate.parse(tag.getBerletLejaratiIdeje(), datumFormatum).compareTo(maiNap) == -1)) {
+                alkalmasLejartFerfiBerletuLista.add(tag);
+            }
+            if (tag.getTagNeme().equals("Férfi") && tag.getVasaroltBerletNeve().contains("Időkorlátos") && (LocalDate.parse(tag.getBerletLejaratiIdeje(), datumFormatum).compareTo(maiNap) < 0 || LocalDate.parse(tag.getBerletLejaratiIdeje(), datumFormatum).compareTo(maiNap) == -1)) {
+                idokorlatosLejartFerfiBerletuLista.add(tag);
+            }
+            if ((tag.getTagNeme().equals("Férfi") && tag.getVasaroltBerletNeve().contains("Időkorlátos") && (LocalDate.parse(tag.getBerletLejaratiIdeje(), datumFormatum).compareTo(maiNap) < 0 || LocalDate.parse(tag.getBerletLejaratiIdeje(), datumFormatum).compareTo(maiNap) == -1)) || tag.getTagNeme().equals("Férfi") && tag.getVasaroltBerletNeve().contains("Alkalmas") && (Integer.parseInt(tag.getMennyiAlkalom()) == 0 || LocalDate.parse(tag.getBerletLejaratiIdeje(), datumFormatum).compareTo(maiNap) < 0 || LocalDate.parse(tag.getBerletLejaratiIdeje(), datumFormatum).compareTo(maiNap) == -1)) {
+                lejartFerfiBerletesLista.add(tag);
+            }
+            if ((tag.getTagNeme().equals("Nő") && tag.getVasaroltBerletNeve().contains("Időkorlátos") && (LocalDate.parse(tag.getBerletLejaratiIdeje(), datumFormatum).compareTo(maiNap) < 0 || LocalDate.parse(tag.getBerletLejaratiIdeje(), datumFormatum).compareTo(maiNap) == -1)) || tag.getTagNeme().equals("Nő") && tag.getVasaroltBerletNeve().contains("Alkalmas") && (Integer.parseInt(tag.getMennyiAlkalom()) == 0 || LocalDate.parse(tag.getBerletLejaratiIdeje(), datumFormatum).compareTo(maiNap) < 0 || LocalDate.parse(tag.getBerletLejaratiIdeje(), datumFormatum).compareTo(maiNap) == -1)) {
+                lejartNoiBerletesLista.add(tag);
+            }
 
-        idokorlatosAktivFerfiTagok = new FilteredList<>(aktivIdokorlatosTagok, tagok -> true);
-        idokorlatosLejartFerfiTagok = new FilteredList<>(lejartIdokorlatosTagok, tagok -> true);
+            if (tag.getTagNeme().equals("Nő") && tag.getVasaroltBerletNeve().contains("Alkalmas") && (Integer.parseInt(tag.getMennyiAlkalom()) > 0 || LocalDate.parse(tag.getBerletLejaratiIdeje(), datumFormatum).compareTo(maiNap) > 0 || LocalDate.parse(tag.getBerletLejaratiIdeje(), datumFormatum).compareTo(maiNap) == 0)) {
+                alkalmasAktivNoiBerletuLista.add(tag);
+            }
+            if (tag.getTagNeme().equals("Nő") && tag.getVasaroltBerletNeve().contains("Időkorlátos") && (LocalDate.parse(tag.getBerletLejaratiIdeje(), datumFormatum).compareTo(maiNap) > 0 || LocalDate.parse(tag.getBerletLejaratiIdeje(), datumFormatum).compareTo(maiNap) == 0)) {
+                idokorlatosAktivNoiBerletuLista.add(tag);
+            }
+            if (tag.getTagNeme().equals("Férfi") && tag.getVasaroltBerletNeve().contains("Alkalmas") && (Integer.parseInt(tag.getMennyiAlkalom()) > 0 || LocalDate.parse(tag.getBerletLejaratiIdeje(), datumFormatum).compareTo(maiNap) > 0 || LocalDate.parse(tag.getBerletLejaratiIdeje(), datumFormatum).compareTo(maiNap) == 0)) {
+                alkalmasAktivFerfiBerletuLista.add(tag);
+            }
+            if (tag.getTagNeme().equals("Férfi") && tag.getVasaroltBerletNeve().contains("Időkorlátos") && (LocalDate.parse(tag.getBerletLejaratiIdeje(), datumFormatum).compareTo(maiNap) > 0 || LocalDate.parse(tag.getBerletLejaratiIdeje(), datumFormatum).compareTo(maiNap) == 0)) {
+                idokorlatosAktivFerfiBerletuLista.add(tag);
+            }
+            if ((tag.getTagNeme().equals("Férfi") && tag.getVasaroltBerletNeve().contains("Időkorlátos") && (LocalDate.parse(tag.getBerletLejaratiIdeje(), datumFormatum).compareTo(maiNap) > 0 || LocalDate.parse(tag.getBerletLejaratiIdeje(), datumFormatum).compareTo(maiNap) == 0)) || tag.getTagNeme().equals("Férfi") && tag.getVasaroltBerletNeve().contains("Alkalmas") && (Integer.parseInt(tag.getMennyiAlkalom()) > 0 || LocalDate.parse(tag.getBerletLejaratiIdeje(), datumFormatum).compareTo(maiNap) > 0 || LocalDate.parse(tag.getBerletLejaratiIdeje(), datumFormatum).compareTo(maiNap) == 0)) {
+                aktivFerfiBerletesLista.add(tag);
+            }
+            if ((tag.getTagNeme().equals("Nő") && tag.getVasaroltBerletNeve().contains("Időkorlátos") && (LocalDate.parse(tag.getBerletLejaratiIdeje(), datumFormatum).compareTo(maiNap) > 0 || LocalDate.parse(tag.getBerletLejaratiIdeje(), datumFormatum).compareTo(maiNap) == 0)) || tag.getTagNeme().equals("Nő") && tag.getVasaroltBerletNeve().contains("Alkalmas") && (Integer.parseInt(tag.getMennyiAlkalom()) > 0 || LocalDate.parse(tag.getBerletLejaratiIdeje(), datumFormatum).compareTo(maiNap) > 0 || LocalDate.parse(tag.getBerletLejaratiIdeje(), datumFormatum).compareTo(maiNap) == 0)) {
+                aktivNoiBerletesLista.add(tag);
+            }
+        }
 
-        lejartIdokorlatosBerletek = new FilteredList<>(tagTablazatAdatok, tagok -> true);
+        lejartBerletuTagok.addAll(alkalmasLejartLista);
+        lejartBerletuTagok.addAll(idokorlatosLejartLista);
 
-        // ha null a abérlet akkor a lejárt bérletet nééze ha nem null akkor a vasaroltat
+        aktivBerletuTagok.addAll(alkalmasAktivLista);
+        aktivBerletuTagok.addAll(idokorlatosAktivLista);
 
-        //TODO
-        //legyen lejárt alkalmas
-        //lejárt időkorlátos és együtt a sima lejárt
+        alkalmasBerletuAktivTagok.addAll(alkalmasAktivLista);
+        idokorlatosBerletuAktivTagok.addAll(idokorlatosAktivLista);
 
-        ferfiTagok.setPredicate(tag -> tag.getTagNeme().toString().contains("Férfi"));
+        alkalmasBerletuLejartTagok.addAll(alkalmasLejartLista);
+        idokorlatosBerletuLejartTagok.addAll(idokorlatosLejartLista);
 
-        noiTagok.setPredicate(tag -> tag.getTagNeme().toString().contains("Nő"));
+        noiTagok.addAll(noiTagokLista);
+        ferfiTagok.addAll(ferfiTagokLista);
 
-        alkalmasBerletek.setPredicate(tag -> tag.getVasaroltBerletNeve().toString().contains("Alkalmas"));
+        alkalmasBerletesTagok.addAll(alkalmasBerletuLista);
+        idokorlatosBerletesTagok.addAll(idokorlatosBerletuLista);
 
-        idokorlatosBerletek.setPredicate(tag -> tag.getVasaroltBerletNeve().toString().contains("Időkorlátos"));
+        alkalmasNoiBerletuTagok.addAll(alkalmasNoiBerletuLista);
+        idokorlatosNoiBerletuTagok.addAll(idokorlatosNoiBerletuLista);
 
-        aktivBerletuTagok.setPredicate(tag -> Integer.parseInt(tag.getMennyiAlkalom()) > 0);
-//                || LocalDate.parse(tag.getBerletLejaratiIdeje().getValue(), datumFormatum).compareTo(maiNap) == 0 || LocalDate.parse(tag.getBerletLejaratiIdeje().getValue(), datumFormatum).compareTo(maiNap) > 0);
+        alkalmasFerfiBerletuTagok.addAll(alkalmasFerfiBerletuLista);
+        idokorlatosFerfiBerletuTagok.addAll(idokorlatosFerfiBerletuLista);
 
-        aktivBerletesNok.setPredicate(tag -> tag.getTagNeme().toString().contains("Nő"));
+        lejartAlkalmasNoiBerletuTagok.addAll(alkalmasLejartNoiBerletuLista);
+        lejartIdokorlatosNoiBerletuTagok.addAll(idokorlatosLejartNoiBerletuLista);
 
-        aktivBerletesFerfiak.setPredicate(tag -> tag.getTagNeme().toString().contains("Férfi"));
+        lejartAlkalmasFerfiBerletuTagok.addAll(alkalmasLejartFerfiBerletuLista);
+        lejartIdokorlatosFerfiBerletuTagok.addAll(idokorlatosLejartFerfiBerletuLista);
 
-        lejartBerletuTagok.setPredicate(tag -> Integer.parseInt(tag.getMennyiAlkalom()) == 0);
-        lejartIdokorlatosBerletek.setPredicate(tag -> LocalDate.parse(tag.getBerletLejaratiIdeje(), datumFormatum).compareTo(maiNap) < 0 || LocalDate.parse(tag.getBerletLejaratiIdeje(), datumFormatum).compareTo(maiNap) == -1);
+        lejartFerfiBerletuTagok.addAll(lejartFerfiBerletesLista);
+        lejartNoiBerletuTagok.addAll(lejartNoiBerletesLista);
 
-        lejartBerletesNok.setPredicate(tag -> tag.getTagNeme().toString().contains("Nő"));
+        aktivAlkalmasNoiBerletuTagok.addAll(alkalmasAktivNoiBerletuLista);
+        aktivIdokorlatosNoiBerletuTagok.addAll(idokorlatosAktivNoiBerletuLista);
+        aktivAlkalmasFerfiBerletuTagok.addAll(alkalmasAktivFerfiBerletuLista);
+        aktivIdokorlatosFerfiBerletuTagok.addAll(idokorlatosAktivFerfiBerletuLista);
+        aktivFerfiBerletuTagok.addAll(aktivFerfiBerletesLista);
+        aktivNoiBerletuTagok.addAll(aktivNoiBerletesLista);
 
-        lejartBerletesFerfiak.setPredicate(tag -> tag.getTagNeme().toString().contains("Férfi"));
+        lejartBerletuek = new FilteredList<>(lejartBerletuTagok, tagAdatok -> true);
+        lejartAlkalmasBerletuek = new FilteredList<>(alkalmasBerletuLejartTagok, tagAdatok -> true);
+        lejartIdokorlatosBerletuek = new FilteredList<>(idokorlatosBerletuLejartTagok, tagAdatok -> true);
 
-        alkalmasBerletesNok.setPredicate(tag -> tag.getVasaroltBerletNeve().toString().contains("Alkalmas"));
+        aktivBerletuek = new FilteredList<>(aktivBerletuTagok, tagAdatok -> true);
+        aktivAlkalmasBerletuek = new FilteredList<>(alkalmasBerletuAktivTagok, tagAdatok -> true);
+        aktivIdokorlatosBerletuek = new FilteredList<>(idokorlatosBerletuAktivTagok, tagAdatok -> true);
 
-        alkalmasBerletesFerfiak.setPredicate(tag -> tag.getVasaroltBerletNeve().toString().contains("Alkalmas"));
+        nok = new FilteredList<>(noiTagok, tagAdatok -> true);
+        ferfiak = new FilteredList<>(ferfiTagok, tagAdatok -> true);
 
-        idokorlatosBerletesNok.setPredicate(tag -> tag.getVasaroltBerletNeve().toString().contains("Időkorlátos"));
-        idokorlatosBerletesFerfiak.setPredicate(tag -> tag.getVasaroltBerletNeve().toString().contains("Időkorlátos"));
+        alkalmasBerletuek = new FilteredList<>(alkalmasBerletesTagok, tagAdatok -> true);
+        idokorlatosBerletuek = new FilteredList<>(idokorlatosBerletesTagok, tagAdatok -> true);
 
-        lejartAlkalmasTagok.setPredicate(tag -> tag.getVasaroltBerletNeve().toString().contains("Alkalmas"));
-        lejartIdokorlatosTagok.setPredicate(tag -> tag.getVasaroltBerletNeve().toString().contains("Időkorlátos"));
+        alkalmasNoBerletuek = new FilteredList<>(alkalmasNoiBerletuTagok, tagAdatok -> true);
+        idokorlatosNoBerletuek = new FilteredList<>(idokorlatosNoiBerletuTagok, tagAdatok -> true);
 
-        aktivAlkalmasTagok.setPredicate(tag -> tag.getVasaroltBerletNeve().toString().contains("Alkalmas"));
-        aktivIdokorlatosTagok.setPredicate(tag -> tag.getVasaroltBerletNeve().toString().contains("Időkorlátos"));
+        alkalmasFerfiBerletuek = new FilteredList<>(alkalmasFerfiBerletuTagok, tagAdatok -> true);
+        idokorlatosFerfiBerletuek = new FilteredList<>(idokorlatosFerfiBerletuTagok, tagAdatok -> true);
 
-        alkalmasAktivNoiTagok.setPredicate(tag -> tag.getTagNeme().toString().contains("Nő"));
-        alkalmasLejartNoiTagok.setPredicate(tag -> tag.getTagNeme().toString().contains("Nő"));
-        idokorlatosAktivNoiTagok.setPredicate(tag -> tag.getTagNeme().toString().contains("Nő"));
-        idokorlatosLejartNoiTagok.setPredicate(tag -> tag.getTagNeme().toString().contains("Nő"));
+        alkalmasNokLejart = new FilteredList<>(lejartAlkalmasNoiBerletuTagok, tagAdatok -> true);
+        idokorlatosNokLejart = new FilteredList<>(lejartIdokorlatosNoiBerletuTagok, tagAdatok -> true);
 
-        alkalmasAktivFerfiTagok.setPredicate(tag -> tag.getTagNeme().toString().contains("Férfi"));
-        alkalmasLejartFerfiTagok.setPredicate(tag -> tag.getTagNeme().toString().contains("Férfi"));
-        idokorlatosAktivFerfiTagok.setPredicate(tag -> tag.getTagNeme().toString().contains("Férfi"));
-        idokorlatosLejartFerfiTagok.setPredicate(tag -> tag.getTagNeme().toString().contains("Férfi"));
+        alkalmasFerfiLejart = new FilteredList<>(lejartAlkalmasFerfiBerletuTagok, tagAdatok -> true);
+        idokorlatosFerfiLejart = new FilteredList<>(lejartIdokorlatosFerfiBerletuTagok, tagAdatok -> true);
+
+        ferfiakLejart = new FilteredList<>(lejartFerfiBerletuTagok, tagAdatok -> true);
+        nokLejart = new FilteredList<>(lejartNoiBerletuTagok, tagAdatok -> true);
+
+        alkalmasNokAktiv = new FilteredList<>(aktivAlkalmasNoiBerletuTagok, tagAdatok -> true);
+        idokorlatosNokAktiv = new FilteredList<>(aktivIdokorlatosNoiBerletuTagok, tagAdatok -> true);
+
+        alkalmasFerfiAktiv = new FilteredList<>(aktivAlkalmasFerfiBerletuTagok, tagAdatok -> true);
+        idokorlatosFerfiAktiv = new FilteredList<>(aktivIdokorlatosFerfiBerletuTagok, tagAdatok -> true);
+
+        ferfiakAktiv = new FilteredList<>(aktivFerfiBerletuTagok, tagAdatok -> true);
+        nokAktiv = new FilteredList<>(aktivNoiBerletuTagok, tagAdatok -> true);
+
     }
 }
