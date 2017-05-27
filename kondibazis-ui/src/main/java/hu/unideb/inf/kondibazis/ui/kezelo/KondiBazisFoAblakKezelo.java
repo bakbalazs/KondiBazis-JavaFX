@@ -176,6 +176,8 @@ public class KondiBazisFoAblakKezelo implements Initializable {
 
     private ObservableList<TagAdatok> tagTablazatAdatok;
 
+    private ObservableList<TagAdatok> item;
+
     private static String bejelentkezesUzenet;
 
     private static String felhasznalo;
@@ -217,24 +219,10 @@ public class KondiBazisFoAblakKezelo implements Initializable {
                 .addListener((observable, oldValue, newValue) -> {
                     try {
                         tagSzerkesztes(newValue);
-//                        tagModositasaGomb.setDisable(true);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                 });
-
-
-        TagokSzurese.szuresek(tagTablazatAdatok);
-
-        konditeremTagSzolgaltatas.noiTagok(bejelentkezettKonditerem);
-
-        konditeremTagSzolgaltatas.alkalmasBerletuTagok(bejelentkezettKonditerem);
-
-        konditeremTagSzolgaltatas.lejartAlkalmasBerletuTagok(bejelentkezettKonditerem);
-
-        konditeremTagSzolgaltatas.lejartIdokorlatosBerletuTagok(bejelentkezettKonditerem);
-
-        konditeremTagSzolgaltatas.lejartBerletuTagok(bejelentkezettKonditerem);
 
         FilteredList<TagAdatok> filteredData = new FilteredList<>(tagTablazatAdatok, p -> true);
 
@@ -485,6 +473,7 @@ public class KondiBazisFoAblakKezelo implements Initializable {
     public void tagHozzaadasa() {
         logolo.info("Tag Hozzáadása gombra kattintva.");
         FeluletBetoltese.TagHozzaadasaFelulet();
+        szuresEskereses.setDisable(true);
         osszesTagGomb.setSelected(true);
         osszesTagNemGomb.setSelected(true);
         osszesTagBerletTipusGomb.setSelected(true);
@@ -497,6 +486,7 @@ public class KondiBazisFoAblakKezelo implements Initializable {
             Platform.runLater(() -> tagokTabla.getSelectionModel().clearSelection());
             tagModositas.setDisable(true);
             tabPane.getSelectionModel().select(szuresEskereses);
+            TagokSzurese.szuresek(item);
         } else {
             szuresEskereses.setDisable(true);
         }
@@ -601,6 +591,12 @@ public class KondiBazisFoAblakKezelo implements Initializable {
             tagTablazatAdatok.clear();
         }
 
+        item = FXCollections.observableArrayList();
+if(!item.isEmpty()) {
+    item.clear();
+
+}
+
         logolo.debug("Tablazat feltoltese adatokkal: ");
 
         for (KonditeremTagVo konditeremTagVo : konditerem_tagjai) {
@@ -620,6 +616,7 @@ public class KondiBazisFoAblakKezelo implements Initializable {
                             konditeremTagVo.getLejartBerletNeve()
                     )
             );
+            item = tagTablazatAdatok;
             logolo.debug("Adat: " + tagTablazatAdatok.get(tagTablazatAdatok.size() - 1));
         }
 

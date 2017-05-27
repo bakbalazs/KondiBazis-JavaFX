@@ -5,6 +5,7 @@ import hu.unideb.inf.kondibazis.szolg.interfaces.*;
 import hu.unideb.inf.kondibazis.szolg.vo.*;
 import hu.unideb.inf.kondibazis.ui.felulet.FeluletBetoltese;
 import hu.unideb.inf.kondibazis.ui.kiegeszito.KiegeszitoFelulet;
+import hu.unideb.inf.kondibazis.ui.kiegeszito.TagokSzurese;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
@@ -376,6 +377,7 @@ public class TagHozzaadasaKezelo implements Initializable {
             konditeremTagKepeSzolgaltatas.leterehozTagKepet(ujTagKepe);
 
             foAblakKezelo.adatFrissites();
+//            TagokSzurese.szuresek(tagokTabla.getItems());
 
             ((Stage) megseGomb.getScene().getWindow()).close();
             KiegeszitoFelulet.ertesites("Tag Hozzáadása", "A tag sikeresen hozzáadva!", "Tag sikeresen hozzáadava : " + vezeteknevBevitel.getText() + " " + keresztnevBevitel.getText() + "névvel.", "Tag létrehozása után.", Pos.BOTTOM_RIGHT, 5);

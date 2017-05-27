@@ -1,10 +1,12 @@
 // CHECKSTYLE:OFF
 package hu.unideb.inf.kondibazis.ui.kiegeszito;
 
+import hu.unideb.inf.kondibazis.ui.kezelo.KondiBazisFoAblakKezelo;
 import hu.unideb.inf.kondibazis.ui.model.TagAdatok;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -85,29 +87,56 @@ public class TagokSzurese {
         List<TagAdatok> alkalmasLejartLista = new ArrayList<>();
         List<TagAdatok> idokorlatosLejartLista = new ArrayList<>();
 
+        alkalmasLejartLista.clear();
+        idokorlatosLejartLista.clear();
+
         List<TagAdatok> alkalmasAktivLista = new ArrayList<>();
         List<TagAdatok> idokorlatosAktivLista = new ArrayList<>();
+
+        alkalmasAktivLista.clear();
+        idokorlatosAktivLista.clear();
 
         List<TagAdatok> noiTagokLista = new ArrayList<>();
         List<TagAdatok> ferfiTagokLista = new ArrayList<>();
 
+        noiTagokLista.clear();
+        ferfiTagokLista.clear();
+
         List<TagAdatok> alkalmasBerletuLista = new ArrayList<>();
         List<TagAdatok> idokorlatosBerletuLista = new ArrayList<>();
+
+        alkalmasBerletuLista.clear();
+        idokorlatosBerletuLista.clear();
 
         List<TagAdatok> alkalmasNoiBerletuLista = new ArrayList<>();
         List<TagAdatok> idokorlatosNoiBerletuLista = new ArrayList<>();
 
+        alkalmasNoiBerletuLista.clear();
+        idokorlatosNoiBerletuLista.clear();
+
         List<TagAdatok> alkalmasFerfiBerletuLista = new ArrayList<>();
         List<TagAdatok> idokorlatosFerfiBerletuLista = new ArrayList<>();
+
+        alkalmasFerfiBerletuLista.clear();
+        idokorlatosFerfiBerletuLista.clear();
 
         List<TagAdatok> alkalmasLejartNoiBerletuLista = new ArrayList<>();
         List<TagAdatok> idokorlatosLejartNoiBerletuLista = new ArrayList<>();
 
+        alkalmasLejartNoiBerletuLista.clear();
+        idokorlatosLejartNoiBerletuLista.clear();
+
         List<TagAdatok> alkalmasLejartFerfiBerletuLista = new ArrayList<>();
         List<TagAdatok> idokorlatosLejartFerfiBerletuLista = new ArrayList<>();
 
+        alkalmasLejartFerfiBerletuLista.clear();
+        idokorlatosLejartFerfiBerletuLista.clear();
+
         List<TagAdatok> lejartFerfiBerletesLista = new ArrayList<>();
         List<TagAdatok> lejartNoiBerletesLista = new ArrayList<>();
+
+        lejartFerfiBerletesLista.clear();
+        lejartNoiBerletesLista.clear();
 
         List<TagAdatok> aktivNoiBerletesLista = new ArrayList<>();
         List<TagAdatok> aktivFerfiBerletesLista = new ArrayList<>();
@@ -117,6 +146,13 @@ public class TagokSzurese {
         List<TagAdatok> alkalmasAktivNoiBerletuLista = new ArrayList<>();
 
 
+        aktivNoiBerletesLista.clear();
+        aktivFerfiBerletesLista.clear();
+        idokorlatosAktivFerfiBerletuLista.clear();
+        alkalmasAktivFerfiBerletuLista.clear();
+        idokorlatosAktivNoiBerletuLista.clear();
+        alkalmasAktivNoiBerletuLista.clear();
+
         for (TagAdatok tag : tagTablazatAdatok) {
             if (tag.getVasaroltBerletNeve().contains("Alkalmas") && (Integer.parseInt(tag.getMennyiAlkalom()) == 0 || LocalDate.parse(tag.getBerletLejaratiIdeje(), datumFormatum).compareTo(maiNap) < 0 || LocalDate.parse(tag.getBerletLejaratiIdeje(), datumFormatum).compareTo(maiNap) == -1)) {
                 alkalmasLejartLista.add(tag);
@@ -124,9 +160,11 @@ public class TagokSzurese {
             if (tag.getVasaroltBerletNeve().contains("Időkorlátos") && (LocalDate.parse(tag.getBerletLejaratiIdeje(), datumFormatum).compareTo(maiNap) < 0 || LocalDate.parse(tag.getBerletLejaratiIdeje(), datumFormatum).compareTo(maiNap) == -1)) {
                 idokorlatosLejartLista.add(tag);
             }
-            if (tag.getVasaroltBerletNeve().contains("Alkalmas") && (Integer.parseInt(tag.getMennyiAlkalom()) > 0 || LocalDate.parse(tag.getBerletLejaratiIdeje(), datumFormatum).compareTo(maiNap) == 0 || LocalDate.parse(tag.getBerletLejaratiIdeje(), datumFormatum).compareTo(maiNap) > 0)) {
+
+            if (tag.getVasaroltBerletNeve().contains("Alkalmas") && (Integer.parseInt(tag.getMennyiAlkalom()) > 0) || ( LocalDate.parse(tag.getBerletLejaratiIdeje(), datumFormatum).compareTo(maiNap) == 0) || (LocalDate.parse(tag.getBerletLejaratiIdeje(), datumFormatum).compareTo(maiNap) > 0) ){
                 alkalmasAktivLista.add(tag);
             }
+
             if (tag.getVasaroltBerletNeve().contains("Időkorlátos") && (LocalDate.parse(tag.getBerletLejaratiIdeje(), datumFormatum).compareTo(maiNap) == 0 || LocalDate.parse(tag.getBerletLejaratiIdeje(), datumFormatum).compareTo(maiNap) > 0)) {
                 idokorlatosAktivLista.add(tag);
             }
@@ -193,6 +231,11 @@ public class TagokSzurese {
             }
         }
 
+        if(!ferfiTagok.isEmpty()) {
+            ferfiTagok.clear();
+
+        }
+
         lejartBerletuTagok.addAll(alkalmasLejartLista);
         lejartBerletuTagok.addAll(idokorlatosLejartLista);
 
@@ -240,6 +283,8 @@ public class TagokSzurese {
         aktivBerletuek = new FilteredList<>(aktivBerletuTagok, tagAdatok -> true);
         aktivAlkalmasBerletuek = new FilteredList<>(alkalmasBerletuAktivTagok, tagAdatok -> true);
         aktivIdokorlatosBerletuek = new FilteredList<>(idokorlatosBerletuAktivTagok, tagAdatok -> true);
+
+
 
         nok = new FilteredList<>(noiTagok, tagAdatok -> true);
         ferfiak = new FilteredList<>(ferfiTagok, tagAdatok -> true);
