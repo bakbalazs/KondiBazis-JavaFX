@@ -122,7 +122,7 @@ public final class FeluletBetoltese {
     }
 
     public static void KonditeremElerhetosegSzekeszteseFelulet() {
-        Parent parent = (Parent) loader.load("/fxml/KonditeremElerhetosegSzerkesztesFelulet.fxml");
+        Parent parent = (Parent) loader.load("/fxml/KonditeremElerhetosegeiFelulet.fxml");
         Scene scene = new Scene(parent);
         Stage stage = new Stage();
         stage.setTitle("Elérhetőség  - " + alkalmazasNeve);

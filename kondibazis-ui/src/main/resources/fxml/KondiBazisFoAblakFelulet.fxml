@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Point3D?>
 <?import javafx.scene.control.Button?>
@@ -21,6 +22,7 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="644.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.kondibazis.ui.kezelo.KondiBazisFoAblakKezelo">
@@ -49,8 +51,14 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Konditerem" GridPane.halignment="RIGHT" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lehetőségek" GridPane.columnIndex="3" />
+                        <Text stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="Konditerem" GridPane.halignment="RIGHT">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lehetőségek" GridPane.columnIndex="3">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Text>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Konditerem neve:" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="10.0" />
@@ -63,14 +71,17 @@
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin></Text>
-                        <Button mnemonicParsing="false" onAction="#elerhetoseg" text="Elérhetőség" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                        <Button mnemonicParsing="false" onAction="#berletekLetrehozasa" text="Bérletek Létrehozása" GridPane.columnIndex="3" GridPane.rowIndex="2" />
                         <Button fx:id="berletModositasGomb" mnemonicParsing="false" onAction="#berletekModositasa" text="Bérletek Módosítása" GridPane.columnIndex="3" GridPane.rowIndex="3" />
                         <Button fx:id="tagHozzaadasaGomb" mnemonicParsing="false" onAction="#tagHozzaadasa" text="Tag Hozzáadása" GridPane.columnIndex="3" GridPane.rowIndex="4" />
                         <Text fx:id="konditeremNeve" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Text fx:id="tagokSzama" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <Text fx:id="regisztralasDatuma" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text=" adatok" GridPane.columnIndex="1" GridPane.halignment="LEFT" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text=" adatok" GridPane.columnIndex="1" GridPane.halignment="LEFT">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Text>
+                  <JFXButton onAction="#elerhetoseg" ripplerFill="#b80000" style="-fx-border-color: #b80000;" text="Elérhetőségek" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                  <JFXButton onAction="#berletekLetrehozasa" ripplerFill="#b80000" style="-fx-border-color: #b80000;" text="Bérletek Létrehozása" GridPane.columnIndex="3" GridPane.rowIndex="2" />
                     </children>
                 </GridPane>
                 <TabPane fx:id="tabPane" tabClosingPolicy="UNAVAILABLE" GridPane.columnIndex="1">

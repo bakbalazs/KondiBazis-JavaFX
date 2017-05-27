@@ -1,12 +1,10 @@
 // CHECKSTYLE:OFF
 package hu.unideb.inf.kondibazis.ui.kiegeszito;
 
-import hu.unideb.inf.kondibazis.ui.kezelo.KondiBazisFoAblakKezelo;
 import hu.unideb.inf.kondibazis.ui.model.TagAdatok;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -161,7 +159,7 @@ public class TagokSzurese {
                 idokorlatosLejartLista.add(tag);
             }
 
-            if (tag.getVasaroltBerletNeve().contains("Alkalmas") && (Integer.parseInt(tag.getMennyiAlkalom()) > 0) || ( LocalDate.parse(tag.getBerletLejaratiIdeje(), datumFormatum).compareTo(maiNap) == 0) || (LocalDate.parse(tag.getBerletLejaratiIdeje(), datumFormatum).compareTo(maiNap) > 0) ){
+            if (tag.getVasaroltBerletNeve().contains("Alkalmas") && (Integer.parseInt(tag.getMennyiAlkalom()) > 0) || (LocalDate.parse(tag.getBerletLejaratiIdeje(), datumFormatum).compareTo(maiNap) == 0) || (LocalDate.parse(tag.getBerletLejaratiIdeje(), datumFormatum).compareTo(maiNap) > 0)) {
                 alkalmasAktivLista.add(tag);
             }
 
@@ -231,7 +229,7 @@ public class TagokSzurese {
             }
         }
 
-        if(!ferfiTagok.isEmpty()) {
+        if (!ferfiTagok.isEmpty()) {
             ferfiTagok.clear();
 
         }
@@ -283,7 +281,6 @@ public class TagokSzurese {
         aktivBerletuek = new FilteredList<>(aktivBerletuTagok, tagAdatok -> true);
         aktivAlkalmasBerletuek = new FilteredList<>(alkalmasBerletuAktivTagok, tagAdatok -> true);
         aktivIdokorlatosBerletuek = new FilteredList<>(idokorlatosBerletuAktivTagok, tagAdatok -> true);
-
 
 
         nok = new FilteredList<>(noiTagok, tagAdatok -> true);
