@@ -146,7 +146,7 @@ public class KonditeremTagSzolgaltatasImpl implements KonditeremTagSzolgaltatas 
 
         List<KonditeremTag> noiTagok = new ArrayList<>();
 
-        List<KonditeremTag> konditeremTagok = KonditeremTagMapper.toDto(konditeremOsszesTagja(konditerem));
+        List<KonditeremTag> konditeremTagok = konditeremTagTarolo.findByKonditerem(KonditeremMapper.toDto(konditerem));
 
         if (konditeremTagok == null) {
             logolo.warn("A " + konditerem.getFelhasznalonev() + " felhasznalonevu konditeremnek nincsenek tagjai!");
@@ -166,7 +166,7 @@ public class KonditeremTagSzolgaltatasImpl implements KonditeremTagSzolgaltatas 
     public List<KonditeremTagVo> ferfiTagok(KonditeremVo konditerem) {
         List<KonditeremTag> ferfiTagok = new ArrayList<>();
 
-        List<KonditeremTag> konditeremTagok = KonditeremTagMapper.toDto(konditeremOsszesTagja(konditerem));
+        List<KonditeremTag> konditeremTagok = konditeremTagTarolo.findByKonditerem(KonditeremMapper.toDto(konditerem));
 
         if (konditeremTagok == null) {
             logolo.warn("A " + konditerem.getFelhasznalonev() + " felhasznalonevu konditeremnek nincsenek tagjai!");
@@ -186,7 +186,7 @@ public class KonditeremTagSzolgaltatasImpl implements KonditeremTagSzolgaltatas 
     public List<KonditeremTagVo> alkalmasBerletuTagok(KonditeremVo konditerem) {
         List<KonditeremTag> alkalmasBerletuTagok = new ArrayList<>();
 
-        List<KonditeremTag> konditeremTagok = KonditeremTagMapper.toDto(konditeremOsszesTagja(konditerem));
+        List<KonditeremTag> konditeremTagok = konditeremTagTarolo.findByKonditerem(KonditeremMapper.toDto(konditerem));
 
         if (konditeremTagok == null) {
             logolo.warn("A " + konditerem.getFelhasznalonev() + " felhasznalonevu konditeremnek nincsenek tagjai!");
@@ -205,7 +205,7 @@ public class KonditeremTagSzolgaltatasImpl implements KonditeremTagSzolgaltatas 
     public List<KonditeremTagVo> idokorlatosBerletuTagok(KonditeremVo konditerem) {
         List<KonditeremTag> idokorlatosBerletuTagok = new ArrayList<>();
 
-        List<KonditeremTag> konditeremTagok = KonditeremTagMapper.toDto(konditeremOsszesTagja(konditerem));
+        List<KonditeremTag> konditeremTagok = konditeremTagTarolo.findByKonditerem(KonditeremMapper.toDto(konditerem));
 
         if (konditeremTagok == null) {
             logolo.warn("A " + konditerem.getFelhasznalonev() + " felhasznalonevu konditeremnek nincsenek tagjai!");
@@ -225,7 +225,7 @@ public class KonditeremTagSzolgaltatasImpl implements KonditeremTagSzolgaltatas 
         LocalDate maiNap = LocalDate.now();
         List<KonditeremTag> lejartAlkalmasBerletuTagok = new ArrayList<>();
 
-        List<KonditeremTag> konditeremTagok = KonditeremTagMapper.toDto(konditeremOsszesTagja(konditerem));
+        List<KonditeremTag> konditeremTagok = konditeremTagTarolo.findByKonditerem(KonditeremMapper.toDto(konditerem));
 
         if (konditeremTagok == null) {
             logolo.warn("A " + konditerem.getFelhasznalonev() + " felhasznalonevu konditeremnek nincsenek tagjai!");
@@ -246,7 +246,7 @@ public class KonditeremTagSzolgaltatasImpl implements KonditeremTagSzolgaltatas 
         LocalDate maiNap = LocalDate.now();
         List<KonditeremTag> lejartIdokorlatosBerletuTagok = new ArrayList<>();
 
-        List<KonditeremTag> konditeremTagok = KonditeremTagMapper.toDto(konditeremOsszesTagja(konditerem));
+        List<KonditeremTag> konditeremTagok = konditeremTagTarolo.findByKonditerem(KonditeremMapper.toDto(konditerem));
 
         if (konditeremTagok == null) {
             logolo.warn("A " + konditerem.getFelhasznalonev() + " felhasznalonevu konditeremnek nincsenek tagjai!");
@@ -265,11 +265,11 @@ public class KonditeremTagSzolgaltatasImpl implements KonditeremTagSzolgaltatas 
     @Override
     public List<KonditeremTagVo> lejartBerletuTagok(KonditeremVo konditerem) {
 
-        List<KonditeremTag> ad = new ArrayList<>();
-        ad.addAll(KonditeremTagMapper.toDto(lejartIdokorlatosBerletuTagok(konditerem)));
-        ad.addAll(KonditeremTagMapper.toDto(lejartAlkalmasBerletuTagok(konditerem)));
+//        List<KonditeremTag> ad = new ArrayList<>();
+//        ad.addAll(KonditeremTagMapper.toDto(lejartIdokorlatosBerletuTagok(konditerem)));
+//        ad.addAll(KonditeremTagMapper.toDto(lejartAlkalmasBerletuTagok(konditerem)));
 
-        return KonditeremTagMapper.toVo(ad);
+        return null;
     }
 
 
