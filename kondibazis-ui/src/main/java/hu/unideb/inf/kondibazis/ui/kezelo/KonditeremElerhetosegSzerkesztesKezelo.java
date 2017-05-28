@@ -1,3 +1,4 @@
+// CHECKSTYLE:OFF
 package hu.unideb.inf.kondibazis.ui.kezelo;
 
 import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremElerhetosegSzolgaltatas;
@@ -16,6 +17,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -24,6 +27,8 @@ import java.util.ResourceBundle;
 
 @Component
 public class KonditeremElerhetosegSzerkesztesKezelo implements Initializable {
+
+    private static final Logger logolo = LoggerFactory.getLogger(KonditeremElerhetosegSzerkesztesKezelo.class);
 
     @Autowired
     private KonditeremElerhetosegSzolgaltatas konditeremElerhetosegSzolgaltatas;
@@ -105,11 +110,13 @@ public class KonditeremElerhetosegSzerkesztesKezelo implements Initializable {
 
     private KonditeremVo bejelentkezett;
 
+    private static String nincsMegadva = "Nincs Megadva";
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         megyeNeveBevitel.setEditable(false);
         varosNeveBevitel.setEditable(false);
-
+        logolo.debug("Elérhetőség szerekezstése felület elindult!");
         adatBetoltese();
 
         iranyitoszamBevitel.setOnKeyReleased(kulcsEsemeny -> {
@@ -121,7 +128,9 @@ public class KonditeremElerhetosegSzerkesztesKezelo implements Initializable {
                 if (telepulesekSzolgaltatas.keresIranyitoszamot(iranyitoszamBeir) == null) {
                     megyeNeveBevitel.setText("");
                     varosNeveBevitel.setText("");
+                    elerhetosegHiba.setFill(Color.RED);
                     elerhetosegHiba.setText("A megadott irányítószám nem létezik!\n");
+                    logolo.debug("A megadott itányítószám nem létezik!");
                     kotelezoVaros = false;
                 } else if (telepulesAdat.getTelepulesnev() != null) {
                     megyeNeveBevitel.setText(telepulesAdat.getMegye());
@@ -131,7 +140,9 @@ public class KonditeremElerhetosegSzerkesztesKezelo implements Initializable {
             } else if (iranyitoszamBevitel.getText().isEmpty()) {
                 megyeNeveBevitel.setText("");
                 varosNeveBevitel.setText("");
+                elerhetosegHiba.setFill(Color.RED);
                 elerhetosegHiba.setText("Nincs megadva irányítószám!\n");
+                logolo.debug("Nincs megadva irányítószám!");
                 kotelezoVaros = false;
             }
 
@@ -186,6 +197,7 @@ public class KonditeremElerhetosegSzerkesztesKezelo implements Initializable {
             megyeJoRossz.setImage(FeluletBetoltese.rosszBeirt);
             elerhetosegHiba.setFill(Color.RED);
             elerhetosegHiba.setText("A csilaggal jelölt elemek nincsennek megadva!\n");
+            logolo.debug("A csillaggal megjelölt adatok nincsenek megadva!");
         } else {
             mehet = true;
             iranyitoszamJoRossz.setImage(FeluletBetoltese.joBeirt);
@@ -239,15 +251,15 @@ public class KonditeremElerhetosegSzerkesztesKezelo implements Initializable {
         }
 
         if (weboldalBevitel.getText().isEmpty()) {
-//            weboldalBevitel.setText(nincsMegadva);
+            weboldalBevitel.setText(nincsMegadva);
         }
 
         if (facebookBevitel.getText().isEmpty()) {
-//            facebookBevitel.setText(nincsMegadva);
+            facebookBevitel.setText(nincsMegadva);
         }
 
         if (emailBevitel.getText().isEmpty()) {
-//            emailBevitel.setText(nincsMegadva);
+            emailBevitel.setText(nincsMegadva);
         }
 
         if (mehet) {
@@ -266,6 +278,8 @@ public class KonditeremElerhetosegSzerkesztesKezelo implements Initializable {
 
             konditeremElerhetosegSzolgaltatas.frissitElerhetoseget(kivalasztott);
 
+            logolo.debug("A " + kivalasztott.getId() + " id val rendelkező elérhetőség frissítve!");
+
             konditeremElerhetosegeiKezelo.adatFrissites();
 
             ((Stage) megseGomb.getScene().getWindow()).close();
@@ -276,5 +290,6 @@ public class KonditeremElerhetosegSzerkesztesKezelo implements Initializable {
     @FXML
     public void megsem() {
         ((Stage) megseGomb.getScene().getWindow()).close();
+        logolo.debug("Mégse gombra kattintva, nem történt módosítás!");
     }
 }

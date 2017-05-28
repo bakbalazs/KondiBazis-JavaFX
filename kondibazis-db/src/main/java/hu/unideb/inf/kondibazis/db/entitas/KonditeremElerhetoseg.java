@@ -174,34 +174,74 @@ public class KonditeremElerhetoseg extends FoEntitas {
         this.konditeremCime = konditeremCime;
     }
 
+    /**
+     * Visszaadja a konditerem utcájának a nevét.
+     *
+     * @return A konditerem utcájának a neve.
+     */
     public String getUtcaNeve() {
         return utcaNeve;
     }
 
+    /**
+     * Bellítja a konditerem utcájának a nevét.
+     *
+     * @param utcaNeve A beállítandó utca név.
+     */
     public void setUtcaNeve(String utcaNeve) {
         this.utcaNeve = utcaNeve;
     }
 
+    /**
+     * Visszaadja a konditerem ház számát.
+     *
+     * @return A konditerem ház száma.
+     */
     public String getHazSzam() {
         return hazSzam;
     }
 
+    /**
+     * Bellítja a konditerem ház számát.
+     *
+     * @param hazSzam A beállítandó szám.
+     */
     public void setHazSzam(String hazSzam) {
         this.hazSzam = hazSzam;
     }
 
+    /**
+     * Visszaadja a konditerem emelet számát.
+     *
+     * @return A konditerem emelet száma.
+     */
     public String getEmeletSzam() {
         return emeletSzam;
     }
 
+    /**
+     * Bellítja a konditerem emelet számát.
+     *
+     * @param emeletSzam A beállítandó emelet.
+     */
     public void setEmeletSzam(String emeletSzam) {
         this.emeletSzam = emeletSzam;
     }
 
+    /**
+     * Visszaadja a konditerem ajtó számát.
+     *
+     * @return A konditerem ajtó száma.
+     */
     public String getAjtoSzam() {
         return ajtoSzam;
     }
 
+    /**
+     * Bellítja a konditerem ajtó számát.
+     *
+     * @param ajtoSzam A beállítandó ajtó.
+     */
     public void setAjtoSzam(String ajtoSzam) {
         this.ajtoSzam = ajtoSzam;
     }

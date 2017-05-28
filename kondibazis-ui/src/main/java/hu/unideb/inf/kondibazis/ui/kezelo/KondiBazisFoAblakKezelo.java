@@ -189,7 +189,7 @@ public class KondiBazisFoAblakKezelo implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        logolo.info("A Kondibázis Fő Ablak kezelő elindult!");
         kinezetBeallitasa();
 
         bejelentkezettKonditerem = bejelentkezoKezelo.getBejelentkezettKonditerem();
@@ -242,6 +242,7 @@ public class KondiBazisFoAblakKezelo implements Initializable {
         });
 
         tagokTabla.setItems(keresettNev);
+        logolo.debug("A " + keresesszovegBevitel + " szöveggel egyező neveket lekérte " + keresettNev.size() + " számú ilyen tag van!");
     }
 
 
@@ -489,8 +490,10 @@ public class KondiBazisFoAblakKezelo implements Initializable {
             tagModositas.setDisable(true);
             tabPane.getSelectionModel().select(szuresEskereses);
             TagokSzurese.szuresek(item);
+            logolo.debug("Szuresek bekapcsolva!");
         } else {
             szuresEskereses.setDisable(true);
+            logolo.debug("Szuresek kikapcsolva!");
         }
     }
 
@@ -754,6 +757,8 @@ public class KondiBazisFoAblakKezelo implements Initializable {
 
                 // le kell kérni lejartBerletuTagok tag képt és ha nem módusl lejartBerletuTagok kép akkor lejartBerletuTagok kép az maradjon ami volt TODO
 
+
+
                 konditeremTagSzolgaltatas.frissitKonditeremTagot(kivalasztottTag);
                 logolo.debug("A " + kivalasztottTag.getId() + " id-val rendelkező tag megváltozott!");
                 KiegeszitoFelulet.ertesites("Tag módosítása", "Sikeres módosítás.", "Sikeres módosítás.", "Fő ablakban lejartBerletuTagok tag módodosítása tabon.", Pos.BOTTOM_RIGHT, 5);
@@ -781,6 +786,7 @@ public class KondiBazisFoAblakKezelo implements Initializable {
         tagModositas.setDisable(true);
         tabPane.getSelectionModel().select(szuresEskereses);
         szuresEskereses.setDisable(true);
+        logolo.info("Mégsem gombra kattintva a tag módosítása fülön!");
     }
 
     private void oszlopokBerlet() {
@@ -869,6 +875,7 @@ public class KondiBazisFoAblakKezelo implements Initializable {
             }
 
         });
+        logolo.debug("A bérlet lejárati ideje oszlop és alkalmak oszlop létrehozva!");
     }
 
     private void kinezetBeallitasa() {

@@ -1,6 +1,6 @@
+// CHECKSTYLE:OFF
 package hu.unideb.inf.kondibazis.ui.kezelo;
 
-import hu.unideb.inf.kondibazis.db.entitas.Konditerem;
 import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremElerhetosegSzolgaltatas;
 import hu.unideb.inf.kondibazis.szolg.interfaces.TelepulesekSzolgaltatas;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremElerhetosegVo;

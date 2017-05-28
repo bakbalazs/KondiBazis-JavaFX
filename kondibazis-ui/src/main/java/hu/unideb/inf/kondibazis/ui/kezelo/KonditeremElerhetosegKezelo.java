@@ -111,7 +111,6 @@ public class KonditeremElerhetosegKezelo implements Initializable {
 
     private static String nincsMegadva = "Nincs Megadva";
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         regisztraltKondi = regisztralasKezelo.getRegisztraltKonditerem();
