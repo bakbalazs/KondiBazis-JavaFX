@@ -2,11 +2,13 @@ package hu.unideb.inf.kondibazis.szolg.impl;
 
 import hu.unideb.inf.kondibazis.db.entitas.Konditerem;
 import hu.unideb.inf.kondibazis.db.entitas.KonditeremElerhetoseg;
+import hu.unideb.inf.kondibazis.db.entitas.KonditeremTag;
 import hu.unideb.inf.kondibazis.db.tarolo.KonditeremBerletTarolo;
 import hu.unideb.inf.kondibazis.db.tarolo.KonditeremElerhetosegTarolo;
 import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremElerhetosegSzolgaltatas;
 import hu.unideb.inf.kondibazis.szolg.mapper.KonditeremElerhetosegMapper;
 import hu.unideb.inf.kondibazis.szolg.mapper.KonditeremMapper;
+import hu.unideb.inf.kondibazis.szolg.mapper.KonditeremTagMapper;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremElerhetosegVo;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremVo;
 import org.slf4j.Logger;
@@ -114,6 +116,28 @@ public class KonditeremElerhetosegSzolgaltatasImpl implements KonditeremElerheto
         }
 
         return KonditeremElerhetosegMapper.toVo(konditerem_elerhetosegei);
+    }
+
+    /**
+     * {@inheritDoc}
+     * <p>
+     * Ebben az implementációban
+     * a metódus az adatbázisból egy paraméterül megadott azonosítójú elerhetoseget keres.
+     * Ezt a műveletet a {@link org.springframework.data.repository.CrudRepository#findOne(java.io.Serializable) }
+     * metódus segítségével hajtja végre, amely egy Long típusú azonosítót vár paraméterül.
+     * A szolgáltatás eredményül a megtalált elerhetőséget adja vissza átmappelve.
+     */
+    @Override
+    public KonditeremElerhetosegVo keresElerhetoseget(long id) {
+        KonditeremElerhetoseg talaltElerhetoseg = konditeremElerhetosegTarolo.findOne(id);
+
+        if (talaltElerhetoseg == null) {
+            logolo.warn("Nem talalhato a(z) " + talaltElerhetoseg + " id-val rendelkezo elérhetoseg!");
+        } else {
+            logolo.debug("A(z) " + talaltElerhetoseg + " id-vak rendelkezo elerhetoseg sikeresen lekerdezve!");
+        }
+
+        return KonditeremElerhetosegMapper.toVo(talaltElerhetoseg);
     }
 
 }

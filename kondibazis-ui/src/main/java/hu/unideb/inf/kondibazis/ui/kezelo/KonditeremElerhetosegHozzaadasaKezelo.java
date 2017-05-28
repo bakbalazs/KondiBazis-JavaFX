@@ -1,6 +1,6 @@
-// CHECKSTYLE:OFF
 package hu.unideb.inf.kondibazis.ui.kezelo;
 
+import hu.unideb.inf.kondibazis.db.entitas.Konditerem;
 import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremElerhetosegSzolgaltatas;
 import hu.unideb.inf.kondibazis.szolg.interfaces.TelepulesekSzolgaltatas;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremElerhetosegVo;
@@ -12,23 +12,24 @@ import hu.unideb.inf.kondibazis.ui.kiegeszito.TelefonszamHitelesíto;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import sun.net.www.protocol.jar.URLJarFile;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 @Component
-public class KonditeremElerhetosegKezelo implements Initializable {
+public class KonditeremElerhetosegHozzaadasaKezelo implements Initializable {
 
-    private static final Logger logolo = LoggerFactory.getLogger(KonditeremElerhetosegKezelo.class);
+    private static final Logger logolo = LoggerFactory.getLogger(KonditeremElerhetosegHozzaadasaKezelo.class);
 
     @Autowired
     private KonditeremElerhetosegSzolgaltatas konditeremElerhetosegSzolgaltatas;
@@ -37,9 +38,12 @@ public class KonditeremElerhetosegKezelo implements Initializable {
     private TelepulesekSzolgaltatas telepulesekSzolgaltatas;
 
     @Autowired
-    private RegisztralasKezelo regisztralasKezelo;
+    private KondiBazisFoAblakKezelo foAblakKezelo;
 
-    private KonditeremVo regisztraltKondi;
+    @Autowired
+    private KonditeremElerhetosegeiKezelo konditeremElerhetosegeiKezelo;
+
+    private KonditeremVo bejeletkezettKonditerem;
 
     @FXML
     private TextField megyeNeveBevitel;
@@ -75,9 +79,6 @@ public class KonditeremElerhetosegKezelo implements Initializable {
     private TextField facebookBevitel;
 
     @FXML
-    private Text regisztraltKonditerem;
-
-    @FXML
     private Text elerhetosegHiba;
 
     @FXML
@@ -101,9 +102,8 @@ public class KonditeremElerhetosegKezelo implements Initializable {
     @FXML
     private ImageView emailJoRossz;
 
-    private static String bejelentkezesUzenet;
-
-    private static String felhasznalo;
+    @FXML
+    private Button megseGomb;
 
     private boolean kotelezoVaros;
 
@@ -114,10 +114,7 @@ public class KonditeremElerhetosegKezelo implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        regisztraltKondi = regisztralasKezelo.getRegisztraltKonditerem();
-        regisztraltKonditerem.setFill(Color.GREEN);
-        regisztraltKonditerem.setText("Sikeresen regisztrált konditerm: " + regisztraltKondi.getKonditeremNeve());
-
+        bejeletkezettKonditerem = foAblakKezelo.getBejelentkezettKonditerem();
         megyeNeveBevitel.setEditable(false);
         varosNeveBevitel.setEditable(false);
 
@@ -164,7 +161,6 @@ public class KonditeremElerhetosegKezelo implements Initializable {
             }
 
         });
-
     }
 
     @FXML
@@ -256,58 +252,19 @@ public class KonditeremElerhetosegKezelo implements Initializable {
             ujElerhetoseg.setKonditremEmailCim(emailBevitel.getText());
             ujElerhetoseg.setKonditeremWeboldalLink(weboldalBevitel.getText());
             ujElerhetoseg.setKonditeremFacebookOldalLink(facebookBevitel.getText());
-            ujElerhetoseg.setKonditerem(regisztraltKondi);
+            ujElerhetoseg.setKonditerem(bejeletkezettKonditerem);
 
             konditeremElerhetosegSzolgaltatas.letrehozElerhetoseget(ujElerhetoseg);
 
-            setBejelentkezesUzenet(
-                    "Kérem jeletkezzen be a felhasználóval: " + regisztraltKondi.getFelhasznalonev() + "\n");
-            setFelhasznalo(regisztraltKondi.getFelhasznalonev());
-            FeluletBetoltese.BejelentkezoFelulet(event);
+            konditeremElerhetosegeiKezelo.adatFrissites();
+
+            ((Stage) megseGomb.getScene().getWindow()).close();
+
         }
     }
 
     @FXML
-    public void kihagyas(ActionEvent event) {
-
-
-        KonditeremElerhetosegVo ujElerhetoseg = new KonditeremElerhetosegVo();
-        ujElerhetoseg.setKonditeremVarosanakIranyitoSzama(0);
-        ujElerhetoseg.setKonditeremVarosanakNeve(nincsMegadva);
-        ujElerhetoseg.setKonditeremVarosanakMegyeje(nincsMegadva);
-        ujElerhetoseg.setKonditeremCime(nincsMegadva);
-        ujElerhetoseg.setUtcaNeve(nincsMegadva);
-        ujElerhetoseg.setHazSzam(nincsMegadva);
-        ujElerhetoseg.setEmeletSzam(nincsMegadva);
-        ujElerhetoseg.setAjtoSzam(nincsMegadva);
-        ujElerhetoseg.setKonditremTelefonszam(nincsMegadva);
-        ujElerhetoseg.setKonditremEmailCim(nincsMegadva);
-        ujElerhetoseg.setKonditeremWeboldalLink(nincsMegadva);
-        ujElerhetoseg.setKonditeremFacebookOldalLink(nincsMegadva);
-        ujElerhetoseg.setKonditerem(regisztraltKondi);
-
-        konditeremElerhetosegSzolgaltatas.letrehozElerhetoseget(ujElerhetoseg);
-
-        setBejelentkezesUzenet(
-                "Kérem jeletkezzen be a felhasználóval: " + regisztraltKondi.getFelhasznalonev() + "\n");
-        setFelhasznalo(regisztraltKondi.getFelhasznalonev());
-        FeluletBetoltese.BejelentkezoFelulet(event);
+    public void megsem() {
+        ((Stage) megseGomb.getScene().getWindow()).close();
     }
-
-    static String getBejelentkezesUzenet() {
-        return bejelentkezesUzenet;
-    }
-
-    private static void setBejelentkezesUzenet(String bejelentkezesUzenet) {
-        KonditeremElerhetosegKezelo.bejelentkezesUzenet = bejelentkezesUzenet;
-    }
-
-    static String getFelhasznalo() {
-        return felhasznalo;
-    }
-
-    private static void setFelhasznalo(String felhasznalo) {
-        KonditeremElerhetosegKezelo.felhasznalo = felhasznalo;
-    }
-
 }

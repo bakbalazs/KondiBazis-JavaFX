@@ -456,7 +456,7 @@ public class KondiBazisFoAblakKezelo implements Initializable {
     @FXML
     public void elerhetoseg() {
         logolo.info("Elérhetőség gombra kattintva.");
-        FeluletBetoltese.KonditeremElerhetosegSzekeszteseFelulet();
+        FeluletBetoltese.KonditeremElerhetosegeiFelulet();
     }
 
     @FXML

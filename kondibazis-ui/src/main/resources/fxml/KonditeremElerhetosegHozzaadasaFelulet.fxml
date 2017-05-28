@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="562.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.kondibazis.ui.kezelo.KonditeremElerhetosegHozzaadasaKezelo">
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints maxHeight="298.0" minHeight="10.0" prefHeight="89.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="551.0" minHeight="10.0" prefHeight="421.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="517.0" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="517.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
+    </rowConstraints>
+    <children>
+        <GridPane alignment="CENTER" prefHeight="479.0" prefWidth="491.0" GridPane.rowIndex="1">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <HBox alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="300.0" GridPane.rowIndex="1">
+                    <children>
+                        <VBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="150.0">
+                            <children>
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Irányítószám:*" />
+                            </children>
+                        </VBox>
+                    </children></HBox>
+                <HBox alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="300.0" GridPane.rowIndex="2">
+                    <children>
+                        <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="150.0">
+                            <children>
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Megye: " />
+                            </children></VBox>
+                    </children></HBox>
+                <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <children>
+                        <VBox alignment="CENTER" prefHeight="37.0" prefWidth="167.0">
+                            <children>
+                                <TextField fx:id="iranyitoszamBevitel" />
+                            </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="35.0" prefWidth="29.0">
+                            <children>
+                                <ImageView fx:id="iranyitoszamJoRossz" fitHeight="35.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true" />
+                            </children></VBox>
+                    </children></HBox>
+                <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                    <children>
+                        <VBox alignment="CENTER" prefHeight="37.0" prefWidth="167.0">
+                            <children>
+                                <TextField fx:id="megyeNeveBevitel" prefHeight="25.0" prefWidth="165.0" />
+                            </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="35.0" prefWidth="29.0">
+                            <children>
+                                <ImageView fx:id="megyeJoRossz" fitHeight="35.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true" />
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="300.0" GridPane.rowIndex="3">
+                    <children>
+                        <VBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="150.0">
+                            <children>
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Város:" />
+                            </children></VBox>
+                    </children></HBox>
+                <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                    <children>
+                        <VBox alignment="CENTER" prefHeight="37.0" prefWidth="167.0">
+                            <children>
+                                <TextField fx:id="varosNeveBevitel" />
+                            </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="35.0" prefWidth="29.0">
+                            <children>
+                                <ImageView fx:id="varosJoRossz" fitHeight="35.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true" />
+                            </children></VBox>
+                    </children></HBox>
+                <HBox alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="300.0" GridPane.rowIndex="4">
+                    <children>
+                        <VBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="150.0">
+                            <children>
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Utca:*" />
+                            </children>
+                        </VBox>
+                    </children></HBox>
+                <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                    <children>
+                        <VBox alignment="CENTER" prefHeight="37.0" prefWidth="167.0">
+                            <children>
+                                <TextField fx:id="utcaNeveBevitel" />
+                            </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="35.0" prefWidth="29.0">
+                            <children>
+                                <ImageView fx:id="utcaJoRossz" fitHeight="35.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true" />
+                            </children></VBox>
+                    </children></HBox>
+                <HBox alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="300.0" GridPane.rowIndex="5">
+                    <children>
+                        <VBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="150.0">
+                            <children>
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ház szám:*" />
+                            </children></VBox>
+                    </children></HBox>
+                <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                    <children>
+                        <VBox alignment="CENTER" prefHeight="37.0" prefWidth="167.0">
+                            <children>
+                                <TextField fx:id="hazSzamBevitel" />
+                            </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="35.0" prefWidth="29.0">
+                            <children>
+                                <ImageView fx:id="hazSzamJoRossz" fitHeight="35.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true" />
+                            </children></VBox>
+                    </children></HBox>
+                <HBox alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="300.0" GridPane.rowIndex="6">
+                    <children>
+                        <VBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="150.0">
+                            <children>
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Emelet:" />
+                            </children></VBox>
+                    </children></HBox>
+                <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                    <children>
+                        <VBox alignment="CENTER" prefHeight="37.0" prefWidth="167.0">
+                            <children>
+                                <TextField fx:id="emeletBevitel" />
+                            </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="35.0" prefWidth="29.0">
+                            <children>
+                                <ImageView fx:id="emeletJoRossz" fitHeight="35.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true" />
+                            </children></VBox>
+                    </children></HBox>
+                <HBox alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="300.0" GridPane.rowIndex="7">
+                    <children>
+                        <VBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="150.0">
+                            <children>
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ajtó:" />
+                            </children></VBox>
+                    </children></HBox>
+                <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                    <children>
+                        <VBox alignment="CENTER" prefHeight="37.0" prefWidth="167.0">
+                            <children>
+                                <TextField fx:id="ajtoBevitel" />
+                            </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="35.0" prefWidth="29.0">
+                            <children>
+                                <ImageView fx:id="ajtoJoRossz" fitHeight="35.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true" />
+                            </children></VBox>
+                    </children></HBox>
+                <HBox alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="300.0" GridPane.rowIndex="8">
+                    <children>
+                        <VBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="150.0">
+                            <children>
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Telefonszám:*" />
+                            </children></VBox>
+                    </children></HBox>
+                <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                    <children>
+                        <VBox alignment="CENTER" prefHeight="34.0" prefWidth="25.0">
+                            <children>
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="+36 -" />
+                            </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="35.0" prefWidth="135.0">
+                            <children>
+                                <TextField fx:id="telefonszamBevitel" />
+                            </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="35.0" prefWidth="29.0">
+                            <children>
+                                <ImageView fx:id="teloszamJoRossz" fitHeight="35.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true" />
+                            </children></VBox>
+                    </children></HBox>
+                <HBox alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="300.0" GridPane.rowIndex="9">
+                    <children>
+                        <VBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="150.0">
+                            <children>
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="E-mail cím:" />
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+                <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="9">
+                    <children>
+                        <VBox alignment="CENTER" prefHeight="37.0" prefWidth="167.0">
+                            <children>
+                                <TextField fx:id="emailBevitel" />
+                            </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="35.0" prefWidth="29.0">
+                            <children>
+                                <ImageView fx:id="emailJoRossz" fitHeight="35.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true" />
+                            </children>
+                        </VBox>
+                    </children></HBox>
+                <HBox alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="300.0" GridPane.rowIndex="10">
+                    <children>
+                        <VBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="150.0">
+                            <children>
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Weboldal:" />
+                            </children></VBox>
+                    </children></HBox>
+                <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="10">
+                    <children>
+                        <VBox alignment="CENTER" prefHeight="37.0" prefWidth="167.0">
+                            <children>
+                                <TextField fx:id="weboldalBevitel" />
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="300.0" GridPane.rowIndex="11">
+                    <children>
+                        <VBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="150.0">
+                            <children>
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="FaceBook oldal:" />
+                            </children></VBox>
+                    </children></HBox>
+                <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="11">
+                    <children>
+                        <VBox alignment="CENTER" prefHeight="37.0" prefWidth="167.0">
+                            <children>
+                                <TextField fx:id="facebookBevitel" />
+                            </children>
+                        </VBox>
+                    </children></HBox>
+            </children>
+        </GridPane>
+        <VBox prefHeight="200.0" prefWidth="100.0">
+            <children>
+                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                    <children>
+                        <Text fill="#b80000" strokeType="OUTSIDE" strokeWidth="0.0" text="KondiBázis">
+                            <font>
+                                <Font size="18.0" />
+                            </font></Text>
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                    <children>
+                        <Text fill="#b80000" strokeType="OUTSIDE" strokeWidth="0.0" text="Elérhetőség">
+                            <font>
+                                <Font size="18.0" />
+                            </font></Text>
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                    <children>
+                        <VBox alignment="CENTER" prefHeight="27.0" prefWidth="122.0">
+                            <children>
+                                <Text fx:id="regisztraltKonditerem" strokeType="OUTSIDE" strokeWidth="0.0" />
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
+            <children>
+                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="300.0">
+                    <children>
+                        <Button mnemonicParsing="false" onAction="#mentes" text="Mentés" />
+                    </children></VBox>
+                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="300.0">
+                    <children>
+                        <Button fx:id="megseGomb" mnemonicParsing="false" onAction="#megsem" text="Mégsem" />
+                    </children></VBox>
+            </children>
+        </HBox>
+        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
+            <children>
+                <VBox alignment="CENTER" prefHeight="37.0" prefWidth="601.0">
+                    <children>
+                        <Text fx:id="elerhetosegHiba" strokeType="OUTSIDE" strokeWidth="0.0" />
+                    </children>
+                </VBox>
+            </children>
+        </HBox>
+    </children>
+</GridPane>

@@ -121,7 +121,7 @@ public final class FeluletBetoltese {
         stage.show();
     }
 
-    public static void KonditeremElerhetosegSzekeszteseFelulet() {
+    public static void KonditeremElerhetosegeiFelulet() {
         Parent parent = (Parent) loader.load("/fxml/KonditeremElerhetosegeiFelulet.fxml");
         Scene scene = new Scene(parent);
         Stage stage = new Stage();
@@ -170,6 +170,28 @@ public final class FeluletBetoltese {
         Scene scene = new Scene(parent);
         Stage stage = new Stage();
         stage.setTitle("Bérlettípus statisztika  - " + alkalmazasNeve + " - " + BejelentkezoKezelo.getKonditeremNeve());
+        stage.setScene(scene);
+        stage.centerOnScreen();
+        stage.getIcons().add(ikon);
+        stage.show();
+    }
+
+    public static void KonditeremElerhetosegSzerkesztesFelulet() {
+        Parent parent = (Parent) loader.load("/fxml/KonditeremElerhetosegSzerkesztesFelulet.fxml");
+        Scene scene = new Scene(parent);
+        Stage stage = new Stage();
+        stage.setTitle("Konditerem elérhetőség - " + alkalmazasNeve + " - " + BejelentkezoKezelo.getKonditeremNeve());
+        stage.setScene(scene);
+        stage.centerOnScreen();
+        stage.getIcons().add(ikon);
+        stage.show();
+    }
+
+    public static void KonditeremElerhetosegHozzaadasaFelulet() {
+        Parent parent = (Parent) loader.load("/fxml/KonditeremElerhetosegHozzaadasaFelulet.fxml");
+        Scene scene = new Scene(parent);
+        Stage stage = new Stage();
+        stage.setTitle("Konditerem elérhetőség - " + alkalmazasNeve + " - " + BejelentkezoKezelo.getKonditeremNeve());
         stage.setScene(scene);
         stage.centerOnScreen();
         stage.getIcons().add(ikon);

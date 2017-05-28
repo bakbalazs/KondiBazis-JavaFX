@@ -40,4 +40,17 @@ public interface KonditeremElerhetosegSzolgaltatas {
      */
     List<KonditeremElerhetosegVo> konditremElerhetosegei(KonditeremVo konditerem);
 
+    /**
+     * Ez a szolgáltatás végzi az elérhetőségek megtalálását az adatbázisban.
+     * A kapott id-t továbbítja az adatbázis rétegnek a megfelelő metódussal,
+     * ami lekérdezi az adatbázisból azt a tagot amelyiknek megeggyezik az id-ja
+     * a paraméterben szereplővel.
+     *
+     * @param id A keresendő id
+     * @return Az adatbázisból lekérdezett KonditeremEleretoseg
+     * ami KonditeremElerhetosegVo-vá lett alakítva a KonditeremElerhetosegMapper
+     * segítségével.
+     */
+    KonditeremElerhetosegVo keresElerhetoseget(long id);
+
 }

@@ -6,6 +6,7 @@ import hu.unideb.inf.kondibazis.db.tarolo.KonditeremElerhetosegTarolo;
 import hu.unideb.inf.kondibazis.szolg.impl.KonditeremElerhetosegSzolgaltatasImpl;
 import hu.unideb.inf.kondibazis.szolg.mapper.KonditeremMapper;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremElerhetosegVo;
+import hu.unideb.inf.kondibazis.szolg.vo.KonditeremTagVo;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremVo;
 import org.junit.*;
 import org.junit.runner.RunWith;
@@ -209,7 +210,7 @@ public class KonditeremElerhetosegTest {
     }
 
     @Test
-    public void keresKonditeremOsszesElerhetosege() {
+    public void keresKonditeremOsszesElerhetosegeTeszt() {
 
         KonditeremVo konditerem = KonditeremMapper.toVo(tesztKonditeremA);
 
@@ -217,6 +218,17 @@ public class KonditeremElerhetosegTest {
 
         Assert.assertNotNull(konditeremElerhetosegei);
         Assert.assertEquals(3, konditeremElerhetosegei.size());
+    }
+
+    @Test
+    public void keresElerhetosegetTeszt(){
+        KonditeremElerhetosegVo leszIlyenElerhetoseg = konditeremElerhetosegSzolgaltatas.keresElerhetoseget(7L);
+
+        Assert.assertNotNull(leszIlyenElerhetoseg);
+
+        KonditeremElerhetosegVo nemLeszIlyenElerhetoseg = konditeremElerhetosegSzolgaltatas.keresElerhetoseget(20L);
+
+        Assert.assertNull(nemLeszIlyenElerhetoseg);
     }
 
 }

@@ -49,6 +49,30 @@ public class KonditeremElerhetoseg extends FoEntitas {
     private String konditeremCime;
 
     /**
+     * A konditerem címének az utca neve.
+     */
+    @Column(name = "utcaNeve")
+    private String utcaNeve;
+
+    /**
+     * A konditerem címének a haz szama.
+     */
+    @Column(name = "hazSzam")
+    private String hazSzam;
+
+    /**
+     * A konditerem címének az emelet szama.
+     */
+    @Column(name = "emeletSzam")
+    private String emeletSzam;
+
+    /**
+     * A konditerem címének az ajto szama.
+     */
+    @Column(name = "ajtoSzam")
+    private String ajtoSzam;
+
+    /**
      * A konditerem telefonszáma.
      */
     @Column(name = "telefonszam")
@@ -148,6 +172,38 @@ public class KonditeremElerhetoseg extends FoEntitas {
      */
     public void setKonditeremCime(String konditeremCime) {
         this.konditeremCime = konditeremCime;
+    }
+
+    public String getUtcaNeve() {
+        return utcaNeve;
+    }
+
+    public void setUtcaNeve(String utcaNeve) {
+        this.utcaNeve = utcaNeve;
+    }
+
+    public String getHazSzam() {
+        return hazSzam;
+    }
+
+    public void setHazSzam(String hazSzam) {
+        this.hazSzam = hazSzam;
+    }
+
+    public String getEmeletSzam() {
+        return emeletSzam;
+    }
+
+    public void setEmeletSzam(String emeletSzam) {
+        this.emeletSzam = emeletSzam;
+    }
+
+    public String getAjtoSzam() {
+        return ajtoSzam;
+    }
+
+    public void setAjtoSzam(String ajtoSzam) {
+        this.ajtoSzam = ajtoSzam;
     }
 
     /**

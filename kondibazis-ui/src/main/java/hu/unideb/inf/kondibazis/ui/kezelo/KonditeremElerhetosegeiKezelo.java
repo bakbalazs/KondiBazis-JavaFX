@@ -2,13 +2,16 @@
 package hu.unideb.inf.kondibazis.ui.kezelo;
 
 import com.jfoenix.controls.JFXButton;
+import hu.unideb.inf.kondibazis.db.entitas.Konditerem;
 import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremElerhetosegSzolgaltatas;
+import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremSzolgaltatas;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremElerhetosegVo;
 import hu.unideb.inf.kondibazis.szolg.vo.KonditeremVo;
+import hu.unideb.inf.kondibazis.ui.felulet.FeluletBetoltese;
 import hu.unideb.inf.kondibazis.ui.model.ElerhetosegAdatok;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
@@ -19,6 +22,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -65,20 +69,34 @@ public class KonditeremElerhetosegeiKezelo implements Initializable {
     @Autowired
     private KonditeremElerhetosegSzolgaltatas konditeremElerhetosegSzolgaltatas;
 
+    private KonditeremElerhetosegVo kivalasztottElerhetoseg;
+
+    @Autowired
+    private KonditeremSzolgaltatas konditeremSzolgaltatas;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         bejelentkezettKonditerem = foAblakKezelo.getBejelentkezettKonditerem();
-
         konditeremElerhetosegTablaAdatok = FXCollections.observableArrayList();
 
         adatFrissites();
 
         konditeremElerhetosegekTabla.getStylesheets().add("/css/tablakinezet.css");
+
+        konditeremElerhetosegekTabla.getSelectionModel()
+                .selectedItemProperty()
+                .addListener((observable, oldValue, newValue) -> {
+                    try {
+                        tagSzerkesztes(newValue);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
     }
 
     @FXML
-    private void elerhetosegHozzaadasa(ActionEvent event) {
-
+    private void elerhetosegHozzaadasa() {
+        FeluletBetoltese.KonditeremElerhetosegHozzaadasaFelulet();
     }
 
     @FXML
@@ -87,11 +105,13 @@ public class KonditeremElerhetosegeiKezelo implements Initializable {
         logger.debug("Megse gombra kattintva!");
     }
 
-    private void adatFrissites() {
+    void adatFrissites() {
 
         logger.debug("Adatfrissites.");
 
-        List<KonditeremElerhetosegVo> bejeletkezettTeremElerhetosegek = bejelentkezettKonditerem.getKonditeremElerhetosegek();
+        KonditeremVo t =  konditeremSzolgaltatas.keresKonditeremetId(bejelentkezettKonditerem.getId());
+
+        List<KonditeremElerhetosegVo> bejeletkezettTeremElerhetosegek = t.getKonditeremElerhetosegek();
 
         if (!konditeremElerhetosegTablaAdatok.isEmpty()) {
             konditeremElerhetosegTablaAdatok.clear();
@@ -137,33 +157,17 @@ public class KonditeremElerhetosegeiKezelo implements Initializable {
 
     }
 
+    private void tagSzerkesztes(ElerhetosegAdatok elerhetosegAdatok) throws IOException {
+        if (elerhetosegAdatok != null) {
+            kivalasztottElerhetoseg = konditeremElerhetosegSzolgaltatas.keresElerhetoseget(elerhetosegAdatok.getId());
+            FeluletBetoltese.KonditeremElerhetosegSzerkesztesFelulet();
+            Platform.runLater(() -> konditeremElerhetosegekTabla.getSelectionModel().clearSelection());
+        }
 
-//	private static String bejelentkezesUzenet;
-//
-//	private static String felhasznalo;
-//
-//	@FXML
-//	public void mentes(ActionEvent event) throws Exception {
-//	}
-//
-//	@FXML
-//	public void megse(ActionEvent event) {
-//	}
-//
-//	public static String getBejelentkezesUzenet() {
-//		return bejelentkezesUzenet;
-//	}
-//
-//	public static void setBejelentkezesUzenet(String bejelentkezesUzenet) {
-//		KonditeremElerhetosegSzerkesztesKezelo.bejelentkezesUzenet = bejelentkezesUzenet;
-//	}
-//
-//	public static String getFelhasznalo() {
-//		return felhasznalo;
-//	}
-//
-//	public static void setFelhasznalo(String felhasznalo) {
-//		KonditeremElerhetosegSzerkesztesKezelo.felhasznalo = felhasznalo;
-//	}
+    }
+
+    public KonditeremElerhetosegVo getKivalasztottElerhetoseg() {
+        return kivalasztottElerhetoseg;
+    }
 
 }
