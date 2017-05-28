@@ -3,7 +3,7 @@
 
 # KondiBazis
 
-![Alt text](https://github.com/bakbalazs/KondiBazis-JavaFX/kepek/foAblak "Az alkalmazás fő képernyője felülete.")
+![Alt text](https://github.com/bakbalazs/KondiBazis-JavaFX/blob/master/kepek/foAblak.png "Az alkalmazás fő képernyője felülete.")
 
 ##### A KondiBázis a magyarországi edzőtermek gyűjtőhelye, melynek célja, hogy megkönnyítye a bérletek kiadását, valamint a tagok kezelését. Az alkalmazás már a bejelentkező felületen láttatja a regisztrált edzőtermeket, ezáltal elősegítve a vállalkozások terjeszkedését. 
 
@@ -14,7 +14,9 @@ Az alkalmazás indulásakor a következő képernyő fogad:
 ### Funkciók
 * Regisztráció
     Az edzőterem létrehozása az adatbázisban felhasználói fiókként.
-![Alt text](https://github.com/bakbalazs/KondiBazis-JavaFX/kepek/teremRegisztralasaFelulet "Az alkalmazás terem regisztrálási felülete.")
+	
+![Alt text](https://github.com/bakbalazs/KondiBazis-JavaFX/blob/master/kepek/teremRegisztralasaFelulet "Az alkalmazás terem regisztrálási felülete.")
+
 * Bérletek kezelése
 	* Bérlet létrehozása
 	  - Alkalmas bérlet
@@ -22,16 +24,22 @@ Az alkalmazás indulásakor a következő képernyő fogad:
 	  - Időkorlátos bérlet
 	        Az időkorlátos bérlet lejáratát a program a következőképpen kezeli. Megadhat a felhasználó hónapot – hány hónapig használható fel a bérlet –, avagy napot – mennyi napig használható fel a bérlet. A program  a bérlet taghoz rendelésének napjától számolja ki a lejárati dátumot. 
 	* Bérlet módosítása
-![Alt text](https://github.com/bakbalazs/KondiBazis-JavaFX/kepek/berletKivalasztva "Az alkalmazás bérlet létrehozási felülete.")
+	
+![Alt text](https://github.com/bakbalazs/KondiBazis-JavaFX/blob/master/kepek/berletKivalasztva.png "Az alkalmazás bérlet létrehozási felülete.")
+
 * Tagok kezelése
     * Tag létrehozása
     * Tag módosítása
     * Tag bérletének kezelése
     * Jelöli a lejárt bérletes tagokat
-![Alt text](https://github.com/bakbalazs/KondiBazis-JavaFX/kepek/tagHozzaadaasa "Az alkalmazás tag létrehozási felülete.")
+
+![Alt text](https://github.com/bakbalazs/KondiBazis-JavaFX/blob/master/kepek/tagHozzaadaasa "Az alkalmazás tag létrehozási felülete.")
+
 * Elérhetőségek kezelése
     * Regisztrációkor adhat meg az edzőterem elérhetőségi adatokat (cím, telefonszám), viszont ez nem kötelező. Később is elvégezheti ezt a módosítást. Amennyiben az edzőterem több kirendeltségen is működik, lehetősége van több elérhetőség megadására. A tagjait együtt kezeli, egy felhasználói fiókban gyűjti össze az összeset. 
-![Alt text](https://github.com/bakbalazs/KondiBazis-JavaFX/kepek/elerhetosegFelulet "Az alkalmazás elérhetőség létrehozási felülete.")
+
+![Alt text](https://github.com/bakbalazs/KondiBazis-JavaFX/blob/master/kepek/elerhetosegFelulet "Az alkalmazás elérhetőség létrehozási felülete.")
+
 * Tagok szűrése
     Lehetőség van szűrést végrehajtani a tagokon.
     * Lehetőség van megjelníteni az Aktív bérlettel rendelkező tagokat
@@ -40,7 +48,9 @@ Az alkalmazás indulásakor a következő képernyő fogad:
     * A női tagokat
     * Bérlet típus alapján is szűrhet
     * A tagok nevére is lehetőség van keresni
-![Alt text](https://github.com/bakbalazs/KondiBazis-JavaFX/kepek/szures "Példa Női tagok szűrése.")
+	
+![Alt text](https://github.com/bakbalazs/KondiBazis-JavaFX/blob/master/kepek/szures "Példa Női tagok szűrése.")
+
 És ezen szűrések kombinációjára is lehetőség van.
 * Statisztikák
     Lehetőség van statisztikák megjelnítésére.
@@ -48,7 +58,8 @@ Az alkalmazás indulásakor a következő képernyő fogad:
 	* A tagok megyéjének nevére
 	* A tagok nemére
 	* A tagok bérlet típusára
-![Alt text](https://github.com/bakbalazs/KondiBazis-JavaFX/kepek/varosStatisztika "Példa város statisztikára.")
+	
+![Alt text](https://github.com/bakbalazs/KondiBazis-JavaFX/blob/master/kepek//varosStatisztika "Példa város statisztikára.")
 	
 ### Telepítés
 1. A tároló leklónozása
