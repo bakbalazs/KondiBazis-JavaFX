@@ -9,13 +9,13 @@
 
 Az alkalmazás indulásakor a következő képernyő fogad:
 
-![Alt text](https://github.com/bakbalazs/KondiBazis-JavaFX/blob/master/kepek/inditasiKepernyoFelulet "Az alkalmazás indító képernyője.")
+![Alt text](https://github.com/bakbalazs/KondiBazis-JavaFX/blob/master/kepek/inditasiKepernyoFelulet.png "Az alkalmazás indító képernyője.")
 
 ### Funkciók
 * Regisztráció
     Az edzőterem létrehozása az adatbázisban felhasználói fiókként.
 	
-![Alt text](https://github.com/bakbalazs/KondiBazis-JavaFX/blob/master/kepek/teremRegisztralasaFelulet "Az alkalmazás terem regisztrálási felülete.")
+![Alt text](https://github.com/bakbalazs/KondiBazis-JavaFX/blob/master/kepek/teremRegisztralasaFelulet.png "Az alkalmazás terem regisztrálási felülete.")
 
 * Bérletek kezelése
 	* Bérlet létrehozása
@@ -33,12 +33,12 @@ Az alkalmazás indulásakor a következő képernyő fogad:
     * Tag bérletének kezelése
     * Jelöli a lejárt bérletes tagokat
 
-![Alt text](https://github.com/bakbalazs/KondiBazis-JavaFX/blob/master/kepek/tagHozzaadaasa "Az alkalmazás tag létrehozási felülete.")
+![Alt text](https://github.com/bakbalazs/KondiBazis-JavaFX/blob/master/kepek/tagHozzaadaasa.png "Az alkalmazás tag létrehozási felülete.")
 
 * Elérhetőségek kezelése
     * Regisztrációkor adhat meg az edzőterem elérhetőségi adatokat (cím, telefonszám), viszont ez nem kötelező. Később is elvégezheti ezt a módosítást. Amennyiben az edzőterem több kirendeltségen is működik, lehetősége van több elérhetőség megadására. A tagjait együtt kezeli, egy felhasználói fiókban gyűjti össze az összeset. 
 
-![Alt text](https://github.com/bakbalazs/KondiBazis-JavaFX/blob/master/kepek/elerhetosegFelulet "Az alkalmazás elérhetőség létrehozási felülete.")
+![Alt text](https://github.com/bakbalazs/KondiBazis-JavaFX/blob/master/kepek/elerhetosegFelulet.png "Az alkalmazás elérhetőség létrehozási felülete.")
 
 * Tagok szűrése
     Lehetőség van szűrést végrehajtani a tagokon.
@@ -49,7 +49,7 @@ Az alkalmazás indulásakor a következő képernyő fogad:
     * Bérlet típus alapján is szűrhet
     * A tagok nevére is lehetőség van keresni
 	
-![Alt text](https://github.com/bakbalazs/KondiBazis-JavaFX/blob/master/kepek/szures "Példa Női tagok szűrése.")
+![Alt text](https://github.com/bakbalazs/KondiBazis-JavaFX/blob/master/kepek/szures.png "Példa Női tagok szűrése.")
 
 És ezen szűrések kombinációjára is lehetőség van.
 * Statisztikák
@@ -59,7 +59,7 @@ Az alkalmazás indulásakor a következő képernyő fogad:
 	* A tagok nemére
 	* A tagok bérlet típusára
 	
-![Alt text](https://github.com/bakbalazs/KondiBazis-JavaFX/blob/master/kepek//varosStatisztika "Példa város statisztikára.")
+![Alt text](https://github.com/bakbalazs/KondiBazis-JavaFX/blob/master/kepek//varosStatisztika.png "Példa város statisztikára.")
 	
 ### Telepítés
 1. A tároló leklónozása
