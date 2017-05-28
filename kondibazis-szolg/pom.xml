@@ -3,7 +3,7 @@
     <parent>
         <groupId>hu.unideb.inf.kondibazis</groupId>
         <artifactId>KondiBazis</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>0.0.2-SNAPSHOT</version>
 
     </parent>
     <artifactId>kondibazis-szolg</artifactId>
@@ -19,14 +19,14 @@
         <dependency>
             <groupId>hu.unideb.inf.kondibazis</groupId>
             <artifactId>kondibazis-szolg-api</artifactId>
-              <version>0.0.1-SNAPSHOT</version>
+              <version>0.0.2-SNAPSHOT</version>
 
         </dependency>
 
         <dependency>
             <groupId>hu.unideb.inf.kondibazis</groupId>
             <artifactId>kondibazis-db</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.2-SNAPSHOT</version>
         </dependency>
 
         <dependency>
