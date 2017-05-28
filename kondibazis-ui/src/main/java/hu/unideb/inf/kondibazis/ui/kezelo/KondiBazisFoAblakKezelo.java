@@ -24,14 +24,18 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -186,6 +190,16 @@ public class KondiBazisFoAblakKezelo implements Initializable {
     private static boolean kijelentkezes;
 
     private List<KonditeremBerletVo> konditeremBerletek;
+
+    private Image nincsKep = new Image("/kepek/nincsKep.png");
+
+    private Boolean vanKep = false;
+
+    private byte[] kepByte;
+
+    private FileChooser kepValaszto = new FileChooser();
+
+    private File kivalasztottKep;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -704,10 +718,19 @@ public class KondiBazisFoAblakKezelo implements Initializable {
     }
 
     @FXML
-    public void tagModositasa() {
+    public void tagModositasa() throws IOException {
         logolo.debug("Tag módosítása gombra kattintva!");
         KonditeremTagVo tag = konditeremTagSzolgaltatas.keresTagot(kivalasztottTag.getId());
         logolo.debug("A kivalasztott tag id-ja: " + kivalasztottTag.getId());
+
+//        KonditeremTagKepeVo kepModositasa = new KonditeremTagKepeVo();
+//        if (vanKep) {
+//            if (kepModositasa.getKonditeremTag().getId() == kivalasztottTag.getId()) {
+//                kepModositasa.setTagKep(kepByte);
+//                konditeremtagkepeSzolgaltatas.leterehozTagKepet(kepModositasa);
+//            }
+//
+//        }
 
         if (!tag.getTagVezeteknev().equals(vezeteknevModosit.getText()) || !tag.getTagKeresztnev().equals(keresztnevModosit.getText()) || !tag.getTagNeme().equals(nemValasztas()) || !tag.getTagSzuletesidatuma().equals(szuletesiDatumModosit.getValue()) || ujBerletValasztas.getValue() != null) {
             if (KiegeszitoFelulet.megerositesFelulet("Tag módosítása megerősítő ablak", "Tag módosítás megerősítése.", "Biztosan módosítani szeretné?", "Módosítás", "Mégsem", Alert.AlertType.WARNING)) {
@@ -754,11 +777,6 @@ public class KondiBazisFoAblakKezelo implements Initializable {
                     }
                 }
 
-
-                // le kell kérni lejartBerletuTagok tag képt és ha nem módusl lejartBerletuTagok kép akkor lejartBerletuTagok kép az maradjon ami volt TODO
-
-
-
                 konditeremTagSzolgaltatas.frissitKonditeremTagot(kivalasztottTag);
                 logolo.debug("A " + kivalasztottTag.getId() + " id-val rendelkező tag megváltozott!");
                 KiegeszitoFelulet.ertesites("Tag módosítása", "Sikeres módosítás.", "Sikeres módosítás.", "Fő ablakban lejartBerletuTagok tag módodosítása tabon.", Pos.BOTTOM_RIGHT, 5);
@@ -777,11 +795,57 @@ public class KondiBazisFoAblakKezelo implements Initializable {
 
         }
 
-
     }
 
     @FXML
-    public void megseModosit(){
+    public void kepTorlese() {
+        logolo.debug("Kep torlesere kattintva.\n Nincs kep kep berakva.");
+        kepModositasa.setImage(nincsKep);
+        vanKep = false;
+    }
+
+    @FXML
+    public void tallozas() throws IOException {
+        logolo.info("Tallózás gombra kattintva.");
+        kepValaszto.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Image Files (*.png , *.jpg)", "*.png", "*.jpg"));
+        kivalasztottKep = kepValaszto.showOpenDialog(null);
+
+        if (kivalasztottKep != null) {
+            Image image = new Image(kivalasztottKep.toURI().toString(), 195, 185, false, false);
+            kepByte = new byte[(int) kivalasztottKep.length()];
+            FileInputStream fileInputStream = new FileInputStream(kivalasztottKep);
+            fileInputStream.read(kepByte);
+            fileInputStream.close();
+
+            kepModositasa.setImage(image);
+            vanKep = true;
+            logolo.debug("A kiválasztott kep beallítva.");
+//            tallozasGomb.setText("Módosítás");
+
+        } else {
+            kepModositasa.setImage(nincsKep);
+            vanKep = false;
+//            tallozasGomb.setText("Tallózás");
+            logolo.debug("Nincs kép kiválasztva, a NincsKep kép lesz berakva");
+        }
+
+    }
+
+    private byte[] nincsKep() throws IOException {
+        ClassLoader classLoader = getClass().getClassLoader();
+        File file = new File(classLoader.getResource("kepek/nincsKep.png").getFile());
+        String absolutePath = file.getAbsolutePath();
+        new Image(file.toURI().toString(), 195, 285, false, false);
+        byte[] kep = new byte[(int) file.length()];
+        FileInputStream fileInputStream = new FileInputStream(absolutePath);
+        fileInputStream.read(kep);
+        fileInputStream.close();
+        return kep;
+    }
+
+
+    @FXML
+    public void megseModosit() {
         Platform.runLater(() -> tagokTabla.getSelectionModel().clearSelection());
         tagModositas.setDisable(true);
         tabPane.getSelectionModel().select(szuresEskereses);
