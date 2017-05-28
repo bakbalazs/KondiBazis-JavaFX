@@ -15,7 +15,7 @@
         <module>eszkozok</module>
     </modules>
 
-    <name>KondiBazis</name>
+    <name>KondiBázis</name>
 
     <description>Edzőteremeknek nyújt adminisztrációs felületet.</description>
 
