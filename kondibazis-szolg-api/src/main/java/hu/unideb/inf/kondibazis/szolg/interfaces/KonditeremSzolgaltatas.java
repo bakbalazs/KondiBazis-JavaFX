@@ -69,13 +69,34 @@ public interface KonditeremSzolgaltatas {
      */
     Map<String, Long> varosDiagramKonditeremTagokhoz(KonditeremVo konditerem);
 
-    //TODO
+    /**
+     * Meghatározza a konditrem tagjait megyénként számolja meg, majd visszaadja
+     * csoportosítva.
+     *
+     * @param konditerem A konditrem akinek a tagjainak a megyénire kíváncsiak vagyunk.
+     * @return Egy {@link java.util.Map Map} amiben a kulcsok a megyék nevei, az értékek
+     * pedig hogy a tagok száma a megye nevek a városokhoz.
+     */
     Map<String, Long> megyeDiagramKonditeremTagokhoz(KonditeremVo konditerem);
 
-    //TODO
+    /**
+     * Meghatározza a konditrem tagjait nemenként számolja meg, majd visszaadja
+     * csoportosítva.
+     *
+     * @param konditerem A konditrem akinek a tagjainak a nemére kíváncsiak vagyunk.
+     * @return Egy {@link java.util.Map Map} amiben a kulcsok a tagok nemei, az értékek
+     * pedig hogy mennnyien vannak azonos nemű tagok.
+     */
     Map<String, Long> nemekDiagramKonditeremTagokhoz(KonditeremVo konditerem);
 
-    //TODO
+    /**
+     * Meghatározza a konditrem tagjait bérlet típusonként, majd visszaadja
+     * csoportosítva.
+     *
+     * @param konditerem A konditrem akinek a tagjainak a bérlet típusára kíváncsiak vagyunk.
+     * @return Egy {@link java.util.Map Map} amiben a kulcsok a tagok áltál vásárolt bérletek típusa
+     * az értékek pedig hogy mennyien vannak azonos bérlet típussal rendelkező tagok.
+     */
     Map<String, Long> berlettipusDiagramKonditeremTagokhoz(KonditeremVo konditerem);
 
     /**

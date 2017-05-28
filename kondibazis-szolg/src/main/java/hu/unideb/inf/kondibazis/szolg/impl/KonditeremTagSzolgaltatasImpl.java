@@ -1,6 +1,5 @@
 package hu.unideb.inf.kondibazis.szolg.impl;
 
-
 import hu.unideb.inf.kondibazis.db.entitas.Konditerem;
 import hu.unideb.inf.kondibazis.db.entitas.KonditeremTag;
 import hu.unideb.inf.kondibazis.db.tarolo.KonditeremTagTarolo;
@@ -141,6 +140,15 @@ public class KonditeremTagSzolgaltatasImpl implements KonditeremTagSzolgaltatas 
         return KonditeremTagMapper.toVo(konditeremTagjai);
     }
 
+    /**
+     * {@inheritDoc}
+     * <p>
+     * Ebben az implementációban
+     * a metódus megkeresi az összes adatbázisban található összes (a paraméterül kapott konditeremhez tartozó) tagot.
+     * Ezt a {@link hu.unideb.inf.kondibazis.db.tarolo.KonditeremTagTarolo#findByKonditerem(Konditerem)}  {@link KonditeremTagTarolo}.findByKonditeremIn}
+     * metódus segítségével hajtja végre. A konditeremet átmappelve adjuk a metódusnak, amely eredményül egy listát ad a konditeremhez
+     * tartozó női tagokról. A szolgáltatás ezt a listát átmappelve adja eredményül vissza.
+     */
     @Override
     public List<KonditeremTagVo> noiTagok(KonditeremVo konditerem) {
 
@@ -162,6 +170,15 @@ public class KonditeremTagSzolgaltatasImpl implements KonditeremTagSzolgaltatas 
         return KonditeremTagMapper.toVo(noiTagok);
     }
 
+    /**
+     * {@inheritDoc}
+     * <p>
+     * Ebben az implementációban
+     * a metódus megkeresi az összes adatbázisban található összes (a paraméterül kapott konditeremhez tartozó) tagot.
+     * Ezt a {@link hu.unideb.inf.kondibazis.db.tarolo.KonditeremTagTarolo#findByKonditerem(Konditerem)}  {@link KonditeremTagTarolo}.findByKonditeremIn}
+     * metódus segítségével hajtja végre. A konditeremet átmappelve adjuk a metódusnak, amely eredményül egy listát ad a konditeremhez
+     * tartozó férfi tagokról. A szolgáltatás ezt a listát átmappelve adja eredményül vissza.
+     */
     @Override
     public List<KonditeremTagVo> ferfiTagok(KonditeremVo konditerem) {
         List<KonditeremTag> ferfiTagok = new ArrayList<>();
@@ -182,6 +199,15 @@ public class KonditeremTagSzolgaltatasImpl implements KonditeremTagSzolgaltatas 
         return KonditeremTagMapper.toVo(ferfiTagok);
     }
 
+    /**
+     * {@inheritDoc}
+     * <p>
+     * Ebben az implementációban
+     * a metódus megkeresi az összes adatbázisban található összes (a paraméterül kapott konditeremhez tartozó) tagot.
+     * Ezt a {@link hu.unideb.inf.kondibazis.db.tarolo.KonditeremTagTarolo#findByKonditerem(Konditerem)}  {@link KonditeremTagTarolo}.findByKonditeremIn}
+     * metódus segítségével hajtja végre. A konditeremet átmappelve adjuk a metódusnak, amely eredményül egy listát ad a konditeremhez
+     * tartozó alkalmas bérlettel rendelkező tagokról. A szolgáltatás ezt a listát átmappelve adja eredményül vissza.
+     */
     @Override
     public List<KonditeremTagVo> alkalmasBerletuTagok(KonditeremVo konditerem) {
         List<KonditeremTag> alkalmasBerletuTagok = new ArrayList<>();
@@ -201,6 +227,15 @@ public class KonditeremTagSzolgaltatasImpl implements KonditeremTagSzolgaltatas 
         return KonditeremTagMapper.toVo(alkalmasBerletuTagok);
     }
 
+    /**
+     * {@inheritDoc}
+     * <p>
+     * Ebben az implementációban
+     * a metódus megkeresi az összes adatbázisban található összes (a paraméterül kapott konditeremhez tartozó) tagot.
+     * Ezt a {@link hu.unideb.inf.kondibazis.db.tarolo.KonditeremTagTarolo#findByKonditerem(Konditerem)}  {@link KonditeremTagTarolo}.findByKonditeremIn}
+     * metódus segítségével hajtja végre. A konditeremet átmappelve adjuk a metódusnak, amely eredményül egy listát ad a konditeremhez
+     * tartozó időkorlátos bérlettel rendelkező tagokról. A szolgáltatás ezt a listát átmappelve adja eredményül vissza.
+     */
     @Override
     public List<KonditeremTagVo> idokorlatosBerletuTagok(KonditeremVo konditerem) {
         List<KonditeremTag> idokorlatosBerletuTagok = new ArrayList<>();
@@ -220,6 +255,15 @@ public class KonditeremTagSzolgaltatasImpl implements KonditeremTagSzolgaltatas 
         return KonditeremTagMapper.toVo(idokorlatosBerletuTagok);
     }
 
+    /**
+     * {@inheritDoc}
+     * <p>
+     * Ebben az implementációban
+     * a metódus megkeresi az összes adatbázisban található összes (a paraméterül kapott konditeremhez tartozó) tagot.
+     * Ezt a {@link hu.unideb.inf.kondibazis.db.tarolo.KonditeremTagTarolo#findByKonditerem(Konditerem)}  {@link KonditeremTagTarolo}.findByKonditeremIn}
+     * metódus segítségével hajtja végre. A konditeremet átmappelve adjuk a metódusnak, amely eredményül egy listát ad a konditeremhez
+     * tartozó lejárt alkalmas bérlettel rendelkező tagokról. A szolgáltatás ezt a listát átmappelve adja eredményül vissza.
+     */
     @Override
     public List<KonditeremTagVo> lejartAlkalmasBerletuTagok(KonditeremVo konditerem) {
         LocalDate maiNap = LocalDate.now();
@@ -241,6 +285,15 @@ public class KonditeremTagSzolgaltatasImpl implements KonditeremTagSzolgaltatas 
         return KonditeremTagMapper.toVo(lejartAlkalmasBerletuTagok);
     }
 
+    /**
+     * {@inheritDoc}
+     * <p>
+     * Ebben az implementációban
+     * a metódus megkeresi az összes adatbázisban található összes (a paraméterül kapott konditeremhez tartozó) tagot.
+     * Ezt a {@link hu.unideb.inf.kondibazis.db.tarolo.KonditeremTagTarolo#findByKonditerem(Konditerem)}  {@link KonditeremTagTarolo}.findByKonditeremIn}
+     * metódus segítségével hajtja végre. A konditeremet átmappelve adjuk a metódusnak, amely eredményül egy listát ad a konditeremhez
+     * tartozó lejárt időkorlátos bérlettel rendelkező tagokról. A szolgáltatás ezt a listát átmappelve adja eredményül vissza.
+     */
     @Override
     public List<KonditeremTagVo> lejartIdokorlatosBerletuTagok(KonditeremVo konditerem) {
         LocalDate maiNap = LocalDate.now();
@@ -257,20 +310,9 @@ public class KonditeremTagSzolgaltatasImpl implements KonditeremTagSzolgaltatas 
                     lejartIdokorlatosBerletuTagok.add(tag);
                 }
             }
-            logolo.debug("A " + konditerem.getFelhasznalonev() + " felhasznalonevu konditeremnek " + lejartIdokorlatosBerletuTagok.size() + " db idokorlatos bérletű tagja van.");
+            logolo.debug("A " + konditerem.getFelhasznalonev() + " felhasznalonevu konditeremnek " + lejartIdokorlatosBerletuTagok.size() + " db lejárt idokorlatos bérletű tagja van.");
         }
         return KonditeremTagMapper.toVo(lejartIdokorlatosBerletuTagok);
     }
-
-    @Override
-    public List<KonditeremTagVo> lejartBerletuTagok(KonditeremVo konditerem) {
-
-//        List<KonditeremTag> ad = new ArrayList<>();
-//        ad.addAll(KonditeremTagMapper.toDto(lejartIdokorlatosBerletuTagok(konditerem)));
-//        ad.addAll(KonditeremTagMapper.toDto(lejartAlkalmasBerletuTagok(konditerem)));
-
-        return null;
-    }
-
 
 }

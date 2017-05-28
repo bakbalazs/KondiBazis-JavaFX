@@ -14,14 +14,18 @@ public class KonditeremTagMapper {
 
     public static KonditeremTagVo toVo(KonditeremTag konditeremTagDto) {
         if (konditeremTagDto == null) {
+
             return null;
+
         }
         return mapper.map(konditeremTagDto, KonditeremTagVo.class);
     }
 
     public static KonditeremTag toDto(KonditeremTagVo konditeremTagVo) {
         if (konditeremTagVo == null) {
+
             return null;
+
         }
         return mapper.map(konditeremTagVo, KonditeremTag.class);
     }

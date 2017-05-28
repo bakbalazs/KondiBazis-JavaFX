@@ -69,10 +69,6 @@ public class BerletLetrehozasKezelo implements Initializable {
     @FXML
     private JFXTextField alakomBevitel;
 
-    @FXML
-    private Text alkalomSzoveg;
-
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         idokorlatosBerlet(false);
@@ -154,7 +150,7 @@ public class BerletLetrehozasKezelo implements Initializable {
                 ujBerlet.setKonditerem(bejelentkezettKonditerem);
 
                 konditeremBerletSzolgaltatas.letrehozBerletet(ujBerlet);
-                logolo.debug("Uj alkalmas berlet letrehozva!");
+                logolo.debug("Uj alkalmas berlet letrehozva! " + ujBerlet.getBerletNeve());
 
                 foAblakKezelo.gombFrissites();
                 foAblakKezelo.adatFrissites();
@@ -209,7 +205,7 @@ public class BerletLetrehozasKezelo implements Initializable {
                 ujBerlet.setKonditerem(bejelentkezettKonditerem);
 
                 konditeremBerletSzolgaltatas.letrehozBerletet(ujBerlet);
-                logolo.debug("Uj idokorlatos berlet letrehozva!");
+                logolo.debug("Uj idokorlatos berlet letrehozva! " + ujBerlet.getBerletNeve());
 
                 foAblakKezelo.gombFrissites();
                 foAblakKezelo.adatFrissites();
@@ -229,24 +225,22 @@ public class BerletLetrehozasKezelo implements Initializable {
 
 
     private void alapertek(boolean megjelenes) {
-//        berletnevSzoveg.setVisible(megjelenes);
+        logolo.debug("Alap kinéztei elemek megjelenítve!");
         berletnevBevitel.setVisible(megjelenes);
-//        berletaraSzoveg.setVisible(megjelenes);
         berletaraBevitel.setVisible(megjelenes);
-//        ftJel.setVisible(megjelenes);
+        ftJel.setVisible(megjelenes);
         letrehozasGomb.setVisible(megjelenes);
-//        berlethonapSzoveg.setVisible(megjelenes);
         honapBevitel.setVisible(megjelenes);
     }
 
     private void idokorlatosBerlet(boolean megjelenes) {
-//        berletnapSzoveg.setVisible(megjelenes);
+        logolo.debug("Időkorlátos bérlethez a kinéztei elemek megjelenítve!");
         napBevitel.setVisible(megjelenes);
     }
 
     private void alkalmasBerlet(boolean megjelenes) {
+        logolo.debug("Alkalmas bérlethez a kinéztei elemek megjelenítve!");
         alakomBevitel.setVisible(megjelenes);
-//        alkalomSzoveg.setVisible(megjelenes);
     }
 
 }

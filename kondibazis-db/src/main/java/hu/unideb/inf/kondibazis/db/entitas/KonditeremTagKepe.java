@@ -22,21 +22,22 @@ public class KonditeremTagKepe extends FoEntitas {
     }
 
     /**
-     *
+     * A tag képe bytban.
      */
     @Lob
     @Column(name = "tagKep")
     private byte[] tagKep;
 
     /**
-     *
+     * A képhez tartozó tag.
      */
-    @OneToOne(cascade = CascadeType.PERSIST ,fetch=FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     @JoinColumn(name = "konditeremTagId")
     private KonditeremTag konditeremTag;
 
     /**
      * Visszaadja az adott Tag fenyképét.
+     *
      * @return A tag fenyképe.
      */
     public byte[] getTagKep() {
@@ -45,6 +46,7 @@ public class KonditeremTagKepe extends FoEntitas {
 
     /**
      * Beállítja az adott Tag fenyképét.
+     *
      * @param tagKep A beállítandó kép.
      */
     public void setTagKep(byte[] tagKep) {
@@ -52,16 +54,18 @@ public class KonditeremTagKepe extends FoEntitas {
     }
 
     /**
+     * Visszaadja az adott tagot akihez a kép tartozik.
      *
-     * @return
+     * @return A tag.
      */
     public KonditeremTag getKonditeremTag() {
         return konditeremTag;
     }
 
     /**
+     * Beállítja azt a tagot akihez a képet beállítottuk.
      *
-     * @param konditeremTag
+     * @param konditeremTag A beállítandó tag.
      */
     public void setKonditeremTag(KonditeremTag konditeremTag) {
         this.konditeremTag = konditeremTag;

@@ -35,6 +35,7 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -184,8 +185,6 @@ public class KondiBazisFoAblakKezelo implements Initializable {
 
     private static boolean kijelentkezes;
 
-    private static String lejartBerletStyle;
-
     private List<KonditeremBerletVo> konditeremBerletek;
 
     @Override
@@ -208,7 +207,6 @@ public class KondiBazisFoAblakKezelo implements Initializable {
         osszesTagNemGomb.setSelected(true);
         osszesTagBerletTipusGomb.setSelected(true);
 
-
         tagModositasElrejtes();
 
         gombFrissites();
@@ -224,22 +222,26 @@ public class KondiBazisFoAblakKezelo implements Initializable {
                     }
                 });
 
-        FilteredList<TagAdatok> filteredData = new FilteredList<>(tagTablazatAdatok, p -> true);
+        FilteredList<TagAdatok> keresettNev = new FilteredList<>(tagTablazatAdatok, p -> true);
 
-        keresesszovegBevitel.textProperty().addListener((observable, oldValue, newValue) -> filteredData.setPredicate(tag -> {
+        keresesszovegBevitel.textProperty().addListener((observable, oldValue, newValue) -> {
+            keresettNev.setPredicate(person -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
 
-            if (newValue == null || newValue.isEmpty()) {
-                return true;
-            }
+                String lowerCaseFilter = newValue.toLowerCase();
 
-            String lowerCaseFilter = newValue.toLowerCase();
+                if (person.getTagVezetekneve().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else if (person.getTagKeresztneve().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                }
+                return false;
+            });
+        });
 
-            if (tag.getTagNeve().toLowerCase().contains(lowerCaseFilter)) {
-                tagokTabla.setItems(filteredData);
-                return true;
-            }
-            return false;
-        }));
+        tagokTabla.setItems(keresettNev);
     }
 
 
@@ -592,10 +594,9 @@ public class KondiBazisFoAblakKezelo implements Initializable {
         }
 
         item = FXCollections.observableArrayList();
-if(!item.isEmpty()) {
-    item.clear();
-
-}
+        if (!item.isEmpty()) {
+            item.clear();
+        }
 
         logolo.debug("Tablazat feltoltese adatokkal: ");
 
@@ -650,16 +651,15 @@ if(!item.isEmpty()) {
         if (tData != null) {
             kivalasztottTag = konditeremTagSzolgaltatas.keresTagot(tData.getId());
 
+            logolo.debug("A kivalasztott tag: " + kivalasztottTag);
+
             tagModositas.setDisable(false);
             tabPane.getSelectionModel().select(tagModositas);
-//            szuresEskereses.setDisable(true);
-//            szures.setSelected(false);
-//            osszesTagGomb.setSelected(true);
-//            osszesTagNemGomb.setSelected(true);
-//            adatFrissites();
+            szuresEskereses.setDisable(true);
+            szures.setSelected(false);
+            osszesTagGomb.setSelected(true);
+            osszesTagNemGomb.setSelected(true);
 
-
-//HIBAAAAAA
             vezeteknevModosit.setText(tData.getTagVezetekneve());
             keresztnevModosit.setText(tData.getTagKeresztneve());
             lejartBerletNeve.setText(tData.getLejartBerletNeve());
@@ -678,6 +678,8 @@ if(!item.isEmpty()) {
                     kepModositasa.setImage(KepKonvertalas.byteKonvertalasKeppe(kepek.getTagKep(), 149, 134));
                 }
             }
+
+            logolo.info("A kivalasztott tag adatai betöltve.");
         }
     }
 
@@ -689,10 +691,11 @@ if(!item.isEmpty()) {
         String tagNeme = null;
         if (ferfiModosit.isSelected()) {
             tagNeme = "Férfi";
+            logolo.debug("Fertfi radiogomb benyomva");
         } else if (noModosit.isSelected()) {
             tagNeme = "Nő";
+            logolo.debug("No radiogomb benyomva");
         }
-
         return tagNeme;
 
     }
@@ -748,13 +751,14 @@ if(!item.isEmpty()) {
                     }
                 }
 
+
                 // le kell kérni lejartBerletuTagok tag képt és ha nem módusl lejartBerletuTagok kép akkor lejartBerletuTagok kép az maradjon ami volt TODO
 
                 konditeremTagSzolgaltatas.frissitKonditeremTagot(kivalasztottTag);
                 logolo.debug("A " + kivalasztottTag.getId() + " id-val rendelkező tag megváltozott!");
                 KiegeszitoFelulet.ertesites("Tag módosítása", "Sikeres módosítás.", "Sikeres módosítás.", "Fő ablakban lejartBerletuTagok tag módodosítása tabon.", Pos.BOTTOM_RIGHT, 5);
-//                Platform.runLater(() -> tagokTabla.getSelectionModel().clearSelection());
-//                tagModositas.setDisable(true);
+                Platform.runLater(() -> tagokTabla.getSelectionModel().clearSelection());
+                tagModositas.setDisable(true);
                 adatFrissites();
                 logolo.info("Sikeres tag módosítás!");
 
@@ -771,7 +775,18 @@ if(!item.isEmpty()) {
 
     }
 
+    @FXML
+    public void megseModosit(){
+        Platform.runLater(() -> tagokTabla.getSelectionModel().clearSelection());
+        tagModositas.setDisable(true);
+        tabPane.getSelectionModel().select(szuresEskereses);
+        szuresEskereses.setDisable(true);
+    }
+
     private void oszlopokBerlet() {
+        LocalDate maiNap = LocalDate.now();
+        DateTimeFormatter datumFormatum = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
         alkalmakOszlop = new TableColumn<>("Alkalmak");
         alkalmakOszlop.setMaxWidth(4800);
         alkalmakOszlop.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
@@ -788,17 +803,12 @@ if(!item.isEmpty()) {
                     return;
                 }
 
-                //TODO
-                // itt is legyen dáum lekérdezés +  lejartBerletuTagok másidknál is legyne dátum lekérdezés és szinezze át lejartBerletuTagok text szöveget + lejartBerletuTagok gombot tiltsa le
-
                 final Button mennyiAlkalomMegGomb = new Button("Még " + tag.getMennyiAlkalom() + " alkalom van hátra.");
                 mennyiAlkalomMegGomb.setStyle("-fx-border-color: #00FF7F; -fx-border-width: 2px;");
-                if (Integer.parseInt(tag.getMennyiAlkalom()) == 0 && tag.getVasaroltBerletNeve().contains("Alkalmas")) {
+                if (tag.getVasaroltBerletNeve().contains("Alkalmas") && (Integer.parseInt(tag.getMennyiAlkalom()) == 0 || LocalDate.parse(tag.getBerletLejaratiIdeje(), datumFormatum).compareTo(maiNap) < 0 || LocalDate.parse(tag.getBerletLejaratiIdeje(), datumFormatum).compareTo(maiNap) == -1)) {
                     mennyiAlkalomMegGomb.setText("Nincs több alkalom.");
-//                    alkalmakSor.setStyle(lejartBerletStyle);
                     mennyiAlkalomMegGomb.setDisable(true);
-                } else {
-                    alkalmakSor.setStyle("");
+                    mennyiAlkalomMegGomb.setStyle("-fx-border-color: red; -fx-border-width: 2px;");
                 }
 
                 if (tag.getVasaroltBerletNeve().contains("Alkalmas bérlet")) {
@@ -822,7 +832,7 @@ if(!item.isEmpty()) {
                         }
                     } else if (Integer.parseInt(tag.getMennyiAlkalom()) == 0 && tag.getVasaroltBerletNeve().contains("Alkalmas")) {
                         mennyiAlkalomMegGomb.setText("Nincs több alkalom.");
-//                        alkalmakSor.setStyle(lejartBerletStyle);
+                        mennyiAlkalomMegGomb.setStyle("-fx-border-color: red; -fx-border-width: 2px;");
                         mennyiAlkalomMegGomb.setDisable(true);
                     }
                 });
@@ -840,22 +850,22 @@ if(!item.isEmpty()) {
             protected void updateItem(TagAdatok tag, boolean empty) {
                 super.updateItem(tag, empty);
 
-                TableRow idokorlatosSor = getTableRow();
-
                 if (tag == null) {
                     setGraphic(null);
-                    idokorlatosSor.setStyle("");
                     return;
                 }
 
-                final Text testText = new Text(tag.getBerletLejaratiIdeje());
-                testText.setFill(Color.SPRINGGREEN);
+                final Text datumSzoveg = new Text(tag.getBerletLejaratiIdeje());
+                datumSzoveg.setFill(Color.SPRINGGREEN);
 
-                setGraphic(testText);
-                idokorlatosSor.setStyle("");
-//                if (tag.getVasaroltBerletNeve().contains("Időkorlátos")) {
-//
-//                }
+                if (tag.getVasaroltBerletNeve().contains("Időkorlátos") && (LocalDate.parse(tag.getBerletLejaratiIdeje(), datumFormatum).compareTo(maiNap) < 0 || LocalDate.parse(tag.getBerletLejaratiIdeje(), datumFormatum).compareTo(maiNap) == -1)) {
+                    datumSzoveg.setFill(Color.RED);
+                }
+                if (tag.getVasaroltBerletNeve().contains("Alkalmas") && (Integer.parseInt(tag.getMennyiAlkalom()) == 0 || LocalDate.parse(tag.getBerletLejaratiIdeje(), datumFormatum).compareTo(maiNap) < 0 || LocalDate.parse(tag.getBerletLejaratiIdeje(), datumFormatum).compareTo(maiNap) == -1)) {
+                    datumSzoveg.setFill(Color.RED);
+                }
+
+                setGraphic(datumSzoveg);
             }
 
         });
@@ -878,7 +888,7 @@ if(!item.isEmpty()) {
 
         tagokTabla.setPlaceholder(new Text("Nem található egy tag sem."));
 
-        lejartBerletStyle = "-fx-background-color: lightcoral;";
+        tagokTabla.getStylesheets().add("/css/tablakinezet.css");
 
     }
 

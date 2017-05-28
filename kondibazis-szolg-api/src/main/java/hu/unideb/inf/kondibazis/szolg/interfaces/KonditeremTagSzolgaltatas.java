@@ -53,18 +53,58 @@ public interface KonditeremTagSzolgaltatas {
      */
     List<KonditeremTagVo> konditeremOsszesTagja(KonditeremVo konditerem);
 
+    /**
+     * Visszaadja eredményül azt a listát, amely már csak azokat a női tagokat tartalmazza,
+     * amelyek a paraméterként megadott konditeremhez tartoznak.
+     *
+     * @param konditerem Az a konditerem akinek a női tagjait keressük.
+     * @return Egy lista amely csak a konditerem női tagjait tartalmazza.
+     */
     List<KonditeremTagVo> noiTagok(KonditeremVo konditerem);
 
+    /**
+     * Visszaadja eredményül azt a listát, amely már csak azokat a férfi tagokat tartalmazza,
+     * amelyek a paraméterként megadott konditeremhez tartoznak.
+     *
+     * @param konditerem Az a konditerem akinek a férfi tagjait keressük.
+     * @return Egy lista amely csak a konditerem férfi tagjait tartalmazza.
+     */
     List<KonditeremTagVo> ferfiTagok(KonditeremVo konditerem);
 
+    /**
+     * Visszaadja eredményül azt a listát, amely már csak az alkalmas bérlettel rendelkező tagokat tartalmazza,
+     * amelyek a paraméterként megadott konditeremhez tartoznak.
+     *
+     * @param konditerem Az a konditerem akinek az alkalmas bérletű tagjait keressük.
+     * @return Egy lista amely csak a konditerem alkalmas bérletű tagjait tartalmazza.
+     */
     List<KonditeremTagVo> alkalmasBerletuTagok(KonditeremVo konditerem);
 
+    /**
+     * Visszaadja eredményül azt a listát, amely már csak az időkorlátos bérlettel rendelkező tagokat tartalmazza,
+     * amelyek a paraméterként megadott konditeremhez tartoznak.
+     *
+     * @param konditerem Az a konditerem akinek az időkorlátos bérletű tagjait keressük.
+     * @return Egy lista amely csak a konditerem időkorlátos bérletű tagjait tartalmazza.
+     */
     List<KonditeremTagVo> idokorlatosBerletuTagok(KonditeremVo konditerem);
 
+    /**
+     * Visszaadja eredményül azt a listát, amely már csak a lejárt alkalmas bérlettel rendelkező tagokat tartalmazza,
+     * amelyek a paraméterként megadott konditeremhez tartoznak.
+     *
+     * @param konditerem Az a konditerem akinek a lejárt alkalmas bérletű tagjait keressük.
+     * @return Egy lista amely csak a konditerem lejárt alkalmas bérletű tagjait tartalmazza.
+     */
     List<KonditeremTagVo> lejartAlkalmasBerletuTagok(KonditeremVo konditerem);
 
+    /**
+     * Visszaadja eredményül azt a listát, amely már csak a lejárt időkorlátos bérlettel rendelkező tagokat tartalmazza,
+     * amelyek a paraméterként megadott konditeremhez tartoznak.
+     *
+     * @param konditerem Az a konditerem akinek a lejárt időkorlátos bérletű tagjait keressük.
+     * @return Egy lista amely csak a konditerem lejárt időkorlátos bérletű tagjait tartalmazza.
+     */
     List<KonditeremTagVo> lejartIdokorlatosBerletuTagok(KonditeremVo konditerem);
-
-    List<KonditeremTagVo> lejartBerletuTagok(KonditeremVo konditerem);
 
 }

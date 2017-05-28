@@ -333,11 +333,11 @@ public class KonditeremTest {
     }
 
     @Test
-    public void osszesKonditerem(){
+    public void osszesKonditerem() {
 
         List<KonditeremVo> osszesKonditerem = konditeremSzolgaltatas.osszesKonditerem();
         Assert.assertNotNull(osszesKonditerem.size());
-        Assert.assertEquals(1,osszesKonditerem.size());
+        Assert.assertEquals(1, osszesKonditerem.size());
     }
 
 }

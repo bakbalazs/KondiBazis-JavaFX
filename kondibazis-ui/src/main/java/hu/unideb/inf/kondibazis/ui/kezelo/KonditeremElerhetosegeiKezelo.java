@@ -72,6 +72,8 @@ public class KonditeremElerhetosegeiKezelo implements Initializable {
         konditeremElerhetosegTablaAdatok = FXCollections.observableArrayList();
 
         adatFrissites();
+
+        konditeremElerhetosegekTabla.getStylesheets().add("/css/tablakinezet.css");
     }
 
     @FXML

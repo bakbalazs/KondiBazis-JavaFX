@@ -1,7 +1,6 @@
 package hu.unideb.inf.kondibazis.szolg.impl;
 
 import hu.unideb.inf.kondibazis.db.entitas.Konditerem;
-import hu.unideb.inf.kondibazis.db.tarolo.KonditeremBerletTarolo;
 import hu.unideb.inf.kondibazis.db.tarolo.KonditeremTarolo;
 import hu.unideb.inf.kondibazis.szolg.interfaces.KonditeremSzolgaltatas;
 import hu.unideb.inf.kondibazis.szolg.mapper.KonditeremMapper;
@@ -138,7 +137,18 @@ public class KonditeremSzolgaltatasImpl implements KonditeremSzolgaltatas {
 
     }
 
-    //TODO
+    /**
+     * {@inheritDoc}
+     * <p>
+     * Ebben az implementációban
+     * a metódus kiszámolja azokat az adatokat, amelyekkel a város neveket csoportosítva megjelenítő diagrammot töltjük fel.
+     * Ez a következőképpen történik: elkérjük a konditerem összes tagját.
+     * Miután ez megtörtént, csoportosítjuk tagok városa neve szerint a tagokat úgy, hogy minden városhoz az abba a városban lakó
+     * tagok összes száma szerepeljen.
+     * Ezt egy olyan {@link java.util.Map Map}-ben tároljuk, amelyben a kulcsok a városkok nevei, az értékek pedig
+     * a tagokhoz tartozó városok száma.
+     * A szolgáltatás a fentebb említett immár a megfelelő adatokkal feltöltött {@link java.util.Map Map}-et adja vissza.
+     */
     @Override
     public Map<String, Long> varosDiagramKonditeremTagokhoz(KonditeremVo konditerem) {
         List<KonditeremTagVo> konditeremTagLisa = konditerem.getKonditeremTagok();
@@ -150,7 +160,18 @@ public class KonditeremSzolgaltatasImpl implements KonditeremSzolgaltatas {
         return varosDiagramAdatok;
     }
 
-    //TODO
+    /**
+     * {@inheritDoc}
+     * <p>
+     * Ebben az implementációban
+     * a metódus kiszámolja azokat az adatokat, amelyekkel a megye neveket csoportosítva megjelenítő diagrammot töltjük fel.
+     * Ez a következőképpen történik: elkérjük a konditerem összes tagját.
+     * Miután ez megtörtént, csoportosítjuk tagok megyéinek a neve szerint a tagokat úgy, hogy minden megyéhez az abba a megyében lakó
+     * tagok összes száma szerepeljen.
+     * Ezt egy olyan {@link java.util.Map Map}-ben tároljuk, amelyben a kulcsok a megyék nevei, az értékek pedig
+     * a tagokhoz tartozó megyék száma.
+     * A szolgáltatás a fentebb említett immár a megfelelő adatokkal feltöltött {@link java.util.Map Map}-et adja vissza.
+     */
     @Override
     public Map<String, Long> megyeDiagramKonditeremTagokhoz(KonditeremVo konditerem) {
         List<KonditeremTagVo> konditeremTagLisa = konditerem.getKonditeremTagok();
@@ -162,7 +183,17 @@ public class KonditeremSzolgaltatasImpl implements KonditeremSzolgaltatas {
         return megyeDiagramAdatok;
     }
 
-    //TODO
+    /**
+     * {@inheritDoc}
+     * <p>
+     * Ebben az implementációban
+     * a metódus kiszámolja azokat az adatokat, amelyekkel a nemeket csoportosítva megjelenítő diagrammot töltjük fel.
+     * Ez a következőképpen történik: elkérjük a konditerem összes tagját.
+     * Miután ez megtörtént, csoportosítjuk a tagokat nemek szerint, a tagokat úgy, hogy minden nemhez a tagok száma jelenjen meg.
+     * Ezt egy olyan {@link java.util.Map Map}-ben tároljuk, amelyben a kulcsok a tagok nemei, az értékek pedig
+     * a tagokhoz tartozó nemek száma.
+     * A szolgáltatás a fentebb említett immár a megfelelő adatokkal feltöltött {@link java.util.Map Map}-et adja vissza.
+     */
     @Override
     public Map<String, Long> nemekDiagramKonditeremTagokhoz(KonditeremVo konditerem) {
         List<KonditeremTagVo> konditeremTagLisa = konditerem.getKonditeremTagok();
@@ -174,7 +205,17 @@ public class KonditeremSzolgaltatasImpl implements KonditeremSzolgaltatas {
         return nemekDiagramAdatok;
     }
 
-    //TODO
+    /**
+     * {@inheritDoc}
+     * <p>
+     * Ebben az implementációban
+     * a metódus kiszámolja azokat az adatokat, amelyekkel a bérlet típusokat csoportosítva megjelenítő diagrammot töltjük fel.
+     * Ez a következőképpen történik: elkérjük a konditerem összes tagját.
+     * Miután ez megtörtént, csoportosítjuk a tagokat bérlet típus szerint, a tagokat úgy, hogy minden bérlet típushoz a tagok száma jelenjen meg.
+     * Ezt egy olyan {@link java.util.Map Map}-ben tároljuk, amelyben a kulcsok a tagok bérletének típusai, az értékek pedig
+     * a tagokhoz tartozó típusok száma.
+     * A szolgáltatás a fentebb említett immár a megfelelő adatokkal feltöltött {@link java.util.Map Map}-et adja vissza.
+     */
     @Override
     public Map<String, Long> berlettipusDiagramKonditeremTagokhoz(KonditeremVo konditerem) {
         List<KonditeremTagVo> konditeremTagLisa = konditerem.getKonditeremTagok();
@@ -191,9 +232,9 @@ public class KonditeremSzolgaltatasImpl implements KonditeremSzolgaltatas {
      * <p>
      * Ebben az implementációban
      * a metódus megkeresi az adatbázisban az összes konditermet, majd visszaadja egy listában.
-     * A műveletet a {@link KonditeremBerletTarolo#findAll()}  KonditeremBerletTarolo.findAll()}
+     * A műveletet a {@link KonditeremTarolo#findAll()}  KonditeremTarolo.findAll()}
      * metódus segítségével hajtja végre. Ennek eredményeképp kapunk egy listát amely tartalmazza az összes adatbázisban szereplő
-     * bérletet. A szolgáltatás ezen lista elemeit átmappelve egy listában adja vissza eredményül.
+     * konditermet. A szolgáltatás ezen lista elemeit átmappelve egy listában adja vissza eredményül.
      */
     @Override
     public List<KonditeremVo> osszesKonditerem() {

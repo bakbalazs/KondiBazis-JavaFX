@@ -71,8 +71,6 @@
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin></Text>
-                        <Button fx:id="berletModositasGomb" mnemonicParsing="false" onAction="#berletekModositasa" text="Bérletek Módosítása" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                        <Button fx:id="tagHozzaadasaGomb" mnemonicParsing="false" onAction="#tagHozzaadasa" text="Tag Hozzáadása" GridPane.columnIndex="3" GridPane.rowIndex="4" />
                         <Text fx:id="konditeremNeve" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Text fx:id="tagokSzama" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <Text fx:id="regisztralasDatuma" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
@@ -80,8 +78,10 @@
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></Text>
-                  <JFXButton onAction="#elerhetoseg" ripplerFill="#b80000" style="-fx-border-color: #b80000;" text="Elérhetőségek" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                  <JFXButton onAction="#berletekLetrehozasa" ripplerFill="#b80000" style="-fx-border-color: #b80000;" text="Bérletek Létrehozása" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                  <JFXButton onAction="#elerhetoseg" ripplerFill="WHITE" style="-fx-background-color: #b80000;" text="Elérhetőségek" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                  <JFXButton onAction="#berletekLetrehozasa" ripplerFill="WHITE" style="-fx-background-color: #b80000;" text="Bérletek Létrehozása" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                  <JFXButton fx:id="berletModositasGomb" onAction="#berletekModositasa" ripplerFill="WHITE" style="-fx-background-color: #b80000;" text="Bérletek Módosítása" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                  <JFXButton fx:id="tagHozzaadasaGomb" onAction="#tagHozzaadasa" ripplerFill="WHITE" style="-fx-background-color: #b80000;" text="Tag Hozzáadása" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="4" />
                     </children>
                 </GridPane>
                 <TabPane fx:id="tabPane" tabClosingPolicy="UNAVAILABLE" GridPane.columnIndex="1">
@@ -120,41 +120,6 @@
                                         </RadioButton>
                                         <RadioButton fx:id="noGomb" mnemonicParsing="false" onAction="#noTagok" text="Nők" toggleGroup="$nemSzures" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                         <RadioButton fx:id="osszesTagNemGomb" mnemonicParsing="false" onAction="#osszesTagNem" text="Összes Tag" toggleGroup="$nemSzures" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Szűrés korra:" GridPane.rowIndex="3" />
-                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mettől:" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                                 <GridPane.margin>
-                                    <Insets right="80.0" />
-                                 </GridPane.margin></Text>
-                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Meddig:" GridPane.columnIndex="2" GridPane.rowIndex="3">
-                                 <GridPane.margin>
-                                    <Insets right="80.0" />
-                                 </GridPane.margin></Text>
-                                        <RadioButton mnemonicParsing="false" prefHeight="17.0" prefWidth="36.0" text="Be" GridPane.columnIndex="3" GridPane.rowIndex="3">
-                                            <opaqueInsets>
-                                                <Insets />
-                                            </opaqueInsets>
-                                            <GridPane.margin>
-                                                <Insets right="60.0" />
-                                            </GridPane.margin>
-                                            <toggleGroup>
-                                                <ToggleGroup fx:id="korSzures" />
-                                            </toggleGroup>
-                                        </RadioButton>
-                                        <RadioButton mnemonicParsing="false" prefHeight="17.0" prefWidth="38.0" text="Ki" toggleGroup="$korSzures" GridPane.columnIndex="3" GridPane.rowIndex="3">
-                                            <GridPane.margin>
-                                                <Insets left="60.0" />
-                                            </GridPane.margin>
-                                        </RadioButton>
-                                        <TextField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="42.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                                            <GridPane.margin>
-                                                <Insets left="20.0" />
-                                            </GridPane.margin>
-                                        </TextField>
-                                        <TextField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="42.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
-                                            <GridPane.margin>
-                                                <Insets left="20.0" />
-                                            </GridPane.margin>
-                                        </TextField>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Szűrés bérlet típusra:" GridPane.rowIndex="2" />
                               <RadioButton fx:id="osszesTagBerletTipusGomb" mnemonicParsing="false" onAction="#osszesTagBerletTipus" text="Összes Tag" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                  <toggleGroup>
@@ -184,7 +149,7 @@
                                                 <Insets left="60.0" />
                                             </GridPane.margin>
                                         </Button>
-                                        <Button mnemonicParsing="false" text="Mégsem" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                                        <Button mnemonicParsing="false" onAction="#megseModosit" text="Mégsem" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                                             <GridPane.margin>
                                                 <Insets right="60.0" />
                                             </GridPane.margin>

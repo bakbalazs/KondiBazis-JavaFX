@@ -77,9 +77,6 @@ public class TagHozzaadasaKezelo implements Initializable {
     private ImageView kepMegjelenites;
 
     @FXML
-    private ToggleGroup nemek;
-
-    @FXML
     private Text konditeremNeve;
 
     @FXML
@@ -377,7 +374,8 @@ public class TagHozzaadasaKezelo implements Initializable {
             konditeremTagKepeSzolgaltatas.leterehozTagKepet(ujTagKepe);
 
             foAblakKezelo.adatFrissites();
-//            TagokSzurese.szuresek(tagokTabla.getItems());
+
+            logolo.debug("Új tag létrehozva " + ujTag.getTagNeve() + " névvel!");
 
             ((Stage) megseGomb.getScene().getWindow()).close();
             KiegeszitoFelulet.ertesites("Tag Hozzáadása", "A tag sikeresen hozzáadva!", "Tag sikeresen hozzáadava : " + vezeteknevBevitel.getText() + " " + keresztnevBevitel.getText() + "névvel.", "Tag létrehozása után.", Pos.BOTTOM_RIGHT, 5);

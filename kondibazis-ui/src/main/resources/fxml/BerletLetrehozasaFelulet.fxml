@@ -101,27 +101,12 @@
                   <Font size="16.0" />
                </font></JFXTextField>
             <ImageView fitHeight="42.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1" />
-            <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
-               <GridPane.margin>
-                  <Insets left="240.0" />
-               </GridPane.margin>
-            </ImageView>
-            <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
-               <GridPane.margin>
-                  <Insets left="240.0" />
-               </GridPane.margin>
-            </ImageView>
-            <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-               <GridPane.margin>
-                  <Insets left="240.0" />
-               </GridPane.margin>
-            </ImageView>
-            <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
-               <GridPane.margin>
-                  <Insets left="240.0" />
-               </GridPane.margin>
-            </ImageView>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Milyen tipusú bérletet akar létrehozni?" GridPane.valignment="TOP" />
+            <Text fx:id="ftJel" strokeType="OUTSIDE" strokeWidth="0.0" text="Ft" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets left="200.0" />
+               </GridPane.margin>
+            </Text>
          </children>
       </GridPane>
    </center>

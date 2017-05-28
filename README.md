@@ -3,3 +3,4 @@
 
 # KondiBazis
 
+##### Az alkalmazás célja hogy megkönnyítse a konditermeknek a bérletek és a tagok kezeléséz.

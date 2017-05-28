@@ -57,7 +57,7 @@ public class BejelentkezoKezelo implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        logolo.info("Elindult a bejeletkező felület.");
+        logolo.info("Elindult a bejeletkezo felulet.");
         felhasznalonevBevitel.setAlignment(Pos.CENTER);
         visszaGombKep.setImage(FeluletBetoltese.visszaGomb);
         bejelentkezoUzenet.setFill(Color.GREEN);

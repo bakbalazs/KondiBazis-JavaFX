@@ -62,6 +62,8 @@ public class RegisztraltKonditermekKezelo implements Initializable {
         visszaGombKep.setImage(FeluletBetoltese.visszaGomb);
         konditeremAdatokTablaAdatok = FXCollections.observableArrayList();
         adatFrissites();
+        konditeremAdatokTabla.setSelectionModel(null);
+        konditeremAdatokTabla.getStylesheets().add("/css/tablakinezet.css");
     }
 
     @FXML
@@ -80,10 +82,8 @@ public class RegisztraltKonditermekKezelo implements Initializable {
             konditeremAdatokTablaAdatok.clear();
         }
 
-
         logger.debug("Tablazat feltoltese adatokkal: ");
 
-        /// HA NINCS EGY SEM AKKOR CSAK EGY ABALKA JÖJ BE HOGY NINCS REGISZTRÁLT TEREM TODO
         for (KonditeremVo konditerem : osszesKonditerem) {
             List<KonditeremElerhetosegVo> konditeremElerhetosegek = konditerem.getKonditeremElerhetosegek();
             for (KonditeremElerhetosegVo konditeremElerhetoseg : konditeremElerhetosegek) {

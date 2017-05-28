@@ -71,7 +71,7 @@ public class KonditeremTagTest {
         tesztKonditeremB = ujKonditerem2;
 
         KonditeremBerlet ujKonditeremBerlet1 = new KonditeremBerlet();
-        ujKonditeremBerlet1.setId(4L);
+        ujKonditeremBerlet1.setId(3L);
         ujKonditeremBerlet1.setBerletNeve("TesztHavi");
         ujKonditeremBerlet1.setBerletAra(10000);
         ujKonditeremBerlet1.setBerletTipusa("Havi");
@@ -81,7 +81,7 @@ public class KonditeremTagTest {
         ujKonditeremBerlet1.setKonditerem(tesztKonditeremA);
 
         KonditeremBerlet ujKonditeremBerlet2 = new KonditeremBerlet();
-        ujKonditeremBerlet2.setId(5L);
+        ujKonditeremBerlet2.setId(4L);
         ujKonditeremBerlet2.setBerletNeve("Teszt2Napos");
         ujKonditeremBerlet2.setBerletAra(10000);
         ujKonditeremBerlet2.setBerletTipusa("2 napos");
@@ -91,7 +91,7 @@ public class KonditeremTagTest {
         ujKonditeremBerlet2.setKonditerem(tesztKonditeremA);
 
         KonditeremBerlet ujKonditeremBerlet3 = new KonditeremBerlet();
-        ujKonditeremBerlet3.setId(6L);
+        ujKonditeremBerlet3.setId(5L);
         ujKonditeremBerlet3.setBerletNeve("TesztHavi");
         ujKonditeremBerlet3.setBerletAra(10000);
         ujKonditeremBerlet3.setBerletTipusa("Havi");
@@ -101,7 +101,7 @@ public class KonditeremTagTest {
         ujKonditeremBerlet3.setKonditerem(tesztKonditeremB);
 
         KonditeremBerlet ujKonditeremBerlet4 = new KonditeremBerlet();
-        ujKonditeremBerlet2.setId(7L);
+        ujKonditeremBerlet2.setId(6L);
         ujKonditeremBerlet2.setBerletNeve("Teszt2Napos");
         ujKonditeremBerlet2.setBerletAra(10000);
         ujKonditeremBerlet2.setBerletTipusa("2 napos");
@@ -111,7 +111,7 @@ public class KonditeremTagTest {
         ujKonditeremBerlet2.setKonditerem(tesztKonditeremB);
 
         KonditeremTag ujTag1 = new KonditeremTag();
-        ujTag1.setId(8L);
+        ujTag1.setId(7L);
         ujTag1.setTagVezeteknev("Ujtag1Vezeteknev");
         ujTag1.setTagKeresztnev("Ujtag1Keresztnev");
         ujTag1.setTagNeve(ujTag1.getTagVezeteknev() + " " + ujTag1.getTagKeresztnev());
@@ -128,7 +128,7 @@ public class KonditeremTagTest {
         ujTag1.setKonditerem(tesztKonditeremA);
 
         KonditeremTag ujTag2 = new KonditeremTag();
-        ujTag2.setId(9L);
+        ujTag2.setId(8L);
         ujTag2.setTagVezeteknev("Ujtag2Vezeteknev");
         ujTag2.setTagKeresztnev("Ujtag2Keresztnev");
         ujTag2.setTagNeve(ujTag1.getTagVezeteknev() + " " + ujTag1.getTagKeresztnev());
@@ -145,7 +145,7 @@ public class KonditeremTagTest {
         ujTag2.setKonditerem(tesztKonditeremA);
 
         KonditeremTag ujTag3 = new KonditeremTag();
-        ujTag3.setId(10L);
+        ujTag3.setId(9L);
         ujTag3.setTagVezeteknev("Ujtag3Vezeteknev");
         ujTag3.setTagKeresztnev("Ujtag3Keresztnev");
         ujTag3.setTagNeve(ujTag1.getTagVezeteknev() + " " + ujTag1.getTagKeresztnev());
@@ -162,7 +162,7 @@ public class KonditeremTagTest {
         ujTag3.setKonditerem(tesztKonditeremA);
 
         KonditeremTag ujTag4 = new KonditeremTag();
-        ujTag4.setId(11L);
+        ujTag4.setId(10L);
         ujTag4.setTagVezeteknev("Ujtag4Vezeteknev");
         ujTag4.setTagKeresztnev("Ujtag4Keresztnev");
         ujTag4.setTagNeve(ujTag1.getTagVezeteknev() + " " + ujTag1.getTagKeresztnev());
@@ -179,7 +179,7 @@ public class KonditeremTagTest {
         ujTag4.setKonditerem(tesztKonditeremB);
 
         KonditeremTag ujTag5 = new KonditeremTag();
-        ujTag5.setId(12L);
+        ujTag5.setId(11L);
         ujTag5.setTagVezeteknev("Ujtag5Vezeteknev");
         ujTag5.setTagKeresztnev("Ujtag5Keresztnev");
         ujTag5.setTagNeve(ujTag1.getTagVezeteknev() + " " + ujTag1.getTagKeresztnev());
@@ -196,7 +196,7 @@ public class KonditeremTagTest {
         ujTag5.setKonditerem(tesztKonditeremB);
 
         KonditeremTag ujTag6 = new KonditeremTag();
-        ujTag6.setId(13L);
+        ujTag6.setId(12L);
         ujTag6.setTagVezeteknev("Ujtag6Vezeteknev");
         ujTag6.setTagKeresztnev("Ujtag6Keresztnev");
         ujTag6.setTagNeve(ujTag1.getTagVezeteknev() + " " + ujTag1.getTagKeresztnev());
@@ -380,6 +380,26 @@ public class KonditeremTagTest {
 
         Assert.assertNotNull(konditeremIdokorlatosBerletuTagjai);
         Assert.assertEquals(2, konditeremIdokorlatosBerletuTagjai.size());
+    }
+
+    @Test
+    public void konditeremLejartAlkalmasBerletuTagjaiTeszt() {
+        KonditeremVo konditerem = KonditeremMapper.toVo(tesztKonditeremA);
+
+        List<KonditeremTagVo> konditeremLejartAlkalmasBerletuTagjai = konditeremTagSzolgaltatas.lejartAlkalmasBerletuTagok(konditerem);
+
+        Assert.assertNotNull(konditeremLejartAlkalmasBerletuTagjai);
+        Assert.assertEquals(1, konditeremLejartAlkalmasBerletuTagjai.size());
+    }
+
+    @Test
+    public void konditeremLejartIdokorlatosBerletuTagjaiTeszt() {
+        KonditeremVo konditerem = KonditeremMapper.toVo(tesztKonditeremB);
+
+        List<KonditeremTagVo> konditeremLejartIdokorlatosBerletuTagjai = konditeremTagSzolgaltatas.lejartIdokorlatosBerletuTagok(konditerem);
+
+        Assert.assertNotNull(konditeremLejartIdokorlatosBerletuTagjai);
+        Assert.assertEquals(2, konditeremLejartIdokorlatosBerletuTagjai.size());
     }
 
 }

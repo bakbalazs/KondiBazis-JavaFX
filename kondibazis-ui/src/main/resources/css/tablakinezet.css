@@ -1,0 +1,7 @@
+.table-row-cell:hover{
+    -fx-background-color: lightcoral;
+}
+ 
+.table-row-cell:selected{
+    -fx-background-color: lightsalmon;
+}

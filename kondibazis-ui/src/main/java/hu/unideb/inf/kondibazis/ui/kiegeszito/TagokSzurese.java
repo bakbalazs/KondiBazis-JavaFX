@@ -229,9 +229,35 @@ public class TagokSzurese {
             }
         }
 
-        if (!ferfiTagok.isEmpty()) {
+        if (!lejartBerletuTagok.isEmpty() || !ferfiTagok.isEmpty() || !alkalmasBerletuLejartTagok.isEmpty() || !idokorlatosBerletuLejartTagok.isEmpty() || !aktivBerletuTagok.isEmpty() || !alkalmasBerletuAktivTagok.isEmpty() || !idokorlatosBerletuAktivTagok.isEmpty() || !noiTagok.isEmpty() || !alkalmasBerletesTagok.isEmpty() || !idokorlatosBerletesTagok.isEmpty() || !alkalmasNoiBerletuTagok.isEmpty() || !alkalmasFerfiBerletuTagok.isEmpty() || !idokorlatosNoiBerletuTagok.isEmpty() || !idokorlatosFerfiBerletuTagok.isEmpty() || !lejartAlkalmasNoiBerletuTagok.isEmpty() || !lejartIdokorlatosNoiBerletuTagok.isEmpty() || !lejartAlkalmasFerfiBerletuTagok.isEmpty() || !lejartIdokorlatosFerfiBerletuTagok.isEmpty() || !lejartFerfiBerletuTagok.isEmpty() || !lejartNoiBerletuTagok.isEmpty() || !aktivAlkalmasNoiBerletuTagok.isEmpty() || !aktivIdokorlatosNoiBerletuTagok.isEmpty() || !aktivAlkalmasFerfiBerletuTagok.isEmpty() || !aktivIdokorlatosFerfiBerletuTagok.isEmpty() || !aktivFerfiBerletuTagok.isEmpty() || !aktivNoiBerletuTagok.isEmpty()) {
+            lejartBerletuTagok.clear();
             ferfiTagok.clear();
+            alkalmasBerletuLejartTagok.clear();
+            idokorlatosBerletuLejartTagok.clear();
+            aktivBerletuTagok.clear();
+            alkalmasBerletuAktivTagok.clear();
+            idokorlatosBerletuAktivTagok.clear();
+            noiTagok.clear();
 
+            alkalmasBerletesTagok.clear();
+            idokorlatosBerletesTagok.clear();
+            alkalmasNoiBerletuTagok.clear();
+            alkalmasFerfiBerletuTagok.clear();
+            idokorlatosNoiBerletuTagok.clear();
+            idokorlatosFerfiBerletuTagok.clear();
+            lejartAlkalmasNoiBerletuTagok.clear();
+            lejartIdokorlatosNoiBerletuTagok.clear();
+            lejartAlkalmasFerfiBerletuTagok.clear();
+            lejartIdokorlatosFerfiBerletuTagok.clear();
+            lejartFerfiBerletuTagok.clear();
+            lejartNoiBerletuTagok.clear();
+
+            aktivAlkalmasNoiBerletuTagok.clear();
+            aktivIdokorlatosNoiBerletuTagok.clear();
+            aktivAlkalmasFerfiBerletuTagok.clear();
+            aktivIdokorlatosFerfiBerletuTagok.clear();
+            aktivFerfiBerletuTagok.clear();
+            aktivNoiBerletuTagok.clear();
         }
 
         lejartBerletuTagok.addAll(alkalmasLejartLista);

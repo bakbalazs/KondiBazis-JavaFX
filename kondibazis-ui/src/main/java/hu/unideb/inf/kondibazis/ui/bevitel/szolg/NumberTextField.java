@@ -1,3 +1,4 @@
+// CHECKSTYLE:OFF
 package hu.unideb.inf.kondibazis.ui.bevitel.szolg;
 
 import javafx.scene.control.TextField;
