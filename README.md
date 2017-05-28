@@ -9,7 +9,7 @@
 
 Az alkalmazás indulásakor a következő képernyő fogad:
 
-![Alt text](https://github.com/bakbalazs/KondiBazis-JavaFX/kepek/inditasiKepernyoFelulet "Az alkalmazás indító képernyője.")
+![Alt text](https://github.com/bakbalazs/KondiBazis-JavaFX/blob/master/kepek/inditasiKepernyoFelulet "Az alkalmazás indító képernyője.")
 
 ### Funkciók
 * Regisztráció
