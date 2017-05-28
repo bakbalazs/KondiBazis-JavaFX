@@ -4,7 +4,7 @@
         <groupId>hu.unideb.inf.kondibazis</groupId>
         <artifactId>KondiBazis</artifactId>
        
-    <version>0.0.2-SNAPSHOT</version>
+    <version>0.0.2</version>
 
     </parent>
     <artifactId>kondibazis-szolg-api</artifactId>
